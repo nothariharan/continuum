@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "continuum"
+version = "0.0.0"
+description = "Continuum Phase 0 HydraDB integration foundation"
+requires-python = ">=3.12"
+dependencies = ["neo4j>=5.28,<7"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["continuum*"]
+
+[tool.pytest.ini_options]
+markers = [
+  "hydradb: requires a running local HydraDB instance",
+]
+testpaths = ["tests"]

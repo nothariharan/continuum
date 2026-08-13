@@ -1,0 +1,3 @@
+[submodule "hydradb/hydradb-repo"]
+	path = hydradb/hydradb-repo
+	url = https://github.com/hydra-db/hydradb.git
