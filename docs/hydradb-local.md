@@ -1,6 +1,6 @@
 # HydraDB local development
 
-Continuum uses the official HydraDB Docker image and keeps HydraDB source as a pinned Git submodule at `hydradb/hydradb-repo`. HydraDB code is not modified by Continuum.
+Continuum uses the official HydraDB `v0.1.1` Docker image pinned by digest and keeps HydraDB source as a pinned Git submodule at `hydradb/hydradb-repo`. HydraDB code is not modified by Continuum. The source checkout is commit `6a2fbb1…`; the released runtime image is pinned separately because HydraDB publishes SHA tags for release images, not every `main` commit.
 
 ## Start
 
@@ -10,7 +10,7 @@ Install Docker Desktop and Python 3.12+. Copy `.env.example` to `.env` if changi
 .\scripts\start_hydradb.ps1
 ```
 
-The script pulls `ghcr.io/hydra-db/hydradb` pinned to the checked-out HydraDB commit, creates `hydradb-data/`, starts one `graph-node`, and waits for readiness.
+The script uses the pinned official image digest, creates `hydradb-data/`, starts one `graph-node`, and waits for readiness.
 
 Services and ports:
 
@@ -40,4 +40,3 @@ Continuum uses the official Python `neo4j` driver over Bolt. The configured data
 Reset stops only the `continuum-hydradb` container and deletes only the configured workspace-local `hydradb-data/` directory. It never deletes arbitrary Docker volumes or user databases. Start again to recreate an empty store.
 
 Equivalent Make targets are available where `make` is installed: `make hydradb-up`, `make hydradb-health`, `make hydradb-reset`, and `make hydradb-smoke`.
-

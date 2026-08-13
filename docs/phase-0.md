@@ -2,7 +2,7 @@
 
 ## Runtime
 
-HydraDB is a Rust graph database with a `graph-node` data/query service and an optional asynchronous indexer. Phase 0 runs one official `graph-node` Docker image backed by a local object-store directory. No MinIO, S3, Kubernetes, indexer, or source build is required for this local foundation.
+HydraDB is a Rust graph database with a `graph-node` data/query service and an optional asynchronous indexer. Phase 0 runs the official `v0.1.1` Docker image pinned by digest `sha256:db78309a233be54662db29744047e985a39b51c45a270d1a1f47c31a62cdb709`, backed by a local object-store directory. No MinIO, S3, Kubernetes, indexer, or source build is required for this local foundation.
 
 The official local runtime exposes Bolt `7687`, query HTTP `8443`, and admin `9090`. Readiness is checked at `GET /readyz`; metrics are available at `GET /metrics`. A listening port alone is not considered ready.
 
@@ -32,5 +32,5 @@ The smoke graph proves directed `Sarah -OWNS-> Acme` traversal inside HydraDB. A
 - HydraDB requires `RUST_MIN_STACK=33554432`; the official image startup script supplies it.
 - The official repository warns that readiness is not proof of queryability, so health includes a trivial authenticated Bolt query.
 - HydraDB implements a deliberate OpenCypher subset. One statement is accepted per request, node IDs are non-negative integers, and batch list parameters are supported through the client transport.
+- The checked-out HydraDB source remains pinned to commit `6a2fbb1…`, while the immutable official runtime image is the released `v0.1.1` digest above; HydraDB publishes SHA tags for release images rather than every `main` commit.
 - Windows has no `make` in the current workspace, so PowerShell scripts are the primary documented commands; the Makefile remains available for compatible environments.
-

@@ -31,7 +31,7 @@ class HydraDBConfig:
     namespace: str = "default"
     cell_id: str = "cell-0"
     protocol: str = "bolt"
-    image: str = "ghcr.io/hydra-db/hydradb:sha-6a2fbb192f37f51a93690a2ae2d2f5e27e6e4219"
+    image: str = "ghcr.io/hydra-db/hydradb@sha256:db78309a233be54662db29744047e985a39b51c45a270d1a1f47c31a62cdb709"
     container_name: str = "continuum-hydradb"
     state_dir: Path = Path("hydradb-data")
 
@@ -61,4 +61,3 @@ class HydraDBConfig:
     @property
     def admin_ready_url(self) -> str:
         return f"http://{self.host}:{self.admin_port}/readyz"
-

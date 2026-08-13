@@ -37,7 +37,9 @@ class HydraDBClient:
     def health_check(self) -> bool:
         self._driver.verify_connectivity()
         with self._driver.session(database=self.config.database) as session:
-            session.run("RETURN 1 AS ok").consume()
+            session.run(
+                "MATCH (n:ContinuumHealthProbe {id: 1}) RETURN n.id AS id"
+            ).consume()
         return True
 
     def execute(
@@ -58,4 +60,3 @@ class HydraDBClient:
         rows: Iterable[Mapping[str, Any]],
     ) -> QueryResult:
         return self.execute(query, {"rows": list(rows)})
-

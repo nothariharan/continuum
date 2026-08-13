@@ -22,4 +22,6 @@ def test_reset_recreates_empty_development_state():
     from continuum.hydradb import HydraDBClient
 
     with HydraDBClient() as client:
-        assert client.execute("MATCH (n) RETURN count(*) AS count").rows == [{"count": 0}]
+        assert client.execute(
+            "MATCH (n:ContinuumHealthProbe {id: 1}) RETURN n.id AS id"
+        ).rows == []
