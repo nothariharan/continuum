@@ -1,0 +1,41 @@
+{
+  "people": [
+    {"id": "person:sarah", "name": "Sarah Chen"},
+    {"id": "person:arjun", "name": "Arjun Mehta"},
+    {"id": "person:soham", "name": "Soham Ratnaparkhi", "aliases": ["Sam", "@soham", "S. Ratnaparkhi", "soham-dev"]}
+  ],
+  "accounts": [
+    {"id": "account:acme", "name": "Acme"},
+    {"id": "account:stripeco", "name": "StripeCo"}
+  ],
+  "projects": [
+    {"id": "project:acme-integration", "name": "Acme Integration"},
+    {"id": "project:payments", "name": "Payments"}
+  ],
+  "sources": [
+    {"id": "source:slack", "name": "Slack"},
+    {"id": "source:gmail", "name": "Gmail"},
+    {"id": "source:linear", "name": "Linear"},
+    {"id": "source:github", "name": "GitHub"}
+  ],
+  "artifacts": [
+    {"id": "artifact:gmail-acme-owner", "kind": "gmail_message", "source_id": "source:gmail", "observed_at": "2026-07-10", "content": "Arjun is the Acme owner."},
+    {"id": "artifact:linear-acme-assignment", "kind": "linear_assignment", "source_id": "source:linear", "observed_at": "2026-07-28", "content": "Sarah is now assigned to Acme."},
+    {"id": "artifact:slack-acme-handoff", "kind": "slack_message", "source_id": "source:slack", "observed_at": "2026-07-29", "content": "Sarah is taking over Acme from Arjun."},
+    {"id": "artifact:slack-integration", "kind": "slack_message", "source_id": "source:slack", "observed_at": "2026-07-15", "content": "Sarah is driving the Acme Integration project."},
+    {"id": "artifact:linear-payments", "kind": "linear_assignment", "source_id": "source:linear", "observed_at": "2026-07-12", "content": "Soham is assigned to Payments."},
+    {"id": "artifact:github-payments", "kind": "github_activity", "source_id": "source:github", "observed_at": "2026-07-13", "content": "Soham opened the Payments implementation branch."},
+    {"id": "artifact:gmail-acme-context", "kind": "gmail_message", "source_id": "source:gmail", "observed_at": "2026-07-09", "content": "Acme integration ownership is being reviewed."},
+    {"id": "artifact:github-acme", "kind": "github_activity", "source_id": "source:github", "observed_at": "2026-07-30", "content": "Sarah reviewed the Acme integration changes."}
+  ],
+  "claims": [
+    {"id": "claim:arjun-acme-gmail", "subject_id": "person:arjun", "predicate": "OWNS", "object_id": "account:acme", "artifact_id": "artifact:gmail-acme-owner", "observed_at": "2026-07-10", "valid_from": "2026-07-01", "valid_to": "2026-07-28"},
+    {"id": "claim:sarah-acme-linear", "subject_id": "person:sarah", "predicate": "OWNS", "object_id": "account:acme", "artifact_id": "artifact:linear-acme-assignment", "observed_at": "2026-07-28", "valid_from": "2026-07-28", "valid_to": null},
+    {"id": "claim:sarah-acme-slack", "subject_id": "person:sarah", "predicate": "OWNS", "object_id": "account:acme", "artifact_id": "artifact:slack-acme-handoff", "observed_at": "2026-07-29", "valid_from": "2026-07-28", "valid_to": null},
+    {"id": "claim:sarah-integration", "subject_id": "person:sarah", "predicate": "OWNS", "object_id": "project:acme-integration", "artifact_id": "artifact:slack-integration", "observed_at": "2026-07-15", "valid_from": "2026-07-15", "valid_to": null},
+    {"id": "claim:soham-payments-linear", "subject_id": "person:soham", "predicate": "OWNS", "object_id": "project:payments", "artifact_id": "artifact:linear-payments", "observed_at": "2026-07-12", "valid_from": "2026-07-12", "valid_to": null},
+    {"id": "claim:soham-payments-github", "subject_id": "person:soham", "predicate": "OWNS", "object_id": "project:payments", "artifact_id": "artifact:github-payments", "observed_at": "2026-07-13", "valid_from": "2026-07-12", "valid_to": null},
+    {"id": "claim:arjun-integration-review", "subject_id": "person:arjun", "predicate": "REVIEWS", "object_id": "project:acme-integration", "artifact_id": "artifact:gmail-acme-context", "observed_at": "2026-07-09", "valid_from": "2026-07-09", "valid_to": null},
+    {"id": "claim:sarah-acme-github", "subject_id": "person:sarah", "predicate": "REVIEWS", "object_id": "account:acme", "artifact_id": "artifact:github-acme", "observed_at": "2026-07-30", "valid_from": "2026-07-30", "valid_to": null}
+  ]
+}

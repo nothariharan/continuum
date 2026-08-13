@@ -1,0 +1,26 @@
+{
+  "current_state": {
+    "p50_ms": 2.49,
+    "p95_ms": 4.797,
+    "p99_ms": 21.303,
+    "iterations": 20
+  },
+  "historical_state": {
+    "p50_ms": 2.564,
+    "p95_ms": 3.418,
+    "p99_ms": 3.628,
+    "iterations": 20
+  },
+  "provenance": {
+    "p50_ms": 4.056,
+    "p95_ms": 4.521,
+    "p99_ms": 4.536,
+    "iterations": 20
+  },
+  "conflict": {
+    "p50_ms": 2.664,
+    "p95_ms": 3.605,
+    "p99_ms": 4.147,
+    "iterations": 20
+  }
+}
