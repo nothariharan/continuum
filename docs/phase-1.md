@@ -32,10 +32,10 @@ The generated baseline is stored in `docs/phase-1-benchmark.json` after running 
 
 | Query | p50 | p95 | p99 |
 |---|---:|---:|---:|
-| current_state | 2.490 ms | 4.797 ms | 21.303 ms |
-| historical_state | 2.564 ms | 3.418 ms | 3.628 ms |
-| provenance | 4.056 ms | 4.521 ms | 4.536 ms |
-| conflict | 2.664 ms | 3.605 ms | 4.147 ms |
+| current_state | 2.402 ms | 4.236 ms | 7.721 ms |
+| historical_state | 1.897 ms | 2.637 ms | 2.962 ms |
+| provenance | 3.142 ms | 5.545 ms | 7.010 ms |
+| conflict | 2.413 ms | 3.034 ms | 3.270 ms |
 
 ## HydraDB observations
 

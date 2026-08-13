@@ -34,10 +34,11 @@ def seed(reset: bool = False) -> dict[str, int]:
                 node_rows,
             )
         people_aliases = [{"id": graph_ids[row["id"]], "aliases": "|".join(row.get("aliases", []))} for row in fixture["people"]]
-        client.execute_batch(
-            "UNWIND $rows AS row MATCH (n:Person {id: row.id}) SET n.aliases = row.aliases",
-            people_aliases,
-        )
+        for row in people_aliases:
+            client.execute(
+                "MATCH (n:Person {id: $id}) SET n.aliases = $aliases",
+                row,
+            )
         artifact_rows = [{**row, "id": graph_ids[row["id"]], "key": row["id"]} for row in fixture["artifacts"]]
         client.execute_batch(
             "UNWIND $rows AS row MERGE (n {id: row.id}) "
