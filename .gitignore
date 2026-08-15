@@ -9,3 +9,4 @@ venv/
 hydradb-data/
 *.log
 data/raw/
+*.checkpoint.jsonl

@@ -15,58 +15,67 @@
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 3.53
+        "latency_ms": 3.53,
+        "mrr": 1.0
       },
       {
         "query": "What billing complaint did QuantaLedger raise about usage and processing regions?",
         "relevant_count": 1,
         "recall@5": 0.0,
         "recall@10": 1.0,
-        "latency_ms": 2.61
+        "latency_ms": 2.61,
+        "mrr": 0.2
       },
       {
         "query": "How should the TypeScript SDK cancel an in-flight streaming chat request?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 2.95
+        "latency_ms": 2.95,
+        "mrr": 1.0
       },
       {
         "query": "Which PR added a hierarchical latency fingerprint canary detector?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 2.37
+        "latency_ms": 2.37,
+        "mrr": 1.0
       },
       {
         "query": "What ticket covers removing legacy feature flags in the serving runtime?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 2.83
+        "latency_ms": 2.83,
+        "mrr": 1.0
       },
       {
         "query": "What did Redwood promise to explain about attempt-level billing and retries?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 3.49
+        "latency_ms": 3.49,
+        "mrr": 1.0
       },
       {
         "query": "Which Slack thread polled about debugging-style cereals?",
         "relevant_count": 0,
         "recall@5": 0.0,
         "recall@10": 0.0,
-        "latency_ms": 2.17
+        "latency_ms": 2.17,
+        "mrr": 0.0
       },
       {
         "query": "What files are attached to the SIG access-orchestration follow-up?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 2.83
+        "latency_ms": 2.83,
+        "mrr": 1.0
       }
-    ]
+    ],
+    "mean_mrr": 0.775
   },
   "dense": {
     "mean_recall@5": 0.625,
@@ -78,58 +87,67 @@
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 19.32
+        "latency_ms": 19.32,
+        "mrr": 1.0
       },
       {
         "query": "What billing complaint did QuantaLedger raise about usage and processing regions?",
         "relevant_count": 1,
         "recall@5": 0.0,
         "recall@10": 0.0,
-        "latency_ms": 23.17
+        "latency_ms": 23.17,
+        "mrr": 0.0
       },
       {
         "query": "How should the TypeScript SDK cancel an in-flight streaming chat request?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 18.35
+        "latency_ms": 18.35,
+        "mrr": 1.0
       },
       {
         "query": "Which PR added a hierarchical latency fingerprint canary detector?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 19.73
+        "latency_ms": 19.73,
+        "mrr": 1.0
       },
       {
         "query": "What ticket covers removing legacy feature flags in the serving runtime?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 20.81
+        "latency_ms": 20.81,
+        "mrr": 1.0
       },
       {
         "query": "What did Redwood promise to explain about attempt-level billing and retries?",
         "relevant_count": 1,
         "recall@5": 0.0,
         "recall@10": 0.0,
-        "latency_ms": 20.34
+        "latency_ms": 20.34,
+        "mrr": 0.0
       },
       {
         "query": "Which Slack thread polled about debugging-style cereals?",
         "relevant_count": 0,
         "recall@5": 0.0,
         "recall@10": 0.0,
-        "latency_ms": 12.36
+        "latency_ms": 12.36,
+        "mrr": 0.0
       },
       {
         "query": "What files are attached to the SIG access-orchestration follow-up?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 16.26
+        "latency_ms": 16.26,
+        "mrr": 1.0
       }
-    ]
+    ],
+    "mean_mrr": 0.625
   },
   "hybrid": {
     "mean_recall@5": 0.75,
@@ -141,57 +159,66 @@
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 19.15
+        "latency_ms": 19.15,
+        "mrr": 1.0
       },
       {
         "query": "What billing complaint did QuantaLedger raise about usage and processing regions?",
         "relevant_count": 1,
         "recall@5": 0.0,
         "recall@10": 0.0,
-        "latency_ms": 19.2
+        "latency_ms": 19.2,
+        "mrr": 0.0
       },
       {
         "query": "How should the TypeScript SDK cancel an in-flight streaming chat request?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 20.28
+        "latency_ms": 20.28,
+        "mrr": 1.0
       },
       {
         "query": "Which PR added a hierarchical latency fingerprint canary detector?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 22.29
+        "latency_ms": 22.29,
+        "mrr": 1.0
       },
       {
         "query": "What ticket covers removing legacy feature flags in the serving runtime?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 24.79
+        "latency_ms": 24.79,
+        "mrr": 1.0
       },
       {
         "query": "What did Redwood promise to explain about attempt-level billing and retries?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 21.04
+        "latency_ms": 21.04,
+        "mrr": 1.0
       },
       {
         "query": "Which Slack thread polled about debugging-style cereals?",
         "relevant_count": 0,
         "recall@5": 0.0,
         "recall@10": 0.0,
-        "latency_ms": 13.26
+        "latency_ms": 13.26,
+        "mrr": 0.0
       },
       {
         "query": "What files are attached to the SIG access-orchestration follow-up?",
         "relevant_count": 1,
         "recall@5": 1.0,
         "recall@10": 1.0,
-        "latency_ms": 15.73
+        "latency_ms": 15.73,
+        "mrr": 1.0
       }
-    ]
+    ],
+    "mean_mrr": 0.75
   }
 }
