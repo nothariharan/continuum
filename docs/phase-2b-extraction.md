@@ -1,10 +1,12 @@
 # Phase 2B — Mention/Claim Extraction Pipeline
 
-Status: **done** on branch `feature/phase2b-extraction`.
+Status: **ready for PR** on branch `feature/phase2b-extraction`.
 
 ## Goal
 
-Turn real EnterpriseRAG-Bench artifacts into mentions, candidate claims, evaluation metrics, and entity-resolution prep signals for the founder to load into HydraDB. Does **not** include graph loading, entity merge, MCP, or UI.
+Turn 360 real EnterpriseRAG-Bench artifacts into **contract-validated** `mentions.jsonl` and `claims.jsonl`, with a **measured extraction benchmark** on a labeled subset.
+
+**Out of scope for this PR:** entity resolution, mention inventory merge, HydraDB/graph loading, MCP, or UI.
 
 ## Shared contract
 
@@ -15,24 +17,27 @@ See [contract-v1.md](contract-v1.md) for Artifact/Mention/Claim schemas and time
 | command | does |
 |---|---|
 | `python scripts/build_ground_truth.py` | writes `data/labels/phase2b-ground-truth.jsonl` (150 artifacts) |
-| `make extract-mentions` | writes `data/extraction/mentions.jsonl` |
-| `make extract-claims` | writes `data/extraction/claims.jsonl` |
-| `make eval-extraction` | writes `data/metadata/extraction_metrics.json` |
-| `make mention-inventory` | writes `data/extraction/mention_inventory.json` |
+| `make extract-dataset` | hybrid extraction on 360 artifacts + validation report |
+| `make extract-mentions` | writes `data/extraction/mentions.jsonl` (default: deterministic) |
+| `make extract-claims` | writes `data/extraction/claims.jsonl` (default: deterministic) |
+| `make validate-extraction` | writes `data/metadata/extraction_validation.json` |
+| `make eval-extraction` | validation + `data/metadata/extraction_metrics.json` |
 | `make embedding-experiment` | updates `data/metadata/embedding_experiment.json` with MRR |
 | `make test-phase2b` | runs unit tests (no HydraDB required) |
 
+`make mention-inventory` exists for a **future** entity-resolution phase and is not part of this PR.
+
 ## Modules
 
-- `continuum/extract/` — Mention/Claim schemas, deterministic extractors, optional LLM hybrid, inventory
-- `continuum/eval/` — ground-truth loading, precision/recall metrics
-- `scripts/extract_{mentions,claims}.py`, `eval_extraction.py`, `mention_inventory.py`, `build_ground_truth.py`
-- `tests/phase2b/` — schema, mention, claim, eval, inventory tests
+- `continuum/extract/` — Mention/Claim schemas, deterministic extractors, optional LLM hybrid
+- `continuum/eval/` — ground-truth loading, precision/recall metrics, contract validation
+- `scripts/extract_{mentions,claims}.py`, `eval_extraction.py`, `validate_extraction.py`, `build_ground_truth.py`
+- `tests/phase2b/` — schema, mention, claim, eval, validation tests
 
 ## Extraction strategies
 
-1. **Deterministic** (primary) — source-metadata regex and header parsing
-2. **Hybrid** — deterministic first, LLM gap-fill when `FIREWORKS_API_KEY` (or `OPENAI_API_KEY`) is set
+1. **Deterministic** (baseline) — source-metadata regex and header parsing
+2. **Hybrid** (shipped dataset) — deterministic first, LLM gap-fill when `FIREWORKS_API_KEY` is set
 3. **LLM** — LLM-only when API key set (comparison baseline)
 
 ### LLM setup (Fireworks)
@@ -45,8 +50,8 @@ cp .env.example .env
 # FIREWORKS_API_KEY=fw_...
 # CONTINUUM_LLM_MODEL=accounts/fireworks/models/gpt-oss-20b
 pip install -e ".[test,extract,llm]"
-python scripts/extract_claims.py --method hybrid
-python scripts/eval_extraction.py
+make extract-dataset
+make eval-extraction
 ```
 
 Fireworks uses the OpenAI-compatible endpoint at `https://api.fireworks.ai/inference/v1`.
@@ -56,12 +61,24 @@ Supported claim predicates: `OWNS`, `LEADS`, `ASSIGNED_TO`, `BLOCKS`, `DEPENDS_O
 
 Minimum claim confidence threshold: **0.70**.
 
+## Validation
+
+`make validate-extraction` checks every committed row against contract v1:
+
+- schema round-trip via `Mention` / `Claim` dataclasses
+- `artifact_id` must be a `dsid_*` present in `phase2a-sample.jsonl`
+- stable `mention_id` / `claim_id` hashes
+- non-empty `evidence_span` on claims
+- coverage summary (artifacts with zero extractions are expected for sparse sources)
+
+Output: `data/metadata/extraction_validation.json`
+
 ## Checkpoint #2 deliverable
 
 Top 50 claims by confidence for founder verification:
 
 ```bash
-python scripts/extract_claims.py --limit 50 --out data/extraction/claims_checkpoint50.jsonl
+python scripts/extract_claims.py --method hybrid --limit 50 --out data/extraction/claims_checkpoint50.jsonl
 ```
 
 Founder verifies: Artifact → Claim → HydraDB → Query → Evidence.
@@ -71,9 +88,10 @@ Founder verifies: Artifact → Claim → HydraDB → Query → Evidence.
 - [x] Ground-truth extraction set exists (`data/labels/phase2b-ground-truth.jsonl`)
 - [x] Mention schema locked (`docs/contract-v1.md`)
 - [x] Claim schema locked (`docs/contract-v1.md`)
+- [x] Full JSONL contract validation (`data/metadata/extraction_validation.json`)
 - [x] Mention precision/recall measured (`data/metadata/extraction_metrics.json`)
-- [x] Claim precision/recall measured
-- [x] Extraction strategies compared (deterministic / hybrid / llm)
+- [x] Claim precision/recall measured (limited gold set — mostly BLOCKS/OWNS)
+- [x] Extraction strategies compared (deterministic / hybrid)
 - [x] Retrieval benchmark updated with MRR
 - [x] Candidate claim JSONL reproducible (`data/extraction/claims.jsonl`)
 - [x] Provenance preserved (`evidence_span`, `extraction_method` on every claim)
@@ -82,4 +100,4 @@ Founder verifies: Artifact → Claim → HydraDB → Query → Evidence.
 
 ## Next (Phase 2C+)
 
-Entity resolution (joint with founder), claims loader into HydraDB, hybrid retrieval wired to query layer.
+Entity resolution (joint with founder), mention inventory merge, claims loader into HydraDB, hybrid retrieval wired to query layer.

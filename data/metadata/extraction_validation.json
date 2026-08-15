@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "sample_artifact_count": 360,
+  "mention_rows": 4841,
+  "claim_rows": 611,
+  "artifacts_with_mentions": 272,
+  "artifacts_with_claims": 169,
+  "artifacts_with_any_extraction": 321,
+  "artifacts_with_zero_extractions": 39,
+  "orphan_artifact_ids": [],
+  "error_count": 0,
+  "warning_count": 1,
+  "errors": [],
+  "warnings": [
+    "39 sample artifacts have zero mentions and zero claims (expected for sparse sources like google_drive/confluence)"
+  ]
+}

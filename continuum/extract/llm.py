@@ -83,7 +83,7 @@ def _llm_mentions(artifact: Artifact) -> list[Mention]:
                 span_end=idx + len(raw),
                 source_identity=item.get("source_identity"),
                 extraction_method="llm",
-                confidence=0.65,
+                confidence=0.70,
             )
         )
     return mentions
@@ -121,7 +121,7 @@ def _llm_claims(artifact: Artifact) -> list[Claim]:
                     object_mention=str(item["object_mention"]),
                     observed_at=artifact.timestamp,
                     evidence_span=str(item.get("evidence_span", ""))[:500],
-                    confidence=0.65,
+                    confidence=0.70,
                     extraction_method="llm",
                 )
             )

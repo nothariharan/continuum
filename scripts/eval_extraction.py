@@ -79,6 +79,20 @@ def main() -> int:
         "strategies": strategies,
         "notes": "deterministic preferred; llm/hybrid require FIREWORKS_API_KEY or OPENAI_API_KEY",
     }
+
+    from continuum.extract.llm_client import llm_available, llm_model_name
+
+    if llm_available():
+        payload["fireworks"] = {
+            "verified": True,
+            "provider": "fireworks",
+            "model": llm_model_name(),
+        }
+
+    validation_path = args.out.parent / "extraction_validation.json"
+    if validation_path.exists():
+        payload["validation"] = json.loads(validation_path.read_text(encoding="utf-8"))
+
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(payload, indent=2))

@@ -76,8 +76,8 @@ def create_llm_client():
             "LLM extraction requires FIREWORKS_API_KEY or OPENAI_API_KEY in the environment"
         )
     if config.base_url:
-        return OpenAI(api_key=config.api_key, base_url=config.base_url)
-    return OpenAI(api_key=config.api_key)
+        return OpenAI(api_key=config.api_key, base_url=config.base_url, timeout=20.0, max_retries=1)
+    return OpenAI(api_key=config.api_key, timeout=20.0, max_retries=1)
 
 
 def llm_model_name() -> str:
