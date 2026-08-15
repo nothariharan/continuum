@@ -1,0 +1,690 @@
+{
+  "dataset": "EnterpriseRAG-Bench",
+  "release": "v1.0.0",
+  "source": "github.com/onyx-dot-app/EnterpriseRAG-Bench",
+  "huggingface": "huggingface.co/datasets/onyx-dot-app/EnterpriseRAG-Bench",
+  "license": "MIT",
+  "paper": "arxiv.org/abs/2605.05253",
+  "published_at": "2026-03-29T08:17:18Z",
+  "asset_count": 113,
+  "assets": [
+    {
+      "name": "all_documents.zip",
+      "size": 1256181062,
+      "sha256": "9d1174928696ad08bc15f3f104739519de633c1605a4ec2034e0e3c0087bc5cd",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/all_documents.zip"
+    },
+    {
+      "name": "confluence_slice_0001.zip",
+      "size": 22553881,
+      "sha256": "a79320d9c11b58c904ddc444f4b5c374ea1d9e6e3075974bcaea294c2a7e2eb5",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/confluence_slice_0001.zip"
+    },
+    {
+      "name": "confluence_slice_0002.zip",
+      "size": 883322,
+      "sha256": "ecb4e395f710f0eef8332b1e27182c00223da847945a010c10078b3e0c693024",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/confluence_slice_0002.zip"
+    },
+    {
+      "name": "extra_questions.jsonl",
+      "size": 57726,
+      "sha256": "26e23e5ade467512433e0fc012b30ea14b079dde11ad6f93cf380eed1bd96807",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/extra_questions.jsonl"
+    },
+    {
+      "name": "fireflies_slice_0001.zip",
+      "size": 26309337,
+      "sha256": "799e856058d1e92301bcbfc01fb903f16463092bfc9c42b3e9144db6fe742707",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/fireflies_slice_0001.zip"
+    },
+    {
+      "name": "fireflies_slice_0002.zip",
+      "size": 26436788,
+      "sha256": "df7f516b257643037fea827466c7403d3c329f08455b753903195ac3c00bd4f3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/fireflies_slice_0002.zip"
+    },
+    {
+      "name": "fireflies_slice_0003.zip",
+      "size": 931701,
+      "sha256": "8dc60fee2a18713655d52b2d31ae27fb542d787a57e1b660b50045a1590570bd",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/fireflies_slice_0003.zip"
+    },
+    {
+      "name": "github_slice_0001.zip",
+      "size": 12246702,
+      "sha256": "4e6d2f445ce56b98ba3ebf41de29f80f63d5eed87dd1c246aacfefb1c942303a",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/github_slice_0001.zip"
+    },
+    {
+      "name": "github_slice_0002.zip",
+      "size": 7431363,
+      "sha256": "34e039f2359b36fee11ab212c981de567a7b21eee5bbe10af43c2d41960d1a12",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/github_slice_0002.zip"
+    },
+    {
+      "name": "gmail_slice_0001.zip",
+      "size": 15045999,
+      "sha256": "8cfa1ab1a8e20fb7df4fec756073cb668433c6384541ebffc89ac4144ea79c1f",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0001.zip"
+    },
+    {
+      "name": "gmail_slice_0002.zip",
+      "size": 15058802,
+      "sha256": "86433eb0c192546a17285d0c41b69c03b64d467e851bb60ab55b19b5d8fde06f",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0002.zip"
+    },
+    {
+      "name": "gmail_slice_0003.zip",
+      "size": 15074865,
+      "sha256": "c217094618cf9ed51171b04e29ed4aab47d98577a05112e000f92f158e30d7b4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0003.zip"
+    },
+    {
+      "name": "gmail_slice_0004.zip",
+      "size": 15020909,
+      "sha256": "5403362d68bd9d5c17b519110f57281e4ce38611e14fba49d1fc94235f08d4ec",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0004.zip"
+    },
+    {
+      "name": "gmail_slice_0005.zip",
+      "size": 15081276,
+      "sha256": "e3b0141730e2f6113c80a4d578abf2658f22b025c5fdbd135783f48c7e62f18d",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0005.zip"
+    },
+    {
+      "name": "gmail_slice_0006.zip",
+      "size": 15002699,
+      "sha256": "b8cfeebdcad5077605e1a86de2b4080c10b7847a6496d6aed07139070820dba0",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0006.zip"
+    },
+    {
+      "name": "gmail_slice_0007.zip",
+      "size": 15048832,
+      "sha256": "c8bddada156a32470c7b001a7632291505091b118e215b4dfa879dc879b6e3b4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0007.zip"
+    },
+    {
+      "name": "gmail_slice_0008.zip",
+      "size": 14972704,
+      "sha256": "fd6aaf93c61cb8fa6ea23c3f4e8165c5d77e1dba5819c4fffb925f5271fddce1",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0008.zip"
+    },
+    {
+      "name": "gmail_slice_0009.zip",
+      "size": 15061043,
+      "sha256": "93386ae693ecea67355fde5f8cc1fedf15601a079bbc5f769a9a5843997ad73a",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0009.zip"
+    },
+    {
+      "name": "gmail_slice_0010.zip",
+      "size": 15005666,
+      "sha256": "a3218e904c7ab403607241ff31f205755f6c67ee7e4d928078895439bef15efc",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0010.zip"
+    },
+    {
+      "name": "gmail_slice_0011.zip",
+      "size": 15032890,
+      "sha256": "7921930ff53004fbbc7b87d00fa04d8aaff92ce9624acfbc9180a41aa15fc867",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0011.zip"
+    },
+    {
+      "name": "gmail_slice_0012.zip",
+      "size": 15008953,
+      "sha256": "75edc8162421b9230daa536293fd3ea51ed9c9f188458910c1ff7d5f06be8755",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0012.zip"
+    },
+    {
+      "name": "gmail_slice_0013.zip",
+      "size": 15023490,
+      "sha256": "9589c6ea2459c73f36a812d19a2a0c68956306b7cf888598cb50922fe27071c8",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0013.zip"
+    },
+    {
+      "name": "gmail_slice_0014.zip",
+      "size": 15044257,
+      "sha256": "d69bf69462bda33e6aa2a836965c426d09f36599493ae50b3423f1dfbd9a1bda",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0014.zip"
+    },
+    {
+      "name": "gmail_slice_0015.zip",
+      "size": 15043705,
+      "sha256": "e4c6c367f6498143087054ab4e5d88a2468b20feb9f959293b6846fff4ed08e4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0015.zip"
+    },
+    {
+      "name": "gmail_slice_0016.zip",
+      "size": 15039100,
+      "sha256": "a80cf9437d9cbace5538edf4e674f65451f41dd88e2f5e48b3fffa187f336bd8",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0016.zip"
+    },
+    {
+      "name": "gmail_slice_0017.zip",
+      "size": 15002909,
+      "sha256": "a8762c78d862aa6184188fb405d11863213180c23065702887b4cbe26cb69fce",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0017.zip"
+    },
+    {
+      "name": "gmail_slice_0018.zip",
+      "size": 15043799,
+      "sha256": "595f244d803e2d8ef528ce41cc779bfa781026b4acafb7d4b0f999cd4a68b47c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0018.zip"
+    },
+    {
+      "name": "gmail_slice_0019.zip",
+      "size": 15032124,
+      "sha256": "9d190466aea38dc84772fe1791e3d6b6dce1fc94f6cfd9c2b107e1b618b7c04d",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0019.zip"
+    },
+    {
+      "name": "gmail_slice_0020.zip",
+      "size": 15007368,
+      "sha256": "4d16c3198408cd864bac8f3fa6312f38d9e2f82cfd269f3c3a429e7d853c8d50",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0020.zip"
+    },
+    {
+      "name": "gmail_slice_0021.zip",
+      "size": 15064027,
+      "sha256": "9772d16c6442e59d86593e09096719b1193f8cb489b57b0d2a81a5f2725a72ee",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0021.zip"
+    },
+    {
+      "name": "gmail_slice_0022.zip",
+      "size": 15014348,
+      "sha256": "5af486fd4c642e9405059ef049b75a6121dc56d8e2fda039074fdd9a3b917e85",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0022.zip"
+    },
+    {
+      "name": "gmail_slice_0023.zip",
+      "size": 15059326,
+      "sha256": "03ff718d879edcd4be0e4e8d5657108f9b0f65593cc8efdab099f7cf7e098592",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0023.zip"
+    },
+    {
+      "name": "gmail_slice_0024.zip",
+      "size": 15070259,
+      "sha256": "66c6693a2cb3a0072ef946f41f16ca1152109d2f13fefa6a9a137d866ef96fbb",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0024.zip"
+    },
+    {
+      "name": "gmail_slice_0025.zip",
+      "size": 4204607,
+      "sha256": "dca8d0a13c0a5a66e712e10654afdb63497ddbe826cd6e7aa5ddb4d3ae9fafa3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/gmail_slice_0025.zip"
+    },
+    {
+      "name": "google_drive_slice_0001.zip",
+      "size": 17833137,
+      "sha256": "a77c0430e264ce7029c5cb5c03bd8caad31d605a4adea6411eb05470d0097796",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/google_drive_slice_0001.zip"
+    },
+    {
+      "name": "google_drive_slice_0002.zip",
+      "size": 17945512,
+      "sha256": "0ce35e759fa2e7db81aa674709b32a456379d096d830395fc6ebc23aff0641f3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/google_drive_slice_0002.zip"
+    },
+    {
+      "name": "google_drive_slice_0003.zip",
+      "size": 17935057,
+      "sha256": "5ae86da93c2270c3de64ac5cb9c202c016f5e0e9997e35b1764cf43cea2c20d5",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/google_drive_slice_0003.zip"
+    },
+    {
+      "name": "google_drive_slice_0004.zip",
+      "size": 17902246,
+      "sha256": "cc1975fc642d38093e8a2aa283f98dceefffe2714f66b08d6017956761609f2c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/google_drive_slice_0004.zip"
+    },
+    {
+      "name": "google_drive_slice_0005.zip",
+      "size": 17864260,
+      "sha256": "fd730381d412d6a5b7fa7f36cac2352cbba1c940edebe4d4112a07f34c1f3b49",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/google_drive_slice_0005.zip"
+    },
+    {
+      "name": "google_drive_slice_0006.zip",
+      "size": 383393,
+      "sha256": "40c103102662add6840d5cc7c5c235d50b4b81f2c303c1194fa09518f824ddaa",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/google_drive_slice_0006.zip"
+    },
+    {
+      "name": "hubspot_slice_0001.zip",
+      "size": 9260089,
+      "sha256": "1e86e62460f8c6cd8ed734c55d874176d3ee5428fcd8e78cf32055c55c44c965",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/hubspot_slice_0001.zip"
+    },
+    {
+      "name": "hubspot_slice_0002.zip",
+      "size": 9273100,
+      "sha256": "e1831349b2bd91a80faaed55995766c29d9035545b81c9a84e54fdf0c922c295",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/hubspot_slice_0002.zip"
+    },
+    {
+      "name": "hubspot_slice_0003.zip",
+      "size": 9260695,
+      "sha256": "96c92e998d0e37e8f7a71323a9dbd19c45f79e8dcfbc3d31733e7524550a162d",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/hubspot_slice_0003.zip"
+    },
+    {
+      "name": "hubspot_slice_0004.zip",
+      "size": 32817,
+      "sha256": "8b5e445475236cbec764bb9846bc26c53b62cccc5382554a5feda4bea5486445",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/hubspot_slice_0004.zip"
+    },
+    {
+      "name": "jira_slice_0001.zip",
+      "size": 13846009,
+      "sha256": "71d6ca9c0482e091382085089750a730ca1cb8336ee1cc06e6f089772f0a9747",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/jira_slice_0001.zip"
+    },
+    {
+      "name": "jira_slice_0002.zip",
+      "size": 3076265,
+      "sha256": "345e37bd3b6f473eba43115014ea6b7df3de6d1dcf72dfc2f39e1b93cfaa1a14",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/jira_slice_0002.zip"
+    },
+    {
+      "name": "linear_slice_0001.zip",
+      "size": 13330227,
+      "sha256": "1385a3ed3102831bc55635d59eb2ad7680fb08a647f268a4d5b91a039841db8a",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0001.zip"
+    },
+    {
+      "name": "linear_slice_0002.zip",
+      "size": 13375515,
+      "sha256": "dbc04c08d4ad892ea3df9204d4d98834475eb0925b36b50d5147a89224b5c2ab",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0002.zip"
+    },
+    {
+      "name": "linear_slice_0003.zip",
+      "size": 13378013,
+      "sha256": "adda58db6e5b71060fab02ccb5c6f7005777120e7fadfba4bbf0aad6143b72dd",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0003.zip"
+    },
+    {
+      "name": "linear_slice_0004.zip",
+      "size": 13347980,
+      "sha256": "653c5a7cadb1e77c2589767f4559ba25a53b5a997030aac131d2ee135c32460c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0004.zip"
+    },
+    {
+      "name": "linear_slice_0005.zip",
+      "size": 13352462,
+      "sha256": "39deb6aab29304d8e2a461c8088edc6c50ca0ac1abc61b0ac63c19b48586035e",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0005.zip"
+    },
+    {
+      "name": "linear_slice_0006.zip",
+      "size": 13291896,
+      "sha256": "60480031fd6d40182fea6403eccbc3ddf92ecf55335302d58a2e735ec582eb07",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0006.zip"
+    },
+    {
+      "name": "linear_slice_0007.zip",
+      "size": 13349545,
+      "sha256": "7514da9708f3c566992f49924a09da6b73d63590cefef7c7315878d9deb0acc6",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0007.zip"
+    },
+    {
+      "name": "linear_slice_0008.zip",
+      "size": 832427,
+      "sha256": "7c9538e46975706aefa5886cb22d408bc049026d24f74931cdb7be26f0940cb1",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/linear_slice_0008.zip"
+    },
+    {
+      "name": "questions.jsonl",
+      "size": 764927,
+      "sha256": "f9524b9157cd43aae36b99333a124738804306ea6d07f332d49faa6d3d147905",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/questions.jsonl"
+    },
+    {
+      "name": "slack_slice_0001.zip",
+      "size": 9737942,
+      "sha256": "140dae8eeaab37c4e06c42020c4d4b11641aba6f7559583f9a83b8bb1c5a42c6",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0001.zip"
+    },
+    {
+      "name": "slack_slice_0002.zip",
+      "size": 9633526,
+      "sha256": "26045d531a9301a15bb0bcdf90228abc2ee7857d62bb6b7958875d6c4ae84490",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0002.zip"
+    },
+    {
+      "name": "slack_slice_0003.zip",
+      "size": 9718694,
+      "sha256": "37576a2f7493259ffd920e940ec35881dd19188294b36268e67e6806f073983e",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0003.zip"
+    },
+    {
+      "name": "slack_slice_0004.zip",
+      "size": 9599798,
+      "sha256": "a07a931ad539823cd6110bf11fd776aecf427a1ca320df414570eba0f60b49db",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0004.zip"
+    },
+    {
+      "name": "slack_slice_0005.zip",
+      "size": 9716879,
+      "sha256": "39d292482a14c6602767afadac26cb920280833b517048debc7070cbb5802cc3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0005.zip"
+    },
+    {
+      "name": "slack_slice_0006.zip",
+      "size": 9644460,
+      "sha256": "bb0a8fb53087c9760f351354ce603a330a385ce3f92cbe81e1066e95d7c0bee3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0006.zip"
+    },
+    {
+      "name": "slack_slice_0007.zip",
+      "size": 9758217,
+      "sha256": "95d53126660941db96618d2258b3f09e2fd47f952974ea2cff3f93d6f56e0ae2",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0007.zip"
+    },
+    {
+      "name": "slack_slice_0008.zip",
+      "size": 9734901,
+      "sha256": "1707b5d5c7aac1a47de797617b941ff580844eaeba238fab0ca83f2615bfc8cf",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0008.zip"
+    },
+    {
+      "name": "slack_slice_0009.zip",
+      "size": 9712790,
+      "sha256": "fa8e6fa00c3744ef0afd82e15863e559d216f47e4674c1c0ba95955968445036",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0009.zip"
+    },
+    {
+      "name": "slack_slice_0010.zip",
+      "size": 9704317,
+      "sha256": "075bad17a996f8f5db45f5b92a56ba2fe850ad86651f3dee6a59454daa9e11c0",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0010.zip"
+    },
+    {
+      "name": "slack_slice_0011.zip",
+      "size": 9635795,
+      "sha256": "fd6a90514f024c10b605906fcf4cea4f289521e081d11234d5cc5ccef9c132df",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0011.zip"
+    },
+    {
+      "name": "slack_slice_0012.zip",
+      "size": 9622386,
+      "sha256": "0efc27d90cca57a6ea96e8a0068beb763f240ad32e1ca9ce3476ac67456acdfb",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0012.zip"
+    },
+    {
+      "name": "slack_slice_0013.zip",
+      "size": 9653135,
+      "sha256": "8c2b235c1030add6d297fc7fe4cbe9e52c9cfb9896a2488fa7f525d39ee352e3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0013.zip"
+    },
+    {
+      "name": "slack_slice_0014.zip",
+      "size": 9670262,
+      "sha256": "b3782d2e575520444cb77aeeaae0d6c43f988252b3a0b2b238f4201df00c4d2e",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0014.zip"
+    },
+    {
+      "name": "slack_slice_0015.zip",
+      "size": 9703347,
+      "sha256": "8722910776429f5b236f948059d05ddef9dd7f51e3849a11988e6f921ecccf3c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0015.zip"
+    },
+    {
+      "name": "slack_slice_0016.zip",
+      "size": 9642464,
+      "sha256": "a6550ed6441dc379d87b1a385656a835842888e17d3650a131c4449d5c81ac86",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0016.zip"
+    },
+    {
+      "name": "slack_slice_0017.zip",
+      "size": 9688216,
+      "sha256": "9459525c678d7aea97f491580a62c737990467d23f749f426f7bf2dc68e75ce9",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0017.zip"
+    },
+    {
+      "name": "slack_slice_0018.zip",
+      "size": 9710572,
+      "sha256": "a17774feec731dbe701143f16aa3577b54aaaf5ed8763c827851b07a6b46d77c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0018.zip"
+    },
+    {
+      "name": "slack_slice_0019.zip",
+      "size": 9704529,
+      "sha256": "b92f02432ecef7c9f10bb6df0863f11ece6d38c99691c24f6ed04eef361d34fa",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0019.zip"
+    },
+    {
+      "name": "slack_slice_0020.zip",
+      "size": 9614881,
+      "sha256": "11ea7a63f9587437ec811f527aeb4cd71d79c125b7a5f5c0fa0855b04b7329f1",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0020.zip"
+    },
+    {
+      "name": "slack_slice_0021.zip",
+      "size": 9744318,
+      "sha256": "e78783ffcffda926baba0205b0e924e76a4da551606e1e1d197544596aad9d4d",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0021.zip"
+    },
+    {
+      "name": "slack_slice_0022.zip",
+      "size": 9643941,
+      "sha256": "af4e1c99ad3ba961d88ae3cc2e6d2eff16aa45d67fa37769b429d9e1982270c1",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0022.zip"
+    },
+    {
+      "name": "slack_slice_0023.zip",
+      "size": 9726138,
+      "sha256": "47209d6a45c3b6bb8ae24647a21221e1cee98fef28685f228e9114d6d61b73c4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0023.zip"
+    },
+    {
+      "name": "slack_slice_0024.zip",
+      "size": 9663380,
+      "sha256": "5e25555703748f1506e584b9c64e5a9e8ae0a3d421b4e42780c664d56c2a3a2a",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0024.zip"
+    },
+    {
+      "name": "slack_slice_0025.zip",
+      "size": 9720637,
+      "sha256": "3b6c34bd7c1df6b4814296e1d2650eae2ce1c1e449f6b65d7b2af69fe08cc87b",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0025.zip"
+    },
+    {
+      "name": "slack_slice_0026.zip",
+      "size": 9679362,
+      "sha256": "b3b09832b108657081daeb106f7bc26fef0b5bee63670ef535be3be3d34f68cf",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0026.zip"
+    },
+    {
+      "name": "slack_slice_0027.zip",
+      "size": 9606747,
+      "sha256": "1ca48916f904bdc346c0b759a19849ccd75b6cd0fdf1700fd28c1537711a2c0c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0027.zip"
+    },
+    {
+      "name": "slack_slice_0028.zip",
+      "size": 9688218,
+      "sha256": "30bef437020183f5fe9287283a75dfc13b2f51830addec16b32b766de69b3ca4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0028.zip"
+    },
+    {
+      "name": "slack_slice_0029.zip",
+      "size": 9606483,
+      "sha256": "7c23d4e9f4ef6a6dfe081d1a88423fa4c616fbb0012b722340601cf3fbce49de",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0029.zip"
+    },
+    {
+      "name": "slack_slice_0030.zip",
+      "size": 9663730,
+      "sha256": "0ccfb49fcd73b486f337ab0e41d1c54db6f5d1820aac9fa1eeb22c7157189306",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0030.zip"
+    },
+    {
+      "name": "slack_slice_0031.zip",
+      "size": 9655559,
+      "sha256": "64b86487d23154c865f6cae3703de37b1f83fe80416ba75bb4d8b5cf3a0e4d32",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0031.zip"
+    },
+    {
+      "name": "slack_slice_0032.zip",
+      "size": 9699865,
+      "sha256": "82a6ce95140d6dad0e6c8e10baed0ec57b819316e51137fec6535943b30f97f4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0032.zip"
+    },
+    {
+      "name": "slack_slice_0033.zip",
+      "size": 9624085,
+      "sha256": "871740330c5619bcdabd02e80f41931ce032f7fa40aa98b373d7539735743357",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0033.zip"
+    },
+    {
+      "name": "slack_slice_0034.zip",
+      "size": 9704923,
+      "sha256": "bef5ff932faee869553f53476e794b0cdfd0d7811e7965856463af82b8b47867",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0034.zip"
+    },
+    {
+      "name": "slack_slice_0035.zip",
+      "size": 9692934,
+      "sha256": "3d8ab7afa78a52adb1feb3d2ac13fd1b676e3070aa749e77a6eb83e2229b1d5a",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0035.zip"
+    },
+    {
+      "name": "slack_slice_0036.zip",
+      "size": 9706287,
+      "sha256": "6da875ef81d519c085917ab4724d19c4abdd2b4e4e51d15a66563196193d3084",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0036.zip"
+    },
+    {
+      "name": "slack_slice_0037.zip",
+      "size": 9723920,
+      "sha256": "cd482f3a163aebc0c079c052b275e86f70ff96a585f09d0535ddf2889ab51c97",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0037.zip"
+    },
+    {
+      "name": "slack_slice_0038.zip",
+      "size": 9727789,
+      "sha256": "4ebe5604e25614dd7ea23e6d1d8b3c6184120a31c5aecea0fe1964e65bbd94a3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0038.zip"
+    },
+    {
+      "name": "slack_slice_0039.zip",
+      "size": 9634479,
+      "sha256": "0fdd35ff02a0c830c221eb1e8d5502502720e2a73bde46e3532c74f52e1ebe4c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0039.zip"
+    },
+    {
+      "name": "slack_slice_0040.zip",
+      "size": 9730815,
+      "sha256": "7b86631e34e7ca3d54f10a682e9e27d3fafa7bb4cf1e24f90a031b4cbccf717e",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0040.zip"
+    },
+    {
+      "name": "slack_slice_0041.zip",
+      "size": 9714047,
+      "sha256": "37e0dd80a5d96ca91cb4cd9d1d82580ae068cdb5e3fbd19d58042e641074011d",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0041.zip"
+    },
+    {
+      "name": "slack_slice_0042.zip",
+      "size": 9563807,
+      "sha256": "6d2e26bd552f2247b0a4b9e68e007dcbf0cef4ba7fd0ccc0b3afb34963dce741",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0042.zip"
+    },
+    {
+      "name": "slack_slice_0043.zip",
+      "size": 9698920,
+      "sha256": "e2e9c91977e2e8ca4676dccfc3451cba2358c9d78147201ec90af9c8b3218865",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0043.zip"
+    },
+    {
+      "name": "slack_slice_0044.zip",
+      "size": 9604028,
+      "sha256": "5fd8d5615dcfd095813a3427af083cdff7af0700e65eaf7e86d8849227ced970",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0044.zip"
+    },
+    {
+      "name": "slack_slice_0045.zip",
+      "size": 9678972,
+      "sha256": "7bd2711674bc0f68545330bca9caea81ad18991c320d2537cf9f2fbfe66a5d2c",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0045.zip"
+    },
+    {
+      "name": "slack_slice_0046.zip",
+      "size": 9654933,
+      "sha256": "c5dc9db79fbe9dce1620ec94f494e5101f74b1aefb2b3abb13cd6f8d5928428b",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0046.zip"
+    },
+    {
+      "name": "slack_slice_0047.zip",
+      "size": 9699536,
+      "sha256": "f31250fbf2545223706520dc864ae7f25b201090105e4dc160b88211e935b7b3",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0047.zip"
+    },
+    {
+      "name": "slack_slice_0048.zip",
+      "size": 9681143,
+      "sha256": "b6ef3eacdc2faf4b593e457ee03ae128d4465b9142e8bebb9b5d907a52e96b11",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0048.zip"
+    },
+    {
+      "name": "slack_slice_0049.zip",
+      "size": 9728264,
+      "sha256": "43b7dde158ca6cd4cb02fb911b6eadd5184cecb7d841a9d5ced3a40fcf550390",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0049.zip"
+    },
+    {
+      "name": "slack_slice_0050.zip",
+      "size": 9720534,
+      "sha256": "c72f719e66f960a3172d365a0ef0f453c70abcf72777390447df70935da805f4",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0050.zip"
+    },
+    {
+      "name": "slack_slice_0051.zip",
+      "size": 9700307,
+      "sha256": "ea2eccd7942d91318eaacc1ded7477ebc72a86a2a1596b087273f55b83e11a66",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0051.zip"
+    },
+    {
+      "name": "slack_slice_0052.zip",
+      "size": 9699037,
+      "sha256": "d4ed4cf2e9ce21d2ca54ee445af5546194a62217c49c149244a2e84a55f4ce85",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0052.zip"
+    },
+    {
+      "name": "slack_slice_0053.zip",
+      "size": 9664653,
+      "sha256": "e612664588c9286f8c59dae9a3bb43e61a55398c5495297fdea782d561c9a7e8",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0053.zip"
+    },
+    {
+      "name": "slack_slice_0054.zip",
+      "size": 9616297,
+      "sha256": "b7352da1493855b10e6647fb383d49f179aac56a35138dace6162828b586a190",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0054.zip"
+    },
+    {
+      "name": "slack_slice_0055.zip",
+      "size": 9636791,
+      "sha256": "356728720f16d1ff8499b13a1785ded43fa0c45357803354ca0b7d47a0b25784",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0055.zip"
+    },
+    {
+      "name": "slack_slice_0056.zip",
+      "size": 9630294,
+      "sha256": "2801e6e0e58d43d93b4705df4ce76d9f78a1d9b45e24243d8fb6e84824324779",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0056.zip"
+    },
+    {
+      "name": "slack_slice_0057.zip",
+      "size": 9597508,
+      "sha256": "a8c76caadc5181162e3b1014abd69af173140370ea9a59cb4b9fbc85410a21ce",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0057.zip"
+    },
+    {
+      "name": "slack_slice_0058.zip",
+      "size": 1164110,
+      "sha256": "3d82683bd260c80d6f94a4babbbef0a08cd44916eb1b9284092bafe45e4b27fa",
+      "url": "https://github.com/onyx-dot-app/EnterpriseRAG-Bench/releases/download/v1.0.0/slack_slice_0058.zip"
+    }
+  ]
+}

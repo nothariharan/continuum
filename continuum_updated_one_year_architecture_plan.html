@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Continuum — One-Year Architecture & Build Plan</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;max-width:1180px;margin:0 auto;padding:36px;line-height:1.65;color:#161616;background:#fff}h1{font-size:42px;margin-bottom:6px}h2{margin-top:54px;border-bottom:2px solid #222;padding-bottom:8px}h3{margin-top:32px}h4{margin-top:24px}table{border-collapse:collapse;width:100%;margin:18px 0}th,td{border:1px solid #bbb;padding:10px;vertical-align:top;text-align:left}th{background:#eee}pre{background:#f4f4f4;padding:16px;overflow:auto}code{font-family:Consolas,monospace}.note{border-left:4px solid #222;padding:14px 18px;background:#f5f5f5;margin:18px 0}.later{border-left:4px solid #888;padding:14px 18px;background:#fafafa;margin:18px 0}.small{font-size:13px;color:#555}</style>
+</head><body>
+<h1>Continuum</h1>
+<p><strong>One-Year Architecture, Engineering Plan, HydraDB Integration Strategy & Demo Direction</strong></p>
+<p class="small">This plan treats the Hack Hydra Track 01 submission as the first vertical slice of a one-year product. The core goal is to build the state/context layer between messy enterprise systems and the humans or AI agents that need reliable organizational context.</p>
+<div class="note"><strong>Core thesis:</strong> Continuum is not a chatbot sitting on top of enterprise documents. It continuously turns fragmented enterprise evidence into a resolved, temporal, explainable graph of the organization, then exposes that state through search, APIs, MCP and other integrations.</div>
+
+<h2>1. What We Are Building</h2>
+<p>The official Track 01 challenge asks for a clean, queryable ontology over roughly half a million enterprise artifacts, with entity resolution and ontology alignment as central difficulties. citeturn0file5 Continuum should solve that foundation, then extend it into a general organizational state engine.</p>
+<pre>
+ENTERPRISE SYSTEMS
+Slack / Gmail / GitHub / Linear / Jira / Drive / CRM / Meetings
+                           |
+                           v
+                    INGESTION FABRIC
+                           |
+                           v
+                ARTIFACT + EVENT NORMALIZATION
+                           |
+                           v
+                      CLAIM LAYER
+                           |
+                           v
+                 ENTITY / IDENTITY RESOLUTION
+                           |
+                           v
+                      GRAPH STATE
+                           |
+                           v
+          TEMPORAL + CONFLICT + PROVENANCE ENGINE
+                           |
+                           v
+                  RESOLVED COMPANY STATE
+                           |
+             +-------------+-------------+
+             |                           |
+             v                           v
+           HUMAN UI                 STATE APIs
+                                         |
+                          +--------------+--------------+
+                          |              |              |
+                          v              v              v
+                        MCP            SDK/API        Webhooks
+                          |              |              |
+                          +--------------+--------------+
+                                         |
+                                         v
+                                ENTERPRISE AI AGENTS
+</pre>
+
+<h2>2. Why HydraDB Should Shape the Architecture</h2>
+<p>The current open-source HydraDB repository describes an object-store-native distributed graph database written in Rust, with durable graph storage on SlateDB, snapshot-consistent OpenCypher, GraphBLAS traversal, Neo4j-compatible Bolt, HTTP/NDJSON APIs, separate graph-node and graph-indexer roles, property indexes, reverse adjacency and bounded runtime behavior. citeturn0file0turn0file1</p>
+<table><tr><th>HydraDB primitive</th><th>Continuum usage</th></tr>
+<tr><td>OpenCypher + graph planner</td><td>All important relationship/state queries execute inside HydraDB; do not pull the graph into Python for core reasoning.</td></tr>
+<tr><td>GraphBLAS traversal</td><td>Native bounded multi-hop traversal for ownership, dependency and impact questions.</td></tr>
+<tr><td>Property indexes + reverse adjacency</td><td>Fast entity seeding and “who/what points to X?” queries.</td></tr>
+<tr><td>Snapshot consistency</td><td>Every answer and its evidence are evaluated against a coherent graph snapshot.</td></tr>
+<tr><td>WAL + immutable traversal indexes</td><td>Support continuous ingestion without rebuilding the whole graph synchronously.</td></tr>
+<tr><td>Object-store durability</td><td>Keep long-tail organizational state cheaply and use local SSD/NVMe for hot working data.</td></tr>
+<tr><td>SPpaths / SSpaths / MSpaths</td><td>Use native bounded path operations, especially MSpaths to avoid client-side query fan-out. citeturn0file2</td></tr>
+<tr><td>Bounded execution</td><td>Give every user query explicit hop/result/time/token budgets. citeturn0file0</td></tr></table>
+<p>The HydraDB README explicitly describes traversal over compiled CSC topology plus visible WAL state under a pinned snapshot, and its MSpaths procedure is designed to evaluate many sources/targets together rather than fan out from the client. citeturn0file2</p>
+
+<h2>3. Core Retrieval Architecture</h2>
+<p>The core performance principle is: <strong>retrieval finds the door; HydraDB walks the building; the state engine decides; the LLM explains.</strong></p>
+<pre>
+USER QUESTION
+     |
+     v
+QUERY INTERPRETER
+(intent + entity + predicate + time + hop budget)
+     |
+     +--------------------+
+     |                    |
+     v                    v
+LEXICAL/VECTOR       ENTITY ALIAS INDEX
+     |                    |
+     +----------+---------+
+                |
+                v
+        CANDIDATE ENTITIES
+                |
+                v
+           HYDRADB PLAN
+                |
+       +--------+--------+
+       |                 |
+       v                 v
+PROPERTY FILTER     TEMPORAL FILTER
+       |                 |
+       +--------+--------+
+                |
+                v
+       CYPHER / GRAPHBLAS
+                |
+                v
+         RELEVANT SUBGRAPH
+                |
+                v
+       STATE / CONFLICT ENGINE
+                |
+                v
+           PROVENANCE PATH
+                |
+                v
+           LLM EXPLAINER
+                |
+                v
+        STRUCTURED FINAL ANSWER
+</pre>
+
+<h2>4. Use a Layered Graph, Not a Flat Document Graph</h2>
+<h3>Layer 1 — Evidence</h3><p>Source artifacts and events: messages, threads, PRs, issues, documents, meetings, assignments, status changes and other source objects.</p>
+<h3>Layer 2 — Claims</h3><p>Atomic, source-attributed statements extracted from evidence. Claims are never silently overwritten.</p>
+<h3>Layer 3 — Canonical Entity Graph</h3><p>People, teams, projects, accounts, services, repositories, decisions, issues and other canonical entities linked by typed relationships.</p>
+<h3>Layer 4 — Resolved State</h3><p>Derived current or historical state after time, corroboration, conflict rules, permissions and confidence are applied.</p>
+<pre>
+RAW EVIDENCE
+     |
+     v
+   CLAIMS
+     |
+     v
+ENTITY GRAPH
+     |
+     v
+RESOLVED STATE
+</pre>
+<p>Normal questions should operate over Layers 3–4. Evidence should be loaded lazily when the user asks “why?” or the state resolver needs supporting claims.</p>
+
+<h2>5. Canonical Data Model</h2>
+<table><tr><th>Node</th><th>Purpose</th></tr>
+<tr><td>Artifact</td><td>Immutable source object/event with source ID, timestamps, author, URL/version and access metadata.</td></tr>
+<tr><td>Mention</td><td>Raw reference to a possible entity.</td></tr>
+<tr><td>Entity</td><td>Canonical person, project, account, service, repo, team, organization, issue, decision, meeting, etc.</td></tr>
+<tr><td>Claim</td><td>Atomic statement such as Sarah OWNS Acme or Acme STATUS=Blocked.</td></tr>
+<tr><td>Source</td><td>Connector/system metadata.</td></tr>
+<tr><td>Adjudication</td><td>Human or approved system resolution of a contested claim set.</td></tr>
+<tr><td>State</td><td>Derived current/historical resolved state.</td></tr></table>
+<pre>
+Mention -ALIAS_OF-> Entity
+Claim -ABOUT-> Entity
+Claim -SOURCED_FROM-> Artifact
+Claim -CONTRADICTS-> Claim
+Adjudication -RESOLVES-> Claim
+
+Person -OWNS {valid_from, valid_to}-> Project
+Person -OWNS {valid_from, valid_to}-> Account
+Person -MAINTAINS-> Service
+Project -DEPENDS_ON-> Project
+Service -DEPENDS_ON-> Service
+Repository -IMPLEMENTS-> Service
+Person -MEMBER_OF-> Team
+Project -HAS_DECISION-> Decision
+Decision -SUPERSEDES-> Decision
+</pre>
+
+<h2>6. Temporal State: The Differentiator</h2>
+<p>Use a bitemporal mental model whenever the source data supports it:</p>
+<pre>
+T_valid = when the fact was true in the business world
+T_tx    = when Continuum learned / recorded the fact
+</pre>
+<p>Example: a Gmail received Aug 10 says Sarah will own Acme starting Aug 15. Then T_tx=Aug 10, T_valid_from=Aug 15. This enables “who owns Acme now?”, “who owned it on Aug 1?” and “what did Continuum know on Aug 12?”</p>
+<p>Recent temporal GraphRAG research supports explicitly modeling time and narrowing retrieval to temporal scope. TG-RAG models timestamped relations and incremental temporal updates; T-GRAG focuses on temporal conflicts/redundancy; STAR-RAG uses time-aware propagation to reduce the context candidate set. citeturn970561academia29turn970561academia28turn970561academia30</p>
+
+<h2>7. Entity Resolution Engine</h2>
+<pre>
+RAW MENTION
+   |
+   v
+EXACT IDS / EMAIL / SOURCE HANDLES
+   |
+   v
+CHEAP BLOCKING
+   |
+   v
+FUZZY SIMILARITY
+   |
+   v
+SOURCE METADATA + GRAPH CONTEXT
+   |
+   v
+PAIRWISE SCORE
+   |
+   +-------------------------------+
+   |               |               |
+   v               v               v
+AUTO-MERGE      REVIEW          ABSTAIN
+</pre>
+<p>Run most of this incrementally during ingestion. Ordinary queries should resolve “@soham” against the canonical entity index, not rerun full ER across the enterprise graph. Recent agentic entity-resolution research emphasizes iterative evidence gathering and selective escalation, which fits this cascade. citeturn970561academia28</p>
+
+<h2>8. Query Planner: Specialize the Hot Paths</h2>
+<p>Do not make arbitrary LLM-to-Cypher the default. Build typed semantic operations:</p>
+<pre>
+resolve_entity(entity_text)
+get_current_state(entity, predicate)
+get_state_as_of(entity, predicate, time)
+get_history(entity, predicate, range)
+get_conflicts(entity, predicate)
+get_evidence(state_id)
+get_dependencies(entity, depth)
+get_impact(entity, depth)
+</pre>
+<p>Compile each operation to known, tested Cypher/native-path plans. HydraDB supports bounded variable-length paths, filters, aggregation, pagination and native SPpaths/SSpaths/MSpaths. citeturn0file2</p>
+
+<h2>9. Query Budgets</h2>
+<p>Every request receives a predictable computational budget:</p>
+<pre>
+max_hops
+max_nodes
+max_edges
+max_evidence
+max_latency
+max_tokens
+</pre>
+<p>Examples:</p>
+<table><tr><th>Question</th><th>Execution</th></tr>
+<tr><td>Who owns Acme?</td><td>Entity lookup → reverse OWNS traversal → state resolver.</td></tr>
+<tr><td>Who owned Acme last month?</td><td>Entity lookup → temporal filter → bounded ownership traversal.</td></tr>
+<tr><td>Why is Acme blocked?</td><td>State → blocker relationship → strongest claims → evidence snippets.</td></tr>
+<tr><td>What depends on this service?</td><td>Reverse bounded traversal / native path procedure.</td></tr>
+<tr><td>What breaks if Sarah leaves?</td><td>Bounded multi-hop impact traversal with criticality filters.</td></tr></table>
+
+<h2>10. Keep LLMs on the Ambiguous / Explanatory Tail</h2>
+<p>The default should be:</p>
+<pre>
+LLM proposes
+   |
+   v
+graph / deterministic system verifies
+   |
+   v
+resolved state
+   |
+   v
+LLM explains
+</pre>
+<p>Do not spend LLM calls on structured source metadata or deterministic state queries. Use models for claim extraction, ambiguous identity matching, ontology suggestions, query interpretation and final explanations.</p>
+
+<h2>11. Query Plane vs Ingestion Plane</h2>
+<pre>
+INGESTION PLANE
+Connectors
+  ↓
+Backfill / Webhooks
+  ↓
+Event Queue
+  ↓
+Normalization
+  ↓
+Claim Extraction
+  ↓
+Entity Resolution
+  ↓
+Batch HydraDB Writes
+  ↓
+Graph Indexer
+</pre>
+<pre>
+QUERY PLANE
+Web / API / MCP
+  ↓
+Query Planner
+  ↓
+Candidate Retrieval
+  ↓
+HydraDB Query
+  ↓
+State / Conflict Resolver
+  ↓
+Evidence Fetch
+  ↓
+LLM Explanation
+</pre>
+<p>User queries must never wait on ingestion/extraction work. For the hackathon, benchmark exports plus one real connector are enough to prove the architecture. The complete connector matrix is a year-one project.</p>
+
+<h2>12. Cache State, Not Just Raw Queries</h2>
+<p>Prefer semantic cache keys such as:</p>
+<pre>
+(entity_id, predicate, temporal_scope, permission_scope, graph_snapshot)
+</pre>
+<p>Invalidate locally when affected state changes. Example: a change to Acme ownership should invalidate Acme.current_owner and related impact/history views, not the entire graph cache.</p>
+
+<h2>13. Evidence Should Be Lazy</h2>
+<p>Most answers should return a small resolved state immediately. Only “Why?” or contested answers should fan out to original evidence.</p>
+<pre>
+WHO OWNS ACME?
+
+Sarah Chen
+Since: July 28
+Confidence: 96%
+Status: Definitive
+
+[Why?]
+  -> Linear assignment
+  -> Slack handoff
+  -> Gmail customer update
+</pre>
+
+<h2>14. HydraDB Engineering Rules</h2>
+<ol>
+<li>Never perform the core graph walk in Python.</li>
+<li>Use property indexes for entity seed lookup.</li>
+<li>Exploit reverse adjacency for reverse-ownership/dependency queries.</li>
+<li>Use bounded paths.</li>
+<li>Use SPpaths/SSpaths/MSpaths when they materially reduce query fan-out.</li>
+<li>Use batched UNWIND writes rather than one write per node/edge.</li>
+<li>Keep provenance traversal inside HydraDB where practical.</li>
+<li>Use causal reads for normal hot-path queries; use strong reads only when immediate visibility after a write matters. citeturn0file2</li>
+<li>Profile before modifying HydraDB internals.</li>
+<li>Do not turn HydraDB into a generic document store just to say it is being used.</li>
+</ol>
+
+<h2>15. Performance Harness</h2>
+<p>Build this before polishing the dashboard.</p>
+<pre>
+entity_resolution_latency
+candidate_retrieval_latency
+hydradb_query_latency
+hydradb_traversal_latency
+state_resolution_latency
+evidence_fetch_latency
+llm_latency
+total_latency
+
+nodes_touched
+edges_traversed
+evidence_artifacts
+llm_tokens
+cache_hit_rate
+query_fanout
+</pre>
+<p>Use a latency waterfall for every benchmark query. The numbers below are target/example formatting only, not claims about current performance.</p>
+<pre>
+WHO OWNS ACME?
+
+Entity resolution      5 ms
+Seed lookup             6 ms
+HydraDB traversal      18 ms
+State resolution        3 ms
+Evidence fetch          9 ms
+LLM explanation        72 ms
+--------------------------
+Total                 113 ms
+</pre>
+
+<h2>16. Research Principles We Should Reuse</h2>
+<table><tr><th>Research</th><th>Useful idea for Continuum</th></tr>
+<tr><td>TG-RAG</td><td>Explicit temporal graph representation and temporal-scope retrieval for evolving facts. citeturn970561academia29</td></tr>
+<tr><td>T-GRAG</td><td>Progressive retrieval to resolve temporal conflict/redundancy before generation. citeturn970561academia28</td></tr>
+<tr><td>STAR-RAG</td><td>Time-aligned graph propagation to narrow candidates and reduce token usage. citeturn970561academia30</td></tr>
+<tr><td>KG-IRAG</td><td>Iterative graph retrieval for multi-step temporal/logical questions. citeturn970561academia31</td></tr>
+<tr><td>GraphRAG research ecosystem</td><td>Use the broader ecosystem as a source of techniques, not as something to copy wholesale. citeturn970561search2</td></tr></table>
+
+<h2>17. One-Year Roadmap</h2>
+<h3>Months 1–3 — Engine</h3>
+<ul><li>HydraDB integration layer.</li><li>3–5 high-value connectors.</li><li>Artifact normalization.</li><li>Claim extraction.</li><li>Entity-resolution cascade.</li><li>Canonical ontology.</li><li>Bitemporal state model.</li><li>Conflict engine.</li><li>Provenance.</li><li>Semantic query planner.</li><li>Performance/evaluation harness.</li><li>Initial state API.</li></ul>
+<p><strong>Exit:</strong> reliable current-state, historical, multi-hop, conflict and abstention answers with measured latency.</p>
+<h3>Months 4–6 — Product</h3>
+<ul><li>State-centric dashboard.</li><li>Time-travel timeline.</li><li>“Why?” provenance explorer.</li><li>Entity merge/split UI.</li><li>Conflict/adjudication queue.</li><li>MCP server.</li><li>SDKs.</li><li>State-change subscriptions.</li><li>Basic impact analysis.</li></ul>
+<p><strong>Exit:</strong> an external application can query Continuum without understanding its graph schema.</p>
+<h3>Months 7–9 — Enterprise</h3>
+<ul><li>ACL ingestion and permission-aware traversal.</li><li>SSO/SCIM.</li><li>Multi-tenancy.</li><li>VPC/private deployment.</li><li>Data residency.</li><li>Backfill/replay tooling.</li><li>Connector SDK.</li><li>Observability and audit.</li></ul>
+<p><strong>Exit:</strong> a real enterprise can deploy Continuum safely.</p>
+<h3>Months 10–12 — Platform</h3>
+<ul><li>Organizational dependency engine.</li><li>Decision graph.</li><li>Impact simulation.</li><li>Change alerts.</li><li>Ontology Studio.</li><li>Agent context profiles.</li><li>Public benchmark suite.</li><li>Partner integrations.</li><li>Self-serve onboarding.</li></ul>
+<p><strong>Exit:</strong> Continuum is consumed as infrastructure by other applications, not just a dashboard.</p>
+
+<h2>18. Later / If Time Allows</h2>
+<div class="later">These are explicitly non-blocking. Never sacrifice the correctness or measured performance of the core state loop for feature count.</div>
+<ul>
+<li>“What breaks if Sarah leaves?” impact simulator.</li>
+<li>Organizational risk scoring.</li>
+<li>Decision intelligence.</li>
+<li>Advanced agentic planning.</li>
+<li>Automatic ontology evolution.</li>
+<li>Connector marketplace.</li>
+<li>General Text-to-Cypher.</li>
+<li>Custom enterprise ontology templates.</li>
+<li>Company-wide change feed.</li>
+<li>Compliance/policy reasoning.</li>
+<li>Predictive organizational analytics.</li>
+</ul>
+
+<h2>19. The Unique Demo: “The Company Is Lying to You”</h2>
+<p>Do not start with a conventional RAG chat box. Start with a conflict.</p>
+<pre>
+SLACK       says Arjun owns Acme
+LINEAR      says Sarah owns Acme
+GMAIL       says Arjun was the previous contact
+GITHUB      shows Sarah implementing the integration
+
+WHO IS ACTUALLY RIGHT?
+</pre>
+<h3>Scene 1 — Identity collapse</h3>
+<pre>
+@soham
+Sam
+S. Ratnaparkhi
+       ↓
+   CANONICAL PERSON
+</pre>
+<h3>Scene 2 — Current state</h3>
+<p>Ask: <strong>Who owns Acme right now?</strong></p>
+<pre>
+Sarah Chen
+Since July 28
+Confidence 96%
+Status: DEFINITIVE
+</pre>
+<h3>Scene 3 — Time travel</h3>
+<pre>
+June 15  → Arjun
+July 28  → ownership changed
+Aug 13   → Sarah
+</pre>
+<h3>Scene 4 — Explainability</h3>
+<pre>
+WHY?
+  ↓
+Linear assignment
+  ↓
+Slack handoff
+  ↓
+Gmail customer update
+  ↓
+Resolved ownership edge
+</pre>
+<h3>Scene 5 — Honest uncertainty</h3>
+<p>Ask a question whose evidence genuinely conflicts. Show <strong>CONTESTED</strong> rather than fabricating certainty.</p>
+<h3>Scene 6 — Far-goal teaser</h3>
+<p>Ask: <strong>What breaks if Sarah leaves?</strong></p>
+<pre>
+Sarah
+ ├── 6 projects
+ ├── 3 production services
+ ├── 2 customers
+ ├── 11 unresolved issues
+ └── 1 single-owner critical dependency
+</pre>
+<p>The demo then becomes a story of organizational reasoning rather than another chatbot.</p>
+
+<h2>20. Product Evolution</h2>
+<pre>
+Stage 1: Better enterprise question answering
+           |
+           v
+Stage 2: Persistent company state
+           |
+           v
+Stage 3: Historical / temporal company state
+           |
+           v
+Stage 4: Organizational dependency intelligence
+           |
+           v
+Stage 5: Agent-facing company state API
+           |
+           v
+Stage 6: Impact / simulation layer
+           |
+           v
+Stage 7: Company operating graph
+</pre>
+<p>The hackathon proves stages 1–2. The architecture should make stages 3–7 possible without rebuilding the underlying state layer.</p>
+
+<h2>21. Final Architecture</h2>
+<pre>
+                         HUMANS
+                           |
+                     Web / Search
+                           |
+                    AGENT INTERFACES
+                     MCP / SDK / API
+                           |
+                           v
+                 +-------------------+
+                 | QUERY PLANNER     |
+                 | intent/entity/time|
+                 | hop/query budget  |
+                 +---------+---------+
+                           |
+            +--------------+--------------+
+            |                             |
+            v                             v
+     LEXICAL/VECTOR                 ENTITY/ALIAS INDEX
+            \                             /
+             \                           /
+              +-----------+-------------+
+                          |
+                          v
+                    +-----------+
+                    | HYDRADB   |
+                    | entities  |
+                    | claims    |
+                    | relations |
+                    | temporal  |
+                    | provenance|
+                    | indexes   |
+                    | GraphBLAS |
+                    +-----+-----+
+                          |
+                    relevant graph
+                          |
+                          v
+                +--------------------+
+                | STATE RESOLVER     |
+                | time/conflict      |
+                | confidence/abstain |
+                +---------+----------+
+                          |
+                          v
+                    EVIDENCE PATH
+                          |
+                          v
+                     LLM EXPLAINER
+                          |
+                          v
+                       ANSWER
+
+------------------------------------------------
+INGESTION PLANE
+Connectors → Events → Normalize → Claims → ER → Batch Writes → Indexer
+</pre>
+
+<h2>22. Final Engineering Priorities</h2>
+<ol>
+<li>Run the real HydraDB smoke test: write, read, delete, reopen and traverse. The repository explicitly notes that an open port is not proof that the database works. citeturn0file2</li>
+<li>Freeze the claim/state model.</li>
+<li>Implement entity resolution as a measurable subsystem.</li>
+<li>Implement typed query plans.</li>
+<li>Benchmark HydraDB traversal/query shapes.</li>
+<li>Build the latency/correctness harness.</li>
+<li>Add temporal and conflict resolution.</li>
+<li>Add provenance.</li>
+<li>Add the UI.</li>
+<li>Add stretch features only after the core benchmark is stable.</li>
+</ol>
+
+<h2>23. Final Product Thesis</h2>
+<p>Continuum should become the fastest and most trustworthy middle layer between enterprise systems and AI. Retrieval finds evidence. HydraDB reconstructs relationships. Continuum resolves state. Provenance proves it. Agents consume it.</p>
+<div class="note"><strong>Long-term destination:</strong> not “another enterprise RAG product,” but a company-state infrastructure layer that AI agents, internal applications and humans can query to understand what is true, what changed, what is uncertain, why the system believes it, and what is likely to be affected by a change.</div>
+
+<h2>Sources</h2>
+<ul>
+<li>HydraDB open-source repository — architecture, APIs, query model, native path procedures, consistency and runtime behavior. citeturn0file0turn0file2</li>
+<li>Hack Hydra participant materials — Track 01 problem framing and constraints. citeturn0file5</li>
+<li>TG-RAG — temporal graph modeling and time-scoped retrieval. citeturn970561academia29</li>
+<li>T-GRAG — temporal conflict/redundancy handling. citeturn970561academia28</li>
+<li>STAR-RAG — time-aware graph propagation and smaller retrieval sets. citeturn970561academia30</li>
+<li>KG-IRAG — iterative graph retrieval for complex reasoning. citeturn970561academia31</li>
+</ul>
+</body></html>

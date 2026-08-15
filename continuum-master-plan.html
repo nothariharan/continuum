@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Continuum — The Company Truth Graph — Master Plan</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; max-width: 980px; margin: 0 auto; padding: 40px 24px 120px; line-height: 1.6; color: #1a1a1a; background: #fdfdfb; }
+  h1 { font-size: 2.2em; margin-bottom: 0.1em; }
+  h2 { font-size: 1.6em; margin-top: 2.5em; border-bottom: 3px solid #d94f28; padding-bottom: 8px; }
+  h3 { font-size: 1.25em; margin-top: 1.8em; color: #d94f28; }
+  h4 { font-size: 1.05em; margin-top: 1.4em; }
+  .subtitle { color: #666; font-size: 1.15em; margin-top: 0; }
+  .tag { display:inline-block; background:#111; color:#fff; font-size:0.75em; padding:2px 8px; border-radius:3px; margin-right:6px; letter-spacing:0.03em; }
+  .toc { background:#f3f1ea; border-radius:8px; padding: 20px 28px; margin: 30px 0; }
+  .toc a { display:block; padding: 3px 0; color:#111; text-decoration:none; }
+  .toc a:hover { text-decoration: underline; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 0.95em; }
+  th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #111; color: #fff; }
+  tr:nth-child(even) { background: #f7f6f2; }
+  code, pre { font-family: "SF Mono", Consolas, Monaco, monospace; font-size: 0.88em; }
+  pre { background: #1a1a1a; color: #eaeaea; padding: 14px 18px; border-radius: 6px; overflow-x: auto; }
+  .day { border-left: 5px solid #d94f28; background: #fff; padding: 18px 24px; margin: 24px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-radius: 0 8px 8px 0; }
+  .day h3 { margin-top: 0; color: #111; }
+  .role { font-weight: 600; color: #d94f28; }
+  .exit { background: #eef7ee; border-left: 4px solid #3a8a3a; padding: 10px 16px; margin-top: 12px; border-radius: 0 6px 6px 0; }
+  .risk { background: #fdecec; border-left: 4px solid #c0392b; padding: 10px 16px; margin-top: 10px; border-radius: 0 6px 6px 0; font-size:0.92em;}
+  .quarter { background: #fff; border: 1px solid #e2e2e2; border-radius: 8px; padding: 20px 26px; margin: 20px 0; }
+  .quarter h4 { color:#d94f28; margin-top:0; }
+  .callout { background:#111; color:#fff; padding:20px 26px; border-radius:8px; margin: 24px 0; font-size:1.05em; }
+  .small { font-size: 0.87em; color: #555; }
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 40px 0; }
+  ul li, ol li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<span class="tag">HACK HYDRA · TRACK 01</span><span class="tag">MASTER PLAN</span>
+<h1>Continuum</h1>
+<p class="subtitle">The Company Truth Graph — what this becomes with a year, and exactly what we build in nine days to prove it.</p>
+<p class="small">Prepared for the Hack Hydra submission · Build window Aug 12–20, 2026 · This document has two jobs: (1) describe the full, extreme version of this product as if we had a year and a real team, so every 9-day decision is made against a real destination instead of a guess, and (2) turn that into a literal day-by-day execution plan for the nine days we actually have.</p>
+
+<div class="toc">
+<strong>Contents</strong>
+<a href="#thesis">Part 0 — The One-Sentence Thesis</a>
+<a href="#vision">Part I — The North Star: Continuum at One Year</a>
+<a href="#scope">Part II — What We Are Actually Building in Nine Days</a>
+<a href="#schema">Part III — Data Model (MVP schema, extreme schema noted)</a>
+<a href="#dayplan">Part IV — Day-by-Day Execution Plan (Aug 12–20)</a>
+<a href="#eval">Part V — Evaluation Methodology</a>
+<a href="#demo">Part VI — Demo Script (3 minutes, shot by shot)</a>
+<a href="#risks">Part VII — Risk Register</a>
+<a href="#checklist">Part VIII — Submission Checklist</a>
+</div>
+
+<h2 id="thesis">Part 0 — The One-Sentence Thesis</h2>
+<div class="callout">
+Every enterprise search and RAG tool answers <em>"what documents mention this?"</em> Continuum answers <em>"what is actually true right now, what used to be true, who or what changed it, and can you prove it?"</em> — and it can only do that because it is built on a graph that keeps every past state instead of overwriting it.
+</div>
+<p>Glean, Tamr, Senzing, Reltio, and every other enterprise-knowledge vendor resolve conflicting facts by picking a winner and quietly discarding the loser. Continuum's entire bet is that the discarded version is the valuable part — that enterprises don't actually trust AI-generated answers today precisely because there's no way to see the reasoning or the history behind them. This is not a search product. It is a system of record for organizational truth.</p>
+
+<hr>
+
+<h2 id="vision">Part I — The North Star: Continuum at One Year</h2>
+<p>Before deciding what to cut for nine days, it's worth being explicit about what "no compromises" looks like. Everything in Part II is a deliberate subset of this — not an incomplete version of it, a <em>correct first slice</em> of it.</p>
+
+<div class="quarter">
+<h4>Months 1–3 — Foundation: prove the core loop on real, messy data</h4>
+<ul>
+<li><strong>Live connectors, not batch exports</strong> — webhook-based ingestion for Slack, Gmail, GitHub, Linear, Jira, Google Drive, HubSpot, Confluence, Fireflies, each normalized into the same claim schema within seconds of a source event, not a nightly batch job.</li>
+<li><strong>Production-grade identity resolution</strong> — a trained (not just heuristic) entity-resolution model: blocking via embeddings + string similarity, pairwise classification via a fine-tuned small model (not a raw LLM call per pair — too slow and too expensive at real company scale), active-learning loop where every human correction becomes a training example that improves the next batch's precision.</li>
+<li><strong>Confidence calibration</strong> — every claim, every alias link, every resolved entity carries a calibrated probability, not an arbitrary score. Calibration is checked against a held-out labeled set continuously, and the threshold for "definitive" vs. "contested" vs. "abstain" is tuned to a target precision, not a guess.</li>
+<li><strong>Source authority as a learned signal</strong> — instead of hand-set weights ("HubSpot beats Slack for deal status"), authority per (source, claim-type) pair is learned from historical correction data: which source was right the last 500 times this type of conflict came up?</li>
+<li><strong>The adjudication workflow becomes a product surface</strong> — when the system is uncertain, it doesn't just abstain silently; it queues the contested claim for a human (or a designated "source of truth" agent) to resolve, and that resolution becomes a permanent, versioned edge with an audit trail: who decided, when, based on what evidence.</li>
+</ul>
+</div>
+
+<div class="quarter">
+<h4>Months 4–6 — Product: turn the graph into something a company actually operates on</h4>
+<ul>
+<li><strong>The Resolved Fact API</strong> — other AI agents (support bots, sales assistants, internal copilots) call Continuum at query time to get a resolved, provenance-backed answer instead of doing their own retrieval — the same pattern Tilores uses for identity, generalized to arbitrary organizational facts. This is the actual GTM wedge: sell the API to teams already building internal agents, not the dashboard to executives.</li>
+<li><strong>Change alerts</strong> — subscribe to an entity ("notify me if ownership of the Acme account changes, or if a contradiction appears that nobody resolves within 48 hours"). This turns Continuum from a thing people query into a thing that pushes signal to people — the actual retention driver for an enterprise product.</li>
+<li><strong>Org dependency / bus-factor analysis</strong> — the "what breaks if this person leaves" traversal, properly built: walks OWNS / RESPONSIBLE_FOR / REVIEWS / MAINTAINS edges outward from a Person node, weights by criticality (production service > internal doc), and produces a real risk score per person, refreshed continuously, not a one-off demo query.</li>
+<li><strong>Compliance and audit exports</strong> — SOC 2 / ISO-style evidence packages: "show me every decision the system made about vendor risk in Q2, and the evidence chain behind each one," exportable as a signed, timestamped report. This is the wedge into legal/compliance buyers who are explicitly blocked on AI trust today.</li>
+<li><strong>Governance and PII controls</strong> — per-source and per-entity-type access control, redaction rules for sensitive fields, row-level security so a resolved fact about a person is only visible to people entitled to see it, not everyone who can query the graph.</li>
+</ul>
+</div>
+
+<div class="quarter">
+<h4>Months 7–9 — Scale: multi-tenant, enterprise-grade, defensible</h4>
+<ul>
+<li><strong>Multi-tenant isolation</strong> at the HydraDB namespace level — each customer's graph is fully isolated, never cross-queryable, matching HydraDB's own namespace/collection model.</li>
+<li><strong>SSO / SCIM, role-based access, data residency options</strong> — the unglamorous enterprise checklist that actually gates procurement.</li>
+<li><strong>Self-serve onboarding</strong> — connect 2–3 sources, get a working truth graph in under 15 minutes, no professional-services engagement required for the first value moment. Land small (one team's ownership graph), expand to the whole company.</li>
+<li><strong>Benchmark leadership as a marketing asset</strong> — publish our own numbers against Enterprise RAG Bench and HERB the way HydraDB publishes LongMemEval numbers; make "verified against a public benchmark" part of the sales pitch, not just the hackathon submission.</li>
+</ul>
+</div>
+
+<div class="quarter">
+<h4>Months 10–12 — Platform: become infrastructure other things are built on</h4>
+<ul>
+<li><strong>Integration marketplace</strong> — let third parties write connectors and claim-extraction plugins for niche internal tools (internal wikis, custom CRMs, ticketing systems) against a published schema, the way Segment or Zapier built ecosystems around a converged data model.</li>
+<li><strong>Vertical templates</strong> — pre-built ontologies for specific industries (SaaS sales org, professional services firm, engineering org) so a new customer starts from a tuned schema instead of a blank graph.</li>
+<li><strong>An "org chart that updates itself"</strong> as the flagship free-tier hook — genuinely useful on day one even before deep entity resolution is dialed in, and a natural viral loop inside a company (people want to see and correct their own reporting line).</li>
+</ul>
+</div>
+
+<p class="small">None of Part I is required reading for the hackathon judges. It exists so that every scoping decision in Part II is a deliberate cut of a real destination, not an improvised feature list — and so the README and demo video can credibly say "here's the wedge we're proving in nine days, here's where it goes" without that being empty hackathon puffery.</p>
+
+<hr>
+
+<h2 id="scope">Part II — What We Are Actually Building in Nine Days</h2>
+<p>The slice of Part I that is both <strong>fully buildable by a small team in nine days</strong> and <strong>proves the entire thesis</strong> — not a diluted version of the vision, a complete, correct instance of its smallest useful form.</p>
+
+<h3>In scope (the MVP — every one of these must work end-to-end and be tested, not just coded)</h3>
+<ol>
+<li><strong>Three data sources</strong> — Slack, GitHub (or Linear, whichever has cleaner sample data available), Gmail. Chosen because together they cover the three claim types that matter most for the demo: discussion (Slack), work/ownership (GitHub/Linear), and external commitment (Gmail).</li>
+<li><strong>Three entity types</strong> — <code>Person</code>, <code>Project</code> (folds in "Issue"), <code>Account</code> (customer/deal). Enough to tell a complete story, not so many that ontology alignment eats the whole nine days.</li>
+<li><strong>Identity resolution</strong> — the literal "Sam / @soham / S. Ratnaparkhi" problem, solved with a blocking + pairwise-scoring + clustering pipeline, tested against a hand-labeled ground-truth set we build ourselves.</li>
+<li><strong>Claims, not resolved facts</strong> — every extracted statement is stored as a versioned, source-attributed <code>Claim</code>; nothing is silently overwritten.</li>
+<li><strong>Contradiction detection</strong> — when two claims conflict on the same (subject, predicate), the system flags it, applies a source-authority + recency score, and returns a <em>contested</em> answer with both sides shown, not a silent pick.</li>
+<li><strong>Bitemporal ownership tracking</strong> — the flagship feature: "who owns X now," "who owned it before," "when did it change," "why do we believe that," using HydraDB's native versioned edges (<code>valid_from</code> / <code>valid_to</code>), not a hand-rolled snapshot table.</li>
+<li><strong>Provenance ("Why?")</strong> — every answer returns its full evidence chain, walkable in the UI.</li>
+<li><strong>Three-way abstention</strong> — every query returns <em>definitive</em>, <em>contested</em>, or <em>absent</em> — never a confident-sounding guess when the graph has no path.</li>
+<li><strong>A held-out evaluation harness</strong> — run against Enterprise RAG Bench and/or Salesforce HERB (or our own withheld labeled set if those don't fit our narrow slice cleanly), reporting real precision/recall/abstention numbers, not just a scripted demo.</li>
+<li><strong>A working dashboard</strong> — search → resolved-state card → expandable "Why?" → ownership timeline. Functional, not beautiful.</li>
+</ol>
+
+<h3>Explicitly out of scope for the hackathon (Part I features we are not attempting)</h3>
+<ul>
+<li>Live/webhook connectors — batch ingestion of exported/sample data is fine.</li>
+<li>A trained entity-resolution model — heuristic blocking + LLM-assisted pairwise scoring is enough; no time to collect training data for a real classifier.</li>
+<li>The Resolved Fact API for other agents, change alerts, compliance exports, multi-tenant isolation, SSO — all real, all Year-1 material, none of it demoable in a way that matters more than the core loop working.</li>
+<li>All nine of the brief's source systems — three is enough to prove identity resolution and contradiction handling generalize; adding six more sources without more entity types or harder claims doesn't strengthen the thesis, it just adds ingestion labor.</li>
+</ul>
+
+<h3>Stretch, in strict priority order (attempt only after the MVP passes its own held-out eval)</h3>
+<ol>
+<li><strong>Org dependency / "what breaks if X leaves"</strong> traversal — a real Year-1 feature, cheap to demo, expensive to test properly; only attempt if Day 6's eval numbers are already solid.</li>
+<li>A fourth data source (Jira or Google Drive), same entity types.</li>
+<li>A lightweight "trust score" panel per entity (# corroborated vs. disputed claims) on the dashboard.</li>
+</ol>
+
+<hr>
+
+<h2 id="schema">Part III — Data Model</h2>
+<p>The core modeling decision: we never write a resolved fact directly. Everything starts life as a <code>Claim</code>; resolution is a derived, explainable, versioned view over the claims — this is the entire mechanism the whole pitch depends on.</p>
+
+<h3>Nodes</h3>
+<table>
+<tr><th>Node</th><th>Key properties</th><th>Notes</th></tr>
+<tr><td><code>Person</code></td><td>id, canonical_name, primary_email</td><td>Canonical, post-resolution identity node</td></tr>
+<tr><td><code>PersonMention</code></td><td>id, raw_name, source, source_id</td><td>Raw, pre-resolution mention ("@soham", "S. Ratnaparkhi", "Sam")</td></tr>
+<tr><td><code>Project</code></td><td>id, name, source_system</td><td>Folds in "Issue" for MVP scope</td></tr>
+<tr><td><code>Account</code></td><td>id, name</td><td>Customer / deal entity</td></tr>
+<tr><td><code>Claim</code></td><td>id, subject_id, predicate, object, source, source_ref, observed_at, extracted_confidence</td><td>The atomic unit of truth — never mutated, only superseded</td></tr>
+<tr><td><code>Adjudication</code></td><td>id, claim_ids[], decided_by, decided_at, rationale</td><td>A human or trusted-agent resolution of a contested claim set</td></tr>
+<tr><td><code>Source</code></td><td>id, system, authority_weight</td><td>Slack / GitHub / Gmail, each with a configurable base authority score</td></tr>
+</table>
+
+<h3>Edges</h3>
+<table>
+<tr><th>Edge</th><th>Meaning</th></tr>
+<tr><td><code>PersonMention -ALIAS_OF-> Person</code></td><td>Resolved identity link, carries a confidence score</td></tr>
+<tr><td><code>Claim -ABOUT-> Person|Project|Account</code></td><td>What entity the claim describes</td></tr>
+<tr><td><code>Claim -SOURCED_FROM-> Source</code></td><td>Provenance root</td></tr>
+<tr><td><code>Claim -CONTRADICTS-> Claim</code></td><td>Auto-detected conflicting pair, same (subject, predicate), different object</td></tr>
+<tr><td><code>Adjudication -RESOLVES-> Claim</code></td><td>Links a human decision back to the claims it settled</td></tr>
+<tr><td><code>Person -OWNS {valid_from, valid_to}-> Project|Account</code></td><td>The flagship bitemporal edge — never overwritten, only superseded by a new edge with a new valid_from</td></tr>
+<tr><td><code>Project -DEPENDS_ON-> Project|Account</code></td><td>Powers the stretch "what breaks if X leaves" traversal</td></tr>
+</table>
+
+<h3>Reference query — the flagship "current + history + why" question</h3>
+<pre>// Current owner
+MATCH (p:Person)-[o:OWNS]->(x {id: $entityId})
+WHERE o.valid_to IS NULL
+RETURN p.canonical_name AS current_owner, o.valid_from AS since
+
+// Full ownership history, most recent first
+MATCH (p:Person)-[o:OWNS]->(x {id: $entityId})
+RETURN p.canonical_name AS owner, o.valid_from, o.valid_to
+ORDER BY o.valid_from DESC
+
+// Provenance: why do we believe the current owner is correct
+MATCH (x {id: $entityId})<-[:ABOUT]-(c:Claim)-[:SOURCED_FROM]->(s:Source)
+WHERE c.predicate = 'owns' AND c.observed_at >= $currentOwnerSince
+RETURN c.source, c.observed_at, c.extracted_confidence, s.system
+ORDER BY c.observed_at ASC
+
+// Contradiction check for a given claim set
+MATCH (c1:Claim)-[:CONTRADICTS]->(c2:Claim)
+WHERE c1.subject_id = $entityId
+RETURN c1, c2
+</pre>
+<p class="small">Exact Cypher shape should be validated against HydraDB's real OpenCypher subset on Day 1, same discipline as any traversal-heavy submission — treat this as the intended shape, not a guaranteed-correct call.</p>
+
+<hr>
+
+<h2 id="dayplan">Part IV — Day-by-Day Execution Plan (Aug 12–20)</h2>
+<p class="small">Two-role split shown throughout (<span class="role">Product/Data</span> and <span class="role">Engineering</span>) — collapse or expand roles freely for your actual team size. Every day has a hard exit criterion; if a day's exit criterion isn't met, the next day starts by fixing that before adding anything new.</p>
+
+<div class="day">
+<h3>Day 1 — Wed Aug 12 — Foundations</h3>
+<p><strong>Goal:</strong> HydraDB running, schema locked, dataset understood, test questions written.</p>
+<p><span class="role">Product/Data:</span> Download and inspect Enterprise RAG Bench and Salesforce HERB — understand their format, decide whether to eval against them directly or build our own small held-out labeled set that mirrors their structure. Lock the 3-source / 3-entity-type scope (Part II) as final, not a placeholder. Write 15 concrete test questions spanning simple lookup, multi-hop, contradiction, and abstention. Draft README skeleton and demo video outline (problem → project → demo → HydraDB usage, matching the required structure exactly).</p>
+<p><span class="role">Engineering:</span> Stand up HydraDB locally via Docker, verify a round-tripped write + read (not just a listening port). Write <code>schema.cypher</code> with CREATE CONSTRAINT statements for every node type in Part III. Set up repo skeleton: <code>ingestion/</code>, <code>graph/</code>, <code>api/</code>, <code>ui/</code>, <code>eval/</code>, <code>tests/</code>. Basic CI (pytest on push).</p>
+<div class="exit">Exit criteria: HydraDB node answers a hand-written CREATE + MATCH query; schema committed; dataset downloaded and understood; 15 test questions written and reviewed by both roles.</div>
+</div>
+
+<div class="day">
+<h3>Day 2 — Thu Aug 13 — Ingestion v1 (One Source, End to End)</h3>
+<p><strong>Goal:</strong> A real slice of Source 1 fully ingested as Claims — prove the pipeline shape before scaling to three sources.</p>
+<p><span class="role">Product/Data:</span> Hand-label 50 documents from Source 1 for ground truth: entity mentions, aliases present, any contradictions visible. Draft the source-authority rubric (which source wins by default for which claim type, before any learned scoring — e.g. "GitHub wins for code-ownership claims, Gmail wins for external-commitment claims").</p>
+<p><span class="role">Engineering:</span> Build entity-mention extraction (LLM-based NER over raw documents → candidate Person/Project/Account mentions + Claim triples). Write the batched Cypher writer (UNWIND, not one write per node). Implement basic alias-candidate generation: name similarity, email match, username match.</p>
+<div class="exit">Exit criteria: Source 1 (e.g. Slack) is fully ingested into HydraDB as Claim + PersonMention nodes; manual spot-check of 20 records confirms correctness against the hand-labeled set.</div>
+</div>
+
+<div class="day">
+<h3>Day 3 — Fri Aug 14 — Identity Resolution Engine</h3>
+<p><strong>Goal:</strong> Build and validate the actual "hard part" the brief names by name.</p>
+<p><span class="role">Product/Data:</span> Expand the hand-labeled set to explicitly cover alias-resolution cases across sources (the "Sam / @soham / S. Ratnaparkhi" pattern, using our own analogous examples from the sample data). Define the confidence threshold for auto-merge vs. "needs adjudication."</p>
+<p><span class="role">Engineering:</span> Implement the full pipeline: blocking (candidate pairs via name/email/username similarity) → pairwise scoring (feature-based + LLM-assisted for ambiguous cases) → clustering (union-find) → canonical <code>Person</code> node creation with <code>ALIAS_OF</code> edges carrying confidence scores. Wire this into ingestion for Source 2.</p>
+<div class="exit">Exit criteria: Identity resolution runs against the labeled alias test set with measured precision/recall reported in a scratch file (not yet the README — that comes Day 9). Source 2 ingested.</div>
+</div>
+
+<div class="day">
+<h3>Day 4 — Sat Aug 15 — Contradiction Detection + Third Source</h3>
+<p><strong>Goal:</strong> All three sources ingested; contradiction detection live; source-authority scoring wired in.</p>
+<p><span class="role">Product/Data:</span> Finalize source-authority weights based on Day 2's rubric. Write 10 more test questions specifically targeting planted contradictions.</p>
+<p><span class="role">Engineering:</span> Ingest Source 3 (Gmail). Implement contradiction detection: same (subject, predicate), different object, overlapping or ambiguous valid-time windows → flag as <code>CONTRADICTS</code> edge. Implement the three-way response classifier at the query-function level (definitive / contested / absent) — doesn't need an API yet, just correct logic.</p>
+<div class="exit">Exit criteria: all three sources ingested; the planted/known contradictions in the test set are correctly detected and flagged; three-way response classification verified against the Day 4 test questions.</div>
+</div>
+
+<div class="day">
+<h3>Day 5 — Sun Aug 16 — Bitemporal Ownership Engine (the flagship feature)</h3>
+<p><strong>Goal:</strong> Implement "who owns X now / before / when did it change / why" — the single feature that most directly proves the whole thesis.</p>
+<p><span class="role">Product/Data:</span> Write the exact flagship demo scenario (an Account or Project with a real, verifiable ownership change in the sample data) and manually verify the correct answer by reading the source documents directly.</p>
+<p><span class="role">Engineering:</span> Implement <code>OWNS</code> / <code>RESPONSIBLE_FOR</code> edges using HydraDB's native versioned-edge (valid_from/valid_to) model — a new edge on ownership change, old edge's valid_to set, never deleted. Implement: current-state query, as-of-time-T query, full-history query, and the provenance-path return (source → claim → adjudication if any → resolved edge).</p>
+<div class="exit">Exit criteria: given a Person + topic, the system correctly returns current owner, all previous owners with exact change dates, and the full evidence chain — verified against both the Day 1 and Day 5 test questions.</div>
+</div>
+
+<div class="day">
+<h3>Day 6 — Mon Aug 17 — Multi-Hop, Abstention & the Held-Out Eval Harness</h3>
+<p><strong>Goal:</strong> Multi-hop queries work; abstention is correct; build the thing most competing teams will skip — a real blind test.</p>
+<p><span class="role">Product/Data:</span> Assemble the held-out question set (a portion of Enterprise RAG Bench / HERB, or a withheld slice of our own labeled set never used to tune the pipeline). Define exactly what "correct" means per question category, in writing, before running anything.</p>
+<p><span class="role">Engineering:</span> Implement bounded multi-hop traversal (2–3 hop, e.g. "who on the team responsible for Account X has an open blocking claim against them"). Implement abstention: no path within N hops and confidence below threshold → return <em>absent</em>, never a guess. Build <code>eval/run_eval.py</code> — one command, ingests the frozen graph, runs the held-out question set, prints precision/recall per category (lookup, multi-hop, contradiction, abstention) plus p50/p95 latency.</p>
+<div class="exit">Exit criteria: <code>run_eval.py</code> runs end to end and produces a results file with real numbers — this is the artifact that goes in the README on Day 9, not a placeholder.</div>
+</div>
+
+<div class="day">
+<h3>Day 7 — Tue Aug 18 — API + Dashboard v1</h3>
+<p><strong>Goal:</strong> Everything usable through a UI a judge can operate without touching raw Cypher.</p>
+<p><span class="role">Product/Data:</span> Write the exact shot list for the demo video against the flagship scenario. UX pass on the dashboard — search bar, resolved-state card, expandable "Why?", ownership timeline.</p>
+<p><span class="role">Engineering:</span> FastAPI endpoints: <code>/ask</code>, <code>/entity/{id}/history</code>, <code>/entity/{id}/why</code>, <code>/contradictions</code> — thin layer over the Cypher queries, no traversal logic in the API itself. Build the dashboard (React or plain HTML+JS if time is short): search → resolved card → provenance chain → timeline.</p>
+<div class="exit">Exit criteria: the flagship demo scenario is fully answerable end to end through the UI, with no developer intervention or raw query typing.</div>
+</div>
+
+<div class="day">
+<h3>Day 8 — Wed Aug 19 — Stretch Feature (conditional) + Hardening</h3>
+<p><strong>Goal:</strong> Attempt exactly one stretch feature — and only if Day 6's eval numbers were genuinely solid. Otherwise, this entire day is hardening.</p>
+<p><span class="role">Product/Data:</span> If eval numbers were weak: help re-diagnose failure categories, expand the labeled set, re-test. If strong: write draft README sections (problem statement, architecture diagram description, HydraDB usage explanation, eval results table).</p>
+<p><span class="role">Engineering:</span> If eval passed cleanly: build the org-dependency/"what breaks if X leaves" traversal (highest-priority stretch, per Part II). If not: spend the day exclusively fixing precision/recall regressions from Day 6 — no new features.</p>
+<div class="exit">Exit criteria: either the stretch feature is fully working end to end, or it was explicitly cut — no half-built feature ships in the final repo. Re-run <code>run_eval.py</code> and confirm numbers didn't regress.</div>
+</div>
+
+<div class="day">
+<h3>Day 9 — Thu Aug 20 — Packaging & Submission</h3>
+<p><strong>Goal:</strong> Every line of the submission checklist verified, submitted before 11:59 PM PT.</p>
+<p><span class="role">Product/Data:</span> Finalize README: problem, architecture, exactly how HydraDB is used and what the project loses without it, setup instructions, the real eval numbers table. Record and edit the 3-minute demo video against the Day 7 shot list. Complete and submit the Google Form.</p>
+<p><span class="role">Engineering:</span> Feature freeze — bug fixes only. Confirm setup instructions work from a completely clean machine/container. Tag the release commit.</p>
+<div class="exit">Exit criteria: every item in Part VIII is checked before 11:59 PM PT, August 20, 2026.</div>
+</div>
+
+<hr>
+
+<h2 id="eval">Part V — Evaluation Methodology</h2>
+<table>
+<tr><th>Test</th><th>What it checks</th><th>When</th></tr>
+<tr><td>Alias resolution precision/recall</td><td>Hand-labeled alias set vs. resolved <code>ALIAS_OF</code> edges</td><td>Day 3, re-run after any pipeline change</td></tr>
+<tr><td>Contradiction detection accuracy</td><td>Planted/known contradictions vs. detected <code>CONTRADICTS</code> edges</td><td>Day 4</td></tr>
+<tr><td>Held-out question set (Enterprise RAG Bench / HERB or our own)</td><td>Per-category precision/recall: simple lookup, multi-hop, contradiction, abstention</td><td>Day 6, re-run Day 8 and before submission</td></tr>
+<tr><td>Latency</td><td>p50/p95 query time for flagship and multi-hop queries</td><td>Day 6 onward</td></tr>
+<tr><td>End-to-end smoke test</td><td>Docker-composed stack answers one known question correctly, single command</td><td>Before every demo run and before submission</td></tr>
+</table>
+<p>Report every number directly in the README and reference it in the demo video — the judging guide is explicit that this, not narration polish, is what "quality of results" means.</p>
+
+<hr>
+
+<h2 id="demo">Part VI — Demo Script (3 minutes, shot by shot)</h2>
+<ol>
+<li><strong>0:00–0:25 — The problem.</strong> "Your company's Slack, GitHub, and email all know something different about who owns this account. Search tools show you all three and make you guess. We built a graph that tells you which one is right, when it became right, and why."</li>
+<li><strong>0:25–0:55 — What we built.</strong> Quick architecture beat: three sources → claims, not overwritten facts → identity resolution → bitemporal ownership graph in HydraDB.</li>
+<li><strong>0:55–2:20 — Live demo.</strong> Ask "who owns [flagship entity] right now?" → resolved-state card appears. Click "Why?" → provenance chain expands, showing the actual source claims. Ask "who owned it before?" → timeline animates, shows the change and the date. Ask a deliberately contested question → system shows both claims side by side instead of guessing. Ask a question with no answer in the data → system says so, explicitly.</li>
+<li><strong>2:20–2:50 — HydraDB usage.</strong> "Every one of those answers is a native traversal over HydraDB's versioned edges — the ownership history isn't a table we maintain, it's the graph's own append-only history. Without HydraDB we could show you documents. With it, we show you what changed, when, and why we believe it."</li>
+<li><strong>2:50–3:00 — Close.</strong> One-line eval stat on screen (e.g. "X% precision on held-out questions, verified against Enterprise RAG Bench").</li>
+</ol>
+
+<hr>
+
+<h2 id="risks">Part VII — Risk Register</h2>
+<div class="risk"><strong>Risk:</strong> Identity resolution precision is too low to trust in a live demo. <strong>Mitigation:</strong> Day 3 has a hard exit criterion tied to measured precision/recall on the labeled set — if it's weak, Day 8 becomes a hardening day instead of adding stretch features, by design.</div>
+<div class="risk"><strong>Risk:</strong> Team spends too long hand-rolling ingestion instead of using existing tooling. <strong>Mitigation:</strong> Scope is fixed to 3 sources / 3 entity types from Day 1 — no mid-hackathon scope expansion without cutting something else first.</div>
+<div class="risk"><strong>Risk:</strong> Demo looks good but the held-out eval was never actually run. <strong>Mitigation:</strong> Day 6's exit criterion is a literal command (<code>run_eval.py</code>) that must produce a results file — this is treated as non-negotiable as the dashboard itself.</div>
+<div class="risk"><strong>Risk:</strong> Cypher/HydraDB traversal ends up being done in Python against data pulled out of the graph (the "JSON store with a HydraDB label" failure mode). <strong>Mitigation:</strong> Every query in Part III is written as Cypher first; the API layer's job is explicitly to contain zero graph-walking logic of its own, called out at every engineering task above.</div>
+
+<hr>
+
+<h2 id="checklist">Part VIII — Submission Checklist</h2>
+<ul>
+<li>☐ Submission form complete (project name, problem, what was built, tech stack, HydraDB usage, team contributions, repo + video links)</li>
+<li>☐ GitHub repository public, licensed, no participant commits dated before August 12, 2026</li>
+<li>☐ README explains the problem, the graph model, and specifically how HydraDB is used and what the project would lose without it</li>
+<li>☐ Setup instructions verified working on a clean machine</li>
+<li>☐ Demo video ≤ 3 minutes, structured problem → project → demo → HydraDB usage</li>
+<li>☐ Held-out evaluation results (precision, recall, latency) included in the README, referenced in the video</li>
+<li>☐ Submitted before 11:59 PM PT, August 20, 2026</li>
+</ul>
+
+<hr>
+<p class="small">Continuum — Master Plan · Hack Hydra Track 01 · Prepared August 2026</p>
+
+</body>
+</html>

@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from continuum.hydradb import HydraDBClient
+from continuum.hydradb.artifacts import delete_all_artifacts
 
 OPEN_END = "9999-12-31"
 FIXTURE = Path(__file__).resolve().parents[1] / "data" / "fixtures" / "company.json"
@@ -18,8 +19,9 @@ def seed(reset: bool = False) -> dict[str, int]:
     graph_ids = {record["id"]: index for index, record in enumerate(all_records, start=1)}
     with HydraDBClient() as client:
         if reset:
-            for label in ("Person", "Project", "Account", "Source", "Artifact", "Claim"):
+            for label in ("Person", "Project", "Account", "Source", "Claim"):
                 client.execute(f"MATCH (n:{label}) DETACH DELETE n")
+            delete_all_artifacts(client)
 
         node_groups = {
             "Person": fixture["people"],

@@ -1,4 +1,22 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality embedding-experiment
+
+dataset-info:
+	python scripts/dataset_info.py
+
+dataset-download:
+	python scripts/dataset_download.py
+
+dataset-sample:
+	python scripts/dataset_sample.py
+
+dataset-inventory:
+	python scripts/dataset_inventory.py
+
+dataset-quality:
+	python scripts/dataset_quality.py
+
+embedding-experiment:
+	python scripts/embedding_experiment.py
 hydradb-up:
 	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_hydradb.ps1
 hydradb-stop:

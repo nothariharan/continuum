@@ -1,0 +1,147 @@
+{
+  "manifest_release": "v1.0.0",
+  "total_files": 511963,
+  "total_bytes": 2474399575,
+  "sources": [
+    {
+      "source": "slack",
+      "file_count": 285605,
+      "total_bytes": 964465933,
+      "min_bytes": 9,
+      "max_bytes": 17596,
+      "sample_dsids": [
+        "00014a043cd3424dac13e6b0f37b860e",
+        "0019ae33cbb74c93813a8b0f3ca1fd5e",
+        "0046285926c445108ce3d92f75c18be5",
+        "004b490ba59e4c1c9186b8a622c2394a",
+        "005f8cecb2954c62938e51b187b83064",
+        "008d0a32738c458fb0cd809b3354e329"
+      ]
+    },
+    {
+      "source": "gmail",
+      "file_count": 121390,
+      "total_bytes": 860188084,
+      "min_bytes": 48,
+      "max_bytes": 17431,
+      "sample_dsids": [
+        "002c99acc1cf40079e13be1898b025af",
+        "0074753d29d3478ba5acca5de3e0146b",
+        "00c234dda45a4a9fa95e35a720c6d60d",
+        "00ffa2d9206544f8ae459c416077b2f6",
+        "0103183cdc5b4166a1adec51ca28af07",
+        "010d08981cba4a8189a088694ac59155"
+      ]
+    },
+    {
+      "source": "linear",
+      "file_count": 35308,
+      "total_bytes": 182440936,
+      "min_bytes": 133,
+      "max_bytes": 17539,
+      "sample_dsids": [
+        "000230d05c0c4973ac32fd474c749725",
+        "0027e7683ad74b44976c966176da8359",
+        "0049da4c50cd49e0a9636aa7e6448ccc",
+        "0058f91775be4914b87023de7dca3b33",
+        "019389a4ed82461eab8ae49d4b66e256",
+        "0223c744dd9e406eba42f435dae70914"
+      ]
+    },
+    {
+      "source": "google_drive",
+      "file_count": 25108,
+      "total_bytes": 178644645,
+      "min_bytes": 54,
+      "max_bytes": 22744,
+      "sample_dsids": [
+        "03d1202ef4ca4224839e60f74a39fc0a",
+        "041623d8648e4bfaabd45db1f8cb9543",
+        "08227371fae845cd8cedb715a28403f1",
+        "0c6c439d67ce449cae645cca5ef07226",
+        "11b0a4efe8564ca8978fe87e5be81820",
+        "1707e752b1d74174bd6748de756f175b"
+      ]
+    },
+    {
+      "source": "hubspot",
+      "file_count": 15017,
+      "total_bytes": 46751262,
+      "min_bytes": 81,
+      "max_bytes": 8176,
+      "sample_dsids": [
+        "00019f542a8240739395dde5fec41708",
+        "00021b5b353d4710b9fbe29a75b425ba",
+        "0008240d8cf44d4281eef52a5a09a57c",
+        "000a977cbb7a410e99f260ff85d9b7df",
+        "000d10f7bbb44c9989f09044a774e15b",
+        "0013208c20f247189bd5d5e5de6996d4"
+      ]
+    },
+    {
+      "source": "fireflies",
+      "file_count": 10173,
+      "total_bytes": 117756071,
+      "min_bytes": 126,
+      "max_bytes": 42281,
+      "sample_dsids": [
+        "01cdee8cf619446fb226097a640928cb",
+        "0291eddb4ff1449babc64beeba21b5fb",
+        "033063eb527f452f9b48e6686bc7b414",
+        "038cc22aab124b83a9841aa8fb17057f",
+        "045c297ec2ef495abd66cb1f09921fc4",
+        "05932c97cec94a0ca09ab7bdb40d27d2"
+      ]
+    },
+    {
+      "source": "github",
+      "file_count": 8052,
+      "total_bytes": 38236614,
+      "min_bytes": 245,
+      "max_bytes": 13952,
+      "sample_dsids": [
+        "00ac739c4d0a4ce9b48af5f779de976c",
+        "01b76d9812a3477b8a37805830895a39",
+        "035c828c547c4155b21bff5911aad326",
+        "05837cd482254c2698ca4fcd5af3aae8",
+        "09de8244d5e7443da06b62449cbbe305",
+        "10a1bff3865f43a7add325d6768c8094"
+      ]
+    },
+    {
+      "source": "jira",
+      "file_count": 6120,
+      "total_bytes": 33959577,
+      "min_bytes": 182,
+      "max_bytes": 10467,
+      "sample_dsids": [
+        "000ddeea5e2c4186a731a7e79179e1c0",
+        "001796b5316c4ae48352b6393fe67cbe",
+        "00429ee10a5f4fb5ba510de6e5b07c98",
+        "0064dac9b76e43ada0e9acf1745a20fa",
+        "006b969c2bfc4d3e987eb7fb55bb3e44",
+        "00866fd91c2c4f44ba6984e1bae905c7"
+      ]
+    },
+    {
+      "source": "confluence",
+      "file_count": 5189,
+      "total_bytes": 51191526,
+      "min_bytes": 104,
+      "max_bytes": 24889,
+      "sample_dsids": [
+        "7c9c970a25c9414fbac1343ce49c82bf",
+        "026bbc0fbb97423ab9de20d8f99402d6",
+        "038086c2041043ddb619843d47a7c601",
+        "03945652609045ed841cb7f09902de02",
+        "048afec9140d476982b0728f46a9378a",
+        "05841423a55e4c35abd276d9899b7134"
+      ]
+    }
+  ],
+  "scanned_docs": 594,
+  "observed_email_dates": 9,
+  "observed_meeting_dates": 39,
+  "observed_dates_anywhere": 103,
+  "observed_noise_flags": 0
+}

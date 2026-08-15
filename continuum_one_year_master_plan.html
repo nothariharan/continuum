@@ -1,0 +1,1563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Continuum — One-Year Master Architecture & Product Plan</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;max-width:1100px;margin:0 auto;padding:32px;line-height:1.65;color:#171717}
+    h1,h2,h3,h4{line-height:1.2}
+    h1{font-size:42px;margin-bottom:8px}
+    h2{margin-top:48px;border-bottom:2px solid #222;padding-bottom:8px}
+    h3{margin-top:32px}
+    table{border-collapse:collapse;width:100%;margin:18px 0}
+    th,td{border:1px solid #bbb;padding:10px;vertical-align:top;text-align:left}
+    th{background:#eee}
+    code,pre{font-family:Consolas,monospace}
+    pre{background:#f4f4f4;padding:16px;overflow:auto}
+    .note{border-left:4px solid #222;padding:12px 16px;background:#f5f5f5}
+    .later{border-left:4px solid #777;padding:12px 16px;background:#fafafa}
+    .must{font-weight:bold}
+  </style>
+</head>
+<body>
+
+<h1>Continuum — The Company Truth Graph</h1>
+<p><strong>One-Year Master Architecture & Product Plan</strong></p>
+<p>This document describes how Continuum should be designed if we were given a full year, a strong engineering team, realistic enterprise access, and the goal of turning the Hack Hydra Track 01 prototype into a serious, integratable product. The nine-day hackathon version is deliberately treated as the first vertical slice of this larger system, not as a separate architecture.</p>
+
+<div class="note">
+<strong>Core thesis:</strong> Continuum should not become “another enterprise search engine.” Its job is to reconstruct the current state of an organization from fragmented, contradictory, time-dependent evidence and expose that state as a trustworthy, queryable layer for people, applications, and AI agents.
+</div>
+
+<h2>1. Executive Product Definition</h2>
+
+<p>Continuum is a persistent enterprise state layer that sits above the systems a company already uses. Slack, Gmail, GitHub, Linear, Jira, Confluence, Drive, CRM systems, meeting systems, ticketing platforms and future internal applications continue to be the systems where work happens. Continuum does not attempt to replace them.</p>
+
+<p>Instead, Continuum continuously converts their events and artifacts into a resolved organizational model:</p>
+
+<pre>
+Enterprise systems
+  ↓
+Artifacts / events
+  ↓
+Claims
+  ↓
+Identity resolution + entity linking
+  ↓
+Ontology / relationship graph
+  ↓
+Temporal state + contradiction engine
+  ↓
+Resolved enterprise state
+  ↓
+Provenance + confidence + permissions
+  ↓
+APIs / MCP / agents / search / dashboards / automation
+</pre>
+
+<p>The product should answer questions that ordinary search systems struggle with:</p>
+
+<ul>
+<li>Who owns this account right now?</li>
+<li>Who owned it last month?</li>
+<li>When and why did ownership change?</li>
+<li>Which systems disagree?</li>
+<li>What evidence supports the current state?</li>
+<li>What is the latest trustworthy state of this project?</li>
+<li>Who is the real technical owner of this service?</li>
+<li>What decisions led to the current architecture?</li>
+<li>What breaks if this person leaves?</li>
+<li>Which customers, projects, systems or teams depend on this person?</li>
+<li>What information is missing?</li>
+<li>What was believed at a previous point in time?</li>
+</ul>
+
+<p>The important product shift is from <strong>document retrieval</strong> to <strong>organizational state reconstruction</strong>.</p>
+
+<h2>2. The Competitive Positioning We Should Build Around</h2>
+
+<p>Based on the research already assembled for this project, the market contains several major categories. The objective is not to claim that competitors have no graph capabilities or no temporal capabilities. The objective is to identify a specific capability that Continuum can own and make central.</p>
+
+<table>
+<tr><th>Category</th><th>Representative systems</th><th>Core job</th><th>Where Continuum should differ</th></tr>
+<tr>
+<td>Enterprise search / copilots</td>
+<td>Glean, Microsoft 365 Copilot, Google/Gemini enterprise search, Slack AI, Notion AI, Guru, Rovo</td>
+<td>Find and synthesize information across enterprise applications.</td>
+<td>Continuum should return a resolved state with evidence, history, conflicts and relationships rather than primarily returning document snippets.</td>
+</tr>
+<tr>
+<td>Enterprise knowledge / data platforms</td>
+<td>Palantir, Databricks, Snowflake and similar platforms</td>
+<td>Unify enterprise data and enable analytics/AI workloads.</td>
+<td>Continuum should focus on the semantic “what is true?” layer: identity, claims, ownership, state transitions, provenance and agent-facing context.</td>
+</tr>
+<tr>
+<td>Graph databases / GraphRAG</td>
+<td>Neo4j, Memgraph, Kuzu, FalkorDB, Microsoft GraphRAG and related ecosystems</td>
+<td>Represent relationships and improve retrieval/reasoning.</td>
+<td>Continuum should package graph capabilities into a complete enterprise-state product, including claims, temporal resolution, contradiction handling, provenance and integrations.</td>
+</tr>
+<tr>
+<td>Agent memory</td>
+<td>Mem0, Zep/Graphiti, Letta and related memory systems</td>
+<td>Persist agent/user information across sessions.</td>
+<td>Continuum should model organizations rather than just user/session memory and should make state first-class, with enterprise permissions and provenance.</td>
+</tr>
+<tr>
+<td>Master data / identity resolution</td>
+<td>Reltio, Tamr, Senzing and similar systems</td>
+<td>Resolve entities and maintain trusted records.</td>
+<td>Continuum can apply the same identity principle to dynamic organizational facts and relationships, rather than only canonical customer/person records.</td>
+</tr>
+</table>
+
+<p>Our competitive wedge should therefore be narrow and defensible:</p>
+
+<div class="note">
+<strong>Continuum is a resolved enterprise state engine.</strong> It continuously determines which entities and claims refer to the same real-world things, tracks state over time, detects conflicting evidence, computes a current state, preserves the evidence behind that state, and exposes the result to applications and agents.
+</div>
+
+<p>Do not market the first version as “better Glean.” Do not market it as “GraphRAG with a UI.” Do not market it as “a knowledge graph chatbot.” Those descriptions collapse the product into already crowded categories.</p>
+
+<h2>3. The Long-Term Architecture</h2>
+
+<h3>3.1 Architectural layers</h3>
+
+<pre>
+┌──────────────────────────────────────────────────────────────────────┐
+│                         APPLICATION LAYER                             │
+│ Search • Company State • Impact • Alerts • Agent UI • Admin         │
+├──────────────────────────────────────────────────────────────────────┤
+│                        ACCESS / DELIVERY                              │
+│ REST API • GraphQL • MCP • SDKs • Webhooks • SQL/BI/Exports         │
+├──────────────────────────────────────────────────────────────────────┤
+│                       STATE QUERY LAYER                               │
+│ Current State • AS-OF T • History • Conflict • Impact • Explain     │
+├──────────────────────────────────────────────────────────────────────┤
+│                     REASONING / RESOLUTION                            │
+│ Entity Resolution • Claim Resolution • Temporal Logic • Ontology    │
+│ Contradiction Engine • Confidence • Abstention • Provenance         │
+├──────────────────────────────────────────────────────────────────────┤
+│                           GRAPH STATE                                 │
+│ Entities • Claims • Relationships • Events • Sources • Decisions    │
+│ Temporal edges • Evidence paths • Dependency graph                  │
+├──────────────────────────────────────────────────────────────────────┤
+│                         INGESTION FABRIC                              │
+│ Connectors • CDC/Webhooks • Backfills • Normalization • Parsing     │
+├──────────────────────────────────────────────────────────────────────┤
+│                          DATA SOURCES                                 │
+│ Slack • Gmail • GitHub • Linear • Jira • CRM • Drive • Meetings     │
+└──────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<h3>3.2 Source ingestion layer</h3>
+
+<p>Each connector should have the same conceptual contract regardless of source:</p>
+
+<pre>
+SOURCE CONNECTOR
+  - authentication
+  - permission snapshot
+  - historical backfill
+  - incremental sync
+  - change/webhook handling
+  - deletion handling
+  - source identity mapping
+  - source metadata
+  - source timestamps
+  - source-specific parser
+  - normalized artifact event
+</pre>
+
+<p>A connector should not directly write “facts” into the graph. It should emit normalized artifacts and events.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li>Slack message</li>
+<li>GitHub pull request</li>
+<li>GitHub review</li>
+<li>Linear issue update</li>
+<li>Gmail thread</li>
+<li>Google Drive document version</li>
+<li>HubSpot deal update</li>
+<li>Fireflies transcript</li>
+<li>Jira assignment</li>
+</ul>
+
+<p>This lets the source layer remain independent from the reasoning layer.</p>
+
+<h2>4. Canonical Data Model</h2>
+
+<p>The entire product should revolve around the distinction between <strong>evidence, claims and state</strong>.</p>
+
+<h3>4.1 Artifact</h3>
+
+<p>An Artifact is what a source actually contains.</p>
+
+<pre>
+Artifact
+- id
+- source_system
+- source_object_id
+- artifact_type
+- content / extracted fields
+- author
+- created_at
+- updated_at
+- permissions
+- source_version
+- url
+</pre>
+
+<h3>4.2 Mention</h3>
+
+<p>A Mention is a reference to an entity found inside an artifact.</p>
+
+<pre>
+Mention
+- raw_value
+- mention_type
+- source
+- artifact_id
+- offsets / metadata
+- candidate_entities
+</pre>
+
+<h3>4.3 Entity</h3>
+
+<p>Canonical entities should include:</p>
+
+<ul>
+<li>Person</li>
+<li>Organization</li>
+<li>Team</li>
+<li>Project</li>
+<li>Customer / Account</li>
+<li>Repository</li>
+<li>Service</li>
+<li>Product</li>
+<li>Issue</li>
+<li>Decision</li>
+<li>Document</li>
+<li>Meeting</li>
+<li>Vendor</li>
+<li>Contract</li>
+<li>Environment</li>
+<li>Metric</li>
+</ul>
+
+<p>Do not force the entire universe of business objects into the MVP. The long-term model should be extensible through an ontology layer.</p>
+
+<h3>4.4 Claim</h3>
+
+<p>The Claim is the most important primitive.</p>
+
+<pre>
+Claim
+- subject_entity
+- predicate
+- object_entity / literal
+- source_artifact
+- observed_at
+- valid_from
+- valid_to
+- extraction_method
+- extraction_confidence
+- source_context
+- claim_status
+</pre>
+
+<p>Examples:</p>
+
+<pre>
+Sarah OWNS Acme
+Ravi MAINTAINS payments-service
+Acme HAS_STATUS contract-review
+Project-X DEPENDS_ON Service-Y
+Alice LEADS Team-Z
+</pre>
+
+<p>Claims are immutable evidence-derived objects. Resolution creates derived state; it does not rewrite history.</p>
+
+<h3>4.5 Resolved State</h3>
+
+<p>The State layer answers the question: “Given all available evidence and the resolution policy, what does Continuum currently believe?”</p>
+
+<pre>
+ResolvedState
+- subject
+- predicate
+- resolved_object
+- valid_from
+- valid_to
+- confidence
+- status
+- supporting_claims
+- conflicting_claims
+- adjudication
+</pre>
+
+<p>Status should support at least:</p>
+
+<ul>
+<li><strong>definitive</strong></li>
+<li><strong>contested</strong></li>
+<li><strong>unknown / absent</strong></li>
+<li><strong>restricted</strong> when permissions prevent the answer</li>
+</ul>
+
+<h2>5. Temporal Architecture</h2>
+
+<p>The temporal model is one of the strongest potential differentiators, but it should remain a mechanism for trustworthy state rather than become a marketing buzzword.</p>
+
+<p>Continuum should track at least two clocks:</p>
+
+<pre>
+T_valid = when the fact was true in the real world
+
+T_tx = when Continuum learned / recorded the fact
+</pre>
+
+<p>Example:</p>
+
+<pre>
+Email received:
+July 20
+
+Email states:
+"Sarah will take over Acme on August 1."
+
+Therefore:
+
+T_tx = July 20
+T_valid_from = August 1
+</pre>
+
+<p>This makes queries such as these possible:</p>
+
+<ul>
+<li>Who owns Acme now?</li>
+<li>Who owned Acme on June 1?</li>
+<li>What did Continuum believe on July 25?</li>
+<li>When did the graph first learn that Sarah would take over?</li>
+<li>Which source caused the state transition?</li>
+</ul>
+
+<p>A future production system should expose this as a standard state-query API rather than requiring every client to understand temporal graph mechanics.</p>
+
+<h2>6. Entity Resolution Architecture</h2>
+
+<p>This is the hardest core subsystem and should become one of Continuum’s strongest technical assets.</p>
+
+<pre>
+                    Mention
+                       ↓
+             Deterministic blocking
+                       ↓
+             Candidate generation
+                       ↓
+         ┌─────────────┴──────────────┐
+         ↓                            ↓
+   String similarity             Source metadata
+         ↓                            ↓
+      Email / ID                    Username
+         ↓                            ↓
+          └─────────────┬─────────────┘
+                        ↓
+              Relationship evidence
+                        ↓
+                Pairwise scoring
+                        ↓
+           ┌────────────┴────────────┐
+           ↓                         ↓
+       High confidence         Ambiguous candidate
+           ↓                         ↓
+        Auto-link              LLM / model review
+                                     ↓
+                              Human adjudication
+                                     ↓
+                              Canonical entity
+</pre>
+
+<p>Long term, the goal should be to move from heuristic matching toward a calibrated entity-resolution model with active learning.</p>
+
+<p>The product should never silently merge two entities when confidence is insufficient.</p>
+
+<p>Possible outcomes:</p>
+
+<pre>
+AUTO-MERGE
+REVIEW
+KEEP-SEPARATE
+ABSTAIN
+</pre>
+
+<p>Every merge should be reversible and auditable.</p>
+
+<h2>7. Ontology Architecture</h2>
+
+<p>Continuum should use a hybrid ontology model.</p>
+
+<p>There should be a stable base ontology for common enterprise concepts:</p>
+
+<pre>
+Person
+Team
+Project
+Account
+Repository
+Service
+Issue
+Decision
+Document
+Organization
+</pre>
+
+<p>Customers should then be able to extend this ontology:</p>
+
+<pre>
+CUSTOM OBJECT:
+RegulatoryReview
+    SUBTYPE_OF Review
+
+CUSTOM RELATIONSHIP:
+APPROVES
+BLOCKS
+ESCALATES_TO
+</pre>
+
+<p>The system should learn candidate ontology extensions from observed data, but it should not silently mutate the canonical enterprise ontology. Ontology changes should be versioned and reviewable.</p>
+
+<p>Long-term product capability:</p>
+
+<strong>Ontology Studio</strong>
+
+<p>An admin can see:</p>
+
+<ul>
+<li>entities</li>
+<li>relationships</li>
+<li>claim types</li>
+<li>source mappings</li>
+<li>ontology confidence</li>
+<li>unused/duplicate concepts</li>
+<li>proposed schema changes</li>
+</ul>
+
+<h2>8. Contradiction and Evidence Resolution</h2>
+
+<p>Continuum should not pretend every enterprise fact has one globally authoritative source.</p>
+
+<p>Instead, it should calculate evidence strength using a combination of:</p>
+
+<ul>
+<li>source system</li>
+<li>claim type</li>
+<li>explicitness</li>
+<li>recency</li>
+<li>temporal validity</li>
+<li>number of independent corroborating sources</li>
+<li>relationship consistency</li>
+<li>historical source reliability</li>
+<li>human adjudication</li>
+</ul>
+
+<p>Conceptually:</p>
+
+<pre>
+evidence_score =
+  source_reliability
+  × claim_type_reliability
+  × explicitness
+  × temporal_relevance
+  × corroboration
+  × extraction_confidence
+</pre>
+
+<p>The important product behavior is:</p>
+
+<pre>
+Strong evidence:
+    resolved state
+
+Conflicting evidence with a likely winner:
+    resolved state + conflict visible
+
+Conflicting evidence with no reliable winner:
+    CONTESTED
+
+Insufficient evidence:
+    UNKNOWN / ABSTAIN
+
+Permission-blocked:
+    RESTRICTED
+</pre>
+
+<p>This is substantially safer than letting a language model “average” contradictory documents.</p>
+
+<h2>9. Provenance Architecture</h2>
+
+<p>Every resolved answer should have a provenance graph.</p>
+
+<pre>
+ANSWER
+  ↓
+RESOLVED STATE
+  ↓
+CLAIM
+  ↓
+ARTIFACT
+  ↓
+SOURCE SYSTEM
+  ↓
+AUTHOR + TIMESTAMP + VERSION
+</pre>
+
+<p>The user should be able to click “Why?” on every answer.</p>
+
+<p>Example:</p>
+
+<pre>
+WHO OWNS ACME?
+
+Sarah Chen
+Confidence: 96%
+
+WHY?
+
+1. Linear issue ACME-481 assigned to Sarah
+2. Slack project channel confirms handoff
+3. Gmail customer thread names Sarah as new owner
+4. GitHub activity confirms Sarah is actively implementing the integration
+
+Previous owner:
+Arjun Mehta
+Valid until July 28
+</pre>
+
+<p>Provenance should be available both to humans and machines.</p>
+
+<h2>10. Authorization Architecture</h2>
+
+<p>Permissions are not an optional enterprise feature. They are foundational.</p>
+
+<p>Continuum must never become a system that turns information a user could not normally discover into a cross-system leak.</p>
+
+<p>Long-term authorization should include:</p>
+
+<ul>
+<li>source ACL ingestion</li>
+<li>user identity mapping</li>
+<li>group/team mapping</li>
+<li>document-level permissions</li>
+<li>entity-level restrictions where required</li>
+<li>field-level redaction for sensitive properties</li>
+<li>graph traversal filtering</li>
+<li>audit logs</li>
+</ul>
+
+<p>Every query should effectively be evaluated as:</p>
+
+<pre>
+Can this requester see the artifact?
+        ↓
+Can this requester see the claim?
+        ↓
+Can this requester traverse this relationship?
+        ↓
+Can this requester see the resolved state?
+        ↓
+Return only authorized evidence.
+</pre>
+
+<p>The authorization layer should be designed early, even if the hackathon prototype uses a simplified model.</p>
+
+<h2>11. State Query API</h2>
+
+<p>This is where Continuum becomes infrastructure rather than a dashboard.</p>
+
+<p>The API should expose primitives such as:</p>
+
+<pre>
+GET /entities/:id
+GET /entities/:id/history
+GET /entities/:id/state?as_of=...
+GET /entities/:id/dependencies
+GET /entities/:id/impact
+GET /claims/:id
+GET /conflicts
+POST /query
+POST /resolve
+POST /adjudicate
+POST /subscribe
+</pre>
+
+<p>But the more important long-term idea is a semantic State API.</p>
+
+<pre>
+resolve(
+    subject="Acme",
+    predicate="owner",
+    as_of="2026-08-15"
+)
+</pre>
+
+<p>Response:</p>
+
+<pre>
+{
+  "value": "Sarah Chen",
+  "status": "definitive",
+  "confidence": 0.96,
+  "valid_from": "...",
+  "evidence": [...],
+  "conflicts": [...]
+}
+</pre>
+
+<p>This is the API that other software can integrate with.</p>
+
+<h2>12. MCP and Agent Integration</h2>
+
+<p>This is one of the highest-value extensions because Continuum can become infrastructure behind many AI applications instead of trying to compete with every AI application directly.</p>
+
+<p>Build an MCP server exposing tools such as:</p>
+
+<pre>
+resolve_entity
+resolve_state
+get_entity_history
+get_evidence
+get_conflicts
+find_dependencies
+simulate_impact
+search_company_context
+check_claim
+</pre>
+
+<p>Then Claude, ChatGPT-compatible agent environments, internal agents and coding agents can call Continuum instead of independently searching Slack, Gmail and GitHub.</p>
+
+<p>Example:</p>
+
+<pre>
+Agent:
+"Who owns the payment integration and what is blocking launch?"
+
+        ↓ MCP
+
+Continuum:
+
+Owner:
+Ravi
+
+Blocking issue:
+PCI approval
+
+Evidence:
+Jira + Slack + meeting transcript
+
+Last state change:
+Aug 11
+
+        ↓
+
+Agent produces answer with provenance.
+</pre>
+
+<p>This is strategically much more valuable than building another closed chatbot.</p>
+
+<h2>13. The Integration Strategy</h2>
+
+<p>Continuum should eventually be usable in three modes.</p>
+
+<h3>Mode A — Human application</h3>
+
+<p>The Continuum dashboard lets users inspect company state directly.</p>
+
+<h3>Mode B — Embedded enterprise software</h3>
+
+<p>Other SaaS products call the State API.</p>
+
+<p>Potential integrations:</p>
+
+<ul>
+<li>CRM copilots</li>
+<li>support assistants</li>
+<li>sales agents</li>
+<li>engineering agents</li>
+<li>project-management assistants</li>
+<li>security assistants</li>
+<li>HR systems</li>
+<li>procurement systems</li>
+<li>compliance systems</li>
+</ul>
+
+<h3>Mode C — AI agent infrastructure</h3>
+
+<p>Agent frameworks query Continuum whenever they need authoritative company context.</p>
+
+<p>This is likely the strongest long-term positioning:</p>
+
+<div class="note">
+<strong>Continuum is not the company’s chatbot. It is the company state layer that all of the company’s AI agents can query.</strong>
+</div>
+
+<h2>14. Impact Simulation</h2>
+
+<p>Once the graph contains ownership, dependencies, responsibilities, repositories, services, customers and teams, Continuum can provide a capability most search systems do not naturally provide:</p>
+
+<p><strong>counterfactual organizational reasoning.</strong></p>
+
+<p>Example:</p>
+
+<pre>
+"What breaks if Sarah leaves?"
+</pre>
+
+<p>Graph traversal:</p>
+
+<pre>
+Sarah
+ ↓
+OWNS
+ ↓
+Projects
+ ↓
+Services
+ ↓
+Repositories
+ ↓
+Customers
+ ↓
+Open Issues
+</pre>
+
+<p>Then compute:</p>
+
+<ul>
+<li>number of customers affected</li>
+<li>production services affected</li>
+<li>projects without remaining owners</li>
+<li>critical undocumented responsibilities</li>
+<li>repositories lacking maintainers</li>
+<li>open incidents dependent on the person</li>
+<li>single points of failure</li>
+</ul>
+
+<p>This should eventually evolve into:</p>
+
+<strong>Organizational Risk Graph</strong>
+
+<p>Examples:</p>
+
+<ul>
+<li>What happens if this team loses two people?</li>
+<li>Which projects have a single point of failure?</li>
+<li>Which customers depend on one engineer?</li>
+<li>Which services have no clear owner?</li>
+<li>Where are the most dangerous undocumented dependencies?</li>
+<li>Which teams are overloaded?</li>
+</ul>
+
+<p>This is a powerful second product surface.</p>
+
+<h2>15. Decision Intelligence</h2>
+
+<p>Continuum should eventually model decisions as first-class entities.</p>
+
+<p>A decision is not merely a message.</p>
+
+<pre>
+Decision
+- topic
+- decision
+- alternatives
+- participants
+- owner
+- decision_time
+- effective_time
+- rationale
+- evidence
+- supersedes
+- superseded_by
+</pre>
+
+<p>This enables questions such as:</p>
+
+<ul>
+<li>Why did we choose PostgreSQL?</li>
+<li>Who approved the migration?</li>
+<li>What alternatives were rejected?</li>
+<li>Which assumptions have changed since that decision?</li>
+<li>Which current systems depend on a decision made six months ago?</li>
+</ul>
+
+<p>Over time, Continuum could become an institutional memory system for decisions, not just documents.</p>
+
+<h2>16. Change Detection and Alerts</h2>
+
+<p>Once Continuum knows state, it can detect transitions rather than merely retrieve information.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li>ownership changed</li>
+<li>customer status changed</li>
+<li>project became blocked</li>
+<li>important decision reversed</li>
+<li>contradiction appeared</li>
+<li>service lost an owner</li>
+<li>new single point of failure appeared</li>
+<li>critical documentation became stale</li>
+</ul>
+
+<p>Users should be able to subscribe to state changes:</p>
+
+<pre>
+Notify me when:
+Acme.owner changes
+
+Notify me when:
+Project-X becomes blocked
+
+Notify me when:
+a critical service has no owner
+
+Notify me when:
+two authoritative sources disagree
+</pre>
+
+<p>This changes Continuum from a search destination into a system that continuously produces useful signal.</p>
+
+<h2>17. Company State Timeline</h2>
+
+<p>One eventual flagship interface should be an organizational timeline.</p>
+
+<p>Instead of searching documents, a user could inspect:</p>
+
+<pre>
+AUGUST
+
+Aug 02
+Sarah assigned to Acme
+
+Aug 04
+SSO blocker discovered
+
+Aug 07
+Engineering decision made
+
+Aug 10
+Customer escalation
+
+Aug 11
+Security approval
+
+Aug 12
+Ownership changed
+
+Aug 14
+Launch approved
+</pre>
+
+<p>Every event should be expandable to its supporting claims and source artifacts.</p>
+
+<p>This gives the organization something far more useful than a document archive:</p>
+
+<strong>a navigable history of how the company got to its current state.</strong>
+
+<h2>18. Ontology and Graph Evolution</h2>
+
+<p>The graph cannot remain static for a year-long product.</p>
+
+<p>Continuum should support:</p>
+
+<ul>
+<li>ontology versioning</li>
+<li>schema migrations</li>
+<li>new entity types</li>
+<li>new relationship types</li>
+<li>source-specific mappings</li>
+<li>deprecated concepts</li>
+<li>entity merge/split operations</li>
+<li>backfills after ontology changes</li>
+</ul>
+
+<p>An admin should be able to see:</p>
+
+<pre>
+Ontology change proposal
+
+NEW RELATIONSHIP:
+Customer -> BLOCKED_BY -> Issue
+
+Observed in:
+Slack
+Jira
+Gmail
+
+Frequency:
+2,391 occurrences
+
+Confidence:
+0.94
+
+[Approve] [Reject] [Review samples]
+</pre>
+
+<h2>19. Data Quality Layer</h2>
+
+<p>A serious enterprise state engine needs its own data-quality subsystem.</p>
+
+<p>Continuum should measure:</p>
+
+<ul>
+<li>identity resolution confidence</li>
+<li>stale entities</li>
+<li>contradiction density</li>
+<li>missing owners</li>
+<li>orphaned projects</li>
+<li>weak provenance</li>
+<li>permission inconsistencies</li>
+<li>source freshness</li>
+<li>ontology coverage</li>
+</ul>
+
+<p>Long-term, this creates a “health score” for the company graph.</p>
+
+<pre>
+GRAPH HEALTH
+
+Identity quality        96%
+Evidence coverage       92%
+Freshness                88%
+Contradiction rate       3.2%
+Owner coverage           91%
+Permission coverage      99%
+</pre>
+
+<h2>20. Evaluation Architecture</h2>
+
+<p>Evaluation must be treated as a product subsystem, not something added on submission day.</p>
+
+<p>Continuum should maintain multiple test suites.</p>
+
+<h3>Entity resolution</h3>
+<ul>
+<li>precision</li>
+<li>recall</li>
+<li>merge accuracy</li>
+<li>false merge rate</li>
+<li>false split rate</li>
+</ul>
+
+<h3>State reconstruction</h3>
+<ul>
+<li>current-state accuracy</li>
+<li>historical-state accuracy</li>
+<li>temporal boundary accuracy</li>
+</ul>
+
+<h3>Contradiction handling</h3>
+<ul>
+<li>conflict detection precision</li>
+<li>correct winner selection</li>
+<li>correct abstention rate</li>
+</ul>
+
+<h3>Graph reasoning</h3>
+<ul>
+<li>multi-hop accuracy</li>
+<li>path correctness</li>
+<li>explanation completeness</li>
+</ul>
+
+<h3>System</h3>
+<ul>
+<li>p50 latency</li>
+<li>p95 latency</li>
+<li>ingestion throughput</li>
+<li>incremental update latency</li>
+<li>cost per million artifacts</li>
+</ul>
+
+<p>Every release should run regression evaluation automatically.</p>
+
+<h2>21. Infrastructure Architecture</h2>
+
+<p>HydraDB should be the graph/state substrate, but Continuum should keep clean boundaries so individual components can evolve.</p>
+
+<pre>
+Connectors
+  ↓
+Event / Queue Layer
+  ↓
+Normalization Workers
+  ↓
+Extraction Workers
+  ↓
+Entity Resolution Service
+  ↓
+Claim Store / HydraDB
+  ↓
+Resolution Engine
+  ↓
+State API
+  ↓
+Application / Agent Interfaces
+</pre>
+
+<p>Long-term infrastructure should include:</p>
+
+<ul>
+<li>event queue</li>
+<li>worker orchestration</li>
+<li>object storage</li>
+<li>HydraDB clusters</li>
+<li>embedding/index service where necessary</li>
+<li>LLM gateway</li>
+<li>observability</li>
+<li>evaluation service</li>
+<li>audit log</li>
+<li>secrets management</li>
+</ul>
+
+<p>Use asynchronous pipelines for ingestion and keep interactive query paths deterministic wherever possible.</p>
+
+<h2>22. LLM Architecture</h2>
+
+<p>LLMs should not be the source of truth.</p>
+
+<p>They should perform tasks where probabilistic language understanding is valuable:</p>
+
+<ul>
+<li>claim extraction</li>
+<li>ambiguous entity matching</li>
+<li>ontology suggestions</li>
+<li>natural-language query translation</li>
+<li>answer explanation</li>
+<li>summarization</li>
+</ul>
+
+<p>They should not directly determine:</p>
+
+<ul>
+<li>final ownership</li>
+<li>temporal state</li>
+<li>permissions</li>
+<li>graph traversal results</li>
+<li>which conflicting claim wins without evidence scoring</li>
+</ul>
+
+<p>The architecture should follow:</p>
+
+<pre>
+LLM proposes
+    ↓
+deterministic / graph system verifies
+    ↓
+resolved state returned
+    ↓
+LLM explains
+</pre>
+
+<h2>23. Search and Query Experience</h2>
+
+<p>The human interface should not feel like a typical RAG chat application.</p>
+
+<p>The primary interaction should be a state-aware query:</p>
+
+<pre>
+"Who owns the Acme integration?"
+</pre>
+
+<p>Then show:</p>
+
+<pre>
+CURRENT STATE
+Sarah Chen
+
+Since:
+July 28
+
+Confidence:
+96%
+
+STATUS:
+Definitive
+
+WHY:
+3 independent sources
+
+HISTORY:
+Arjun → Sarah
+
+CONFLICTS:
+1 resolved contradiction
+
+DEPENDENCIES:
+6 projects
+3 services
+2 customers
+</pre>
+
+<p>Chat can exist, but it should sit on top of the state engine.</p>
+
+<h2>24. Integration Product Strategy</h2>
+
+<p>The year-one product should be designed to integrate in three directions.</p>
+
+<h3>Upstream integrations</h3>
+
+<p>Continuum consumes enterprise systems:</p>
+
+<ul>
+<li>Slack</li>
+<li>Gmail</li>
+<li>GitHub</li>
+<li>Linear</li>
+<li>Jira</li>
+<li>Confluence</li>
+<li>Drive</li>
+<li>HubSpot</li>
+<li>Fireflies</li>
+<li>Notion</li>
+<li>Salesforce</li>
+<li>Teams</li>
+<li>Zendesk</li>
+<li>custom internal APIs</li>
+</ul>
+
+<h3>Downstream integrations</h3>
+
+<p>Continuum becomes a context source for:</p>
+
+<ul>
+<li>AI agents</li>
+<li>support systems</li>
+<li>CRM copilots</li>
+<li>engineering tools</li>
+<li>sales automation</li>
+<li>compliance workflows</li>
+<li>BI dashboards</li>
+<li>internal applications</li>
+</ul>
+
+<h3>Developer integrations</h3>
+
+<ul>
+<li>REST API</li>
+<li>MCP server</li>
+<li>Python SDK</li>
+<li>TypeScript SDK</li>
+<li>webhooks</li>
+<li>GraphQL / query API</li>
+</ul>
+
+<p>The goal is for developers to think:</p>
+
+<strong>“I don't need to rebuild enterprise context. I can query Continuum.”</strong>
+
+<h2>25. Potential Business Model</h2>
+
+<p>If this became a company, the most interesting model is not simply charging people for a search dashboard.</p>
+
+<p>Potential layers:</p>
+
+<table>
+<tr><th>Product</th><th>Buyer</th><th>Value</th></tr>
+<tr><td>Continuum Search</td><td>Employees / teams</td><td>Trusted company-state search.</td></tr>
+<tr><td>Continuum API</td><td>Engineering teams</td><td>Resolved enterprise context for internal applications and agents.</td></tr>
+<tr><td>Continuum Agent Context</td><td>AI platform teams</td><td>Authoritative organizational context for agents.</td></tr>
+<tr><td>Continuum Risk Graph</td><td>Engineering / operations</td><td>Ownership and dependency risk.</td></tr>
+<tr><td>Continuum Governance</td><td>Security / compliance</td><td>Evidence, auditability, decision history and state lineage.</td></tr>
+<tr><td>Continuum Enterprise</td><td>Large organizations</td><td>Self-hosting, SSO, advanced permissions, private deployment.</td></tr>
+</table>
+
+<p>The most strategically valuable long-term wedge may be the <strong>API / infrastructure product</strong>, while the dashboard remains the best way to demonstrate value and make the underlying system inspectable.</p>
+
+<h2>26. Year-One Roadmap</h2>
+
+<h3>Months 1–3 — Core state engine</h3>
+
+<p class="must">Goal: prove that Continuum can reliably reconstruct state from messy multi-source data.</p>
+
+<ul>
+<li>HydraDB production integration</li>
+<li>3–5 high-quality connectors</li>
+<li>artifact normalization</li>
+<li>claim extraction</li>
+<li>entity-resolution engine</li>
+<li>claim graph</li>
+<li>temporal model</li>
+<li>basic contradiction engine</li>
+<li>provenance</li>
+<li>current-state API</li>
+<li>internal evaluation harness</li>
+</ul>
+
+<p>Primary milestone:</p>
+
+<strong>“Give us a messy set of enterprise sources and we can reliably answer who/what/when/why questions with evidence.”</strong>
+
+<h3>Months 4–6 — Productization</h3>
+
+<ul>
+<li>state-centric UI</li>
+<li>history / timeline views</li>
+<li>conflict review queue</li>
+<li>human adjudication</li>
+<li>ontology management</li>
+<li>MCP server</li>
+<li>API SDK</li>
+<li>webhooks</li>
+<li>impact traversal</li>
+<li>subscriptions / state-change alerts</li>
+</ul>
+
+<p>Primary milestone:</p>
+
+<strong>“Other software can use Continuum as a company state API.”</strong>
+
+<h3>Months 7–9 — Enterprise readiness</h3>
+
+<ul>
+<li>multi-tenant architecture</li>
+<li>SSO</li>
+<li>SCIM</li>
+<li>advanced authorization</li>
+<li>source ACL propagation</li>
+<li>field-level redaction</li>
+<li>audit logs</li>
+<li>private / VPC deployment</li>
+<li>data residency</li>
+<li>connector framework</li>
+<li>operational monitoring</li>
+</ul>
+
+<p>Primary milestone:</p>
+
+<strong>“A real enterprise can safely deploy Continuum.”</strong>
+
+<h3>Months 10–12 — Platform expansion</h3>
+
+<ul>
+<li>decision graph</li>
+<li>organizational risk analysis</li>
+<li>advanced impact simulation</li>
+<li>ontology marketplace/templates</li>
+<li>connector SDK</li>
+<li>agent context marketplace</li>
+<li>benchmark publication</li>
+<li>partner integrations</li>
+<li>self-serve onboarding</li>
+</ul>
+
+<p>Primary milestone:</p>
+
+<strong>“Continuum is an infrastructure platform, not a single application.”</strong>
+
+<h2>27. Features That Should Only Be Built If Time Allows</h2>
+
+<div class="later">
+<strong>Important rule:</strong> All items in this section are optional. They must never block the core system. During both the nine-day hackathon and the first production milestones, the core state loop takes priority over feature count.
+</div>
+
+<p>Build these only after the core system is reliable and evaluated:</p>
+
+<ul>
+<li>“What breaks if this person leaves?” impact simulator.</li>
+<li>organizational risk scoring.</li>
+<li>automatic change alerts.</li>
+<li>beautiful time-travel UI.</li>
+<li>decision intelligence.</li>
+<li>agent-specific context profiles.</li>
+<li>advanced natural-language query generation.</li>
+<li>automatic ontology evolution.</li>
+<li>human-in-the-loop resolution center.</li>
+<li>multi-agent workflows.</li>
+<li>custom ontology studio.</li>
+<li>connector marketplace.</li>
+<li>full enterprise BI integrations.</li>
+<li>predictive organizational analytics.</li>
+</ul>
+
+<p>These are expansion layers, not the foundation.</p>
+
+<h2>28. What the First Year Should NOT Become</h2>
+
+<ul>
+<li>Not a generic chatbot.</li>
+<li>Not another vector search engine.</li>
+<li>Not a replacement for every source system.</li>
+<li>Not an LLM that decides facts based on prompt context.</li>
+<li>Not a giant ontology built manually by customers.</li>
+<li>Not a dashboard with pretty relationship graphs but weak underlying state.</li>
+<li>Not a collection of disconnected AI features.</li>
+<li>Not a benchmark-only system.</li>
+</ul>
+
+<h2>29. The Fundamental Product Loop</h2>
+
+<p>Every major feature should strengthen the same loop:</p>
+
+<pre>
+CONNECT
+  ↓
+UNDERSTAND
+  ↓
+RESOLVE
+  ↓
+VERSION
+  ↓
+VERIFY
+  ↓
+EXPLAIN
+  ↓
+SERVE
+  ↓
+OBSERVE CHANGE
+  ↓
+RE-RESOLVE
+</pre>
+
+<p>If a feature does not improve this loop, it should be treated as secondary.</p>
+
+<h2>30. The 9-Day Hackathon Version</h2>
+
+<p>The one-year architecture above should be the north star, but the hackathon implementation must prove only the smallest complete slice.</p>
+
+<p>Recommended hackathon core:</p>
+
+<pre>
+3 enterprise sources
+3 core entity types
+Claims
+Entity resolution
+Contradiction detection
+Bitemporal ownership
+Provenance
+Current / historical state
+Abstention
+HydraDB native graph queries
+Simple dashboard
+Evaluation harness
+</pre>
+
+<p>Optional only if the core works:</p>
+
+<ul>
+<li>fourth connector</li>
+<li>organizational impact simulation</li>
+<li>trust dashboard</li>
+<li>advanced graph visualization</li>
+</ul>
+
+<h2>31. The Best Possible Demo</h2>
+
+<p>The demo should not begin with architecture.</p>
+
+<p>Begin with the pain:</p>
+
+<pre>
+"Three company systems disagree about who owns Acme."
+
+Slack says one thing.
+Email says another.
+Project management says another.
+
+So which one is true?
+</pre>
+
+<p>Then show Continuum resolving:</p>
+
+<pre>
+CURRENT OWNER
+Sarah Chen
+
+SINCE
+July 28
+
+WHY
+Linear assignment
++ Slack confirmation
++ Gmail customer thread
+
+PREVIOUS OWNER
+Arjun Mehta
+
+CONFLICT
+Resolved
+
+CONFIDENCE
+96%
+</pre>
+
+<p>Then move the time slider:</p>
+
+<pre>
+AS OF JUNE 15
+Arjun
+
+AS OF AUGUST 15
+Sarah
+</pre>
+
+<p>Then show:</p>
+
+<pre>
+WHY?
+
+→ Claim
+→ Source artifact
+→ Timestamp
+→ Evidence
+→ Relationship path
+</pre>
+
+<p>Finally:</p>
+
+<pre>
+WHAT BREAKS IF SARAH LEAVES?
+
+6 projects
+3 services
+2 customers
+11 open issues
+1 critical dependency
+</pre>
+
+<p>Then explain:</p>
+
+<strong>“This isn't document search. Continuum reconstructs enterprise state as a graph.”</strong>
+
+<h2>32. The Long-Term Vision</h2>
+
+<p>The ultimate version of Continuum should feel less like a search engine and more like a semantic operating layer for the company.</p>
+
+<p>A future company could connect Continuum to its operational systems once, and then every internal AI application could consume the same resolved organizational context.</p>
+
+<p>Imagine an engineering agent asking:</p>
+
+<pre>
+Who owns this service?
+Why is this architecture this way?
+Who approved it?
+What changed last month?
+What customer commitments depend on it?
+What should I be careful not to break?
+</pre>
+
+<p>A sales agent asking:</p>
+
+<pre>
+Who owns this customer?
+What commitments have we made?
+Which implementation blockers remain?
+Who can approve the exception?
+What was promised to the customer?
+</pre>
+
+<p>A support agent asking:</p>
+
+<pre>
+Who owns the issue?
+What changed?
+What workaround was previously approved?
+Which customers are affected?
+</pre>
+
+<p>A leadership agent asking:</p>
+
+<pre>
+Where are our organizational single points of failure?
+Which projects have no clear owner?
+What decisions changed recently?
+Which important facts are contested?
+</pre>
+
+<p>All of these applications are querying the same underlying organizational state.</p>
+
+<div class="note">
+<strong>That is the real company we should be building toward:</strong> not another enterprise search interface, but a trusted state and context infrastructure layer that lets humans and AI systems reason over the organization as a living, changing graph.
+</div>
+
+<h2>33. Final Strategic Position</h2>
+
+<p>Continuum should ultimately occupy the layer between enterprise systems and enterprise AI.</p>
+
+<pre>
+Slack
+Gmail
+GitHub
+Jira
+Linear
+CRM
+Drive
+Meetings
+Custom systems
+      ↓
+  CONTINUUM
+      ↓
+Resolved organizational state
+      ↓
+────────────────────────────────
+Agents
+Copilots
+Internal apps
+Automation
+Search
+Analytics
+Compliance
+Risk systems
+────────────────────────────────
+</pre>
+
+<p>The key competitive advantage is not any single connector, embedding model or UI.</p>
+
+<p>It is the accumulated state-resolution layer:</p>
+
+<ul>
+<li>canonical identities</li>
+<li>relationships</li>
+<li>claims</li>
+<li>temporal state</li>
+<li>conflicts</li>
+<li>evidence</li>
+<li>permissions</li>
+<li>decisions</li>
+<li>dependencies</li>
+<li>organizational history</li>
+</ul>
+
+<p>That graph becomes more valuable as the organization generates more evidence and as more applications consume it.</p>
+
+<p>The first year should therefore optimize for a single compounding asset:</p>
+
+<strong>the accuracy, completeness, explainability and accessibility of the company’s resolved state.</strong>
+
+<p>Everything else is downstream.</p>
+
+<h2>34. Final One-Year Prioritization Rule</h2>
+
+<p>When deciding whether to build a feature, use this order:</p>
+
+<ol>
+<li>Does it make entity resolution more accurate?</li>
+<li>Does it make state reconstruction more accurate?</li>
+<li>Does it make history or change more understandable?</li>
+<li>Does it make provenance stronger?</li>
+<li>Does it make permissions safer?</li>
+<li>Does it make Continuum more useful as infrastructure for other software?</li>
+<li>Does it strengthen the core data moat?</li>
+</ol>
+
+<p>If the answer is no to all of these, the feature should wait until the core system is strong.</p>
+
+<p><strong>Continuum wins by becoming the most trustworthy layer between messy enterprise information and the AI systems trying to act on it.</strong></p>
+
+</body>
+</html>

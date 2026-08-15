@@ -8,3 +8,4 @@ venv/
 .env
 hydradb-data/
 *.log
+data/raw/

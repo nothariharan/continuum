@@ -1,0 +1,20 @@
+{
+  "seed": 20260815,
+  "per_source": 40,
+  "sample_file": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\samples\\phase2a-sample.jsonl",
+  "records": 360,
+  "rejected": 0,
+  "sha256": "120cf0374d8fff004266d9636ab134bde61cea9baad64a7f9c8850c91b2b182b",
+  "rejected_detail": [],
+  "sources": [
+    "confluence",
+    "fireflies",
+    "github",
+    "gmail",
+    "google_drive",
+    "hubspot",
+    "jira",
+    "linear",
+    "slack"
+  ]
+}
