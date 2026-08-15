@@ -56,6 +56,12 @@ COUNT_ARTIFACTS = """
 MATCH (a:Artifact) RETURN count(*) AS n
 """
 
+COUNT_ARTIFACTS_RANGE = """
+MATCH (a:Artifact)
+WHERE a.id >= $min_id AND a.id < $max_id
+RETURN count(*) AS n
+"""
+
 
 @dataclass(frozen=True)
 class LoadResult:
@@ -121,10 +127,21 @@ def count_artifacts(client: HydraDBClient) -> int:
     return int(client.execute(COUNT_ARTIFACTS).rows[0]["n"])
 
 
+def count_artifacts_in_range(client: HydraDBClient, min_id: int, max_id: int) -> int:
+    """Count :Artifact nodes in [min_id, max_id). Used by tests so Phase 1
+    fixture artifacts (string-keyed, low ids) and Phase 2B fixture artifacts
+    (1e12+) do not leak into the Phase 2A real-dataset count."""
+    return int(client.execute(COUNT_ARTIFACTS_RANGE, {"min_id": min_id, "max_id": max_id}).rows[0]["n"])
+
+
 def delete_all_artifacts(client: HydraDBClient) -> None:
-    """Delete every :Artifact node: low ids in one pass, Phase 2A range chunked."""
+    """Delete every :Artifact node: low ids in one pass, Phase 2A range chunked.
+
+    Chunk size 25 keeps each range delete well under the 30 s query limit
+    (deletes run ~155 ms/node on this runtime).
+    """
     client.execute(DELETE_LOW_ARTIFACTS)
-    step = 100
+    step = 25
     for low in range(ID_OFFSET, ID_OFFSET + 100_000, step):
         client.execute(
             DELETE_ALL_ARTIFACTS,

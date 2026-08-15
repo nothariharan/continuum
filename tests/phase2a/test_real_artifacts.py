@@ -12,7 +12,7 @@ import pytest
 from continuum.hydradb import HydraDBClient
 from continuum.hydradb.artifacts import (
     ID_OFFSET,
-    count_artifacts,
+    count_artifacts_in_range,
     delete_all_artifacts,
     load_artifacts,
     read_artifact,
@@ -38,7 +38,7 @@ def loaded_artifacts(client):
 @pytest.mark.hydradb
 def test_real_artifacts_load(loaded_artifacts, client):
     records = loaded_artifacts["records"]
-    assert count_artifacts(client) == len(records)
+    assert count_artifacts_in_range(client, ID_OFFSET, ID_OFFSET + 100_000) == len(records)
 
 
 @pytest.mark.hydradb

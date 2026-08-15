@@ -1,6 +1,10 @@
 # Contract v1 — Phase 2B Shared Data Contract
 
-Status: **LOCKED v1** (Checkpoint #1 — pending founder sign-off on graph-side mapping)
+Status: **LOCKED v1** (founder sign-off complete — canonical implementation
+single-sourced in `continuum/claims/schema.py`; `continuum/extract/schemas.py`
+re-exports it. Graph-side mapping verified via `scripts/checkpoint_claims.py`:
+the boundary is proven, extraction quality is the open blocker — see
+`docs/phase-2b-claims.md`.)
 
 This document defines the interface between the Data/ML pipeline (mention/claim extraction) and the Graph/System pipeline (HydraDB loading, state engine, queries).
 
