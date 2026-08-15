@@ -1,0 +1,152 @@
+{
+  "label_set_size": 150,
+  "strategies": {
+    "deterministic": {
+      "mention": {
+        "precision": 0.7143,
+        "recall": 0.9543,
+        "f1": 0.817,
+        "tp": 355,
+        "fp": 142,
+        "fn": 17
+      },
+      "claim": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "claim_by_predicate": {
+        "ASSIGNED_TO": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "BLOCKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "DEPENDS_ON": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "artifacts_evaluated": 150,
+      "mentions_extracted": 2299,
+      "claims_extracted": 81
+    },
+    "hybrid": {
+      "mention": {
+        "precision": 0.7143,
+        "recall": 0.9543,
+        "f1": 0.817,
+        "tp": 355,
+        "fp": 142,
+        "fn": 17
+      },
+      "claim": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "claim_by_predicate": {
+        "ASSIGNED_TO": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "BLOCKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "DEPENDS_ON": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "artifacts_evaluated": 150,
+      "mentions_extracted": 2299,
+      "claims_extracted": 81
+    },
+    "llm": {
+      "mention": {
+        "precision": 0.7143,
+        "recall": 0.9543,
+        "f1": 0.817,
+        "tp": 355,
+        "fp": 142,
+        "fn": 17
+      },
+      "claim": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "claim_by_predicate": {
+        "ASSIGNED_TO": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "BLOCKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "DEPENDS_ON": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "artifacts_evaluated": 150,
+      "mentions_extracted": 2299,
+      "claims_extracted": 81
+    }
+  },
+  "fireworks": {
+    "verified": true,
+    "provider": "fireworks",
+    "model": "accounts/fireworks/models/gpt-oss-20b"
+  },
+  "notes": "deterministic preferred; hybrid/llm use Fireworks gap-fill when deterministic returns no claims/mentions. Re-run: python scripts/eval_extraction.py --strategies deterministic,hybrid"
+}

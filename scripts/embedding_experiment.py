@@ -30,6 +30,13 @@ QUERIES = [
     {"q": "What did Redwood promise to explain about attempt-level billing and retries?", "relevant": ["Northwind AI - usage discrepancy escalation sync"]},
     {"q": "Which Slack thread polled about debugging-style cereals?", "relevant": ["1779505555-cereal-debug-styles"]},
     {"q": "What files are attached to the SIG access-orchestration follow-up?", "relevant": ["SIG follow-up: access orchestration"]},
+    {"q": "What is the MedCord pilot sequencing plan and acceptance checkpoints?", "relevant": ["MedCord pilot: sequencing plan"]},
+    {"q": "Which email discusses indemnity claims handling and bad-faith exclusions?", "relevant": ["Indemnity: claims handling flow"]},
+    {"q": "What confluence page covers handoff eviction and transfer playbook?", "relevant": ["Handoff Harmony: Eviction and Transfer Playbook"]},
+    {"q": "Which meeting covered quality drift and guardrail investigation?", "relevant": ["POC weekly - quality drift & guardrail investigation"]},
+    {"q": "What hubspot record discusses US-only processing for regulated financial text?", "relevant": ["QuantaLedger"]},
+    {"q": "Which github PR description mentions golden-path gating?", "relevant": ["add hierarchical latency-fingerprint canary and golden-path gating"]},
+    {"q": "What jira ticket discusses streaming chat abort and AbortController?", "relevant": ["TypeScript SDK: request abort/cancel support for streaming chat"]},
 ]
 
 
@@ -40,6 +47,15 @@ def recall_at(ranking: list[tuple[int, float]], relevant_idx: set[int], k: int) 
     return len(top & relevant_idx) / len(relevant_idx)
 
 
+def mrr(ranking: list[tuple[int, float]], relevant_idx: set[int]) -> float:
+    if not relevant_idx:
+        return 0.0
+    for rank, (idx, _) in enumerate(ranking, start=1):
+        if idx in relevant_idx:
+            return 1.0 / rank
+    return 0.0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Phase 2A retrieval experiment")
     parser.add_argument("--sample", type=Path, default=DEFAULT_SAMPLE)
@@ -47,6 +63,7 @@ def main() -> int:
     parser.add_argument("--model", default="all-MiniLM-L6-v2")
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--corpus-cap", type=int, default=0, help="limit corpus (0 = all sample)")
+    parser.add_argument("--bm25-only", action="store_true", help="skip dense/hybrid when deps unavailable")
     args = parser.parse_args()
 
     records = []
@@ -59,17 +76,27 @@ def main() -> int:
     if args.corpus_cap:
         corpus_texts = corpus_texts[: args.corpus_cap]
 
-    provider = SentenceTransformerProvider(args.model, device=args.device)
+    provider = None
+    dense = None
+    hybrid = None
+    dense_index_s = 0.0
+    if not args.bm25_only:
+        try:
+            provider = SentenceTransformerProvider(args.model, device=args.device)
+            idx_t0 = time.perf_counter()
+            dense = DenseRetriever(provider, corpus_texts)
+            dense_index_s = time.perf_counter() - idx_t0
+            hybrid = HybridRetriever(provider, corpus_texts)
+        except Exception as exc:
+            print(f"dense/hybrid unavailable ({exc}); continuing with bm25-only")
+            provider = None
+
+    if provider is None:
+        args.bm25_only = True
 
     idx_t0 = time.perf_counter()
     bm25 = BM25Retriever(corpus_texts)
     bm25_index_s = time.perf_counter() - idx_t0
-
-    idx_t0 = time.perf_counter()
-    dense = DenseRetriever(provider, corpus_texts)
-    dense_index_s = time.perf_counter() - idx_t0
-
-    hybrid = HybridRetriever(provider, corpus_texts)
 
     relevant = []
     for spec in QUERIES:
@@ -78,9 +105,13 @@ def main() -> int:
         ]
         relevant.append(set(matches))
 
-    results = {"bm25": [], "dense": [], "hybrid": []}
+    retrievers: list[tuple[str, object]] = [("bm25", bm25)]
+    if dense is not None and hybrid is not None:
+        retrievers.extend([("dense", dense), ("hybrid", hybrid)])
+
+    results: dict[str, list] = {name: [] for name, _ in retrievers}
     for query, rel in zip(QUERIES, relevant):
-        for name, retriever in (("bm25", bm25), ("dense", dense), ("hybrid", hybrid)):
+        for name, retriever in retrievers:
             t0 = time.perf_counter()
             ranking = retriever.search(query["q"], top_k=10)
             latency = (time.perf_counter() - t0) * 1000
@@ -90,6 +121,7 @@ def main() -> int:
                     "relevant_count": len(rel),
                     "recall@5": recall_at(ranking, rel, 5),
                     "recall@10": recall_at(ranking, rel, 10),
+                    "mrr": round(mrr(ranking, rel), 4),
                     "latency_ms": round(latency, 2),
                 }
             )
@@ -99,21 +131,24 @@ def main() -> int:
         return {
             "mean_recall@5": round(float(np.mean([r["recall@5"] for r in rows])), 4),
             "mean_recall@10": round(float(np.mean([r["recall@10"] for r in rows])), 4),
+            "mean_mrr": round(float(np.mean([r["mrr"] for r in rows])), 4),
             "median_latency_ms": round(float(np.median([r["latency_ms"] for r in rows])), 2),
             "per_query": rows,
         }
 
     payload = {
-        "model": provider.name,
-        "embedding_dimension": provider.dimension,
+        "model": provider.name if provider else args.model,
+        "embedding_dimension": provider.dimension if provider else None,
         "corpus_size": len(corpus_texts),
         "num_queries": len(QUERIES),
+        "bm25_only": args.bm25_only,
         "bm25_index_s": round(bm25_index_s, 3),
         "dense_index_s": round(dense_index_s, 3),
         "bm25": summarize("bm25"),
-        "dense": summarize("dense"),
-        "hybrid": summarize("hybrid"),
     }
+    if "dense" in results:
+        payload["dense"] = summarize("dense")
+        payload["hybrid"] = summarize("hybrid")
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
