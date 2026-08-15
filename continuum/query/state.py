@@ -2,13 +2,14 @@
 
 Same semantics as the Phase 1 query functions (current_state.py, history.py,
 conflicts.py, provenance.py) but predicate-parameterized so real claim data
-with OWNS / MAINTAINS / REVIEWS / DEPENDS_ON can be resolved without new
-query code per predicate.
+with OWNS / MAINTAINS / LEADS / ASSIGNED_TO / BLOCKS / DEPENDS_ON / REVIEWS
+can be resolved without new query code per predicate.
+
+Every function returns the canonical envelope from `.result` — one shape for
+current state, historical state, conflicts, provenance, and abstention.
 
 Rel types are interpolated from a fixed allowlist (HydraDB cannot
 parameterize relationship types), identical to how Phase 1 hard-codes them.
-
-Phase 1 functions are untouched; these are the Phase 2B generalizations.
 """
 
 from __future__ import annotations
@@ -17,7 +18,8 @@ from typing import Any
 
 from continuum.hydradb import HydraDBClient
 from continuum.hydradb.claims import PREDICATE_RELS
-from ._helpers import absent, one
+from ._helpers import one
+from .result import absent, evidence_item, result
 
 OPEN_END = "9999-12-31"
 
@@ -67,6 +69,10 @@ def _rel(predicate: str) -> str:
     return predicate
 
 
+def _subject_value(row: dict[str, Any]) -> dict[str, Any]:
+    return {"entity_id": row["subject_id"], "name": row["subject_name"]}
+
+
 def resolve_state(client: HydraDBClient, entity_key: str, predicate: str = "OWNS") -> dict[str, Any]:
     """Current resolved state: latest open-validity subject for (entity, predicate)."""
     row = one(
@@ -76,16 +82,15 @@ def resolve_state(client: HydraDBClient, entity_key: str, predicate: str = "OWNS
     )
     if not row:
         return absent(entity_key, predicate)
-    return {
-        "status": "definitive",
-        "entity_id": entity_key,
-        "predicate": predicate,
-        "value": {"entity_id": row["subject_id"], "name": row["subject_name"]},
-        "valid_from": row["valid_from"],
-        "valid_to": None,
-        "confidence": 0.96,
-        "evidence": [],
-    }
+    return result(
+        entity_id=entity_key,
+        predicate=predicate,
+        status="definitive",
+        value=_subject_value(row),
+        valid_from=row["valid_from"],
+        valid_to=None,
+        confidence=0.96,
+    )
 
 
 def resolve_state_on(
@@ -99,33 +104,32 @@ def resolve_state_on(
     )
     if not row:
         return absent(entity_key, predicate)
-    return {
-        "status": "definitive",
-        "entity_id": entity_key,
-        "predicate": predicate,
-        "as_of": date,
-        "value": {"entity_id": row["subject_id"], "name": row["subject_name"]},
-        "valid_from": row["valid_from"],
-        "valid_to": row["valid_to"],
-        "confidence": 0.96,
-        "evidence": [],
-    }
+    return result(
+        entity_id=entity_key,
+        predicate=predicate,
+        status="definitive",
+        value=_subject_value(row),
+        valid_from=row["valid_from"],
+        valid_to=row["valid_to"],
+        confidence=0.96,
+        as_of=date,
+    )
 
 
 def resolve_conflicts(client: HydraDBClient, entity_key: str, predicate: str = "OWNS") -> dict[str, Any]:
-    """All claims about (entity, predicate); CONFLICT if multiple subjects."""
+    """All claims about (entity, predicate); status 'conflict' if multiple subjects."""
     rows = client.execute(
         CONFLICTS,
         {"entity_key": entity_key, "predicate": predicate},
     ).rows
     subjects = sorted({row["subject_id"] for row in rows})
-    return {
-        "status": "CONFLICT" if len(subjects) > 1 else "CONSISTENT",
-        "entity_id": entity_key,
-        "predicate": predicate,
-        "conflicting_subjects": subjects,
-        "claims": rows,
-    }
+    return result(
+        entity_id=entity_key,
+        predicate=predicate,
+        status="conflict" if len(subjects) > 1 else "consistent",
+        conflicting_subjects=subjects,
+        claims=rows,
+    )
 
 
 def resolve_provenance(client: HydraDBClient, entity_key: str, predicate: str = "OWNS") -> dict[str, Any]:
@@ -136,22 +140,23 @@ def resolve_provenance(client: HydraDBClient, entity_key: str, predicate: str = 
     ).rows
     if not rows:
         return absent(entity_key, predicate)
-    return {
-        "status": "definitive",
-        "entity_id": entity_key,
-        "predicate": predicate,
-        "value": {"entity_id": rows[-1]["subject_id"], "name": rows[-1]["subject_name"]},
-        "evidence": [
-            {
-                "claim_id": row["claim_id"],
-                "subject_mention": row["subject_mention"],
-                "object_mention": row["object_mention"],
-                "artifact_id": row["artifact_id"] or row["artifact_dsid"],
-                "artifact_kind": row["artifact_kind"] or row["artifact_type"],
-                "source_id": row["source_id"],
-                "source": row["source_name"],
-                "observed_at": row["observed_at"] or row["artifact_timestamp"],
-            }
-            for row in rows
-        ],
-    }
+    evidence = [
+        evidence_item(
+            claim_id=row["claim_id"],
+            subject_mention=row["subject_mention"],
+            object_mention=row["object_mention"],
+            artifact_id=row["artifact_id"] or row["artifact_dsid"],
+            artifact_kind=row["artifact_kind"] or row["artifact_type"],
+            source_id=row["source_id"],
+            source=row["source_name"],
+            observed_at=row["observed_at"] or row["artifact_timestamp"],
+        )
+        for row in rows
+    ]
+    return result(
+        entity_id=entity_key,
+        predicate=predicate,
+        status="definitive",
+        value=_subject_value(rows[-1]),
+        evidence=evidence,
+    )

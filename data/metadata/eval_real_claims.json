@@ -1,0 +1,221 @@
+{
+  "fixture": "real",
+  "overall": "PASS",
+  "scenarios": [
+    {
+      "scenario": "current_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-patel",
+          "name": "Maya Patel"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-patel",
+          "name": "Maya Patel"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 2.783,
+      "p95_ms": 6.208,
+      "p99_ms": 11.61
+    },
+    {
+      "scenario": "historical_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-patel",
+          "name": "Maya Patel"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-patel",
+          "name": "Maya Patel"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 3.586,
+      "p95_ms": 4.864,
+      "p99_ms": 5.122
+    },
+    {
+      "scenario": "historical_before_evidence",
+      "status": "PASS",
+      "expected": {
+        "status": "absent",
+        "value": null
+      },
+      "got": {
+        "status": "absent",
+        "value": null,
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 3.024,
+      "p95_ms": 4.617,
+      "p99_ms": 5.404
+    },
+    {
+      "scenario": "provenance",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "evidence_len": 2,
+        "source": "gmail",
+        "artifact": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:priyom-das",
+          "name": "Priyom Das"
+        },
+        "conflicting_subjects": [],
+        "evidence": [
+          {
+            "claim_id": "claim:neha-owns-acme-health",
+            "subject_mention": "Neha Kapoor",
+            "object_mention": "Acme Health",
+            "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2026-02-14T00:00:00"
+          },
+          {
+            "claim_id": "claim:priyom-owns-acme-health",
+            "subject_mention": "Priyom Das",
+            "object_mention": "Acme Health",
+            "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2026-02-14T00:00:00"
+          }
+        ]
+      },
+      "p50_ms": 5.917,
+      "p95_ms": 17.77,
+      "p99_ms": 20.734
+    },
+    {
+      "scenario": "conflict",
+      "status": "PASS",
+      "expected": {
+        "status": "conflict",
+        "subjects": [
+          "person:neha-kapoor",
+          "person:priyom-das"
+        ]
+      },
+      "got": {
+        "status": "conflict",
+        "value": null,
+        "conflicting_subjects": [
+          "person:neha-kapoor",
+          "person:priyom-das"
+        ],
+        "evidence": []
+      },
+      "p50_ms": 3.882,
+      "p95_ms": 7.478,
+      "p99_ms": 7.853
+    },
+    {
+      "scenario": "abstention",
+      "status": "PASS",
+      "expected": {
+        "status": "absent",
+        "value": null
+      },
+      "got": {
+        "status": "absent",
+        "value": null,
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 1.575,
+      "p95_ms": 1.923,
+      "p99_ms": 2.014
+    },
+    {
+      "scenario": "maintains_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:ravi-patel",
+          "name": "Ravi Patel"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:ravi-patel",
+          "name": "Ravi Patel"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 2.722,
+      "p95_ms": 5.728,
+      "p99_ms": 7.627
+    },
+    {
+      "scenario": "leads_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-chen",
+          "name": "Maya Chen"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-chen",
+          "name": "Maya Chen"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 1.649,
+      "p95_ms": 2.797,
+      "p99_ms": 2.988
+    },
+    {
+      "scenario": "assigned_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:ethan-cole",
+          "name": "Ethan Cole"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:ethan-cole",
+          "name": "Ethan Cole"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 1.88,
+      "p95_ms": 3.671,
+      "p99_ms": 4.29
+    }
+  ]
+}

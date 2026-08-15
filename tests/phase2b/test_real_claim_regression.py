@@ -86,7 +86,7 @@ def test_historical_state_real_claims(loaded_real_claims, client):
     as_of = resolve_state_on(client, "account:lucentgrid", "2027-02-11", "OWNS")
     assert as_of["value"]["entity_id"] == "person:may-patel"
     before = resolve_state_on(client, "account:lucentgrid", "2026-01-01", "OWNS")
-    assert before["status"] == "ABSENT"
+    assert before["status"] == "absent"
     assert before["value"] is None
 
 
@@ -109,7 +109,7 @@ def test_provenance_traces_to_real_artifact(loaded_real_claims, client):
 @pytest.mark.hydradb
 def test_conflict_real_claims_keeps_both_claims(loaded_real_claims, client):
     result = resolve_conflicts(client, "account:acme-health", "OWNS")
-    assert result["status"] == "CONFLICT"
+    assert result["status"] == "conflict"
     assert result["conflicting_subjects"] == ["person:neha-kapoor", "person:priyom-das"]
     assert len(result["claims"]) == 2
     contradicts = client.execute(
@@ -123,7 +123,7 @@ def test_conflict_real_claims_keeps_both_claims(loaded_real_claims, client):
 @pytest.mark.hydradb
 def test_abstention_real_claims(loaded_real_claims, client):
     result = resolve_state(client, "account:cedarbank", "OWNS")
-    assert result["status"] == "ABSENT"
+    assert result["status"] == "absent"
     assert result["value"] is None
 
 

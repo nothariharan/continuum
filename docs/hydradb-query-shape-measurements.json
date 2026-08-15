@@ -1,0 +1,68 @@
+{
+  "candidate_by_exact_key": {
+    "p50_ms": 2.914,
+    "p95_ms": 11.077,
+    "p99_ms": 18.438,
+    "rows": 1
+  },
+  "candidate_by_id_prop": {
+    "p50_ms": 6.537,
+    "p95_ms": 15.512,
+    "p99_ms": 16.057,
+    "rows": 1
+  },
+  "candidate_by_external_id": {
+    "error": "{neo4j_code: Neo.ClientError.Statement.InvalidSyntax} {message: OpenCypher query is not supported yet: WHERE currently supports boolean combinations of property"
+  },
+  "claims_involving_entity": {
+    "p50_ms": 6.761,
+    "p95_ms": 24.616,
+    "p99_ms": 33.131,
+    "rows": 1
+  },
+  "claims_about_entity": {
+    "p50_ms": 3.882,
+    "p95_ms": 12.558,
+    "p99_ms": 13.628,
+    "rows": 0
+  },
+  "conflicting_claims": {
+    "p50_ms": 4.072,
+    "p95_ms": 4.783,
+    "p99_ms": 5.512,
+    "rows": 0
+  },
+  "current_owner": {
+    "p50_ms": 4.077,
+    "p95_ms": 11.206,
+    "p99_ms": 13.952,
+    "rows": 0
+  },
+  "prior_owner": {
+    "error": "{neo4j_code: Neo.ClientError.Statement.InvalidSyntax} {message: OpenCypher parse error: Invalid input 'D': expected OR} {gql_status: 50N42} {gql_status_descript"
+  },
+  "reverse_dependencies": {
+    "p50_ms": 6.181,
+    "p95_ms": 13.462,
+    "p99_ms": 13.692,
+    "rows": 1
+  },
+  "claim_to_artifact": {
+    "p50_ms": 4.165,
+    "p95_ms": 6.488,
+    "p99_ms": 7.752,
+    "rows": 0
+  },
+  "entity_pair_counts": {
+    "p50_ms": 2.569,
+    "p95_ms": 9.772,
+    "p99_ms": 10.285,
+    "rows": 4
+  },
+  "two_hop": {
+    "p50_ms": 5.082,
+    "p95_ms": 8.383,
+    "p99_ms": 11.264,
+    "rows": 1
+  }
+}

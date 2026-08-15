@@ -18,7 +18,13 @@ Status:
 - Known-good real-claim fixture (10 hand-validated claims on real dsid
   artifacts) with regression tests: current/historical state, provenance,
   conflict, abstention, non-OWNS predicates, reset
-- 79/79 tests green (unit + HydraDB integration; Phase 0 + 1 + 2A regression)
+- Canonical state-result envelope across all queries (`continuum/query/result.py`)
+- One-command workflows: `make checkpoint-claims`, `make real-claims-e2e`,
+  `make eval-real-claims`
+- Phase 3 groundwork: entity-resolution design doc, 87 labeled identity
+  pairs, HydraDB query-shape measurements, benchmark strategy + 20-question
+  eval set
+- 80+ tests green (unit + HydraDB integration; Phase 0 + 1 + 2A regression)
 
 Not yet implemented:
 

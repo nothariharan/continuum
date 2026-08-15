@@ -41,7 +41,7 @@ def test_provenance(client):
 @pytest.mark.hydradb
 def test_conflict_detection(client):
     result = find_conflicts(client, "account:acme")
-    assert result["status"] == "CONFLICT"
+    assert result["status"] == "conflict"
     assert result["conflicting_subjects"] == ["person:arjun", "person:sarah"]
     assert len(result["claims"]) == 3
     assert client.execute(
@@ -52,5 +52,5 @@ def test_conflict_detection(client):
 @pytest.mark.hydradb
 def test_absent_query(client):
     result = current_owner(client, "account:stripeco")
-    assert result["status"] == "ABSENT"
+    assert result["status"] == "absent"
     assert result["value"] is None

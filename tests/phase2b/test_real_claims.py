@@ -102,7 +102,7 @@ def test_provenance_real_claims(loaded_real_claims, client):
 @pytest.mark.hydradb
 def test_conflict_detection_real_claims(loaded_real_claims, client):
     result = resolve_conflicts(client, "account:cedarbank", "OWNS")
-    assert result["status"] == "CONFLICT"
+    assert result["status"] == "conflict"
     assert result["conflicting_subjects"] == ["person:camila-reyes", "person:may-patel"]
     assert len(result["claims"]) == 3
     contradicts = client.execute(
@@ -114,14 +114,14 @@ def test_conflict_detection_real_claims(loaded_real_claims, client):
 @pytest.mark.hydradb
 def test_consistent_predicate_not_conflicted(loaded_real_claims, client):
     result = resolve_conflicts(client, "project:optimize-conductor", "OWNS")
-    assert result["status"] == "CONSISTENT"
+    assert result["status"] == "consistent"
     assert result["conflicting_subjects"] == ["person:ava-nguyen"]
 
 
 @pytest.mark.hydradb
 def test_abstention_real_claims(loaded_real_claims, client):
     result = resolve_state(client, "account:orionai", "OWNS")
-    assert result["status"] == "ABSENT"
+    assert result["status"] == "absent"
     assert result["value"] is None
 
 

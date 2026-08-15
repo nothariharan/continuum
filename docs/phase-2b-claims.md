@@ -127,6 +127,54 @@ Report: `data/metadata/claim_handoff_report.json`. Current run against the
 graph-loadable — this is the precise signal the extractor needs (emit
 entity-pair claims with timestamps; title-fragment pairs are rejected).
 
+## Developer workflow (teammate's claims plug in with zero wiring)
+
+```
+make checkpoint-claims        # classify every candidate claim (failure codes)
+make real-claims-e2e          # fixture -> validate -> load -> resolve -> state/history/
+                              #   conflict/provenance/abstention -> structured envelope
+make eval-real-claims         # scenario PASS/FAIL + p50/p95/p99 (real fixture)
+make eval-synthetic-claims    # same harness, synthetic fixture
+make test                     # full suite
+```
+
+`scripts/real_claims_e2e.py --claims <new>.jsonl --resolutions <map>.json
+--real` runs the complete pipeline on any contract-valid fixture and ends
+with an E2E VERDICT (PASS/FAIL + nonzero exit code). Real dsid artifacts are
+auto-loaded when missing; the manual resolution map is a test aid only.
+
+### Canonical state-result envelope
+
+Every query in `continuum.query` returns one structured shape (the future
+MCP/API/UI contract), defined in `continuum/query/result.py`:
+
+```
+entity_id, predicate, status (definitive|absent|conflict|consistent),
+value {entity_id, name}|null, valid_from, valid_to, confidence,
+as_of (historical only), conflicting_subjects, claims (conflict detail),
+evidence [{claim_id, subject_mention, object_mention, artifact_id,
+           artifact_kind, source_id, source, observed_at}]
+```
+
+Unknown fields are always present (null/empty). Enforced by
+`tests/phase2b/test_envelope.py`. Phase 1 functions now delegate to the same
+resolvers, so the synthetic regression exercises the same envelope.
+
+### Phase 3 groundwork (design only, no implementation)
+
+- `docs/phase-3-entity-resolution-design.md` — identity signals measured
+  from the real inventory (email families, first-name ambiguity, customer
+  vs Redwood domains, cross-source overlap) + proposed MERGE/REVIEW/
+  SEPARATE/ABSTAIN pipeline + HydraDB constraints.
+- `data/labels/phase3-identity-pairs.jsonl` — 87 hand-labeled identity
+  pairs (23 same / 21 different / 43 uncertain) with justifying signals;
+  generator `scripts/build_identity_pairs.py`.
+- `docs/hydradb-query-shapes.md` + `docs/hydradb-query-shape-measurements.json` —
+  measured query shapes for ER/state; CONTAINS and `<>` unsupported.
+- `docs/benchmark-strategy.md` + `data/labels/eval-questions.jsonl` —
+  20 questions across single-hop/multi-hop/temporal/conflict/abstention/
+  provenance/entity-resolution; baselines and metrics specified, not run.
+
 ### Graph-loadability is encoded, not judged
 
 A claim is graph-loadable iff Continuum can represent it without inventing

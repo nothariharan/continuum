@@ -1,0 +1,171 @@
+{
+  "fixture": "synthetic",
+  "overall": "PASS",
+  "scenarios": [
+    {
+      "scenario": "current_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:camila-reyes",
+          "name": "Camila Reyes"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:camila-reyes",
+          "name": "Camila Reyes"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 3.69,
+      "p95_ms": 15.546,
+      "p99_ms": 20.069
+    },
+    {
+      "scenario": "historical_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-patel",
+          "name": "Maya Patel"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:may-patel",
+          "name": "Maya Patel"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 5.905,
+      "p95_ms": 19.283,
+      "p99_ms": 20.409
+    },
+    {
+      "scenario": "provenance",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "evidence_len": 3,
+        "sources": [
+          "Gmail",
+          "Linear",
+          "Slack"
+        ]
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:camila-reyes",
+          "name": "Camila Reyes"
+        },
+        "conflicting_subjects": [],
+        "evidence": [
+          {
+            "claim_id": "claim:may-owns-cedarbank",
+            "subject_mention": "Maya Patel",
+            "object_mention": "CedarBank",
+            "artifact_id": "artifact:gmail-cedarbank-owner",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "Gmail",
+            "observed_at": "2026-05-14"
+          },
+          {
+            "claim_id": "claim:camila-takes-cedarbank",
+            "subject_mention": "Camila Reyes",
+            "object_mention": "CedarBank",
+            "artifact_id": "artifact:slack-cedarbank-handoff",
+            "artifact_kind": "slack_message",
+            "source_id": "source:slack",
+            "source": "Slack",
+            "observed_at": "2026-06-20"
+          },
+          {
+            "claim_id": "claim:camila-owns-cedarbank",
+            "subject_mention": "Camila Reyes",
+            "object_mention": "CedarBank",
+            "artifact_id": "artifact:linear-cedarbank-owner",
+            "artifact_kind": "linear_ticket",
+            "source_id": "source:linear",
+            "source": "Linear",
+            "observed_at": "2026-06-25"
+          }
+        ]
+      },
+      "p50_ms": 13.485,
+      "p95_ms": 24.676,
+      "p99_ms": 33.81
+    },
+    {
+      "scenario": "conflict",
+      "status": "PASS",
+      "expected": {
+        "status": "conflict",
+        "subjects": [
+          "person:camila-reyes",
+          "person:may-patel"
+        ]
+      },
+      "got": {
+        "status": "conflict",
+        "value": null,
+        "conflicting_subjects": [
+          "person:camila-reyes",
+          "person:may-patel"
+        ],
+        "evidence": []
+      },
+      "p50_ms": 6.749,
+      "p95_ms": 16.958,
+      "p99_ms": 24.081
+    },
+    {
+      "scenario": "abstention",
+      "status": "PASS",
+      "expected": {
+        "status": "absent",
+        "value": null
+      },
+      "got": {
+        "status": "absent",
+        "value": null,
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 4.434,
+      "p95_ms": 9.373,
+      "p99_ms": 12.593
+    },
+    {
+      "scenario": "maintains_state",
+      "status": "PASS",
+      "expected": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:diego-martinez",
+          "name": "Diego Martinez"
+        }
+      },
+      "got": {
+        "status": "definitive",
+        "value": {
+          "entity_id": "person:diego-martinez",
+          "name": "Diego Martinez"
+        },
+        "conflicting_subjects": [],
+        "evidence": []
+      },
+      "p50_ms": 4.684,
+      "p95_ms": 7.347,
+      "p99_ms": 13.7
+    }
+  ]
+}
