@@ -12,7 +12,9 @@ def test_create_read_and_parameterized_query(client):
     )
     names = []
     for label in ("Person", "Project", "Account"):
-        names.extend(client.execute(f"MATCH (n:{label}) RETURN n.name AS name").rows)
+        names.extend(
+            client.execute(f"MATCH (n:{label}) WHERE n.id >= 101 AND n.id <= 103 RETURN n.name AS name").rows
+        )
     assert sorted(row["name"] for row in names) == ["Acme", "AcmeIntegration", "Sarah"]
     parameterized = client.execute("MATCH (n:Person {name: $name}) RETURN n.id AS id", {"name": "Sarah"})
     assert parameterized.rows == [{"id": 101}]

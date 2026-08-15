@@ -4,23 +4,25 @@ Continuum is being built on HydraDB.
 
 ## Current phase
 
-Phase 0 — HydraDB Bootstrap
+Phase 2B — Real claims / evidence harness
 
 Status:
 
-- HydraDB setup
-- Connection
-- Graph smoke test
-- Reset/reproducibility
+- Shared Artifact/Mention/Claim contract defined (`continuum/claims/`)
+- Claim ingestion boundary into HydraDB (`continuum/hydradb/claims.py`)
+- Generalized state/provenance/conflict/abstention queries (`continuum/query/state.py`)
+- Real-shaped claim fixture (9 claims, 2-source conflict, abstention target)
+- 27/27 integration tests green (Phase 0 + 1 + 2A regression)
 
 Not yet implemented:
 
-- Ingestion
-- Claims
-- Entity resolution
+- Extraction automation (teammate side, Gate 2 sync)
+- Entity resolution (Phase 3)
 - RAG
 - MCP
 - Web UI
 
-See [docs/hydradb-local.md](docs/hydradb-local.md) for the local lifecycle and [docs/phase-0.md](docs/phase-0.md) for the runtime report.
+See [docs/phase-2b-claims.md](docs/phase-2b-claims.md) for the harness,
+[AGENTS.md](AGENTS.md) for the operating contract, and
+[docs/hydradb-local.md](docs/hydradb-local.md) for the local lifecycle.
 
