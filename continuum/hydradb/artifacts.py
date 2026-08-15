@@ -135,9 +135,13 @@ def count_artifacts_in_range(client: HydraDBClient, min_id: int, max_id: int) ->
 
 
 def delete_all_artifacts(client: HydraDBClient) -> None:
-    """Delete every :Artifact node: low ids in one pass, Phase 2A range chunked."""
+    """Delete every :Artifact node: low ids in one pass, Phase 2A range chunked.
+
+    Chunk size 25 keeps each range delete well under the 30 s query limit
+    (deletes run ~155 ms/node on this runtime).
+    """
     client.execute(DELETE_LOW_ARTIFACTS)
-    step = 100
+    step = 25
     for low in range(ID_OFFSET, ID_OFFSET + 100_000, step):
         client.execute(
             DELETE_ALL_ARTIFACTS,

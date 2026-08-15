@@ -1,0 +1,86 @@
+{
+  "person:priya-kapoor": {
+    "name": "Priya Kapoor",
+    "label": "Person",
+    "mentions": ["Priya Kapoor"],
+    "aliases": ["priya-kapoor"]
+  },
+  "person:marco-ruiz": {
+    "name": "Marco Ruiz",
+    "label": "Person",
+    "mentions": ["Marco Ruiz"],
+    "aliases": ["marco-ruiz"]
+  },
+  "person:leah-nguyen": {
+    "name": "Leah Nguyen",
+    "label": "Person",
+    "mentions": ["Leah Nguyen"],
+    "aliases": ["leah-nguyen"]
+  },
+  "person:aisha-raman": {
+    "name": "Aisha Raman",
+    "label": "Person",
+    "mentions": ["Aisha Raman"],
+    "aliases": ["aisha-raman"]
+  },
+  "person:devon-patel": {
+    "name": "Devon Patel",
+    "label": "Person",
+    "mentions": ["Devon Patel"],
+    "aliases": ["devon-patel"]
+  },
+  "person:thomas-li": {
+    "name": "Thomas Li",
+    "label": "Person",
+    "mentions": ["Thomas Li"],
+    "aliases": ["thomas-li"]
+  },
+  "person:priya-natarajan": {
+    "name": "Priya Natarajan",
+    "label": "Person",
+    "mentions": ["Priya Natarajan"],
+    "aliases": ["priya-natarajan"]
+  },
+  "person:mei-lin": {
+    "name": "Mei Lin",
+    "label": "Person",
+    "mentions": ["Mei Lin"],
+    "aliases": ["mei-lin"]
+  },
+  "person:nadia-rahman": {
+    "name": "Nadia Rahman",
+    "label": "Person",
+    "mentions": ["Nadia Rahman"],
+    "aliases": ["nadia-rahman"]
+  },
+  "person:logan-wright": {
+    "name": "Logan Wright",
+    "label": "Person",
+    "mentions": ["Logan Wright"],
+    "aliases": ["logan-wright"]
+  },
+  "person:ravi": {
+    "name": "Ravi",
+    "label": "Person",
+    "mentions": ["Ravi"],
+    "aliases": ["ravi"]
+  },
+  "person:liam": {
+    "name": "Liam",
+    "label": "Person",
+    "mentions": ["Liam"],
+    "aliases": ["liam"]
+  },
+  "account:oakbridge-synthesis-labs": {
+    "name": "Oakbridge Synthesis Labs",
+    "label": "Account",
+    "mentions": ["Oakbridge Synthesis Labs"],
+    "aliases": ["oakbridge-synthesis-labs", "Oakbridge"]
+  },
+  "account:lakelink-converseiq": {
+    "name": "Lakelink ConverseIQ",
+    "label": "Account",
+    "mentions": ["Lakelink ConverseIQ"],
+    "aliases": ["lakelink-converseiq", "Lakelink"]
+  }
+}

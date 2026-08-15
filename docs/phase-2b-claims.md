@@ -1,8 +1,44 @@
 # Phase 2B — Real Claims / Evidence Harness
 
-Status: **in progress**. Shared contract defined, claim ingestion boundary
-built, real-shaped claims load into HydraDB, state/provenance/conflict/
-abstention verified on real-shaped data, Phase 1/2A regression green.
+Status: **contract v1 locked; Gate 2 checkpoint verdict: STOP claim-scale,
+keep mention-scale**. Both halves are merged on master: extraction pipeline
+(teammate, `continuum/extract/` + `continuum/eval/`) and the ingestion/state
+side (founder, `continuum/claims/` + `continuum/hydradb/claims.py` +
+`continuum/query/state.py`). The shared contract is single-sourced in
+`continuum/claims/schema.py`; `continuum/extract/schemas.py` re-exports it.
+
+## Gate 2 checkpoint result (checkpoint50, `scripts/checkpoint_claims.py`)
+
+The teammate's top-50 extracted claims were run through the full graph gate:
+contract validation → artifact present in HydraDB → mentions manually
+resolvable → observation time resolvable. Report:
+`data/metadata/checkpoint50_report.json`.
+
+**0 of 50 claims are graph-loadable.** Rejection breakdown:
+
+- 38 unresolvable **subject** mentions — doc titles, truncated ticket
+  titles, roles/teams ("Head", "Eng", "Finance Ops"), or generic words
+  ("finance", "incidents")
+- 11 unresolvable **object** mentions — single generic words ("model",
+  "tokens", "batching", "place", "treaty") or ticket titles
+- 1 missing observation time (Ravi → Oakbridge, the only structurally
+  plausible claim)
+
+Interpretation: the deterministic/hybrid claim patterns bind artifact
+*titles* to *fragments of the "X depends on Y" / "X blocks Y" sentence*,
+which are not entity pairs. Extraction confidence (0.80–0.84) does not
+measure graph quality. Claim precision is unmeasured (ground truth contains
+1 claim) and by inspection is low for DEPENDS_ON/ASSIGNED_TO.
+
+Per AGENTS.md Gate 2 ("if this fails, STOP. Do not scale"):
+
+- The **mechanical path is proven** (9 hand-written real-shaped claims load,
+  resolve, conflict, provenance — all green).
+- The **claim extraction is not graph-grade yet**. Do not scale claim
+  ingestion until the extractor emits entity-pair claims (person → account/
+  project/ticket) with evidence spans and timestamps.
+- **Mention extraction is healthy** (F1 0.82 on the labeled set, recall
+  0.95) and `mention_inventory.json` is ready as Phase 3 input.
 
 ## Goal
 
@@ -13,18 +49,22 @@ mention/claim extraction precision/recall is the teammate's half (Gate 1/2).
 
 ## What was built (founder side)
 
-### Shared contract — `continuum/claims/`
+### Shared contract — `continuum/claims/` (contract v1, single-sourced)
 
-- `schema.py` — `Mention` and `Claim` dataclasses. Claim fields match the
-  AGENTS.md contract exactly: `claim_id, artifact_id, subject_mention,
-  predicate, object_mention, observed_at, valid_from, valid_to, confidence,
-  extraction_method`. No canonical entity ids — mentions are intentionally
-  unresolved until Phase 3.
-- `validate.py` — strict boundary validation (id formats, ISO timestamps,
-  confidence in [0,1], mention types). A malformed claim never reaches the
-  graph.
-- `io.py` — JSONL interchange format; the teammate's extraction pipeline
-  writes claims.jsonl, the ingestion boundary reads it.
+- `schema.py` — canonical `Mention` and `Claim` dataclasses. Claim fields:
+  `claim_id, artifact_id, subject_mention, predicate, object_mention,
+  observed_at, valid_from, valid_to, confidence, extraction_method,
+  evidence_span, metadata`. Predicates: OWNS / MAINTAINS / LEADS /
+  ASSIGNED_TO / BLOCKS / DEPENDS_ON / REVIEWS. No canonical entity ids —
+  mentions are intentionally unresolved until Phase 3. Stable ids are
+  16-hex sha256 hashes (or `claim:`/`mention:` slugs for hand-written
+  fixtures). `continuum/extract/schemas.py` re-exports these classes so both
+  sides share one definition.
+- `validate.py` — strict boundary validation (id formats, real ISO dates
+  when present, nullable timestamps per v1, confidence in [0,1], required
+  `evidence_span`). A malformed claim never reaches the graph.
+- `io.py` — JSONL interchange format; the extraction pipeline writes
+  claims.jsonl, the ingestion boundary reads it.
 
 ### Ingestion boundary — `continuum/hydradb/claims.py`
 
@@ -125,14 +165,18 @@ make test-phase2b         # Phase 2B integration tests
 
 ## Next (collaboration gate, not automatic)
 
-Gate 2: teammate's first 20–50 real extracted claims (`claims.jsonl`
-pointing at real `dsid_` artifacts) → load with the same boundary → joint
-manual inspection of the full path:
+Gate 2 verdict is STOP for claim-scale: the extraction pipeline needs
+entity-pair claims before more claims can enter the graph. Recommended
+teammate changes:
 
-```
-raw artifact → normalized artifact → mention → claim → HydraDB → state → provenance
-```
+1. Restrict claim emission to mentions that are real entity names (person /
+   account / project / ticket keys), not titles or single generic words.
+2. Make ASSIGNED_TO/OWNS/LEADS the primary targets (they produce the
+   enterprise-state semantics) and require an observed_at (or artifact
+   timestamp) on every emitted claim.
+3. Expand the ground truth beyond 1 claim so claim precision/recall is
+   actually measurable.
 
-Only if that path is trustworthy does Phase 2B continue (contract lock,
-extraction precision/recall, real-data query baseline). Then STOP and move
-jointly to Phase 3 design.
+Then re-run `scripts/checkpoint_claims.py`; the boundary itself needs no
+changes. Only after a meaningful share of checkpoint claims load and resolve
+should Phase 2B scale and Phase 3 (entity resolution) design start.

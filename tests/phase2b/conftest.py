@@ -1,4 +1,3 @@
-import json
 import subprocess
 from pathlib import Path
 
@@ -9,8 +8,10 @@ from continuum.hydradb import HydraDBClient
 ROOT = Path(__file__).resolve().parents[2]
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="module")
 def loaded_real_claims():
+    """Integration fixture: seeds the Phase 2B graph. Request it explicitly so
+    the extraction unit tests in this directory stay HydraDB-free."""
     try:
         with HydraDBClient() as client:
             client.health_check()
@@ -20,7 +21,6 @@ def loaded_real_claims():
         ["python", str(ROOT / "scripts" / "load_phase2b_claims.py"), "--reset"],
         check=True,
     )
-    yield
 
 
 @pytest.fixture

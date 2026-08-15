@@ -21,14 +21,14 @@ from dataclasses import dataclass
 from time import perf_counter
 from typing import Any, Iterable, Mapping
 
-from continuum.claims import Claim, ContractError
+from continuum.claims import SUPPORTED_PREDICATES, Claim, ContractError
 from continuum.hydradb import HydraDBClient
 
 OPEN_END = "9999-12-31"
 ID_OFFSET = 1_000_000_000_000
 ID_SPAN = 10_000
 
-PREDICATE_RELS = ("OWNS", "MAINTAINS", "REVIEWS", "DEPENDS_ON")
+PREDICATE_RELS = tuple(sorted(SUPPORTED_PREDICATES))
 ENTITY_LABELS = ("Person", "Account", "Project", "Service", "Team")
 
 CREATE_ENTITIES = """
@@ -75,7 +75,8 @@ SET c:Claim,
     c.valid_from = row.valid_from,
     c.valid_to = row.valid_to,
     c.confidence = row.confidence,
-    c.extraction_method = row.extraction_method
+    c.extraction_method = row.extraction_method,
+    c.evidence_span = row.evidence_span
 """
 
 RELATE_SOURCED_FROM = """
@@ -122,7 +123,7 @@ DETACH DELETE n
 READ_DSID_ARTIFACTS = """
 MATCH (a:Artifact)
 WHERE a.dsid STARTS WITH 'dsid_'
-RETURN a.dsid AS dsid, a.id AS id
+RETURN a.dsid AS dsid, a.id AS id, a.timestamp AS timestamp
 """
 
 READ_CLAIM = """
@@ -133,7 +134,7 @@ RETURN c.key AS key, c.artifact_id AS artifact_id,
        c.subject_name AS subject_name, c.object_id AS object_id,
        c.observed_at AS observed_at, c.valid_from AS valid_from,
        c.valid_to AS valid_to, c.confidence AS confidence,
-       c.extraction_method AS extraction_method
+       c.extraction_method AS extraction_method, c.evidence_span AS evidence_span
 """
 
 READ_ALL_CLAIMS = """
@@ -263,15 +264,19 @@ def load_claims(
         for index, key in enumerate(entity_defs)
     }
 
-    dsid_artifacts = {row["dsid"]: row["id"] for row in client.execute(READ_DSID_ARTIFACTS).rows}
+    dsid_artifacts = {row["dsid"]: row for row in client.execute(READ_DSID_ARTIFACTS).rows}
+    fixture_observed = {a["key"]: a.get("observed_at") for a in artifact_list}
     claim_artifact_ids: dict[str, int] = {}
+    claim_artifact_times: dict[str, str | None] = {}
     missing_artifacts: set[str] = set()
     for claim in claims:
         artifact_id = claim.artifact_id
         if artifact_id in artifact_num_ids:
             claim_artifact_ids[claim.claim_id] = artifact_num_ids[artifact_id]
+            claim_artifact_times[claim.claim_id] = fixture_observed.get(artifact_id)
         elif artifact_id in dsid_artifacts:
-            claim_artifact_ids[claim.claim_id] = dsid_artifacts[artifact_id]
+            claim_artifact_ids[claim.claim_id] = dsid_artifacts[artifact_id]["id"]
+            claim_artifact_times[claim.claim_id] = dsid_artifacts[artifact_id].get("timestamp")
         else:
             missing_artifacts.add(artifact_id)
     if missing_artifacts:
@@ -314,25 +319,43 @@ def load_claims(
             client.execute_batch(CREATE_ENTITIES.format(label=label), labeled_rows)
     relationships += len(entity_rows)
 
-    claim_rows = [
-        {
-            "id": claim_num_ids[claim.claim_id],
-            "key": claim.claim_id,
-            "artifact_id": claim.artifact_id,
-            "subject_mention": claim.subject_mention,
-            "predicate": claim.predicate,
-            "object_mention": claim.object_mention,
-            "subject_id": resolved_subjects[claim.claim_id]["key"],
-            "subject_name": resolved_subjects[claim.claim_id]["name"],
-            "object_id": resolved_objects[claim.claim_id]["key"],
-            "observed_at": claim.observed_at[:10],
-            "valid_from": claim.valid_from[:10],
-            "valid_to": claim.valid_to[:10] if claim.valid_to else OPEN_END,
-            "confidence": claim.confidence,
-            "extraction_method": claim.extraction_method,
-        }
-        for claim in claims
-    ]
+    def resolve_observed(claim: Claim) -> str:
+        """Observation time for a claim: claim timestamp, else artifact timestamp.
+
+        The graph requires an observation time (ordering/conflict resolution).
+        If neither the claim nor its artifact has one, the claim is rejected —
+        a temporally anonymous claim cannot enter state resolution.
+        """
+        value = claim.observed_at or claim_artifact_times[claim.claim_id]
+        if not value:
+            raise ContractError(
+                f"{claim.claim_id}: no observed_at and artifact has no timestamp; "
+                "temporally anonymous claims cannot enter the graph"
+            )
+        return value[:10]
+
+    claim_rows = []
+    for claim in claims:
+        observed_at = resolve_observed(claim)
+        claim_rows.append(
+            {
+                "id": claim_num_ids[claim.claim_id],
+                "key": claim.claim_id,
+                "artifact_id": claim.artifact_id,
+                "subject_mention": claim.subject_mention,
+                "predicate": claim.predicate,
+                "object_mention": claim.object_mention,
+                "subject_id": resolved_subjects[claim.claim_id]["key"],
+                "subject_name": resolved_subjects[claim.claim_id]["name"],
+                "object_id": resolved_objects[claim.claim_id]["key"],
+                "observed_at": observed_at,
+                "valid_from": (claim.valid_from or observed_at)[:10],
+                "valid_to": claim.valid_to[:10] if claim.valid_to else OPEN_END,
+                "confidence": claim.confidence,
+                "extraction_method": claim.extraction_method,
+                "evidence_span": claim.evidence_span[:200],
+            }
+        )
     client.execute_batch(CREATE_CLAIMS, claim_rows)
 
     def relate(template: str, pairs: Iterable[dict[str, Any]]) -> None:
@@ -367,7 +390,7 @@ def load_claims(
                     {
                         "source": entity_num_ids[resolved_subjects[c.claim_id]["key"]],
                         "target": entity_num_ids[resolved_objects[c.claim_id]["key"]],
-                        "valid_from": c.valid_from[:10],
+                        "valid_from": (c.valid_from or resolve_observed(c))[:10],
                         "valid_to": c.valid_to[:10] if c.valid_to else OPEN_END,
                     }
                     for c in matching

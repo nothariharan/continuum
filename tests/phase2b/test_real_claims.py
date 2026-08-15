@@ -15,12 +15,12 @@ from continuum.query import (
 
 
 @pytest.mark.hydradb
-def test_claims_loaded(client):
+def test_claims_loaded(loaded_real_claims, client):
     assert count_claims(client) == 9
 
 
 @pytest.mark.hydradb
-def test_claim_read_back(client):
+def test_claim_read_back(loaded_real_claims, client):
     row = read_claim(client, "claim:camila-owns-cedarbank")
     assert row is not None
     assert row["subject_mention"] == "Camila Reyes"
@@ -33,10 +33,11 @@ def test_claim_read_back(client):
     assert row["valid_to"] == "9999-12-31"
     assert row["confidence"] == 0.94
     assert row["extraction_method"] == "hand-written"
+    assert row["evidence_span"]
 
 
 @pytest.mark.hydradb
-def test_claim_traces_to_artifact(client):
+def test_claim_traces_to_artifact(loaded_real_claims, client):
     rows = client.execute(
         "MATCH (c:Claim {key: 'claim:camila-owns-cedarbank'})-[:SOURCED_FROM]->(a:Artifact)-[:FROM]->(s:Source) "
         "RETURN a.key AS artifact_id, a.kind AS kind, s.key AS source_id, s.name AS source_name"
@@ -52,7 +53,7 @@ def test_claim_traces_to_artifact(client):
 
 
 @pytest.mark.hydradb
-def test_current_state_real_claims(client):
+def test_current_state_real_claims(loaded_real_claims, client):
     result = resolve_state(client, "account:cedarbank", "OWNS")
     assert result["status"] == "definitive"
     assert result["value"] == {"entity_id": "person:camila-reyes", "name": "Camila Reyes"}
@@ -60,14 +61,14 @@ def test_current_state_real_claims(client):
 
 
 @pytest.mark.hydradb
-def test_historical_state_real_claims(client):
+def test_historical_state_real_claims(loaded_real_claims, client):
     result = resolve_state_on(client, "account:cedarbank", "2026-06-01", "OWNS")
     assert result["value"] == {"entity_id": "person:may-patel", "name": "Maya Patel"}
     assert resolve_state_on(client, "account:cedarbank", "2026-06-25", "OWNS")["value"]["entity_id"] == "person:camila-reyes"
 
 
 @pytest.mark.hydradb
-def test_predicate_states(client):
+def test_predicate_states(loaded_real_claims, client):
     assert resolve_state(client, "project:optimize-conductor", "OWNS")["value"] == {
         "entity_id": "person:ava-nguyen",
         "name": "Ava Nguyen",
@@ -87,7 +88,7 @@ def test_predicate_states(client):
 
 
 @pytest.mark.hydradb
-def test_provenance_real_claims(client):
+def test_provenance_real_claims(loaded_real_claims, client):
     result = resolve_provenance(client, "account:cedarbank", "OWNS")
     assert result["value"]["name"] == "Camila Reyes"
     assert {item["source"] for item in result["evidence"]} == {"Gmail", "Slack", "Linear"}
@@ -99,7 +100,7 @@ def test_provenance_real_claims(client):
 
 
 @pytest.mark.hydradb
-def test_conflict_detection_real_claims(client):
+def test_conflict_detection_real_claims(loaded_real_claims, client):
     result = resolve_conflicts(client, "account:cedarbank", "OWNS")
     assert result["status"] == "CONFLICT"
     assert result["conflicting_subjects"] == ["person:camila-reyes", "person:may-patel"]
@@ -111,21 +112,21 @@ def test_conflict_detection_real_claims(client):
 
 
 @pytest.mark.hydradb
-def test_consistent_predicate_not_conflicted(client):
+def test_consistent_predicate_not_conflicted(loaded_real_claims, client):
     result = resolve_conflicts(client, "project:optimize-conductor", "OWNS")
     assert result["status"] == "CONSISTENT"
     assert result["conflicting_subjects"] == ["person:ava-nguyen"]
 
 
 @pytest.mark.hydradb
-def test_abstention_real_claims(client):
+def test_abstention_real_claims(loaded_real_claims, client):
     result = resolve_state(client, "account:orionai", "OWNS")
     assert result["status"] == "ABSENT"
     assert result["value"] is None
 
 
 @pytest.mark.hydradb
-def test_mentions_preserved_alongside_resolution(client):
+def test_mentions_preserved_alongside_resolution(loaded_real_claims, client):
     rows = client.execute(
         "MATCH (c:Claim)-[:ABOUT]->(a:Account {key: 'account:cedarbank'}) "
         "RETURN c.subject_mention AS mention ORDER BY mention"
