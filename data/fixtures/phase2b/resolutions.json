@@ -1,0 +1,62 @@
+{
+  "person:ava-nguyen": {
+    "name": "Ava Nguyen",
+    "label": "Person",
+    "mentions": ["Ava Nguyen", "Ava"],
+    "aliases": ["ava.nguyen@redwood.ai", "ava-nguyen"]
+  },
+  "person:diego-martinez": {
+    "name": "Diego Martinez",
+    "label": "Person",
+    "mentions": ["Diego Martinez", "Diego"],
+    "aliases": ["diego.martinez@redwood.ai", "diego-martinez"]
+  },
+  "person:liam-oconnor": {
+    "name": "Liam O'Connor",
+    "label": "Person",
+    "mentions": ["Liam O'Connor", "Liam"],
+    "aliases": ["liam.oconnor@redwood.ai", "oncall-sre"]
+  },
+  "person:camila-reyes": {
+    "name": "Camila Reyes",
+    "label": "Person",
+    "mentions": ["Camila Reyes", "Camila"],
+    "aliases": ["camila.reyes@redwood.ai", "camila-reyes"]
+  },
+  "person:may-patel": {
+    "name": "Maya Patel",
+    "label": "Person",
+    "mentions": ["Maya Patel", "Maya"],
+    "aliases": ["maya.patel@redwood.ai", "may-patel"]
+  },
+  "person:dev-patel": {
+    "name": "Dev Patel",
+    "label": "Person",
+    "mentions": ["Dev Patel", "Dev"],
+    "aliases": ["dev.patel@redwood.ai", "dev-patel"]
+  },
+  "account:cedarbank": {
+    "name": "CedarBank",
+    "label": "Account",
+    "mentions": ["CedarBank", "Cedar Bank", "CedarBank (Fintech)"],
+    "aliases": ["cedarbank"]
+  },
+  "account:orionai": {
+    "name": "OrionAI",
+    "label": "Account",
+    "mentions": ["OrionAI", "Orion AI"],
+    "aliases": ["orionai"]
+  },
+  "project:optimize-conductor": {
+    "name": "Optimize Conductor",
+    "label": "Project",
+    "mentions": ["Optimize Conductor", "Optimize Conductor 2.0", "Conductor 2.0"],
+    "aliases": ["optimize-conductor", "conductor-2.0"]
+  },
+  "project:hosted-api": {
+    "name": "Hosted API",
+    "label": "Project",
+    "mentions": ["Hosted API", "Hosted API platform"],
+    "aliases": ["hosted-api"]
+  }
+}
