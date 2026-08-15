@@ -12,9 +12,13 @@ Status:
 - Extraction pipeline (deterministic + hybrid): `continuum/extract/`, `continuum/eval/`
 - Claim ingestion boundary into HydraDB (`continuum/hydradb/claims.py`)
 - Generalized state/provenance/conflict/abstention queries (`continuum/query/state.py`)
-- 70/70 tests green (unit + HydraDB integration; Phase 0 + 1 + 2A regression)
-- Gate 2 checkpoint: 0/50 extracted claims graph-loadable — extraction
-  quality (entity-pair claims) is the open blocker before scaling
+- Claim-handoff verifier (`make checkpoint-claims`): per-claim failure codes
+  for every candidate claim (611 currently: 455 MISSING_TIMESTAMP,
+  156 INVALID_SUBJECT, 0 graph-loadable)
+- Known-good real-claim fixture (10 hand-validated claims on real dsid
+  artifacts) with regression tests: current/historical state, provenance,
+  conflict, abstention, non-OWNS predicates, reset
+- 79/79 tests green (unit + HydraDB integration; Phase 0 + 1 + 2A regression)
 
 Not yet implemented:
 

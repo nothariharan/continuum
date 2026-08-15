@@ -104,6 +104,75 @@ API key rotation thread, OrionAI transition checklist):
   zero claims)
 - 10 manual resolutions (6 people, 2 accounts, 2 projects)
 
+## Claim-handoff verifier — `make checkpoint-claims`
+
+The founder's feedback loop to the extraction side. For every candidate
+claim in `data/extraction/claims.jsonl` it classifies exactly why the claim
+can or cannot enter the graph, per claim, with reasons:
+
+| code | meaning |
+|---|---|
+| `MALFORMED_ID` | claim_id / artifact_id violates the contract format |
+| `INVALID_SUBJECT` | subject mention empty, or has no manual resolution (not an entity name) |
+| `INVALID_OBJECT` | object mention empty, or has no manual resolution |
+| `INVALID_PREDICATE` | predicate outside the supported vocabulary |
+| `MISSING_ARTIFACT` | artifact_id not present in the HydraDB graph |
+| `INVALID_TIMESTAMP` | timestamp present but not a real ISO date; or valid_to < valid_from |
+| `MISSING_TIMESTAMP` | no observed_at and the artifact has no timestamp |
+| `UNSUPPORTED_ENTITY_PAIR` | mentions resolve, but the label pair is not canonical for the predicate |
+| `CONTRACT_VIOLATION` | anything else the canonical validator rejects |
+
+Report: `data/metadata/claim_handoff_report.json`. Current run against the
+611 extracted claims: 455 `MISSING_TIMESTAMP`, 156 `INVALID_SUBJECT`, 0
+graph-loadable — this is the precise signal the extractor needs (emit
+entity-pair claims with timestamps; title-fragment pairs are rejected).
+
+### Graph-loadability is encoded, not judged
+
+A claim is graph-loadable iff Continuum can represent it without inventing
+entities, inventing timestamps, or violating the canonical
+predicate/entity constraints (`ENTITY_PAIR_RULES` in
+`continuum/hydradb/claims.py`):
+
+- OWNS: Person → Account/Project
+- MAINTAINS: Person/Team → Account/Project/Service
+- LEADS: Person → Account/Project/Team
+- ASSIGNED_TO: Person → Account/Project
+- REVIEWS: Person → Account/Project
+- BLOCKS: Person/Project → Project
+- DEPENDS_ON: Project/Service → Project/Service
+
+The manual resolution maps (`resolutions*.json`) are **test aids only** —
+they prove real claim → canonical entity → HydraDB → state query. They are
+not entity resolution (Phase 3).
+
+## Known-good real-claim fixture — `data/fixtures/phase2b_real_claims.jsonl`
+
+10 claims I hand-validated against the actual EnterpriseRAG-Bench artifacts
+(real `dsid_*` references, evidence spans quoted verbatim):
+
+- current ownership: Maya Patel OWNS LucentGrid (fireflies 2027-02-11)
+- historical: LucentGrid OWNS as-of 2027-02-11 → Maya; as-of 2026-01-01 → ABSENT
+- provenance: Acme Health OWNS → claim → gmail artifact → source chain
+- conflict: Neha Kapoor vs Priyom Das OWNS Acme Health (real ambiguity in
+  the MSA thread — the engine reports CONFLICT, keeps both claims)
+- abstention: CedarBank (resolved, unclaimed) → ABSENT
+- non-OWNS predicates: MAINTAINS (Ravi → Skyline, Olga → Acme Analytics,
+  Jonas → Acme Health), LEADS (Jasmine → Acme Payments, Maya Chen →
+  Skyline), ASSIGNED_TO (Ethan Cole → LucentGrid)
+
+The loader auto-links referenced real artifacts to `:Source` nodes so the
+provenance chain holds for real data. Commands:
+
+```
+make real-claims-load          # requires 360 artifacts loaded (make dataset-load-hydradb)
+make real-claims-benchmark     # writes docs/phase-2b-real-benchmark.json
+```
+
+Real-claim benchmark: ingestion (write + verify) ~12.6 s; current-state p50
+4.5 ms, historical p50 4.0 ms, provenance p50 9.5 ms, conflict p50 6.0 ms.
+Still small-graph numbers; no optimization until there is real workload.
+
 ## HydraDB constraints discovered (documented per AGENTS.md rule 9)
 
 - Label-less `MATCH (n)` is rejected → per-label deletes/queries.

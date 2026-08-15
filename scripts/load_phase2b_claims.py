@@ -38,7 +38,12 @@ def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def main(reset: bool = False, claims_path: Path | None = None, resolutions_path: Path | None = None) -> dict:
+def main(
+    reset: bool = False,
+    claims_path: Path | None = None,
+    resolutions_path: Path | None = None,
+    real: bool = False,
+) -> dict:
     claims_file = claims_path or FIXTURE / "claims.jsonl"
     resolutions_file = resolutions_path or FIXTURE / "resolutions.json"
     artifacts_file = FIXTURE / "artifacts.jsonl"
@@ -46,7 +51,7 @@ def main(reset: bool = False, claims_path: Path | None = None, resolutions_path:
     claims = load_claims(claims_file)
     resolutions = read_json(resolutions_file)
     fixture_artifacts = []
-    if artifacts_file.exists():
+    if not real and artifacts_file.exists():
         for line in artifacts_file.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if line:
@@ -58,7 +63,7 @@ def main(reset: bool = False, claims_path: Path | None = None, resolutions_path:
             claims=claims,
             resolutions=resolutions,
             fixture_artifacts=fixture_artifacts,
-            fixture_sources=SOURCES,
+            fixture_sources=[] if real else SOURCES,
             reset=reset,
         )
     return {
@@ -77,6 +82,14 @@ def main(reset: bool = False, claims_path: Path | None = None, resolutions_path:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true")
+    parser.add_argument("--claims", type=Path, default=None)
+    parser.add_argument("--resolutions", type=Path, default=None)
+    parser.add_argument(
+        "--real",
+        action="store_true",
+        help="real-claims mode: skip synthetic fixture artifacts/sources; "
+        "the claims must reference dsid_* artifacts already in HydraDB",
+    )
     args = parser.parse_args()
     print("Phase 2B claims loaded")
-    print(json.dumps(main(reset=args.reset), indent=2))
+    print(json.dumps(main(reset=args.reset, claims_path=args.claims, resolutions_path=args.resolutions, real=args.real), indent=2))

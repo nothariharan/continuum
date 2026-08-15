@@ -1,0 +1,55 @@
+{
+  "ingestion": {
+    "load_verify_ms": 12565.67
+  },
+  "queries": {
+    "current_state": {
+      "p50_ms": 4.468,
+      "p95_ms": 7.605,
+      "p99_ms": 14.468,
+      "iterations": 20
+    },
+    "historical_state": {
+      "p50_ms": 4.009,
+      "p95_ms": 15.313,
+      "p99_ms": 16.004,
+      "iterations": 20
+    },
+    "provenance": {
+      "p50_ms": 9.459,
+      "p95_ms": 13.481,
+      "p99_ms": 13.868,
+      "iterations": 20
+    },
+    "conflict": {
+      "p50_ms": 6.004,
+      "p95_ms": 10.661,
+      "p99_ms": 11.091,
+      "iterations": 20
+    },
+    "maintains_state": {
+      "p50_ms": 4.956,
+      "p95_ms": 27.616,
+      "p99_ms": 56.249,
+      "iterations": 20
+    },
+    "leads_state": {
+      "p50_ms": 4.134,
+      "p95_ms": 5.771,
+      "p99_ms": 5.949,
+      "iterations": 20
+    },
+    "assigned_state": {
+      "p50_ms": 4.224,
+      "p95_ms": 5.762,
+      "p99_ms": 11.131,
+      "iterations": 20
+    },
+    "abstention": {
+      "p50_ms": 5.174,
+      "p95_ms": 9.452,
+      "p99_ms": 14.601,
+      "iterations": 20
+    }
+  }
+}

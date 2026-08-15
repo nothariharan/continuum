@@ -31,6 +31,25 @@ ID_SPAN = 10_000
 PREDICATE_RELS = tuple(sorted(SUPPORTED_PREDICATES))
 ENTITY_LABELS = ("Person", "Account", "Project", "Service", "Team")
 
+# Canonical predicate/entity constraints: a claim is graph-loadable only when
+# the resolved subject/object label pair is allowed for the predicate.
+# This is the explicit encoding of "without inventing entities" — a claim
+# whose mentions cannot resolve to a compatible pair is not graph-loadable.
+ENTITY_PAIR_RULES: dict[str, frozenset[tuple[str, str]]] = {
+    "OWNS": frozenset({("Person", "Account"), ("Person", "Project")}),
+    "MAINTAINS": frozenset({("Person", "Account"), ("Person", "Project"), ("Person", "Service"), ("Team", "Service")}),
+    "LEADS": frozenset({("Person", "Account"), ("Person", "Project"), ("Person", "Team")}),
+    "ASSIGNED_TO": frozenset({("Person", "Account"), ("Person", "Project")}),
+    "REVIEWS": frozenset({("Person", "Account"), ("Person", "Project")}),
+    "BLOCKS": frozenset({("Person", "Project"), ("Project", "Project")}),
+    "DEPENDS_ON": frozenset({("Project", "Project"), ("Project", "Service"), ("Service", "Service")}),
+}
+
+
+def pair_supported(predicate: str, subject_label: str, object_label: str) -> bool:
+    """True when (predicate, subject_label, object_label) is canonical."""
+    return (subject_label, object_label) in ENTITY_PAIR_RULES.get(predicate, frozenset())
+
 CREATE_ENTITIES = """
 UNWIND $rows AS row
 MERGE (n {{id: row.id}})
@@ -85,6 +104,12 @@ MATCH (c:Claim {id: row.source}), (a:Artifact {id: row.target})
 CREATE (c)-[:SOURCED_FROM]->(a)
 """
 
+RELATE_REAL_SOURCE = """
+UNWIND $rows AS row
+MATCH (a:Artifact {id: row.source}), (s:Source {id: row.target})
+CREATE (a)-[:FROM]->(s)
+"""
+
 RELATE_ABOUT = """
 UNWIND $rows AS row
 MATCH (c:Claim {{id: row.source}}), (e:{olabel} {{id: row.target}})
@@ -123,7 +148,7 @@ DETACH DELETE n
 READ_DSID_ARTIFACTS = """
 MATCH (a:Artifact)
 WHERE a.dsid STARTS WITH 'dsid_'
-RETURN a.dsid AS dsid, a.id AS id, a.timestamp AS timestamp
+RETURN a.dsid AS dsid, a.id AS id, a.timestamp AS timestamp, a.source AS source
 """
 
 READ_CLAIM = """
@@ -251,6 +276,15 @@ def load_claims(
     entity_defs = {key: resolutions[key] for key in entity_keys}
     resolved_subjects = {claim.claim_id: entities[claim.subject_mention] for claim in claims}
     resolved_objects = {claim.claim_id: entities[claim.object_mention] for claim in claims}
+    for claim in claims:
+        subject = resolved_subjects[claim.claim_id]
+        object_ = resolved_objects[claim.claim_id]
+        if not pair_supported(claim.predicate, subject["label"], object_["label"]):
+            raise ContractError(
+                f"{claim.claim_id}: unsupported entity pair {claim.predicate} "
+                f"({subject['label']} -> {object_['label']}); "
+                f"allowed: {sorted(ENTITY_PAIR_RULES[claim.predicate])}"
+            )
 
     claim_ids = [claim.claim_id for claim in claims]
     claim_num_ids = dict(zip(claim_ids, _next_ids(len(claim_ids), ID_OFFSET)))
@@ -268,6 +302,7 @@ def load_claims(
     fixture_observed = {a["key"]: a.get("observed_at") for a in artifact_list}
     claim_artifact_ids: dict[str, int] = {}
     claim_artifact_times: dict[str, str | None] = {}
+    referenced_dsids: set[str] = set()
     missing_artifacts: set[str] = set()
     for claim in claims:
         artifact_id = claim.artifact_id
@@ -277,6 +312,7 @@ def load_claims(
         elif artifact_id in dsid_artifacts:
             claim_artifact_ids[claim.claim_id] = dsid_artifacts[artifact_id]["id"]
             claim_artifact_times[claim.claim_id] = dsid_artifacts[artifact_id].get("timestamp")
+            referenced_dsids.add(artifact_id)
         else:
             missing_artifacts.add(artifact_id)
     if missing_artifacts:
@@ -368,6 +404,28 @@ def load_claims(
             RELATE_FROM,
             [{"source": artifact_num_ids[a["key"]], "target": source_num_ids[a["source_id"]]} for a in artifact_list],
         )
+    real_sources = {
+        dsid_artifacts[dsid]["source"] for dsid in referenced_dsids
+    }
+    if real_sources:
+        source_keys = sorted(f"source:{name}" for name in real_sources)
+        source_extra = {
+            key: ID_OFFSET + ID_SPAN - len(source_keys) + index
+            for index, key in enumerate(source_keys)
+        }
+        client.execute_batch(
+            CREATE_SOURCE_FIXTURE,
+            [{"id": source_extra[key], "key": key, "name": key.removeprefix("source:")} for key in source_keys],
+        )
+        relationships += len(source_keys)
+        real_from_rows = [
+            {
+                "source": dsid_artifacts[dsid]["id"],
+                "target": source_extra[f"source:{dsid_artifacts[dsid]['source']}"],
+            }
+            for dsid in referenced_dsids
+        ]
+        relate(RELATE_REAL_SOURCE, real_from_rows)
     relate(
         RELATE_SOURCED_FROM,
         [{"source": claim_num_ids[c.claim_id], "target": claim_artifact_ids[c.claim_id]} for c in claims],

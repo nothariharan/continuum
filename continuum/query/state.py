@@ -53,9 +53,10 @@ WHERE c.predicate = $predicate
 RETURN c.subject_id AS subject_id, c.subject_name AS subject_name,
        c.key AS claim_id, c.subject_mention AS subject_mention,
        c.object_mention AS object_mention,
-       artifact.key AS artifact_id, artifact.kind AS artifact_kind,
-       artifact.observed_at AS observed_at, source.key AS source_id,
-       source.name AS source_name
+       artifact.key AS artifact_id, artifact.dsid AS artifact_dsid,
+       artifact.kind AS artifact_kind, artifact.type AS artifact_type,
+       artifact.observed_at AS observed_at, artifact.timestamp AS artifact_timestamp,
+       source.key AS source_id, source.name AS source_name
 ORDER BY observed_at
 """
 
@@ -145,11 +146,11 @@ def resolve_provenance(client: HydraDBClient, entity_key: str, predicate: str = 
                 "claim_id": row["claim_id"],
                 "subject_mention": row["subject_mention"],
                 "object_mention": row["object_mention"],
-                "artifact_id": row["artifact_id"],
-                "artifact_kind": row["artifact_kind"],
+                "artifact_id": row["artifact_id"] or row["artifact_dsid"],
+                "artifact_kind": row["artifact_kind"] or row["artifact_type"],
                 "source_id": row["source_id"],
                 "source": row["source_name"],
-                "observed_at": row["observed_at"],
+                "observed_at": row["observed_at"] or row["artifact_timestamp"],
             }
             for row in rows
         ],

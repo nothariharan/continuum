@@ -1,4 +1,4 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-load real-claims-benchmark
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -14,6 +14,9 @@ dataset-inventory:
 
 dataset-quality:
 	python scripts/dataset_quality.py
+
+dataset-load-hydradb:
+	python scripts/dataset_load_hydradb.py --reset
 
 embedding-experiment:
 	python scripts/embedding_experiment.py
@@ -51,6 +54,15 @@ claims-load:
 
 claims-benchmark:
 	python scripts/benchmark_phase2b.py
+
+checkpoint-claims:
+	python scripts/checkpoint_claims.py
+
+real-claims-load:
+	python scripts/load_phase2b_claims.py --reset --claims data/fixtures/phase2b_real_claims.jsonl --resolutions data/fixtures/phase2b/resolutions-real.json
+
+real-claims-benchmark:
+	python scripts/benchmark_phase2b.py --real
 
 test-phase2b-integration:
 	python -m pytest tests/phase2b -m hydradb -q

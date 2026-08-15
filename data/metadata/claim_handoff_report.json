@@ -1,0 +1,4902 @@
+{
+  "gate": "claim-handoff",
+  "claims_path": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\extraction\\claims.jsonl",
+  "claims_attempted": 611,
+  "passed": 0,
+  "failed": 611,
+  "failure_summary": {
+    "MISSING_TIMESTAMP": 455,
+    "INVALID_SUBJECT": 156
+  },
+  "load": null,
+  "claims": [
+    {
+      "claim_id": "4e418663f66737bb",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Define latency SLO tiers and acceptance gates for tiered batching perf CI/canary",
+      "object": "ENG-18428"
+    },
+    {
+      "claim_id": "d17270fc4b76c8ba",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Priya Kapoor",
+      "object": "batching"
+    },
+    {
+      "claim_id": "d053928f66958601",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Post-call recap — session cache sizing & rough $/1M targets' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Post-call recap — session cache sizing & rough $/1M targets",
+      "object": "sequence"
+    },
+    {
+      "claim_id": "68b951ff555d6fad",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'eng-ml' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "eng-ml",
+      "object": "runtime"
+    },
+    {
+      "claim_id": "03f14d76b01ca010",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'finance' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "finance",
+      "object": "place"
+    },
+    {
+      "claim_id": "e3b386f3083b055f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'finance' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "finance",
+      "object": "treaty"
+    },
+    {
+      "claim_id": "bca290519c834c9d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Skyline Systems telemetry & resiliency workshop' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Skyline Systems telemetry & resiliency workshop",
+      "object": "model"
+    },
+    {
+      "claim_id": "80ef82904ef7ae1d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Lexana POC: model shortlist & workload scoping' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Lexana POC: model shortlist & workload scoping",
+      "object": "tokens"
+    },
+    {
+      "claim_id": "10375c80de6772f7",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention '2026-05-22-rate-fencing-and-tenant-split-patterns-livestream-demo-tidewave-syste' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "2026-05-22-rate-fencing-and-tenant-split-patterns-livestream-demo-tidewave-systems",
+      "object": "control"
+    },
+    {
+      "claim_id": "f5e721d269f23105",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Kestrel Ventures Tokenflow & p95 Throughput Discovery' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Kestrel Ventures Tokenflow & p95 Throughput Discovery",
+      "object": "hit"
+    },
+    {
+      "claim_id": "7821a44b772483ad",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'LucentGrid POC acceptance criteria + security alignment' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "LucentGrid POC acceptance criteria + security alignment",
+      "object": "infra"
+    },
+    {
+      "claim_id": "8a15095c644b5a6e",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'New Windsor Labs — Private VPC Assimilation Kickoff' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "New Windsor Labs — Private VPC Assimilation Kickoff",
+      "object": "deployment"
+    },
+    {
+      "claim_id": "42029d8987bddc9f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'New Windsor Labs — Private VPC Assimilation Kickoff' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "New Windsor Labs — Private VPC Assimilation Kickoff",
+      "object": "model"
+    },
+    {
+      "claim_id": "ce81e542c4711987",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Pilot latency sizing and benchmarking kickoff' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Pilot latency sizing and benchmarking kickoff",
+      "object": "model"
+    },
+    {
+      "claim_id": "b68c455cea94574d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'incidents' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "incidents",
+      "object": "customer"
+    },
+    {
+      "claim_id": "76f271bb99bfc1d3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Rosetta: Precision Embed Quality Harness and Drift Ops",
+      "object": "embedding"
+    },
+    {
+      "claim_id": "cceee6150e274c0e",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Cranemere Systems - Commitment, Sovereignty & Burst Plan' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Cranemere Systems - Commitment, Sovereignty & Burst Plan",
+      "object": "contract"
+    },
+    {
+      "claim_id": "2cd296cc9dfb460e",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Cranemere Systems - Commitment, Sovereignty & Burst Plan' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Cranemere Systems - Commitment, Sovereignty & Burst Plan",
+      "object": "model"
+    },
+    {
+      "claim_id": "9fadb2c1e9d6602a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Colocation rack power & cooling planning — on-prem GPU pools (Q2 2026)",
+      "object": "vendor"
+    },
+    {
+      "claim_id": "2b87ffb04cdb1779",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'IvyGrid - Redwood API credits & hosting options (quickstart discussion)' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "IvyGrid - Redwood API credits & hosting options (quickstart discussion)",
+      "object": "model"
+    },
+    {
+      "claim_id": "100475c5dc877df3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Docs: Shadow Traffic Quality Metrics quickstart (enablement, interpretation, retention warnings)",
+      "object": "your"
+    },
+    {
+      "claim_id": "53594b1a31272fca",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Docs: Shadow Traffic Quality Metrics quickstart (enablement, interpretation, retention warnings)",
+      "object": "rollout"
+    },
+    {
+      "claim_id": "1d060f45e1ed4c17",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'POC scoping: sensitive flow retention & redaction - BlueHarbor Analytics' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "POC scoping: sensitive flow retention & redaction - BlueHarbor Analytics",
+      "object": "model"
+    },
+    {
+      "claim_id": "335e0fbd01880356",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "KV cache compaction experiments tracker (parameter sweeps + defaults)",
+      "object": "allocator"
+    },
+    {
+      "claim_id": "55f5e3d2fdf1d0a9",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Private VPC egress & runtime interop deep dive - OrionHealthTech' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Private VPC egress & runtime interop deep dive - OrionHealthTech",
+      "object": "deployment"
+    },
+    {
+      "claim_id": "181683365e98791b",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Private VPC egress & runtime interop deep dive - OrionHealthTech' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Private VPC egress & runtime interop deep dive - OrionHealthTech",
+      "object": "model"
+    },
+    {
+      "claim_id": "b7c9a5502b918fe6",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Private VPC egress & runtime interop deep dive - OrionHealthTech' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Private VPC egress & runtime interop deep dive - OrionHealthTech",
+      "object": "traffic"
+    },
+    {
+      "claim_id": "fa3b7aba44db2a2d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'ElkShore throughput & latency characterization call' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "ElkShore throughput & latency characterization call",
+      "object": "seqlen"
+    },
+    {
+      "claim_id": "e8cf0843c014f6b2",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Polaris POC — Quality & Hallucination Evaluation Scope' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Polaris POC — Quality & Hallucination Evaluation Scope",
+      "object": "prompt"
+    },
+    {
+      "claim_id": "e6624217d58dce18",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Polaris POC — Quality & Hallucination Evaluation Scope' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Polaris POC — Quality & Hallucination Evaluation Scope",
+      "object": "model"
+    },
+    {
+      "claim_id": "62e02de4869bb8c4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "On-prem restore fails during manifest apply: missing CRDs / resource ordering causes \"no matches for kind\" errors",
+      "object": "customer"
+    },
+    {
+      "claim_id": "481811fb9530543f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Argo Bio — Retainer top-up & EU on-prem pilot sync' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Argo Bio — Retainer top-up & EU on-prem pilot sync",
+      "object": "firewall"
+    },
+    {
+      "claim_id": "8124a88a2bf06d6a",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Argo Bio — Retainer top-up & EU on-prem pilot sync' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Argo Bio — Retainer top-up & EU on-prem pilot sync",
+      "object": "burst"
+    },
+    {
+      "claim_id": "26a493616a553336",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'POC weekly: latency diagnostics & rollout plan' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "POC weekly: latency diagnostics & rollout plan",
+      "object": "your"
+    },
+    {
+      "claim_id": "f52778068f681628",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Head",
+      "object": "Lakelink ConverseIQ"
+    },
+    {
+      "claim_id": "fbd848219d96c406",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Platform Eng",
+      "object": "Intermittent cross-region egress to us-east after enabling strict EU residency; TLS handshake and p95 latency spikes"
+    },
+    {
+      "claim_id": "6f7d15579c20e9c3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marco Ruiz",
+      "object": "Progressive degradation exposure and adaptive throttle observability"
+    },
+    {
+      "claim_id": "812960ca1e29c09c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Leah Nguyen",
+      "object": "Progressive degradation exposure and adaptive throttle observability"
+    },
+    {
+      "claim_id": "5569abfb331e4931",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Finance Ops",
+      "object": "Proration and Price-Protection Guidance for Variable Capacity Contracts"
+    },
+    {
+      "claim_id": "2302b0e19c358d21",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Finance Accounting",
+      "object": "Proration and Price-Protection Guidance for Variable Capacity Contracts"
+    },
+    {
+      "claim_id": "9c671c8e31397022",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Aisha Raman",
+      "object": "Proration and Price-Protection Guidance for Variable Capacity Contracts"
+    },
+    {
+      "claim_id": "175c23568d564752",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Devon Patel",
+      "object": "Proration and Price-Protection Guidance for Variable Capacity Contracts"
+    },
+    {
+      "claim_id": "c79454a98fc7fd61",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Thomas Li",
+      "object": "Proration and Price-Protection Guidance for Variable Capacity Contracts"
+    },
+    {
+      "claim_id": "dea3324009fe40ff",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Natarajan",
+      "object": "SLO-driven fidelity onboarding checklist and playbook"
+    },
+    {
+      "claim_id": "48fb0a5bd8c66aed",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Eng",
+      "object": "SLO-driven fidelity onboarding checklist and playbook"
+    },
+    {
+      "claim_id": "76de2d8219e6cc7d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Mei Lin",
+      "object": "Experiment metrics backfill plan (schema change to {experiment_id, variant_id})"
+    },
+    {
+      "claim_id": "99f1d9242df63877",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Nadia Rahman",
+      "object": "Experiment metrics backfill plan (schema change to {experiment_id, variant_id})"
+    },
+    {
+      "claim_id": "2e8bf6e2553afc39",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Logan Wright",
+      "object": "Experiment metrics backfill plan (schema change to {experiment_id, variant_id})"
+    },
+    {
+      "claim_id": "ce5ab48cb73b3936",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ravi",
+      "object": "Oakbridge Synthesis Labs"
+    },
+    {
+      "claim_id": "ea7b2f8d35ceb9f5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Liam",
+      "object": "Capacity signal debrief — regional demand variance and next steps"
+    },
+    {
+      "claim_id": "5b54526b45c93450",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Arjun Patel",
+      "object": "Capacity signal debrief — regional demand variance and next steps"
+    },
+    {
+      "claim_id": "603824a0131735cc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Chen",
+      "object": "Capacity signal debrief — regional demand variance and next steps"
+    },
+    {
+      "claim_id": "be93c417c93452ed",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Greta Andersen",
+      "object": "Capacity signal debrief — regional demand variance and next steps"
+    },
+    {
+      "claim_id": "37fc910b28e228b4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Sofia Ruiz",
+      "object": "Capacity signal debrief — regional demand variance and next steps"
+    },
+    {
+      "claim_id": "1d6104ab53c97448",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Support",
+      "object": "Variable accumulation window triggering intermittent p95/p99 inference latency spikes for dedicated tenant"
+    },
+    {
+      "claim_id": "70deb253ba4e074e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Finance",
+      "object": "Redwood enterprise procedures kit — company operations (2026)"
+    },
+    {
+      "claim_id": "9aca73730dd2558b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Chen",
+      "object": "Redwood enterprise procedures kit — company operations (2026)"
+    },
+    {
+      "claim_id": "ec33e870f315af66",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Sales Eng",
+      "object": "Eastern Canada 'g5x' reservation bundles: launch orchestration and partner enablement"
+    },
+    {
+      "claim_id": "1ea3125473f7158c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Console Eng",
+      "object": "Eastern Canada 'g5x' reservation bundles: launch orchestration and partner enablement"
+    },
+    {
+      "claim_id": "d198eb546565ad58",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Observability Eng",
+      "object": "Eastern Canada 'g5x' reservation bundles: launch orchestration and partner enablement"
+    },
+    {
+      "claim_id": "ca99a6607d976db1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Billing",
+      "object": "Eastern Canada 'g5x' reservation bundles: launch orchestration and partner enablement"
+    },
+    {
+      "claim_id": "a1bfd6fcbc461520",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ava Martinez",
+      "object": "Packetized Response Envelopes & Tool Bridge — PRD"
+    },
+    {
+      "claim_id": "345d30fe7f018ea1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Liam",
+      "object": "Preventing duplicate external-tool invocations when orchestrating streaming responses across Python, Go, and TS SDKs (chunk-level acks)"
+    },
+    {
+      "claim_id": "a5570c8f4c1a1ee8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya",
+      "object": "triage-bullet-journal-aisha"
+    },
+    {
+      "claim_id": "e1cabdd1d4c89a2e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Luca",
+      "object": "Handoff Journeyboard Weekly Inspection"
+    },
+    {
+      "claim_id": "959fba174aa63e36",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Samira",
+      "object": "Handoff Journeyboard Weekly Inspection"
+    },
+    {
+      "claim_id": "85a8310654f9b8b2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Omar",
+      "object": "Handoff Journeyboard Weekly Inspection"
+    },
+    {
+      "claim_id": "51896655d18f56f2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya",
+      "object": "Handoff Journeyboard Weekly Inspection"
+    },
+    {
+      "claim_id": "980a7fcd68c0fd64",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Maya Patel' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Patel",
+      "object": "LucentGrid POC acceptance criteria + security alignment"
+    },
+    {
+      "claim_id": "36ce926055c97fd4",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Ethan Cole' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ethan Cole",
+      "object": "LucentGrid POC acceptance criteria + security alignment"
+    },
+    {
+      "claim_id": "f99f51bd9d8bdc92",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Priya Menon' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Menon",
+      "object": "LucentGrid POC acceptance criteria + security alignment"
+    },
+    {
+      "claim_id": "5d69fd7204084207",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Omar Reyes' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Omar Reyes",
+      "object": "LucentGrid POC acceptance criteria + security alignment"
+    },
+    {
+      "claim_id": "cc6782be1f85d07e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya",
+      "object": "Usage Signal Runbook: automated triage + mitigation for cost/latency anomalies"
+    },
+    {
+      "claim_id": "637ae9d3a8a8d0be",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jordan",
+      "object": "Usage Signal Runbook: automated triage + mitigation for cost/latency anomalies"
+    },
+    {
+      "claim_id": "27bdbecc3dbe853d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Observability",
+      "object": "Usage Signal Runbook: automated triage + mitigation for cost/latency anomalies"
+    },
+    {
+      "claim_id": "a5eaa72d334a9328",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Platform",
+      "object": "Usage Signal Runbook: automated triage + mitigation for cost/latency anomalies"
+    },
+    {
+      "claim_id": "abc4cf58c5f491f3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Luca",
+      "object": "Provision scoped cross-cloud roles and tag-based guardrails for Data Science experimentation"
+    },
+    {
+      "claim_id": "021d5739af3863f9",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Ben Carter' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ben Carter",
+      "object": "Sandbox evaluation — integration agenda, success gates, and API stitch plan"
+    },
+    {
+      "claim_id": "5fddba493553da9a",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marissa Cole' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marissa Cole",
+      "object": "Sandbox evaluation — integration agenda, success gates, and API stitch plan"
+    },
+    {
+      "claim_id": "f459cd7f8e8959da",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Evelyn Hart' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Evelyn Hart",
+      "object": "Sandbox evaluation — integration agenda, success gates, and API stitch plan"
+    },
+    {
+      "claim_id": "10868169c7228acc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Platform Observability",
+      "object": "Platform Observability & SLI Onboarding Playbook"
+    },
+    {
+      "claim_id": "f84aafcd2403ce47",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Omar",
+      "object": "Pool fallbacks and tenant throttle investigation — nightshift tactical slate"
+    },
+    {
+      "claim_id": "b81e48041744363c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya",
+      "object": "Pool fallbacks and tenant throttle investigation — nightshift tactical slate"
+    },
+    {
+      "claim_id": "52ac1a2eadc56b69",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Alex",
+      "object": "Pool fallbacks and tenant throttle investigation — nightshift tactical slate"
+    },
+    {
+      "claim_id": "2359e4f2466880e1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Rajat",
+      "object": "Streaming tool/function output tokens billed on final invoice despite console estimate showing zero"
+    },
+    {
+      "claim_id": "51cb8ba6edb1d7fb",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Desai",
+      "object": "Streaming tool/function output tokens billed on final invoice despite console estimate showing zero"
+    },
+    {
+      "claim_id": "5040cfb70b88e15e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Lopez",
+      "object": "Streaming tool/function output tokens billed on final invoice despite console estimate showing zero"
+    },
+    {
+      "claim_id": "2d8e12e001b07d7c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Liam",
+      "object": "Streaming tool/function output tokens billed on final invoice despite console estimate showing zero"
+    },
+    {
+      "claim_id": "37046a77caebc471",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jordan Lee",
+      "object": "Marketplace onboarding UX scenarios and fallback clauses"
+    },
+    {
+      "claim_id": "9491a2fe8c960ebf",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Kapoor",
+      "object": "Marketplace onboarding UX scenarios and fallback clauses"
+    },
+    {
+      "claim_id": "97fea0413a834358",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Amelia Park",
+      "object": "Marketplace onboarding UX scenarios and fallback clauses"
+    },
+    {
+      "claim_id": "c565b74d52e9d441",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ravi Menon",
+      "object": "Marketplace onboarding UX scenarios and fallback clauses"
+    },
+    {
+      "claim_id": "6662fc306f6033d8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ravi Shah",
+      "object": "Cross-model embedding format incompatibility causing rerank queue buildup and degraded latency"
+    },
+    {
+      "claim_id": "6aba5fb7b057f892",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Developer Experience",
+      "object": "Cross-model embedding format incompatibility causing rerank queue buildup and degraded latency"
+    },
+    {
+      "claim_id": "7b02dc626ba1d45d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Smart Routing",
+      "object": "Noisy-neighbor tail latency increase for non-burst Dedicated tenant during another tenant’s burst window (us-east / H100)"
+    },
+    {
+      "claim_id": "857ed9ecaa49cffa",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "21ffc6474167ac01",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marco Silva",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "7044472139ad2946",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Leila Park",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "2b8aaff47f0586f2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Omar Rahman",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "fe56fafec52f6da5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Finance",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "b994c5e95bc7e129",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Support",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "4daa42337da76fe1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Legal",
+      "object": "Hosted API Lite Slate: PRD, Scope Clarification, Acceptance Criteria & Launch Checklist"
+    },
+    {
+      "claim_id": "311c4e3ab194dd88",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Diego Morales",
+      "object": "Stuck canary state and version pinning: timeline, root cause, and remediation"
+    },
+    {
+      "claim_id": "e7a650b1fddbd959",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Claire Ng",
+      "object": "Stuck canary state and version pinning: timeline, root cause, and remediation"
+    },
+    {
+      "claim_id": "f9464972f6a4124b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Product",
+      "object": "Stuck canary state and version pinning: timeline, root cause, and remediation"
+    },
+    {
+      "claim_id": "8a6bc85a158aea96",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Security",
+      "object": "Stuck canary state and version pinning: timeline, root cause, and remediation"
+    },
+    {
+      "claim_id": "d32c9942282b71a3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Rina Kobayashi",
+      "object": "FP8/INT8 kernel benchmarking sprint epic (runtime perf suite + rollout decisions)"
+    },
+    {
+      "claim_id": "f8b5d3a5c303086a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jonas Weber",
+      "object": "FP8/INT8 kernel benchmarking sprint epic (runtime perf suite + rollout decisions)"
+    },
+    {
+      "claim_id": "98770fa0163dd74c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Rafael Mendes",
+      "object": "FP8/INT8 kernel benchmarking sprint epic (runtime perf suite + rollout decisions)"
+    },
+    {
+      "claim_id": "191b97d147a92b8f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Eng",
+      "object": "Rosetta: Precision Embed Quality Harness and Drift Ops"
+    },
+    {
+      "claim_id": "48df13456310494e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Aisha",
+      "object": "candidate-shadow-week-summary-team-health-feb28-2026"
+    },
+    {
+      "claim_id": "ed4d7b9b7c1e3e91",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ben",
+      "object": "candidate-shadow-week-summary-team-health-feb28-2026"
+    },
+    {
+      "claim_id": "c8e356ab1ce95ad7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Riley",
+      "object": "candidate-shadow-week-summary-team-health-feb28-2026"
+    },
+    {
+      "claim_id": "3dddb403e08b6c71",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Daniel Rios",
+      "object": "Customer Governance Milestone Logbook - inference rollout"
+    },
+    {
+      "claim_id": "5f6ad47d6cb5c74c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Kapoor",
+      "object": "Customer Governance Milestone Logbook - inference rollout"
+    },
+    {
+      "claim_id": "f05431355be4299f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Chen",
+      "object": "Customer Governance Milestone Logbook - inference rollout"
+    },
+    {
+      "claim_id": "d9758917375b9aca",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Leah",
+      "object": "Customer Governance Milestone Logbook - inference rollout"
+    },
+    {
+      "claim_id": "cd04f3ec5d524c3d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Security",
+      "object": "Customer Governance Milestone Logbook - inference rollout"
+    },
+    {
+      "claim_id": "40b6faa873d6dfb3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jorge Alvarez",
+      "object": "Customer Governance Milestone Logbook - inference rollout"
+    },
+    {
+      "claim_id": "1da093f138c737da",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Rafael Mendes",
+      "object": "Incidents runbook: overload behavior with tiered batching defaults (fast/standard/cost-efficient)"
+    },
+    {
+      "claim_id": "c2d4ec12cace9343",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Allison Grant",
+      "object": "Incidents runbook: overload behavior with tiered batching defaults (fast/standard/cost-efficient)"
+    },
+    {
+      "claim_id": "68a47c55570099f7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Aisha Bello",
+      "object": "Incidents runbook: overload behavior with tiered batching defaults (fast/standard/cost-efficient)"
+    },
+    {
+      "claim_id": "7bf438e758d183e0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Thompson",
+      "object": "oncall-rotation-onboarding-and-slo-ownership-runbook-2024"
+    },
+    {
+      "claim_id": "daaec0a63633e6df",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Anjali Rao",
+      "object": "Forensic Readiness: Authorization Chain & Evidence Orchestration Playbook"
+    },
+    {
+      "claim_id": "5847d63446e7924e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Applied",
+      "object": "Offline-to-Online Quality Checker and Continuity Spec"
+    },
+    {
+      "claim_id": "5c4bbe0d0ac132d5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Aisha",
+      "object": "Offline-to-Online Quality Checker and Continuity Spec"
+    },
+    {
+      "claim_id": "0812f9f50556ebd0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Elliot Price",
+      "object": "Internal: add Sales Demo Guide v1 (runbook links + backup mode)"
+    },
+    {
+      "claim_id": "ee3034cafaa3d659",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Markus Klein",
+      "object": "Internal: add Sales Demo Guide v1 (runbook links + backup mode)"
+    },
+    {
+      "claim_id": "50b4f2555b7f48a0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Optimize",
+      "object": "Optimize 1.3 release notes — Performance Profiles & Cost Telemetry"
+    },
+    {
+      "claim_id": "4cc8c0ae2a8cdca5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Deepa Nair",
+      "object": "Optimize 1.3 release notes — Performance Profiles & Cost Telemetry"
+    },
+    {
+      "claim_id": "39aa3f39138163f6",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Depot Ops",
+      "object": "Dock ACPI _DSM change reorders kernel modules and breaks encrypted-home mount during Linux provisioning"
+    },
+    {
+      "claim_id": "4235c0893fae59df",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marcus",
+      "object": "Dock ACPI _DSM change reorders kernel modules and breaks encrypted-home mount during Linux provisioning"
+    },
+    {
+      "claim_id": "372baabcf0f8455f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Each",
+      "object": "Add SLO→Customer Impact Classifier & Remediation Workflow doc (v2 scoring + updated comms)"
+    },
+    {
+      "claim_id": "ee74ee56ba6c267c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Natarajan",
+      "object": "Add SLO→Customer Impact Classifier & Remediation Workflow doc (v2 scoring + updated comms)"
+    },
+    {
+      "claim_id": "ffdc9686f31e968d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Samir",
+      "object": "KV cache compaction experiments tracker (parameter sweeps + defaults)"
+    },
+    {
+      "claim_id": "8d70a8ef1d46e45d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Riya Patel",
+      "object": "Outcome-driven quarterly lanes for Hosted API + Model Catalog"
+    },
+    {
+      "claim_id": "bb1825061133b849",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ethan Moore",
+      "object": "Outcome-driven quarterly lanes for Hosted API + Model Catalog"
+    },
+    {
+      "claim_id": "bdd0f8fa10440fd0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Analytics",
+      "object": "Outcome-driven quarterly lanes for Hosted API + Model Catalog"
+    },
+    {
+      "claim_id": "fb0439e22ce9f4c8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Daniel Wu",
+      "object": "Session-aware cost tuning playbook"
+    },
+    {
+      "claim_id": "42a008d91c166063",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Chen",
+      "object": "Developer consumption sizing and packaging playbook"
+    },
+    {
+      "claim_id": "a2d28d66ade5d3f5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Patel",
+      "object": "Developer consumption sizing and packaging playbook"
+    },
+    {
+      "claim_id": "20c0233dc0317012",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Diego Martinez",
+      "object": "Developer consumption sizing and packaging playbook"
+    },
+    {
+      "claim_id": "75c8b9fbc893ee1e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Claire Nguyen",
+      "object": "Developer consumption sizing and packaging playbook"
+    },
+    {
+      "claim_id": "2fbbdd63bb89f97d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jonah Patel",
+      "object": "Staging validation and publish playbook for Redwood-verified model performance profiles"
+    },
+    {
+      "claim_id": "4410fccee383e45a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jonah",
+      "object": "Staging validation and publish playbook for Redwood-verified model performance profiles"
+    },
+    {
+      "claim_id": "b9450c6f6eadc7f7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Nair",
+      "object": "Operator feedback playback and cost-debt reconciliation"
+    },
+    {
+      "claim_id": "c9cb532c152ae673",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Soojin Lee",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "03864432af3e3837",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Wei Chen",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "f6f17bdc0540dd43",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jean",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "9be18bb511339a2b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jasmine Liu",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "652e06e3b84b0f32",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Alicia Perez",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "d75d4b29027d48f7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Camila Reyes",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "025b5d0354131301",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Cole Summers",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "caf5cb806a0e3b9b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Stephanie Nguyen",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "479f5af24a6d92da",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Laura Bennett",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "32189148c0869a80",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Emily Stone",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "e1b37f62a380ba50",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Naomi Feldman",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "262138cfdcfe8d3f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marcus Lin",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "8fe68e8489bb2ce0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Olga Petrov",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "69296e5d8812ea01",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ethan Park",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "0d5277ba36b128ab",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Chloe Martin",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "44dcb67b0f00a38f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Nadia Rahman",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "b9ede8c0df4f57a9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Elliot Price",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "ca1064b721d28c1e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Chris Osei",
+      "object": "AWS Marketplace submission checklist (listing + offer + security packet + onboarding)"
+    },
+    {
+      "claim_id": "7793ee2ba63e9174",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Product",
+      "object": "Scheduled Launch Capacity Safeguard & Post-Event Incident Template"
+    },
+    {
+      "claim_id": "b14b02593e1043ca",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Capacity",
+      "object": "Scheduled Launch Capacity Safeguard & Post-Event Incident Template"
+    },
+    {
+      "claim_id": "8e524192e60c7b72",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Platform",
+      "object": "Scheduled Launch Capacity Safeguard & Post-Event Incident Template"
+    },
+    {
+      "claim_id": "efd7340c9dd1cf19",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Traffic Ops",
+      "object": "Scheduled Launch Capacity Safeguard & Post-Event Incident Template"
+    },
+    {
+      "claim_id": "07151aa8e8197504",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Observability",
+      "object": "Scheduled Launch Capacity Safeguard & Post-Event Incident Template"
+    },
+    {
+      "claim_id": "1bfe54533ea73005",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Elena Martinez",
+      "object": "Attention Kernel Symmetry Mapper + Prefill Heuristics"
+    },
+    {
+      "claim_id": "b42de28ecd417a90",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Aisha Patel",
+      "object": "Pitch playbook: compact economics & risk scripts"
+    },
+    {
+      "claim_id": "ecc49c1749ab4b61",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya",
+      "object": "Tailback pressure causes 504 timeout for hyperlength single-turn generation with streaming"
+    },
+    {
+      "claim_id": "b05b9d11b4f17d16",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Natarajan",
+      "object": "Service boundary evaluation and quantization migration checklist"
+    },
+    {
+      "claim_id": "cac075e5fbd544ac",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jamal Carter",
+      "object": "Service boundary evaluation and quantization migration checklist"
+    },
+    {
+      "claim_id": "3ef6880fb207edb1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Platform",
+      "object": "Day-2 Automation, Upgrade & Rollback Runbook for Private Deployments"
+    },
+    {
+      "claim_id": "4d57473e42abe3b1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Nair",
+      "object": "Error Budget Orchestration & Cutover Plan — Q3 2026"
+    },
+    {
+      "claim_id": "35fc9be16e2e9081",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Sofia Martinez",
+      "object": "Error Budget Orchestration & Cutover Plan — Q3 2026"
+    },
+    {
+      "claim_id": "1bfc6ef1a45b2d58",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ethan Cole",
+      "object": "Error Budget Orchestration & Cutover Plan — Q3 2026"
+    },
+    {
+      "claim_id": "ef31a8ffa4202259",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Lina Park",
+      "object": "NVLink interconnect degradation and remediation playbook"
+    },
+    {
+      "claim_id": "da46d9622fe33ab1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Maya Chen",
+      "object": "backward-compatibility-strategies-for-streaming-endpoints-2026"
+    },
+    {
+      "claim_id": "cf5be65a38105dd5",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Med' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Med",
+      "object": "MAP & contract sequencing for MedCord pilot"
+    },
+    {
+      "claim_id": "7f4e7677e194cee3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Nair",
+      "object": "Stuck model pin after canary throttle suppression causes routing to legacy variant"
+    },
+    {
+      "claim_id": "c40c398d06402bbd",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Karthik' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Karthik",
+      "object": "Hybrid provisioning ETA synchronization for ACME AI"
+    },
+    {
+      "claim_id": "a880a7b981d9e481",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Tomasz' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Tomasz",
+      "object": "Hybrid provisioning ETA synchronization for ACME AI"
+    },
+    {
+      "claim_id": "860832336c48cec2",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Sarah' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Sarah",
+      "object": "Hybrid provisioning ETA synchronization for ACME AI"
+    },
+    {
+      "claim_id": "5dc60d9d27659d67",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Field Engineering",
+      "object": "Deployment Conformance Crosswalk and Checklist"
+    },
+    {
+      "claim_id": "e57a28d53dbc47b4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "INT-4021",
+      "object": "Jared Kim (SRE)"
+    },
+    {
+      "claim_id": "fddd49b0b4b60e6d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Snapshot/compaction job",
+      "object": "coalescer flush"
+    },
+    {
+      "claim_id": "c57d702f6157ff53",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'nina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "nina",
+      "object": "draft RFC + runbook"
+    },
+    {
+      "claim_id": "8e2d50d02972d8a4",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'nina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "nina",
+      "object": "compact profile contract for fp8/int8 rollouts"
+    },
+    {
+      "claim_id": "edb5b75b269139a3",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'omar' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "omar",
+      "object": "minimal manifest"
+    },
+    {
+      "claim_id": "d25da00e4c811c6d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'sasha' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "sasha",
+      "object": "runtime preflight"
+    },
+    {
+      "claim_id": "8fce32848aa2d2e8",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'ops-bot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "ops-bot",
+      "object": "canaries"
+    },
+    {
+      "claim_id": "1cf70a725abe8be4",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marissa (Privacy Ops) and Ben (SRE/SE)' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marissa (Privacy Ops) and Ben (SRE/SE)",
+      "object": "technical deep dive"
+    },
+    {
+      "claim_id": "93f7726520a4c458",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Greenline' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Greenline",
+      "object": "Redwood"
+    },
+    {
+      "claim_id": "bbb4ae72676f3f9c",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Jonas Weber' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Jonas Weber",
+      "object": "technical deep dive"
+    },
+    {
+      "claim_id": "f5de64eb942d94a7",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Jonas Weber' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Jonas Weber",
+      "object": "Solutions Lead, Redwood Inference"
+    },
+    {
+      "claim_id": "77d1a8b760bdebf4",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Greenline' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "Greenline",
+      "object": "internal policy excerpt"
+    },
+    {
+      "claim_id": "f4429a8381d2e454",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "SDK experiments",
+      "object": "bench harness and bootstrapping pathways (working notes)"
+    },
+    {
+      "claim_id": "78789a83e4b54fa3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Bot",
+      "object": "structured metadata"
+    },
+    {
+      "claim_id": "701c8a304210522b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Bot",
+      "object": "declare incidents by itself"
+    },
+    {
+      "claim_id": "8ee2206a400ef412",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Bot",
+      "object": "flapping"
+    },
+    {
+      "claim_id": "8cf52adcfe51ac87",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Automated action",
+      "object": "audit trail + idempotency key"
+    },
+    {
+      "claim_id": "b6f436c6fcbf2b13",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Bot",
+      "object": "conservative approach"
+    },
+    {
+      "claim_id": "19d1b2f544635d50",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Bot",
+      "object": "low cognitive load"
+    },
+    {
+      "claim_id": "0c8874e407ca752a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Draft generator",
+      "object": "title suggestion"
+    },
+    {
+      "claim_id": "7a5ee8dc7d6cb2a5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Human",
+      "object": "accountability"
+    },
+    {
+      "claim_id": "0a83b4ca4f0f3de2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Connor",
+      "object": "support"
+    },
+    {
+      "claim_id": "2571a88584791704",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "SDK",
+      "object": "AbortController support"
+    },
+    {
+      "claim_id": "3b09199a29d73156",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Customer",
+      "object": "request"
+    },
+    {
+      "claim_id": "e22f99f14a5dca62",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Customer",
+      "object": "AbortController support"
+    },
+    {
+      "claim_id": "1c118b939aeda3d7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Avery",
+      "object": "request"
+    },
+    {
+      "claim_id": "82bcfa8c0fb13b81",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Redwood",
+      "object": "send written explanation of attempt-level billing and how retries/timeouts affect usage"
+    },
+    {
+      "claim_id": "03723c1fa0af0aaa",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Northwind' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Northwind",
+      "object": "share a 24h slice of client retry metrics (timeouts, cancel rate)"
+    },
+    {
+      "claim_id": "ee554c3daf1efd34",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "control plane toggle",
+      "object": "all active Private clusters"
+    },
+    {
+      "claim_id": "edb157ce0bfda1f2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "image digest drift + webhook CA skew",
+      "object": "automated in-place remediation"
+    },
+    {
+      "claim_id": "5659dc78d88a708b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "nodeagent image",
+      "object": "operator crashloop"
+    },
+    {
+      "claim_id": "10df948093aa6929",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "webhook CA bundle",
+      "object": "webhook TLS verification"
+    },
+    {
+      "claim_id": "c0d561fb6fd43d06",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "preflight validation",
+      "object": "image digest referenced in the rendered chart exists in the target registry"
+    },
+    {
+      "claim_id": "8e7d4034550d675b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "runtime-1.12.1-hotfix1",
+      "object": "nodeagent images"
+    },
+    {
+      "claim_id": "75e2d0e0d3a0599e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "changelog micro-delta algorithm",
+      "object": "nearest anchor snapshot"
+    },
+    {
+      "claim_id": "779473012fc56387",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "anchor snapshot generator",
+      "object": "compact signature (SHA256 of canonicalized profile + seed)"
+    },
+    {
+      "claim_id": "51e525fd2cdfdeb4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "rollback_playbook generator",
+      "object": "step-by-step actions (rollback candidate, validation prompt sets, fast compare commands)"
+    },
+    {
+      "claim_id": "1ad02849c58207ef",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "backfill script",
+      "object": "anchors for historical profiles"
+    },
+    {
+      "claim_id": "ad467aa60b91ee6b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "scheduler chart",
+      "object": "periodic stability windows for high-traffic models"
+    },
+    {
+      "claim_id": "8478bbe1a43e08e1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "seeded sampling",
+      "object": "deterministic indices from the profile's example corpus"
+    },
+    {
+      "claim_id": "5c4f4f6ffcee83c3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "rollback playbook generator",
+      "object": "compact YAML with recommended validation prompts and quick-compare commands"
+    },
+    {
+      "claim_id": "943355d1bef96255",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "StabilityWindow abstraction",
+      "object": "model registry metadata (start_ts, end_ts, seed, snapshot_id)"
+    },
+    {
+      "claim_id": "bd6efd9b3b6704e4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Telemetry events",
+      "object": "anchor creation and rollback playbook generation"
+    },
+    {
+      "claim_id": "2a2c5c836a2038be",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "telemetry events",
+      "object": "anchor.created, rollback.generated"
+    },
+    {
+      "claim_id": "ba490f204893dad0",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'samir' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "samir",
+      "object": "swap examples from X-Rate-Limit to x-rw-metering (usage=...;unit=tokens)"
+    },
+    {
+      "claim_id": "5021e1330eb7d114",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'cheng' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "cheng",
+      "object": "Grafana panel moved to new path /d/usage-insights?panelId=73"
+    },
+    {
+      "claim_id": "3083b9893aad6043",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'olivia' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "olivia",
+      "object": "Add a short migration FAQ"
+    },
+    {
+      "claim_id": "0838e8dfb123acb1",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'docs-bot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "docs-bot",
+      "object": "preview deployed at https://staging-docs.redwood.ai/rate-limits?pr=4522"
+    },
+    {
+      "claim_id": "eb7f30bf1de44834",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'maria.docs' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "maria.docs",
+      "object": "merge after CI unless issues"
+    },
+    {
+      "claim_id": "7a4e403e265a24a9",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'maria.docs' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "maria.docs",
+      "object": "Quick PR for quotas & pricing docs to adopt new metering header and refresh dashboards"
+    },
+    {
+      "claim_id": "38b5aa7755c95274",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'maria' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "maria",
+      "object": "product"
+    },
+    {
+      "claim_id": "97c94cbb85255e53",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'mock' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "mock",
+      "object": "tiny speech chip attached to the pill"
+    },
+    {
+      "claim_id": "5930ef2c6414049f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'lina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "lina",
+      "object": "quick design review 44 proposal"
+    },
+    {
+      "claim_id": "a607e4a96b42ec61",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "cross-functional planning retreat",
+      "object": "align Q2 initiatives"
+    },
+    {
+      "claim_id": "6ff3d9380f3550c9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "cross-functional planning retreat",
+      "object": "surface risk"
+    },
+    {
+      "claim_id": "3c2ddc3201db9633",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "cross-functional planning retreat",
+      "object": "produce a starter OKR set"
+    },
+    {
+      "claim_id": "42f10173c0887fb9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "cross-functional planning retreat",
+      "object": "shared north star for Q2"
+    },
+    {
+      "claim_id": "0c9ec5b55c313eb8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "chat completion requests",
+      "object": "prompts exceeding ~120KB"
+    },
+    {
+      "claim_id": "cd38be2fbaf54aca",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Eng (Hiro)",
+      "object": "increase of default http.Client timeout to 5m"
+    },
+    {
+      "claim_id": "a066bfc38cd0ea31",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Eng (Hiro)",
+      "object": "default http.Client timeout"
+    },
+    {
+      "claim_id": "4a7469e62f38dd1f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "service oncall",
+      "object": "platform-autoscaler"
+    },
+    {
+      "claim_id": "da803046c0e8cba3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "service oncall",
+      "object": "capacity team"
+    },
+    {
+      "claim_id": "d3c8e7ac692cb1dc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "service oncall",
+      "object": "runtime team"
+    },
+    {
+      "claim_id": "9c45b417a1220747",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Add region tag + verification test' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Add region tag + verification test",
+      "object": "ravi"
+    },
+    {
+      "claim_id": "d5a102c548fa78e6",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'clarify SOC2 evidence expectations' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "clarify SOC2 evidence expectations",
+      "object": "claire"
+    },
+    {
+      "claim_id": "973011dfb916452c",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'emma' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "emma",
+      "object": "append SOC2 mapping to checklist"
+    },
+    {
+      "claim_id": "cd0a142aa9a9e643",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'emma' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "emma",
+      "object": "merge this with main checklist doc and send to sales"
+    },
+    {
+      "claim_id": "d80dea20bd09b59e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "installer migrate CLI",
+      "object": "migration preflight command"
+    },
+    {
+      "claim_id": "919b7ff01144b212",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "terraform module inputs",
+      "object": "migration_lock_ttl"
+    },
+    {
+      "claim_id": "a766994cedc899d4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "pre-upgrade hook",
+      "object": "migration"
+    },
+    {
+      "claim_id": "f0fdd3e36811dc13",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "migration.dry_run=true path",
+      "object": "sandbox execution"
+    },
+    {
+      "claim_id": "6bcddd66d30d933a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "MigrationLock controller",
+      "object": "cluster-scoped consensus lease"
+    },
+    {
+      "claim_id": "d4c6d94aaf6e15a2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "BackupManifest CRD",
+      "object": "checksum and object path"
+    },
+    {
+      "claim_id": "aece8b1bbb37433e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "metrics",
+      "object": "migration_lock_acquired_total, backup_verification_status"
+    },
+    {
+      "claim_id": "538c102165a55696",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "TenantQuiesce subcontroller",
+      "object": "annotation of ingress proxies"
+    },
+    {
+      "claim_id": "2f51285f203decb3",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'kiran_csm' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "kiran_csm",
+      "object": "micro-runbook for customers"
+    },
+    {
+      "claim_id": "5066e544d5ad66e2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Redwood support personnel",
+      "object": "outside the EU"
+    },
+    {
+      "claim_id": "e41f587ed573a404",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Prompts/responses",
+      "object": "logs for the HelioHealth tenant"
+    },
+    {
+      "claim_id": "f574e6181929df87",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "eng-sre and QA",
+      "object": "coordinate canary rollout"
+    },
+    {
+      "claim_id": "93541c9f5eec9a37",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "legacy feature flags",
+      "object": "experimental batching and KV-cache heuristics"
+    },
+    {
+      "claim_id": "64b9dece60ef9cd7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "SUP-1842",
+      "object": "NO_CONTENT_LOGGING flag guidance"
+    },
+    {
+      "claim_id": "4871da8dfb56b638",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Priya Nair",
+      "object": "security review"
+    },
+    {
+      "claim_id": "e87613040a934772",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Procurement",
+      "object": "security addendum"
+    },
+    {
+      "claim_id": "9225d3d9c76f19c7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Security",
+      "object": "never stored at rest for content"
+    },
+    {
+      "claim_id": "1404aada9eb9a092",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Written confirmation",
+      "object": "zero retention of prompt/response bodies"
+    },
+    {
+      "claim_id": "b54aa22d85d47d10",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "engineering PR",
+      "object": "Design Lead and PM"
+    },
+    {
+      "claim_id": "b4f6d8c974c52d75",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "hero",
+      "object": "Lottie"
+    },
+    {
+      "claim_id": "5892cccd2ca279da",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "optional 'press k to jump to steps' enhancement",
+      "object": "existing console shortcuts"
+    },
+    {
+      "claim_id": "1f3a32da728446db",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Hero micro-animations",
+      "object": "40ms jank budget"
+    },
+    {
+      "claim_id": "db82a8b2804adeb0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Accordion animation",
+      "object": "Web Animations API approach"
+    },
+    {
+      "claim_id": "617beb6d1455b775",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "hero",
+      "object": "Redwood Inference’s core value"
+    },
+    {
+      "claim_id": "340f894028ce3803",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "step accordion",
+      "object": "step-by-step onboarding"
+    },
+    {
+      "claim_id": "ecc701777571381d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "engineering",
+      "object": "final step content"
+    },
+    {
+      "claim_id": "7ce21576e493cc40",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'rolebinding YAML' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "rolebinding YAML",
+      "object": "nina"
+    },
+    {
+      "claim_id": "d8ff39a0d9782de7",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'break-glass window' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "break-glass window",
+      "object": "oncall-sre"
+    },
+    {
+      "claim_id": "2e1c7524971641f5",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'nina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "nina",
+      "object": "ticket INF-8042"
+    },
+    {
+      "claim_id": "dad50e14ce63831e",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'rolebinding YAML' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "rolebinding YAML",
+      "object": "temp-debug-logs-exec"
+    },
+    {
+      "claim_id": "3735f7302a139a31",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'rolebinding YAML' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "rolebinding YAML",
+      "object": "temp-debug-nina-inf8042"
+    },
+    {
+      "claim_id": "5681cbe8912d03ab",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'security-bot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "security-bot",
+      "object": "privileged-access policy"
+    },
+    {
+      "claim_id": "84e327c0d7bce06a",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marcus Lin' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Marcus Lin",
+      "object": "Redwood Inference"
+    },
+    {
+      "claim_id": "c79abd9b143fd302",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "Redwood Inference",
+      "object": "3-hour window"
+    },
+    {
+      "claim_id": "5a2ec997aeefb612",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Dedicated capacity validation' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Dedicated capacity validation",
+      "object": "H100 vs A100"
+    },
+    {
+      "claim_id": "24ec201b0fc7138d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'GPU comparison' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "GPU comparison",
+      "object": "H100 vs A100"
+    },
+    {
+      "claim_id": "0ac28e4d0748ec9d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'test plan' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "test plan",
+      "object": "metrics"
+    },
+    {
+      "claim_id": "7cb5ade27000bc67",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Elaine Park' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Elaine Park",
+      "object": "Platform"
+    },
+    {
+      "claim_id": "87a06fe9557aaef8",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marcus Lin' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Marcus Lin",
+      "object": "Redwood Inference"
+    },
+    {
+      "claim_id": "732bf166fa7b8e1a",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marcus Lin' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "Marcus Lin",
+      "object": "redwood_proposed_test_plan.pdf"
+    },
+    {
+      "claim_id": "af16e6853a6ba114",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "Python and Node SDKs"
+    },
+    {
+      "claim_id": "b53351e1f87c2356",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "SOC2"
+    },
+    {
+      "claim_id": "ffd51665b08fe8fa",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "KMS/HSM integrations on Private"
+    },
+    {
+      "claim_id": "dbdfae8ecc382ade",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "structured logs to Seq/Datadog/Splunk"
+    },
+    {
+      "claim_id": "98c3ad96f3d534dc",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "RedwoodLLM wrapper"
+    },
+    {
+      "claim_id": "c4fa44413920150c",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "LlamaIndex example"
+    },
+    {
+      "claim_id": "311564c4a086f0fe",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "proxy with websockets or chunked responses"
+    },
+    {
+      "claim_id": "00a5e78ffb43ec62",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood",
+      "object": "direct connection from client to Redwood streaming endpoint"
+    },
+    {
+      "claim_id": "3bc68067ce57c00f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Kevin Miller' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Kevin Miller",
+      "object": "Sr. Procurement Manager"
+    },
+    {
+      "claim_id": "9255417e64bb81cf",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Orbital Health customer content' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "Orbital Health customer content",
+      "object": "Redwood model improvement"
+    },
+    {
+      "claim_id": "dadfe32e9bc23cc0",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "Redwood",
+      "object": "model improvement"
+    },
+    {
+      "claim_id": "1eb3dad4d4861741",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Redwood",
+      "object": "tenant-level account setting and API-level request flag"
+    },
+    {
+      "claim_id": "2116ee159755f715",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Redwood",
+      "object": "30 days' notice for new subprocessors"
+    },
+    {
+      "claim_id": "72b0eb3041171531",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Redwood",
+      "object": "SCCs for EU transfers"
+    },
+    {
+      "claim_id": "65bf6e12d56be788",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Redwood",
+      "object": "Data Privacy Framework"
+    },
+    {
+      "claim_id": "635fded21ba08991",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Redwood",
+      "object": "US-only residency for PHI-adjacent workloads"
+    },
+    {
+      "claim_id": "a672ccf7263a5503",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Orbital' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Orbital",
+      "object": "prompts and model outputs"
+    },
+    {
+      "claim_id": "2b1724fceb011e93",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "Redwood",
+      "object": "security questionnaires"
+    },
+    {
+      "claim_id": "4ef9316a4baf1b28",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'sara' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "sara",
+      "object": "hotfix/kv-evict-fix"
+    },
+    {
+      "claim_id": "cc9a33c329467015",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'max' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "max",
+      "object": "monitor window"
+    },
+    {
+      "claim_id": "d1f27f43e0f814e2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Control plane",
+      "object": "central API for route rules, traffic weights, rollout orchestration, and policy evaluation"
+    },
+    {
+      "claim_id": "079597da33b68c53",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Data plane (regional)",
+      "object": "inference pods, autoscaling groups, local cache (KV/prefix), and request proxies"
+    },
+    {
+      "claim_id": "20fbbe538aea4a20",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Routing policies",
+      "object": "latency-priority, cost-priority, affinity-by-customer, capacity-tiered (Dedicated vs Hosted fallback), and canary/gradual rollouts"
+    },
+    {
+      "claim_id": "257b2f6842b365d2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Safeguards",
+      "object": "circuit-breakers, per-route rate limits, automatic fallback to compatible model variants, and region-fallback (policy precedence)"
+    },
+    {
+      "claim_id": "c1ed4e4f9fa68659",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Traffic weights",
+      "object": "distribution percentages per route variant/region"
+    },
+    {
+      "claim_id": "5dc06c590bbc3dc6",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Fallback rules",
+      "object": "ordered list where the control plane will try next compatible variant/region on failure"
+    },
+    {
+      "claim_id": "67ca10de313eea20",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Circuit breaker thresholds",
+      "object": "consecutive errors, p95 latency, and token loss rate"
+    },
+    {
+      "claim_id": "d69f4217fd6a5a4c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Health probes",
+      "object": "control-plane agent health, model-liveness, and KV cache readiness"
+    },
+    {
+      "claim_id": "d01fa231f1bafdfc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Runbook pattern",
+      "object": "severity, trigger, immediate mitigation, durable mitigation, verify, post-incident notes"
+    },
+    {
+      "claim_id": "41f0f090e48bef1e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "BlueHarbor Insurance",
+      "object": "LLMs"
+    },
+    {
+      "claim_id": "6e85dd87d170f768",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "BlueHarbor Insurance",
+      "object": "heavy broker network"
+    },
+    {
+      "claim_id": "f13c500897473e10",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "BlueHarbor Insurance",
+      "object": "~1.2k employees"
+    },
+    {
+      "claim_id": "1282363fd06dadb1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Liam O'Neill",
+      "object": "expose prefetch_budget via runtime API"
+    },
+    {
+      "claim_id": "7d23ac98be959d2a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Arjun Patel",
+      "object": "add a unit test for cross-core steal path"
+    },
+    {
+      "claim_id": "f557bd1c51188b58",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Hannah Brooks",
+      "object": "intermittent CI failure on integration tests"
+    },
+    {
+      "claim_id": "016717a4e6c81b68",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "CI Bot",
+      "object": "integration-tests failed on first run due to race in highway_ring"
+    },
+    {
+      "claim_id": "0316ba3b61c571da",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Maya Chen",
+      "object": "cross-core steal test"
+    },
+    {
+      "claim_id": "95b8a66673445396",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Maya Chen",
+      "object": "kv.prefetch.budget_used metric"
+    },
+    {
+      "claim_id": "b21e2e9428c25aac",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Invoice recipient' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Invoice recipient",
+      "object": "Redwood Inference Inc."
+    },
+    {
+      "claim_id": "1cf4f285453beb69",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Net45' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Net45",
+      "object": "PO issued to the correct billing entity"
+    },
+    {
+      "claim_id": "0e5770adadee1efc",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Procurement' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Procurement",
+      "object": "net terms preference"
+    },
+    {
+      "claim_id": "f8bafe32e4c6f4f2",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Billing entity' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Billing entity",
+      "object": "Pelion Health Ltd (UK)"
+    },
+    {
+      "claim_id": "eaae4f55c0a52687",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Legal' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "Legal",
+      "object": "order form"
+    },
+    {
+      "claim_id": "08b7f4a0907a240e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Security team",
+      "object": "break-glass support access"
+    },
+    {
+      "claim_id": "fc258bf47efce9ec",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Customer request",
+      "object": "EU-only serving/storage"
+    },
+    {
+      "claim_id": "7ee06a4b48d917e1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Exception agreed",
+      "object": "allow out-of-region support personnel access to audit logs/operational metadata via break-glass"
+    },
+    {
+      "claim_id": "950bc7fd4c385677",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Reminder",
+      "object": "do not promise 'all support personnel in EU'; promise controls + logging"
+    },
+    {
+      "claim_id": "cf68713a9dcdd99f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Kyle Peters' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Kyle Peters",
+      "object": "Platform Partnerships"
+    },
+    {
+      "claim_id": "579a965a5494ba9e",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marcus Lin' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Marcus Lin",
+      "object": "Customer Success — Dedicated & Private"
+    },
+    {
+      "claim_id": "f90a1d03369f61d3",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Kyle Peters' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Kyle Peters",
+      "object": "NeuroVista_Requested_Terms_v1.pdf"
+    },
+    {
+      "claim_id": "175c16e34ec6b955",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marcus Lin' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Marcus Lin",
+      "object": "redwood_capacity_mapping.xlsx"
+    },
+    {
+      "claim_id": "8fd27ad8c63a7cb7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "View cost",
+      "object": "workspace role/permission"
+    },
+    {
+      "claim_id": "88a23774dfcfb76d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Export",
+      "object": "export permission"
+    },
+    {
+      "claim_id": "2b9311cbfa23cd58",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Share links",
+      "object": "share permission"
+    },
+    {
+      "claim_id": "94f013b4a039bb5e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "UI",
+      "object": "workspace settings"
+    },
+    {
+      "claim_id": "ff5b87579240c169",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Permission-driven UI states",
+      "object": "Section 9"
+    },
+    {
+      "claim_id": "ee56c9e2baf88358",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Usage Insights (Beta)",
+      "object": "Console → Usage & Cost"
+    },
+    {
+      "claim_id": "206961c40ffe5994",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Redwood Inference",
+      "object": "weighting rule for credit calculation"
+    },
+    {
+      "claim_id": "c819f36df6d25f39",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Redwood Inference",
+      "object": "latency measurement"
+    },
+    {
+      "claim_id": "ef5c3fcb52659474",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Redwood Inference",
+      "object": "evidence turnaround"
+    },
+    {
+      "claim_id": "63a2e87847ada526",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Redwood Inference",
+      "object": "evidence turnaround for complex incidents"
+    },
+    {
+      "claim_id": "027f57536e1c1a86",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Redwood Inference",
+      "object": "internal review process"
+    },
+    {
+      "claim_id": "6eeb566a3e117cf9",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood Inference",
+      "object": "service availability metric"
+    },
+    {
+      "claim_id": "25ee956af432575a",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood Inference",
+      "object": "evidence set for crediting"
+    },
+    {
+      "claim_id": "cd0411204456fa8d",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Redwood Inference' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Redwood Inference",
+      "object": "redaction policy"
+    },
+    {
+      "claim_id": "a640bcd5b22098a7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Python streaming chat docs",
+      "object": "new imports"
+    },
+    {
+      "claim_id": "9e1335ea0c7fd3cd",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Fixes documentation for Python streaming chat example",
+      "object": "current SDK import path"
+    },
+    {
+      "claim_id": "0eaf3d2f5493d98d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "docs",
+      "object": "python streaming import paths"
+    },
+    {
+      "claim_id": "2ff469b1c514c1fd",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Author (Avery)",
+      "object": "note: requires >=1.8.0"
+    },
+    {
+      "claim_id": "b844db2e59eefa94",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Reviewer (Naomi)",
+      "object": "note about minimum SDK version"
+    },
+    {
+      "claim_id": "65c45008a6b0bf64",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Redwood Inference",
+      "object": "requests that would violate policy"
+    },
+    {
+      "claim_id": "9e17c7627fbca4d5",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Acme' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Acme",
+      "object": "Dedicated reserved pool"
+    },
+    {
+      "claim_id": "6e2cdc164108485a",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Acme' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "Acme",
+      "object": "hosted roadmap (low-latency tier)"
+    },
+    {
+      "claim_id": "e8540a7ee270d6a4",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Acme' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Acme",
+      "object": "renewal"
+    },
+    {
+      "claim_id": "9a9bd6c67147b831",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Acme' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Acme",
+      "object": "renewal"
+    },
+    {
+      "claim_id": "cb195b07b8e866c8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "SRE/Performance Engineer",
+      "object": "p95/p99 numbers"
+    },
+    {
+      "claim_id": "c9ecd007287a3929",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Procurement/Legal",
+      "object": "caps on liability"
+    },
+    {
+      "claim_id": "30d135e52541ad1b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Product/ML engineering",
+      "object": "predictable per-request latency"
+    },
+    {
+      "claim_id": "f30e0dbc936b8465",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Platform/Infra Lead",
+      "object": "dedicated inference"
+    },
+    {
+      "claim_id": "57f7e2e32efb69ac",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "dedicated GPU pools",
+      "object": "committed throughput guarantees"
+    },
+    {
+      "claim_id": "64fce6c879910c71",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Negotiation playbook",
+      "object": "practical steps + scripts"
+    },
+    {
+      "claim_id": "32d6ce18e349eba4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "JSON parse failures",
+      "object": "Customer"
+    },
+    {
+      "claim_id": "929dc207371f6a5c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "JSON parse failures",
+      "object": "production job"
+    },
+    {
+      "claim_id": "80e30a281aba8aa2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "SDK",
+      "object": "Hosted API"
+    },
+    {
+      "claim_id": "51b989b92ef854d4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Customer",
+      "object": "streaming"
+    },
+    {
+      "claim_id": "8fffb1d8091f9c1d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "telemetry integration",
+      "object": "SLO team"
+    },
+    {
+      "claim_id": "14bcbd32fdb1a000",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "docs/console updates",
+      "object": "docs/playbooks"
+    },
+    {
+      "claim_id": "2bfecce2fba380eb",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "api design review",
+      "object": "ENG-2742"
+    },
+    {
+      "claim_id": "1a16a412fe199955",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "We",
+      "object": "signing"
+    },
+    {
+      "claim_id": "34714a21f240eda4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Procurement",
+      "object": "MSA signature + start pilot"
+    },
+    {
+      "claim_id": "6d1669460263fa65",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Customer",
+      "object": "EU-only processing"
+    },
+    {
+      "claim_id": "9f1ddc762dab723e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Customer",
+      "object": "conditional US failover for DR"
+    },
+    {
+      "claim_id": "cd4ea2e75ddfc196",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Camila + Legal",
+      "object": "exception memo PDF"
+    },
+    {
+      "claim_id": "ae94c89792a88305",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Action",
+      "object": "ensure tenant config matches memo (routing allowlist) and log settings verified"
+    },
+    {
+      "claim_id": "57b6167888bab879",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "country-specific data residency clause",
+      "object": "regional counsel review"
+    },
+    {
+      "claim_id": "52af5248b1aca43d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Helveta Sovereign Inference Consortium",
+      "object": "Finalize security appendix and sign master services agreement (MSA)"
+    },
+    {
+      "claim_id": "8de08f823bf672c3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Helveta Sovereign Inference Consortium",
+      "object": "Schedule on-site network baseline test (NBX)"
+    },
+    {
+      "claim_id": "824f86d34935a5c3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Procurement committee",
+      "object": "final budget sign-off (Q2)"
+    },
+    {
+      "claim_id": "6e6f02e385d76d31",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Lina Torres' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Lina Torres",
+      "object": "hiring infra senior ICs and SREs"
+    },
+    {
+      "claim_id": "8bef76d21e82e082",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Marco' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Marco",
+      "object": "compatibility checks"
+    },
+    {
+      "claim_id": "fd15d8441eb820f8",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'helix initiative' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "helix initiative",
+      "object": "product builds, infra optimizations, ops guardrails"
+    },
+    {
+      "claim_id": "1c1f6f435411072b",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Leadership' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "Leadership",
+      "object": "helix initiative"
+    },
+    {
+      "claim_id": "01ac09bef49722c1",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "SIG follow-up",
+      "object": "access orchestration (SSO / SCIM / RBAC / MFA)"
+    },
+    {
+      "claim_id": "6daa02bb04819258",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "SIG follow-up",
+      "object": "redwood_saml_metadata.xml"
+    },
+    {
+      "claim_id": "308ff876317f0a01",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "SIG follow-up",
+      "object": "redwood_scim_mapping_v1.csv"
+    },
+    {
+      "claim_id": "fecddba1ac48096c",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "SIG follow-up",
+      "object": "rbac_role_matrix_v2.xlsx"
+    },
+    {
+      "claim_id": "6f21bb3aaf594da5",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "SIG follow-up",
+      "object": "sig_evidence_screenshots.zip"
+    },
+    {
+      "claim_id": "eb825e4c8f0deaae",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "SIG follow-up",
+      "object": "sig_evidence_bundle_olga.zip"
+    },
+    {
+      "claim_id": "335d16bdd0d5caf7",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'SIG follow-up' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "SIG follow-up",
+      "object": "https://drive.google.com/drive/folders/1aBcdEfGhIjkLMNOpQ"
+    },
+    {
+      "claim_id": "26b8b4e22af695db",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "SRE",
+      "object": "INT-7112"
+    },
+    {
+      "claim_id": "53b442a7fde8fb49",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Engineering",
+      "object": "strictly-local-egress routing rule"
+    },
+    {
+      "claim_id": "f52eeaf734af59c1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Vectorization handshake failure",
+      "object": "suppressed candidate lists and rerank tail latency"
+    },
+    {
+      "claim_id": "7de0e0a03df9bcd9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Baseline",
+      "object": "US-only serving + storage for Redwood Private in customer VPC (us-east)"
+    },
+    {
+      "claim_id": "bc15801a9543f7d5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Requested exception",
+      "object": "EU-based subcontractor (Elena) needs rollout visibility"
+    },
+    {
+      "claim_id": "9fb55fbf4233b2c9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Proposed scope",
+      "object": "deployment logs + metadata only (no prompts/responses)"
+    },
+    {
+      "claim_id": "fa12a5aed77cb262",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Controls",
+      "object": "SSO + least privilege role, no break-glass, audit export on request"
+    },
+    {
+      "claim_id": "e03a91ca548a4cb7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Duration",
+      "object": "2025-06-05 to 2025-07-31 (align w rollout)"
+    },
+    {
+      "claim_id": "da9daf1a859a06ef",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Background per-NUMA compaction",
+      "object": "low-priority thread"
+    },
+    {
+      "claim_id": "073e5cbac2c414d3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Size-classes",
+      "object": "segment pools"
+    },
+    {
+      "claim_id": "0fd2d0da5a711a9d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Generational eviction",
+      "object": "oldest-generation entries"
+    },
+    {
+      "claim_id": "554148760866bcce",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Adaptive pool resizing",
+      "object": "pools grow/shrink in unit segment increments"
+    },
+    {
+      "claim_id": "7cad9d1b07bac51a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Eviction algorithm",
+      "object": "victim pool"
+    },
+    {
+      "claim_id": "036ea08fa5cf8704",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Segmented paging layout",
+      "object": "fixed-size pages"
+    },
+    {
+      "claim_id": "053c4a14a5f11bce",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Overlay slab",
+      "object": "tiny KV entries"
+    },
+    {
+      "claim_id": "ba6fac8979f37e4b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Segment header",
+      "object": "pool-id"
+    },
+    {
+      "claim_id": "b0d12fbc59f0364c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Page metadata",
+      "object": "page-offset"
+    },
+    {
+      "claim_id": "e60769c84229b2b5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Entry format",
+      "object": "key-hash"
+    },
+    {
+      "claim_id": "357d2ae3e1c6155a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Guided Circuit Playbooks",
+      "object": "interactive, SLO-aware repair flows for oncall"
+    },
+    {
+      "claim_id": "65c7382ef89b5a4e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Goal",
+      "object": "Build a first-class interactive playbook feature"
+    },
+    {
+      "claim_id": "e6f8bbc833d0fa43",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "KMS",
+      "object": "policy enforcement"
+    },
+    {
+      "claim_id": "9cddef1f6996df4a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "envelope encryption/decryption operation",
+      "object": "lightweight audit record"
+    },
+    {
+      "claim_id": "b4963fd569fa2402",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "evidence bundle",
+      "object": "archival of signed manifests + key metadata"
+    },
+    {
+      "claim_id": "4d2991059f7a7f8a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "role to key binding table",
+      "object": "mapping of role to allowed key actions"
+    },
+    {
+      "claim_id": "d274c67f8cb1c436",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "KMS",
+      "object": "validation of attribute constraints"
+    },
+    {
+      "claim_id": "ae8596f692674dda",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "CLI/API actions",
+      "object": "justification token"
+    },
+    {
+      "claim_id": "d9117a5e2beb8f4a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "audit log schema",
+      "object": "one audit event type for KMS operations"
+    },
+    {
+      "claim_id": "3787fa907838c770",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "RBAC v2",
+      "object": "short-lived principal tokens"
+    },
+    {
+      "claim_id": "b29555318cf58e63",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Installer",
+      "object": "install"
+    },
+    {
+      "claim_id": "059809eed9c6c09e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Multiple embedded dashboards for BrightHealth Analytics",
+      "object": "blank panels"
+    },
+    {
+      "claim_id": "4b869b8989393d6c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Multiple embedded dashboards for BrightHealth Analytics",
+      "object": "missing trace links"
+    },
+    {
+      "claim_id": "59e273f8ca7ca6d1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "QUERY engine",
+      "object": "tracehook attachment"
+    },
+    {
+      "claim_id": "08a9bcc748bb86d5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Dashboard query optimizer",
+      "object": "empty resultset"
+    },
+    {
+      "claim_id": "3fd49bfe1a748e5c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Dashboard query optimizer",
+      "object": "missing trace links"
+    },
+    {
+      "claim_id": "4e753f321dd3f08c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "optimizer_trim flag",
+      "object": "legacy query path"
+    },
+    {
+      "claim_id": "24ed82ff03542968",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "QUERY planner",
+      "object": "zero rows"
+    },
+    {
+      "claim_id": "9482e881fd65389c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "optimizer_trim flag",
+      "object": "noop filter and empty result"
+    },
+    {
+      "claim_id": "bdc222d4a29ab7bb",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "planner rewriter",
+      "object": "noop guard"
+    },
+    {
+      "claim_id": "6608267f99cc720f",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Internal champion (Dir. ML Ops, Priya Rao)",
+      "object": "new role"
+    },
+    {
+      "claim_id": "7d91ac265054f026",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Finance",
+      "object": "payback >18 months"
+    },
+    {
+      "claim_id": "2d5fbc98d7c68bd4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Procurement",
+      "object": "minimum commit"
+    },
+    {
+      "claim_id": "c2e1038a69e0e912",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Repeat follow-ups",
+      "object": "response"
+    },
+    {
+      "claim_id": "077517a4f461a1cd",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "AE/SE",
+      "object": "model variants"
+    },
+    {
+      "claim_id": "4869bf28ffe4d4b4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Carlos",
+      "object": "technical deep dive + SE demo"
+    },
+    {
+      "claim_id": "7d565d7b8e0fe301",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jordan",
+      "object": "discovery call"
+    },
+    {
+      "claim_id": "616caae5d5ec494b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "prefix caching",
+      "object": "common product prefix content"
+    },
+    {
+      "claim_id": "62dad2255f76cb33",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Lead",
+      "object": "self-serve sign-up"
+    },
+    {
+      "claim_id": "4b723bd703e25df8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Maya",
+      "object": "prompt templates"
+    },
+    {
+      "claim_id": "bbb27caac33ab8bc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "The spillway-based load-shedding mechanism",
+      "object": "region-wide SLO collapse during excess overspill"
+    },
+    {
+      "claim_id": "68c398942764aec0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "The new controlled overspill mechanism",
+      "object": "configuration flags"
+    },
+    {
+      "claim_id": "5a34741ce731279a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "The new controlled overspill mechanism",
+      "object": "a spillway-based load-shedding mechanism and temporary tenant isolation"
+    },
+    {
+      "claim_id": "aa3db2dfae5b6c5d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "AE",
+      "object": "Evelyn Park"
+    },
+    {
+      "claim_id": "f8d0e13c1379ae86",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "SE",
+      "object": "Marcus Li"
+    },
+    {
+      "claim_id": "e03785d38c4df65a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "security",
+      "object": "KMS integration details"
+    },
+    {
+      "claim_id": "661b43f87053bc27",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Procurement",
+      "object": "pricing spreadsheet"
+    },
+    {
+      "claim_id": "98732b3448c682fe",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Legal",
+      "object": "IP/data residency clauses"
+    },
+    {
+      "claim_id": "1fb07a12bc01e1aa",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "product engineering",
+      "object": "infra/security"
+    },
+    {
+      "claim_id": "0de5d43655a26bde",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "infra/security",
+      "object": "procurement/legal"
+    },
+    {
+      "claim_id": "87085d2fdf10a48b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "BlueQuarry Product AI",
+      "object": "mid-market SaaS"
+    },
+    {
+      "claim_id": "aa6cd932d7a68082",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Pricing Ops",
+      "object": "overage cap options"
+    },
+    {
+      "claim_id": "4351eebf1fee5cd7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "FinTrust",
+      "object": "Kimberly"
+    },
+    {
+      "claim_id": "cd150a697d64c068",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "FinTrust",
+      "object": "Aisha"
+    },
+    {
+      "claim_id": "ef8f85bf78282fdc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "FinTrust",
+      "object": "confirm 'no content logging' config"
+    },
+    {
+      "claim_id": "ec1582ee26513450",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "FinTrust",
+      "object": "provide security addendum language for zero retention of content"
+    },
+    {
+      "claim_id": "2da87d4b78d83948",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "FinTrust",
+      "object": "support tooling cannot replay content"
+    },
+    {
+      "claim_id": "9935ef43c0b62596",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "FinTrust",
+      "object": "minimal operational metadata"
+    },
+    {
+      "claim_id": "faf88b9ae290bc0c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "FinTrust",
+      "object": "ensure tracing payloads do not include bodies"
+    },
+    {
+      "claim_id": "a8ee3918022a3c4b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "FinTrust",
+      "object": "zero retention of prompt/response content"
+    },
+    {
+      "claim_id": "3c1a097a917f7e54",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "FinTrust",
+      "object": "Redwood_Security_FAQ_Data_Retention_2025-01.pdf"
+    },
+    {
+      "claim_id": "9ea1e0a76c41bbe0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "FinTrust",
+      "object": "'ephemeral processing only' for prompt/response bodies"
+    },
+    {
+      "claim_id": "0e9944ad3b389c14",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'QBR prep' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "QBR prep",
+      "object": "consolidated pipeline playbook & account-level briefs"
+    },
+    {
+      "claim_id": "af93e304b530a8dc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Security review sign-off",
+      "object": "ticket and confluence doc"
+    },
+    {
+      "claim_id": "97d542e02a597a1c",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'RedwoodBot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "RedwoodBot",
+      "object": "5 reactions"
+    },
+    {
+      "claim_id": "393008c09419fa59",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "scheduler affinity microtuning",
+      "object": "input queue wait"
+    },
+    {
+      "claim_id": "5a678ba54c28930a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "model repin to rw-chat-medium-v1",
+      "object": "runtime hotpatch"
+    },
+    {
+      "claim_id": "ce57e3202ae2d618",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "hotfix",
+      "object": "PR #2145"
+    },
+    {
+      "claim_id": "885037f9b9c9bacd",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "hotpatch runtime bundle runtime-2026-03-09",
+      "object": "first-token latency increase"
+    },
+    {
+      "claim_id": "0375940ee97ac230",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "compatibility verification step",
+      "object": "extra TTFB"
+    },
+    {
+      "claim_id": "e7c7cfa8b2a37aa5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "routing to the dedicated fallback pool",
+      "object": "mitigates issue"
+    },
+    {
+      "claim_id": "c5ab0245678618b2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Marco Chen",
+      "object": "hotfix"
+    },
+    {
+      "claim_id": "a7aa63644c09ca28",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Console/UX",
+      "object": "Maya Chen"
+    },
+    {
+      "claim_id": "dcba793e6d48401d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Billing/Revenue",
+      "object": "Daniel Osei"
+    },
+    {
+      "claim_id": "39202f14dba94582",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Support/Success",
+      "object": "Priya Iyer"
+    },
+    {
+      "claim_id": "b014868e51298fdd",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Legal/Billing ops",
+      "object": "Hannah Schultz"
+    },
+    {
+      "claim_id": "d319647dcf6982c2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "CHEB",
+      "object": "opaque burst charges"
+    },
+    {
+      "claim_id": "554b482d290323e8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Eng (Serving/runtime + Orchestration)",
+      "object": "Rohit Kapoor"
+    },
+    {
+      "claim_id": "3252a17d175c45a4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "PM",
+      "object": "Ava Martinez"
+    },
+    {
+      "claim_id": "ea255ff206913c9e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Escrow-Token",
+      "object": "reconnect-and-resume"
+    },
+    {
+      "claim_id": "6e10aad28d4ebaad",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "runtime",
+      "object": "reconnect-with-ticket"
+    },
+    {
+      "claim_id": "f0baa556000e9e8a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "OpenAI adapter",
+      "object": "HTTP/499"
+    },
+    {
+      "claim_id": "7a6590037ebbf44a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "escrow manager",
+      "object": "TTL job"
+    },
+    {
+      "claim_id": "3de8661e894255be",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Escrow-Token header",
+      "object": "simple HTTP clients"
+    },
+    {
+      "claim_id": "375a9e358dc465e8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "runtime",
+      "object": "terminal JSON frame"
+    },
+    {
+      "claim_id": "64e2104eebbe172b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "docs",
+      "object": "idempotency tokens"
+    },
+    {
+      "claim_id": "b7ed610bf539bcfc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Clients",
+      "object": "Escrow-Token"
+    },
+    {
+      "claim_id": "bce382ef3e206e92",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Server admins",
+      "object": "escrow_window"
+    },
+    {
+      "claim_id": "c97a610a98517f32",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "escrow tickets",
+      "object": "single-use"
+    },
+    {
+      "claim_id": "f8febb1bbb8c8197",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "alias `rw.chat/llama-3.1-70b-instruct:stable`",
+      "object": "model_version `2025.10.10-rw.1`"
+    },
+    {
+      "claim_id": "d8ff39a0bef22a69",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "alias `rw.chat/llama-3.1-70b-instruct:stable`",
+      "object": "customer roles"
+    },
+    {
+      "claim_id": "6ddf3efee63ce71a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "model_version `2025.10.10-rw.1`",
+      "object": "chat template"
+    },
+    {
+      "claim_id": "d100a9b04fe8eed5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "model_version `2025.10.10-rw.1`",
+      "object": "output drift"
+    },
+    {
+      "claim_id": "93cc7ad519f30f00",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "alias `rw.chat/llama-3.1-70b-instruct:stable`",
+      "object": "model_version `2025.10.10-rw.1`"
+    },
+    {
+      "claim_id": "8f12170189475e45",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Python SDK docs: streaming chat example",
+      "object": "deprecated import"
+    },
+    {
+      "claim_id": "c7720516e40d5c9c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Customer",
+      "object": "adjusting imports to stream successfully"
+    },
+    {
+      "claim_id": "bb8c8b62c65ead27",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "DevEx (Avery)",
+      "object": "doc fix PR"
+    },
+    {
+      "claim_id": "b6126bb3a4eeecf6",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Customer",
+      "object": "docs streaming chat snippet imports ChatClient from an old module path"
+    },
+    {
+      "claim_id": "09ea06de7f168194",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Support (Naomi)",
+      "object": "docs bug only"
+    },
+    {
+      "claim_id": "0c25a3826d6f2333",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Grace",
+      "object": "document tradeoffs of long timeouts"
+    },
+    {
+      "claim_id": "83d49ec51a1637e3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Hiro",
+      "object": "note on cancellation via context"
+    },
+    {
+      "claim_id": "ab003086b29c52d2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Change",
+      "object": "addressing timeouts reported for large non-streaming chat requests (SUP-4888)"
+    },
+    {
+      "claim_id": "56f0f9751c86e886",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Go SDK",
+      "object": "default HTTP client timeout"
+    },
+    {
+      "claim_id": "ea1c0a25504b57b5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "backend",
+      "object": "internal-only keys"
+    },
+    {
+      "claim_id": "333899b7bde087cb",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "Standard Console roles",
+      "object": "internal-only fields"
+    },
+    {
+      "claim_id": "37dd343e05f7cf8b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Console",
+      "object": "endpoints"
+    },
+    {
+      "claim_id": "dd1f90c2edb840e4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "SDK",
+      "object": "endpoints"
+    },
+    {
+      "claim_id": "4b730f9aa8c33bee",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Ben Carter' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ben Carter",
+      "object": "model/quantization section"
+    },
+    {
+      "claim_id": "05fc6a033907ade6",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Jordan Blake' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Jordan Blake",
+      "object": "infra portion"
+    },
+    {
+      "claim_id": "779debc1f6d312f6",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Aisha Kwon' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Aisha Kwon",
+      "object": "ML lead"
+    },
+    {
+      "claim_id": "dfd6262d14cbeaab",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Mark Thompson' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Mark Thompson",
+      "object": "SRE"
+    },
+    {
+      "claim_id": "9992f29bf42cf9b4",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Ben Carter",
+      "object": "Rollout + lifecycle messaging"
+    },
+    {
+      "claim_id": "0e2c4e5cdc9dbe47",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Nikhil Sharma",
+      "object": "PM (Hosted API)"
+    },
+    {
+      "claim_id": "7fda4120125a46c5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Marissa Cole",
+      "object": "PM (Console)"
+    },
+    {
+      "claim_id": "cd46a6857e9927c5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Alex Martinez",
+      "object": "Program sponsor"
+    },
+    {
+      "claim_id": "14f8e28008b8f686",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Dylan Brooks",
+      "object": "Console Eng"
+    },
+    {
+      "claim_id": "a0292d5d694ea7b8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Chloe Martin",
+      "object": "Console Eng"
+    },
+    {
+      "claim_id": "38fefb665c1e52fd",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Logan Wright",
+      "object": "Telemetry"
+    },
+    {
+      "claim_id": "ac6a4cff10910c28",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Dev Patel",
+      "object": "Support enablement"
+    },
+    {
+      "claim_id": "9d57ce29cff62322",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Sean Gallagher",
+      "object": "SRE review"
+    },
+    {
+      "claim_id": "beb756ee3d6403cc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Customer token rotation pattern (6m TTL)",
+      "object": "many keys aligning with refill boundaries"
+    },
+    {
+      "claim_id": "c715f137745c5cf9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Customer",
+      "object": "intermittent 429s"
+    },
+    {
+      "claim_id": "15bfae564b0ead70",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Priya Agarwal",
+      "object": "temporary burst buffer"
+    },
+    {
+      "claim_id": "fefda350d51a019d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "SUP-3141596",
+      "object": "refill jitter experiments"
+    },
+    {
+      "claim_id": "956fb260d884106c",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Eng SRE",
+      "object": "Primary"
+    },
+    {
+      "claim_id": "2ea3cf5ab24eac94",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Eng Platform",
+      "object": "Routing changes"
+    },
+    {
+      "claim_id": "bbf24fc35effe334",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Eng Infra",
+      "object": "Capacity"
+    },
+    {
+      "claim_id": "15c299e55398bba0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Redwood API (Hosted)",
+      "object": "chat + embeddings endpoints"
+    },
+    {
+      "claim_id": "bb7ab9c1a0fb8eba",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Priya Nair' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Priya Nair",
+      "object": "borderless-vpc-pilot-residency-and-egress-scoping"
+    },
+    {
+      "claim_id": "2782f7cde44a5976",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Jordan Li' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jordan Li",
+      "object": "borderless-vpc-pilot-residency-and-egress-scoping"
+    },
+    {
+      "claim_id": "498907ee96d954fe",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Carmen Vega' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Carmen Vega",
+      "object": "borderless-vpc-pilot-residency-and-egress-scoping"
+    },
+    {
+      "claim_id": "da95ec154cbd7f59",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Alex Turner' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Alex Turner",
+      "object": "borderless-vpc-pilot-residency-and-egress-scoping"
+    },
+    {
+      "claim_id": "efe79a92a0213b31",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "flag",
+      "object": "Asha"
+    },
+    {
+      "claim_id": "8d4cc1cb15debccc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "flag",
+      "object": "SRE on-call"
+    },
+    {
+      "claim_id": "cc15b5fcd91f4281",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "flag",
+      "object": "me"
+    },
+    {
+      "claim_id": "663badd7580b3f0b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "feature gate",
+      "object": "hosted-api free-tier & standard routes"
+    },
+    {
+      "claim_id": "c72a8f6f179679ee",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "new model variant",
+      "object": "10% of host-api requests"
+    },
+    {
+      "claim_id": "e08b3644d7d8fb27",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "new model variant",
+      "object": "infra SRE and release owner (Asha)"
+    },
+    {
+      "claim_id": "7f6f10b2738e78c5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "feature gate",
+      "object": "dedicated and private deployments"
+    },
+    {
+      "claim_id": "ee437173cdb6f337",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "new model variant",
+      "object": "feature flag"
+    },
+    {
+      "claim_id": "218422652973862b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "release owner",
+      "object": "Asha"
+    },
+    {
+      "claim_id": "06449ad234bccb18",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Sofia Ivanova' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Sofia Ivanova",
+      "object": "MAP"
+    },
+    {
+      "claim_id": "c4d6d867b8a6fb49",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "SUP ticket",
+      "object": "comms_owner"
+    },
+    {
+      "claim_id": "fa468fd56997f53d",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Slack bridge",
+      "object": "SUP link"
+    },
+    {
+      "claim_id": "49fb7c2cd54b72c1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "SUP tickets",
+      "object": "required Jira fields"
+    },
+    {
+      "claim_id": "9068a1cb73effa91",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Redwood Inference",
+      "object": "AI-assisted customer support and internal knowledge workflows"
+    },
+    {
+      "claim_id": "66e1b04240e48375",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "CedarBank",
+      "object": "More dependable AI experiences during seasonal traffic shifts"
+    },
+    {
+      "claim_id": "3be8e7e9d8a20c63",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "CedarBank",
+      "object": "Better visibility into performance and cost drivers"
+    },
+    {
+      "claim_id": "e692ed92e134ddb3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "CedarBank",
+      "object": "Easier cross-team standardization of AI features"
+    },
+    {
+      "claim_id": "353580812b2f3f19",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "CacheAttributionToken",
+      "object": "request admission to the batch"
+    },
+    {
+      "claim_id": "54eb6edcb30f7de8",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "This",
+      "object": "SRE/Telemetry from trusting the signals for alerts/recommendations"
+    },
+    {
+      "claim_id": "ade698ad71bc93dc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "metric instrumentation",
+      "object": "PrefillBatchId"
+    },
+    {
+      "claim_id": "14c7cd8a9816f5ba",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "cache result object",
+      "object": "batch-aggregated"
+    },
+    {
+      "claim_id": "25e460b86faf0e2b",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'BuildBot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "BuildBot",
+      "object": "Office Essentials Fair"
+    },
+    {
+      "claim_id": "2167178c6d12bd1b",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'BuildBot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "BuildBot",
+      "object": "maintenance request #789"
+    },
+    {
+      "claim_id": "5d5899118591a7a9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Northstar Query Systems",
+      "object": "30-day token usage audit"
+    },
+    {
+      "claim_id": "308ad59c2be66ae2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "doc_search"
+    },
+    {
+      "claim_id": "5db4996de5b8d94b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "support-agent"
+    },
+    {
+      "claim_id": "da8b6e2ef6e903db",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "semantic-ranking"
+    },
+    {
+      "claim_id": "cac81c16cf8c6e4e",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "embeddings"
+    },
+    {
+      "claim_id": "b434f467fc1340bc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "hosted_api"
+    },
+    {
+      "claim_id": "2936ff59513b95d7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "optimize"
+    },
+    {
+      "claim_id": "8efdff1279291e91",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "public_cloud"
+    },
+    {
+      "claim_id": "338a070b138e7282",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "soc2"
+    },
+    {
+      "claim_id": "d6d3579bddcf46ca",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "audit_logging"
+    },
+    {
+      "claim_id": "74059659154a77c7",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "sso_saml"
+    },
+    {
+      "claim_id": "829968ea088d4cf0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "openai"
+    },
+    {
+      "claim_id": "283b5106df1b61b0",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "cohere"
+    },
+    {
+      "claim_id": "b3a720804b9da8c3",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Northstar Query Systems",
+      "object": "pinecone"
+    },
+    {
+      "claim_id": "db7bb30dc6ca6fbb",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "Northstar Query Systems",
+      "object": "data retention policy"
+    },
+    {
+      "claim_id": "cd8cadfcb0f4709f",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'release-bot' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "release-bot",
+      "object": "early review ends May 1"
+    },
+    {
+      "claim_id": "1f9f84b90b074992",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'devrel' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "devrel",
+      "object": "'Plugins Sprint' on May 6"
+    },
+    {
+      "claim_id": "26ce171c4e55b793",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'devrel' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "devrel",
+      "object": "office hours Thurs 16:00 PT for quick reviews"
+    },
+    {
+      "claim_id": "dea093109f1edde5",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Read breakdowns",
+      "object": "insights.cost:read"
+    },
+    {
+      "claim_id": "4b4ccfe31901d705",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Create/download exports",
+      "object": "insights.cost:export"
+    },
+    {
+      "claim_id": "29a2cc2c9305ddbc",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "workspace",
+      "object": "endpoints"
+    },
+    {
+      "claim_id": "03b1d91b9b9f0086",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Shareable links",
+      "object": "permission checks"
+    },
+    {
+      "claim_id": "7edaec23f7befa72",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "DEPENDS_ON",
+      "subject": "Route normalization and model bucketing",
+      "object": "ADR: Route normalization and attribution"
+    },
+    {
+      "claim_id": "6db61fa8141a9990",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "Usage Insights",
+      "object": "cost data"
+    },
+    {
+      "claim_id": "56bc8a029a3b05af",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Omar' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Omar",
+      "object": "bagel"
+    },
+    {
+      "claim_id": "fa9cc0ca4a8cd5cf",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Jules' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Jules",
+      "object": "coffee"
+    },
+    {
+      "claim_id": "3f71a609c18a86cd",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Lina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "Lina",
+      "object": "reactions"
+    },
+    {
+      "claim_id": "6a8a15c3a5ca0287",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Lina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "DEPENDS_ON",
+      "subject": "Lina",
+      "object": "bagels Friday"
+    },
+    {
+      "claim_id": "6e961e6883d28ba2",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Lina' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Lina",
+      "object": "poll"
+    },
+    {
+      "claim_id": "63956eebb2c42194",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Kevin' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Kevin",
+      "object": "'mood' wallpaper"
+    },
+    {
+      "claim_id": "b1ec501575b44167",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Jules' has no manual resolution (not a resolvable entity name)",
+      "predicate": "REVIEWS",
+      "subject": "Jules",
+      "object": "coffee"
+    },
+    {
+      "claim_id": "99bb540f42ba224e",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'ticket INC-7123' has no manual resolution (not a resolvable entity name)",
+      "predicate": "ASSIGNED_TO",
+      "subject": "ticket INC-7123",
+      "object": "eng-ml"
+    },
+    {
+      "claim_id": "e51333eb596a20e0",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'cumulus15b-int4' has no manual resolution (not a resolvable entity name)",
+      "predicate": "BLOCKS",
+      "subject": "cumulus15b-int4",
+      "object": "cold-start OOMs"
+    },
+    {
+      "claim_id": "fc28c2f25aa137e3",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Sam' has no manual resolution (not a resolvable entity name)",
+      "predicate": "OWNS",
+      "subject": "Sam",
+      "object": "ticket INC-7123"
+    },
+    {
+      "claim_id": "1bc8f0dd3659c57b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Archipelago Security Cloud",
+      "object": "SCIM spec finalization"
+    },
+    {
+      "claim_id": "d8d4b23e6465af84",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "Archipelago Security Cloud",
+      "object": "legal sign-off on KMS key escrow"
+    },
+    {
+      "claim_id": "0af19e68632194ba",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Head of Product",
+      "object": "Cait Nguyen"
+    },
+    {
+      "claim_id": "f9e91aeb13774705",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "Platform Lead",
+      "object": "Diego Morales"
+    },
+    {
+      "claim_id": "4dfd8fc1899d2116",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "REVIEWS",
+      "subject": "product team",
+      "object": "low-friction SDKs"
+    },
+    {
+      "claim_id": "f216149d33bb8b3a",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "ASSIGNED_TO",
+      "subject": "\"open-embed-512\"",
+      "object": "\"acme-corp\""
+    },
+    {
+      "claim_id": "3d8c58b99a1bb0ff",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "\"rerank\"",
+      "object": "\"embedding dimension mismatch errors\""
+    },
+    {
+      "claim_id": "b4bc96f8997eec1b",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "BLOCKS",
+      "subject": "\"worker-7\"",
+      "object": "\"embedding dimension mismatch\""
+    },
+    {
+      "claim_id": "1fdd3ada63627de9",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "\"open-embed-768\"",
+      "object": "\"dimension mismatch errors\""
+    },
+    {
+      "claim_id": "6ffa6e198be656a1",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "LEADS",
+      "subject": "\"open-embed-768-4bit\"",
+      "object": "\"latency spikes\""
+    },
+    {
+      "claim_id": "57ae6f3570aca6a2",
+      "status": "MISSING_TIMESTAMP",
+      "reason": "observed_at is null and the artifact has no timestamp",
+      "predicate": "OWNS",
+      "subject": "\"open-embed-768\"",
+      "object": "\"two different artifacts\""
+    },
+    {
+      "claim_id": "a591e11595bf72b2",
+      "status": "INVALID_SUBJECT",
+      "reason": "mention 'Consolidate availability' has no manual resolution (not a resolvable entity name)",
+      "predicate": "LEADS",
+      "subject": "Consolidate availability",
+      "object": "secure 20m deep-dive"
+    }
+  ]
+}
