@@ -11,6 +11,9 @@ dependencies = ["neo4j>=5.28,<7"]
 
 [project.optional-dependencies]
 test = ["pytest>=8.0"]
+embed = ["sentence-transformers>=3.0", "numpy>=1.26", "rank-bm25>=0.2"]
+extract = ["rapidfuzz>=3.0"]
+llm = ["openai>=1.0"]
 
 [tool.setuptools.packages.find]
 include = ["continuum*"]

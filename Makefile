@@ -1,4 +1,4 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality embedding-experiment
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -17,6 +17,35 @@ dataset-quality:
 
 embedding-experiment:
 	python scripts/embedding_experiment.py
+
+extract-mentions:
+	python scripts/extract_mentions.py
+
+extract-claims:
+	python scripts/extract_claims.py
+
+extract-dataset:
+	PYTHONUNBUFFERED=1 python scripts/extract_mentions.py --method hybrid
+	PYTHONUNBUFFERED=1 python scripts/extract_claims.py --method hybrid --workers 5 --checkpoint data/extraction/claims.checkpoint.jsonl
+	python scripts/slice_claims_checkpoint.py
+	python scripts/validate_extraction.py
+
+validate-extraction:
+	python scripts/validate_extraction.py
+
+eval-extraction:
+	python scripts/validate_extraction.py
+	python scripts/eval_extraction.py
+
+mention-inventory:
+	python scripts/mention_inventory.py
+
+build-ground-truth:
+	python scripts/build_ground_truth.py
+
+test-phase2b:
+	python -m pytest tests/phase2b/ -q
+
 hydradb-up:
 	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_hydradb.ps1
 hydradb-stop:
