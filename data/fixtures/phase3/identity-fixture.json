@@ -1,0 +1,72 @@
+[
+  {
+    "mention": "Sam",
+    "type": "person",
+    "usernames": [],
+    "emails": []
+  },
+  {
+    "mention": "@soham",
+    "type": "person",
+    "usernames": [
+      "soham"
+    ],
+    "emails": []
+  },
+  {
+    "mention": "S. Ratnaparkhi",
+    "type": "person",
+    "usernames": [],
+    "emails": []
+  },
+  {
+    "mention": "soham-dev",
+    "type": "person",
+    "usernames": [
+      "soham-dev"
+    ],
+    "emails": []
+  },
+  {
+    "mention": "soham@company.com",
+    "type": "email",
+    "usernames": [],
+    "emails": [
+      "soham@company.com"
+    ]
+  },
+  {
+    "mention": "Maya Chen",
+    "type": "person",
+    "usernames": [],
+    "emails": [
+      "maya.chen@redwood.com"
+    ]
+  },
+  {
+    "mention": "Maya Patel",
+    "type": "person",
+    "usernames": [],
+    "emails": [
+      "maya.patel@redwood.com"
+    ]
+  },
+  {
+    "mention": "Sarah Chen",
+    "type": "person",
+    "usernames": [
+      "sarah_csm"
+    ],
+    "emails": [
+      "sarah.chen@redwood.com"
+    ]
+  },
+  {
+    "mention": "Sarah Liu",
+    "type": "person",
+    "usernames": [],
+    "emails": [
+      "sarah.liu@cloudpartner.com"
+    ]
+  }
+]
