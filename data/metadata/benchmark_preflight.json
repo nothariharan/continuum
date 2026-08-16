@@ -1,0 +1,11 @@
+{
+  "checkpoint": "A",
+  "commit_sha": "514d5fe70fef395d3df56cd1790f91c976958a0f",
+  "branch": "run/enterpriserag-v1-baseline",
+  "tests_non_hydradb": "167 passed (prior run)",
+  "benchmark_tests": "18 passed, 3 skipped",
+  "python": "3.12",
+  "llm_config": "available via .env",
+  "corpus_status": "download_pending",
+  "recorded_at": "2026-08-16T17:42:00Z"
+}

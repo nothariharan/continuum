@@ -70,8 +70,9 @@ def build_mode(mode: str, *, root: Path, seed: int, sample_target: int) -> Bench
     write_jsonl(out_root / "questions.jsonl", selected)
     write_json(out_root / "manifest.json", manifest.to_dict())
 
-    if mode == "sample-v1":
-        regression = select_regression(selected, limit=10, seed=seed)
+    if mode in ("sample-v1", "full-v1"):
+        pool = selected if mode == "sample-v1" else official
+        regression = select_regression(pool, limit=10, seed=seed)
         write_jsonl(out_root / "regression" / "questions.jsonl", regression)
 
     return manifest

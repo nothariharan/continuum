@@ -43,7 +43,14 @@ def _answer_model(manifest: BenchmarkManifest, answer_model: str):
     return MockAnswerModel(name=manifest.answer_model)
 
 
-def _build_systems(corpus, *, with_graph: bool) -> dict[str, Any]:
+def _build_systems(
+    corpus,
+    *,
+    with_graph: bool,
+    fail_on_fallback: bool = False,
+    graph_client=None,
+    entity_store=None,
+) -> dict[str, Any]:
     bm25 = BM25RAGSystem(corpus)
     systems: dict[str, Any] = {"bm25": bm25}
 
@@ -64,11 +71,20 @@ def _build_systems(corpus, *, with_graph: bool) -> dict[str, Any]:
     try:
         systems["dense"] = DenseRAGSystem(corpus)
         systems["hybrid"] = HybridRAGSystem(corpus)
-    except Exception:
+    except Exception as exc:
+        if fail_on_fallback:
+            raise RuntimeError(f"dense/hybrid initialization failed: {exc}") from exc
         systems["dense"] = _FallbackAdapter("dense", bm25)
         systems["hybrid"] = _FallbackAdapter("hybrid", bm25)
 
-    systems["continuum"] = ContinuumSystem(corpus, with_graph=with_graph)
+    if with_graph:
+        if graph_client is None:
+            raise RuntimeError("with_graph requires an active HydraDB client")
+        from continuum.benchmark.graph_system import GraphContinuumSystem
+
+        systems["continuum"] = GraphContinuumSystem(graph_client, entity_store=entity_store)
+    else:
+        systems["continuum"] = ContinuumSystem(corpus, with_graph=False)
     return systems
 
 

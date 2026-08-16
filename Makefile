@@ -129,9 +129,23 @@ benchmark-continuum-sample:
 	python scripts/benchmark_continuum_sample.py
 
 benchmark-trace:
-	python scripts/benchmark_trace.py $(QUESTION)
+	PYTHONPATH=. python scripts/benchmark_trace.py $(QUESTION)
 
-d5b83db (feat(benchmark): Continuum benchmark adapter (WIP before PR #5 sync))
+benchmark-full-v1-verify:
+	PYTHONPATH=. python scripts/verify_benchmark_corpus.py
+
+benchmark-full-v1-smoke:
+	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode full-v1
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id full-v1-smoke-001 --regression --answer-model real --with-graph --fail-on-fallback
+
+benchmark-full-v1-baseline:
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id full-v1-baseline-001 --system bm25 --answer-model real --with-graph --fail-on-fallback
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id full-v1-baseline-001 --system dense --answer-model real --with-graph --fail-on-fallback
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id full-v1-baseline-001 --system hybrid --answer-model real --with-graph --fail-on-fallback
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id full-v1-baseline-001 --system continuum --answer-model real --with-graph --fail-on-fallback
+
+analyze-full-v1-baseline:
+	PYTHONPATH=. python scripts/analyze_full_v1_baseline.py --run-id full-v1-baseline-001
 
 benchmark-foundation:
 	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode sample-v1
