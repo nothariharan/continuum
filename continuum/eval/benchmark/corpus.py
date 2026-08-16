@@ -91,7 +91,8 @@ def load_full_corpus(raw_dir: Path | None = None, *, limit: int = 0) -> Benchmar
             names = names[:limit]
         for name in names:
             raw = archive.read(name).decode("utf-8", errors="replace")
-            artifact = Artifact.from_raw(name, raw)
+            source = name.split("/", 1)[0]
+            artifact = Artifact.from_raw(source, name, raw)
             records.append(
                 CorpusRecord(
                     artifact_id=artifact.id,
