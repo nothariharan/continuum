@@ -28,7 +28,7 @@ from pathlib import Path
 
 from continuum.entities import ResolutionDecision
 from continuum.entities.models import ResolutionVerdict
-from continuum.entities.pairs import IdentityPair, load_identity_pairs
+from continuum.entities.pairs import IdentityPair, load_identity_pairs, load_teammate_identity_pairs
 from continuum.entities.resolver import EntityResolver
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,57 +65,14 @@ class SweepPoint:
 
 
 class SweepingResolver(EntityResolver):
-    """EntityResolver whose decision cutoffs are overridable per run."""
+    """EntityResolver whose MERGE cutoff is overridable per run.
 
-    def __init__(self, merge_threshold: float = 0.90, separate_threshold: float = 0.20) -> None:
+    Everything else (KEEP_SEPARATE rules, REVIEW tier, ABSTAIN, role-mailbox
+    guard) is the real resolver's logic — only the merge threshold varies.
+    """
+
+    def __init__(self, merge_threshold: float = 0.90) -> None:
         super().__init__(merge_threshold=merge_threshold)
-        self.separate_threshold = separate_threshold
-
-    def resolve_pair(self, a, b, extra_features=None, features=None) -> ResolutionVerdict:
-        # Reuse the parent's scoring; re-decide with the sweep threshold.
-        a_cand, b_cand = self._as_candidates(a, b)
-        if features is None:
-            from continuum.entities.scoring import compute_features
-
-            features = compute_features(a_cand, b_cand, extra=extra_features)
-        from continuum.entities.scoring import score_match
-
-        match = score_match(a_cand, b_cand, features)
-        score = match.score
-        signals = match.signals
-
-        if score >= self.merge_threshold:
-            return ResolutionVerdict(
-                a_id=a_cand.candidate_id, b_id=b_cand.candidate_id,
-                decision=ResolutionDecision.MERGE, score=score, signals=signals,
-                reason="sweep MERGE", confidence=score,
-            )
-        # role mailbox pairs stay separate regardless of threshold
-        from continuum.entities.scoring import is_role_mailbox_pair
-
-        if is_role_mailbox_pair(a_cand.signals, b_cand.signals):
-            return ResolutionVerdict(
-                a_id=a_cand.candidate_id, b_id=b_cand.candidate_id,
-                decision=ResolutionDecision.KEEP_SEPARATE, score=score, signals=signals,
-                reason="role mailboxes are distinct functional accounts", confidence=0.9,
-            )
-        if score <= self.separate_threshold:
-            return ResolutionVerdict(
-                a_id=a_cand.candidate_id, b_id=b_cand.candidate_id,
-                decision=ResolutionDecision.KEEP_SEPARATE, score=score, signals=signals,
-                reason="sweep KEEP_SEPARATE", confidence=1.0 - score,
-            )
-        if score >= 0.50:
-            return ResolutionVerdict(
-                a_id=a_cand.candidate_id, b_id=b_cand.candidate_id,
-                decision=ResolutionDecision.REVIEW, score=score, signals=signals,
-                reason="sweep REVIEW", confidence=score,
-            )
-        return ResolutionVerdict(
-            a_id=a_cand.candidate_id, b_id=b_cand.candidate_id,
-            decision=ResolutionDecision.ABSTAIN, score=score, signals=signals,
-            reason="sweep ABSTAIN", confidence=0.0,
-        )
 
 
 def sweep(
@@ -152,8 +109,15 @@ def sweep(
     return points
 
 
+def load_pairs_auto(path: Path) -> list[IdentityPair]:
+    first_line = path.open(encoding="utf-8").readline().strip()
+    if first_line and '"a"' in first_line and '"b"' in first_line:
+        return load_teammate_identity_pairs(path)
+    return load_identity_pairs(path)
+
+
 def main(pairs_path: Path, report_out: Path) -> dict:
-    pairs = load_identity_pairs(pairs_path)
+    pairs = load_pairs_auto(pairs_path)
     points = sweep(pairs)
     report = {
         "gate": "entity-resolution-calibration",
