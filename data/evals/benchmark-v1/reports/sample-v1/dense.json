@@ -1,0 +1,1616 @@
+{
+  "context_efficiency": {
+    "artifact_count_mean": 1.11,
+    "context_chars_mean": 10368.23,
+    "context_tokens_mean": 1475.39,
+    "evidence_items_mean": 1.11
+  },
+  "corpus_mode": "sample-v1",
+  "latency": {
+    "stages": {
+      "entity_ms": 0.0,
+      "generation_ms": 0.0,
+      "graph_ms": 0.0,
+      "retrieval_ms": 12.05,
+      "state_ms": 0.0
+    },
+    "total": {
+      "mean": 12.05,
+      "p50": 11.65,
+      "p95": 24.83
+    }
+  },
+  "official_benchmark": false,
+  "official_score": {
+    "answer_correctness": 0.0,
+    "document_recall_mean": 0.0118,
+    "invalid_extra_evidence_mean": 1.082,
+    "question_count": 75
+  },
+  "rows": [
+    {
+      "answer": "mock: [dsid_8c14d76d16944947912676d084d2012e] Rosetta: Precision Embed Quality Harness and Drift Ops",
+      "context_chars": 10311,
+      "context_tokens": 1362,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.73,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.73,
+      "model": "mock-v1",
+      "question_id": "qst_0133",
+      "retrieved_artifacts": [
+        "dsid_8c14d76d16944947912676d084d2012e",
+        "dsid_9a3d2376e9674376b646088426780620"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_68acf4a8383749809adf512b6a49a14d] Structured output: occasional invalid JSON returned (unterminated strings / trai",
+      "context_chars": 9202,
+      "context_tokens": 1299,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.37,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.37,
+      "model": "mock-v1",
+      "question_id": "qst_0199",
+      "retrieved_artifacts": [
+        "dsid_68acf4a8383749809adf512b6a49a14d"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_535b760a01d540ad9ee1d8c25a3817bb] NeuroVista dedicated commit: pool sizing, SKU mapping & remedy ladder",
+      "context_chars": 10993,
+      "context_tokens": 1501,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.89,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.89,
+      "model": "mock-v1",
+      "question_id": "qst_0327",
+      "retrieved_artifacts": [
+        "dsid_535b760a01d540ad9ee1d8c25a3817bb"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_5d66d8f4c1324c03ae3cff64e6f24a94] Evidence Pack v1: Hosted Data Residency Enforcement (Region Pinning) \u2014 Security ",
+      "context_chars": 16649,
+      "context_tokens": 2183,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.73,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.73,
+      "model": "mock-v1",
+      "question_id": "qst_0363",
+      "retrieved_artifacts": [
+        "dsid_5d66d8f4c1324c03ae3cff64e6f24a94"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_58652f7aa95b4191bdfe69b5ab6185ce] LucentGrid POC acceptance criteria + security alignment",
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.44,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.44,
+      "model": "mock-v1",
+      "question_id": "qst_0387",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_986cd70fcd7a4c2e81511d7888a0432a] Offline bundle signing \u2013 threat model brainstorm notes (working)",
+      "context_chars": 13351,
+      "context_tokens": 1951,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.42,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.42,
+      "model": "mock-v1",
+      "question_id": "qst_0425",
+      "retrieved_artifacts": [
+        "dsid_986cd70fcd7a4c2e81511d7888a0432a"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_208a4a1593d34fec9ba9b8c977e2cc66] Redwood enterprise procedures kit \u2014 company operations (2026)",
+      "context_chars": 10876,
+      "context_tokens": 1475,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 10.47,
+        "state_ms": 0.0
+      },
+      "latency_ms": 10.47,
+      "model": "mock-v1",
+      "question_id": "qst_0442",
+      "retrieved_artifacts": [
+        "dsid_208a4a1593d34fec9ba9b8c977e2cc66"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_8cc15d1d33a344ebabf9cba50fed4b16] Cranemere Systems - Commitment, Sovereignty & Burst Plan",
+      "context_chars": 10706,
+      "context_tokens": 1700,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.48,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.48,
+      "model": "mock-v1",
+      "question_id": "qst_0451",
+      "retrieved_artifacts": [
+        "dsid_8cc15d1d33a344ebabf9cba50fed4b16"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_f7ac483bdad44c409ce10eeabcb0e244] Feature Sprocket Sketchbook",
+      "context_chars": 6347,
+      "context_tokens": 953,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.79,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.79,
+      "model": "mock-v1",
+      "question_id": "qst_0472",
+      "retrieved_artifacts": [
+        "dsid_f7ac483bdad44c409ce10eeabcb0e244"
+      ],
+      "system": "dense",
+      "token_count": 5
+    },
+    {
+      "answer": "mock: [dsid_08b591d2aea842d2959c165a4832c97e] Status page automation ideas (scratchpad) \u2014 incident-bot prompts + autofill + fa",
+      "context_chars": 9609,
+      "context_tokens": 1377,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.86,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.86,
+      "model": "mock-v1",
+      "question_id": "qst_0489",
+      "retrieved_artifacts": [
+        "dsid_08b591d2aea842d2959c165a4832c97e"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_12c1aebf042d4224b21eb7f15a4b06df] Gullridge Logistics Intelligence",
+      "context_chars": 2961,
+      "context_tokens": 424,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.66,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.66,
+      "model": "mock-v1",
+      "question_id": "qst_0109",
+      "retrieved_artifacts": [
+        "dsid_12c1aebf042d4224b21eb7f15a4b06df"
+      ],
+      "system": "dense",
+      "token_count": 5
+    },
+    {
+      "answer": "mock: [dsid_89d75953da0c4bc186eb95fe169de462] Python SDK: streaming requests appear to ignore configured timeouts (hangs indef",
+      "context_chars": 10058,
+      "context_tokens": 1448,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.51,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.51,
+      "model": "mock-v1",
+      "question_id": "qst_0211",
+      "retrieved_artifacts": [
+        "dsid_89d75953da0c4bc186eb95fe169de462"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_34423269eac54eb18c002154b09471e8] Introduce consensus-backed migration lock + operator pauser for safe in-place sc",
+      "context_chars": 9479,
+      "context_tokens": 1255,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.76,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.76,
+      "model": "mock-v1",
+      "question_id": "qst_0322",
+      "retrieved_artifacts": [
+        "dsid_34423269eac54eb18c002154b09471e8"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_9291e4abdec54e108c37f0c0918f5972] Incidents runbook: overload behavior with tiered batching defaults (fast/standar",
+      "context_chars": 12988,
+      "context_tokens": 1814,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.36,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.36,
+      "model": "mock-v1",
+      "question_id": "qst_0365",
+      "retrieved_artifacts": [
+        "dsid_9291e4abdec54e108c37f0c0918f5972"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_855e90efc08b41c1970978519ae3838c] Cross-model embedding format incompatibility causing rerank queue buildup and de",
+      "context_chars": 6408,
+      "context_tokens": 845,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.06,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.06,
+      "model": "mock-v1",
+      "question_id": "qst_0393",
+      "retrieved_artifacts": [
+        "dsid_855e90efc08b41c1970978519ae3838c"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_d2ea44924e22471b8d85ecce5ee8ac5d] AWS Marketplace submission checklist (listing + offer + security packet + onboar",
+      "context_chars": 10067,
+      "context_tokens": 1198,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 7.51,
+        "state_ms": 0.0
+      },
+      "latency_ms": 7.51,
+      "model": "mock-v1",
+      "question_id": "qst_0430",
+      "retrieved_artifacts": [
+        "dsid_d2ea44924e22471b8d85ecce5ee8ac5d"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_1cc5220fed924caebe77825c23f81581] Proportional burst allocation and post-facto billing adjustments for Dedicated c",
+      "context_chars": 10700,
+      "context_tokens": 1385,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 1.9,
+        "state_ms": 0.0
+      },
+      "latency_ms": 1.9,
+      "model": "mock-v1",
+      "question_id": "qst_0432",
+      "retrieved_artifacts": [
+        "dsid_1cc5220fed924caebe77825c23f81581"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_be4b992c9bd941c5942e600ef769f6e4] First Week Systems & Badge Onboarding Playbook",
+      "context_chars": 11035,
+      "context_tokens": 1508,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.15,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.15,
+      "model": "mock-v1",
+      "question_id": "qst_0458",
+      "retrieved_artifacts": [
+        "dsid_be4b992c9bd941c5942e600ef769f6e4",
+        "dsid_83298dab33e347dda230779425ecc687"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_9b2ede513ebe4912b415f00e0132b972] Internal: add Sales Demo Guide v1 (runbook links + backup mode)",
+      "context_chars": 9792,
+      "context_tokens": 1472,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 3.86,
+        "state_ms": 0.0
+      },
+      "latency_ms": 3.86,
+      "model": "mock-v1",
+      "question_id": "qst_0476",
+      "retrieved_artifacts": [
+        "dsid_9b2ede513ebe4912b415f00e0132b972"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_f33d72344d424b6985b53ef91c933082] eng-platform",
+      "context_chars": 11917,
+      "context_tokens": 1692,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 16.62,
+        "state_ms": 0.0
+      },
+      "latency_ms": 16.62,
+      "model": "mock-v1",
+      "question_id": "qst_0496",
+      "retrieved_artifacts": [
+        "dsid_f33d72344d424b6985b53ef91c933082"
+      ],
+      "system": "dense",
+      "token_count": 3
+    },
+    {
+      "answer": "mock: [dsid_b1add2c2b8d74c6d8f63921a57572600] SLO-driven automated fallthrough and incident playbook",
+      "context_chars": 12024,
+      "context_tokens": 1572,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.85,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.85,
+      "model": "mock-v1",
+      "question_id": "qst_0170",
+      "retrieved_artifacts": [
+        "dsid_b1add2c2b8d74c6d8f63921a57572600"
+      ],
+      "system": "dense",
+      "token_count": 8
+    },
+    {
+      "answer": "mock: [dsid_ac5e40129fa2444eb1ca1c7aa057bfe2] cross-SDK stream resume + graceful token refresh bridge (python/ts/go)",
+      "context_chars": 8765,
+      "context_tokens": 1169,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.82,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.82,
+      "model": "mock-v1",
+      "question_id": "qst_0266",
+      "retrieved_artifacts": [
+        "dsid_ac5e40129fa2444eb1ca1c7aa057bfe2",
+        "dsid_1210070edd15485ea4a35f87b3d8b829"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_82532c302a7d43c698b81d621d46c98c] Capacity Signal Denoising and SLO Guardrail Runbook",
+      "context_chars": 11125,
+      "context_tokens": 1548,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.08,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.08,
+      "model": "mock-v1",
+      "question_id": "qst_0301",
+      "retrieved_artifacts": [
+        "dsid_82532c302a7d43c698b81d621d46c98c"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_b7ce58e3b065411cadcde61bae39e216] eng-oncall",
+      "context_chars": 10395,
+      "context_tokens": 1439,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.01,
+        "state_ms": 0.0
+      },
+      "latency_ms": 15.01,
+      "model": "mock-v1",
+      "question_id": "qst_0342",
+      "retrieved_artifacts": [
+        "dsid_b7ce58e3b065411cadcde61bae39e216"
+      ],
+      "system": "dense",
+      "token_count": 3
+    },
+    {
+      "answer": "mock: [dsid_08b591d2aea842d2959c165a4832c97e] Status page automation ideas (scratchpad) \u2014 incident-bot prompts + autofill + fa",
+      "context_chars": 9609,
+      "context_tokens": 1377,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.65,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.65,
+      "model": "mock-v1",
+      "question_id": "qst_0394",
+      "retrieved_artifacts": [
+        "dsid_08b591d2aea842d2959c165a4832c97e"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_dab17ee5c3924a9998b17b3591bbae28] On-prem restore fails during manifest apply: missing CRDs / resource ordering ca",
+      "context_chars": 9387,
+      "context_tokens": 1230,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.12,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.12,
+      "model": "mock-v1",
+      "question_id": "qst_0417",
+      "retrieved_artifacts": [
+        "dsid_dab17ee5c3924a9998b17b3591bbae28"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_e263db3e2e8f432fb585ea6866efc17f] Ignite Labs \u2014 Developer Onboard: SDK + Auth Runbook",
+      "context_chars": 11514,
+      "context_tokens": 1866,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.71,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.71,
+      "model": "mock-v1",
+      "question_id": "qst_0436",
+      "retrieved_artifacts": [
+        "dsid_e263db3e2e8f432fb585ea6866efc17f"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_b9fbd63e14ab40d89a3240eef0e87f9d] POC scoping: sensitive flow retention & redaction - BlueHarbor Analytics",
+      "context_chars": 8241,
+      "context_tokens": 1279,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.56,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.56,
+      "model": "mock-v1",
+      "question_id": "qst_0454",
+      "retrieved_artifacts": [
+        "dsid_b9fbd63e14ab40d89a3240eef0e87f9d"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_7d393dfe025e4664b85617db73cd9ab7] Define \u201cminimum supported\u201d observability pack for Redwood Private (dashboards, a",
+      "context_chars": 12065,
+      "context_tokens": 1574,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 2.45,
+        "state_ms": 0.0
+      },
+      "latency_ms": 2.45,
+      "model": "mock-v1",
+      "question_id": "qst_0474",
+      "retrieved_artifacts": [
+        "dsid_7d393dfe025e4664b85617db73cd9ab7"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_ac80b52fe541428292143997399615e5] Annual committed funds: execution matrix, invoice numbering, and tax handoff",
+      "context_chars": 6478,
+      "context_tokens": 942,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.33,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.33,
+      "model": "mock-v1",
+      "question_id": "qst_0484",
+      "retrieved_artifacts": [
+        "dsid_ac80b52fe541428292143997399615e5"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_b51f97c6c7cf4838a7914f913cbc5094] eng-releases",
+      "context_chars": 11721,
+      "context_tokens": 1785,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.04,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.04,
+      "model": "mock-v1",
+      "question_id": "qst_0059",
+      "retrieved_artifacts": [
+        "dsid_b51f97c6c7cf4838a7914f913cbc5094"
+      ],
+      "system": "dense",
+      "token_count": 3
+    },
+    {
+      "answer": "mock: [dsid_bb265ab0d219433ca7e12ab455f92bb0] KV cache compaction experiments tracker (parameter sweeps + defaults)",
+      "context_chars": 12363,
+      "context_tokens": 1844,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 7.68,
+        "state_ms": 0.0
+      },
+      "latency_ms": 7.68,
+      "model": "mock-v1",
+      "question_id": "qst_0240",
+      "retrieved_artifacts": [
+        "dsid_bb265ab0d219433ca7e12ab455f92bb0"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_82b21f529a2443d186f947ce02f1fc51] Summit Stack AI",
+      "context_chars": 10254,
+      "context_tokens": 1488,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.79,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.79,
+      "model": "mock-v1",
+      "question_id": "qst_0329",
+      "retrieved_artifacts": [
+        "dsid_82b21f529a2443d186f947ce02f1fc51",
+        "dsid_268287822e4f4db88b955f7321c25283"
+      ],
+      "system": "dense",
+      "token_count": 5
+    },
+    {
+      "answer": "mock: [dsid_f33d72344d424b6985b53ef91c933082] eng-platform",
+      "context_chars": 11917,
+      "context_tokens": 1692,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 20.6,
+        "state_ms": 0.0
+      },
+      "latency_ms": 20.6,
+      "model": "mock-v1",
+      "question_id": "qst_0364",
+      "retrieved_artifacts": [
+        "dsid_f33d72344d424b6985b53ef91c933082"
+      ],
+      "system": "dense",
+      "token_count": 3
+    },
+    {
+      "answer": "mock: [dsid_54a674d7a12b46808453474b4905defe] Usage Insights (Console) \u2014 UX Spec (IA, Breakdown Tables, Drilldowns, Export, Sh",
+      "context_chars": 16719,
+      "context_tokens": 2536,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 38.17,
+        "state_ms": 0.0
+      },
+      "latency_ms": 38.17,
+      "model": "mock-v1",
+      "question_id": "qst_0396",
+      "retrieved_artifacts": [
+        "dsid_54a674d7a12b46808453474b4905defe"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_be4b992c9bd941c5942e600ef769f6e4] First Week Systems & Badge Onboarding Playbook",
+      "context_chars": 6452,
+      "context_tokens": 904,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 10.16,
+        "state_ms": 0.0
+      },
+      "latency_ms": 10.16,
+      "model": "mock-v1",
+      "question_id": "qst_0413",
+      "retrieved_artifacts": [
+        "dsid_be4b992c9bd941c5942e600ef769f6e4"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_5a28f95ede684daa8b1532f02e825769] Jira automation: SLA reminders + triage required-field validation + known-issues",
+      "context_chars": 9877,
+      "context_tokens": 1451,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.09,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.09,
+      "model": "mock-v1",
+      "question_id": "qst_0435",
+      "retrieved_artifacts": [
+        "dsid_5a28f95ede684daa8b1532f02e825769"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_d2ea44924e22471b8d85ecce5ee8ac5d] AWS Marketplace submission checklist (listing + offer + security packet + onboar",
+      "context_chars": 10067,
+      "context_tokens": 1198,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 16.11,
+        "state_ms": 0.0
+      },
+      "latency_ms": 16.11,
+      "model": "mock-v1",
+      "question_id": "qst_0452",
+      "retrieved_artifacts": [
+        "dsid_d2ea44924e22471b8d85ecce5ee8ac5d"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_632713f6e1a745abb4a8ebb6da6f1dd8] Redwood MSA - IP indemnity carveouts and claims process",
+      "context_chars": 10066,
+      "context_tokens": 1452,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.34,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.34,
+      "model": "mock-v1",
+      "question_id": "qst_0480",
+      "retrieved_artifacts": [
+        "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_6f25fc822a8f48578e650d89fb6db69a] New Windsor Labs \u2014 Private VPC Assimilation Kickoff",
+      "context_chars": 11796,
+      "context_tokens": 1864,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.77,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.77,
+      "model": "mock-v1",
+      "question_id": "qst_0490",
+      "retrieved_artifacts": [
+        "dsid_6f25fc822a8f48578e650d89fb6db69a"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_54a674d7a12b46808453474b4905defe] Usage Insights (Console) \u2014 UX Spec (IA, Breakdown Tables, Drilldowns, Export, Sh",
+      "context_chars": 16719,
+      "context_tokens": 2536,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.6,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.6,
+      "model": "mock-v1",
+      "question_id": "qst_0078",
+      "retrieved_artifacts": [
+        "dsid_54a674d7a12b46808453474b4905defe"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_2c48d56630ca4a5384c92ee40c118288] Novaplane Tech - Security & Hosting Intake",
+      "context_chars": 11344,
+      "context_tokens": 1819,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 26.82,
+        "state_ms": 0.0
+      },
+      "latency_ms": 26.82,
+      "model": "mock-v1",
+      "question_id": "qst_0225",
+      "retrieved_artifacts": [
+        "dsid_2c48d56630ca4a5384c92ee40c118288"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_64212a1689814ac19deff834ce203ebd] Streaming disconnects behind enterprise proxy; SDK retry guidance + better error",
+      "context_chars": 9252,
+      "context_tokens": 1296,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.07,
+        "state_ms": 0.0
+      },
+      "latency_ms": 15.07,
+      "model": "mock-v1",
+      "question_id": "qst_0334",
+      "retrieved_artifacts": [
+        "dsid_64212a1689814ac19deff834ce203ebd"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_c0c6c013bdcf4421bce47e41e857aa91] Rollout plan + feature flag strategy for Console onboarding checklist (dogfood \u2192",
+      "context_chars": 9907,
+      "context_tokens": 1461,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 14.44,
+        "state_ms": 0.0
+      },
+      "latency_ms": 14.44,
+      "model": "mock-v1",
+      "question_id": "qst_0370",
+      "retrieved_artifacts": [
+        "dsid_c0c6c013bdcf4421bce47e41e857aa91"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_0cebe07ca6d143ec81db0065f5fe0c79] Experiment metrics backfill plan (schema change to {experiment_id, variant_id})",
+      "context_chars": 14120,
+      "context_tokens": 2012,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 21.53,
+        "state_ms": 0.0
+      },
+      "latency_ms": 21.53,
+      "model": "mock-v1",
+      "question_id": "qst_0406",
+      "retrieved_artifacts": [
+        "dsid_0cebe07ca6d143ec81db0065f5fe0c79"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_e020ba1f2bf14c1dbceedacb2bf87793] Spectra Bridge SaaSWorks",
+      "context_chars": 11735,
+      "context_tokens": 1721,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.14,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.14,
+      "model": "mock-v1",
+      "question_id": "qst_0416",
+      "retrieved_artifacts": [
+        "dsid_e020ba1f2bf14c1dbceedacb2bf87793",
+        "dsid_3de84b6589a84f6b91f3ac38d292633f"
+      ],
+      "system": "dense",
+      "token_count": 5
+    },
+    {
+      "answer": "mock: [dsid_abb3da491f174793a7265739a9a77116] Secure SDK flows: API key rotation, SSO token lifetimes, and ergonomic patterns",
+      "context_chars": 6195,
+      "context_tokens": 843,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 7.25,
+        "state_ms": 0.0
+      },
+      "latency_ms": 7.25,
+      "model": "mock-v1",
+      "question_id": "qst_0433",
+      "retrieved_artifacts": [
+        "dsid_abb3da491f174793a7265739a9a77116"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_8f4b045885764964a9f3115f77a95fa7] candidate-shadow-week-summary-team-health-feb28-2026",
+      "context_chars": 6490,
+      "context_tokens": 916,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 26.46,
+        "state_ms": 0.0
+      },
+      "latency_ms": 26.46,
+      "model": "mock-v1",
+      "question_id": "qst_0470",
+      "retrieved_artifacts": [
+        "dsid_8f4b045885764964a9f3115f77a95fa7"
+      ],
+      "system": "dense",
+      "token_count": 3
+    },
+    {
+      "answer": "mock: [dsid_07d09606ef68495193a9bdd2d3d67f1c] Requested purge ops and log audit handshake",
+      "context_chars": 9205,
+      "context_tokens": 1305,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 3.48,
+        "state_ms": 0.0
+      },
+      "latency_ms": 3.48,
+      "model": "mock-v1",
+      "question_id": "qst_0478",
+      "retrieved_artifacts": [
+        "dsid_07d09606ef68495193a9bdd2d3d67f1c"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_190a3ff07b204ed1a9e2b432de2ec81f] Graceful Capacity Degradation: Commercialization and Customer Onboarding Playboo",
+      "context_chars": 10235,
+      "context_tokens": 1349,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.96,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.96,
+      "model": "mock-v1",
+      "question_id": "qst_0499",
+      "retrieved_artifacts": [
+        "dsid_190a3ff07b204ed1a9e2b432de2ec81f"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_418f38fa389c47e497463e221751c685] Skyline Systems telemetry & resiliency workshop",
+      "context_chars": 11233,
+      "context_tokens": 1732,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.2,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.2,
+      "model": "mock-v1",
+      "question_id": "qst_0005",
+      "retrieved_artifacts": [
+        "dsid_418f38fa389c47e497463e221751c685"
+      ],
+      "system": "dense",
+      "token_count": 8
+    },
+    {
+      "answer": "mock: [dsid_cf94f88f9048473989675f2c269c2790] Jira Field Guidelines + SLA Timers (SUP Tickets)",
+      "context_chars": 13233,
+      "context_tokens": 1963,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.71,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.71,
+      "model": "mock-v1",
+      "question_id": "qst_0216",
+      "retrieved_artifacts": [
+        "dsid_cf94f88f9048473989675f2c269c2790"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_4f4f9ea160ee4a6e8c903359fb6c31ad] Mariner Retail - Renewal + EU Edge Capacity Onboarding Sync",
+      "context_chars": 10916,
+      "context_tokens": 1649,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.29,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.29,
+      "model": "mock-v1",
+      "question_id": "qst_0333",
+      "retrieved_artifacts": [
+        "dsid_4f4f9ea160ee4a6e8c903359fb6c31ad",
+        "dsid_edf8a5b7e4bd491faffa68adba1213ff"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_42f3819582db4e1696466bbbbcc3bece] Re: AI data use terms \u2014 training opt-out and subprocessors (Orbital Health)",
+      "context_chars": 9906,
+      "context_tokens": 1350,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 25.79,
+        "state_ms": 0.0
+      },
+      "latency_ms": 25.79,
+      "model": "mock-v1",
+      "question_id": "qst_0355",
+      "retrieved_artifacts": [
+        "dsid_42f3819582db4e1696466bbbbcc3bece"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_b1add2c2b8d74c6d8f63921a57572600] SLO-driven automated fallthrough and incident playbook",
+      "context_chars": 12024,
+      "context_tokens": 1572,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.94,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.94,
+      "model": "mock-v1",
+      "question_id": "qst_0386",
+      "retrieved_artifacts": [
+        "dsid_b1add2c2b8d74c6d8f63921a57572600"
+      ],
+      "system": "dense",
+      "token_count": 8
+    },
+    {
+      "answer": "mock: [dsid_a175dcd448d043f5a7c97e67f1d77b41] Thunderbolt AI - Dedicated surge & isolation intake",
+      "context_chars": 14714,
+      "context_tokens": 2306,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 20.81,
+        "state_ms": 0.0
+      },
+      "latency_ms": 20.81,
+      "model": "mock-v1",
+      "question_id": "qst_0411",
+      "retrieved_artifacts": [
+        "dsid_a175dcd448d043f5a7c97e67f1d77b41"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_9f8e0b2262c64123a3d73e36bddbb550] Vanguard Tech - Inference Deployment Discovery",
+      "context_chars": 13064,
+      "context_tokens": 2010,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 18.58,
+        "state_ms": 0.0
+      },
+      "latency_ms": 18.58,
+      "model": "mock-v1",
+      "question_id": "qst_0439",
+      "retrieved_artifacts": [
+        "dsid_9f8e0b2262c64123a3d73e36bddbb550"
+      ],
+      "system": "dense",
+      "token_count": 8
+    },
+    {
+      "answer": "mock: [dsid_faac5db76bdb43d399ff09fe6d97f503] Hybrid provisioning ETA synchronization for ACME AI",
+      "context_chars": 8567,
+      "context_tokens": 1292,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.44,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.44,
+      "model": "mock-v1",
+      "question_id": "qst_0469",
+      "retrieved_artifacts": [
+        "dsid_faac5db76bdb43d399ff09fe6d97f503"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_779f5308d0a348d693b66b11ff36781b] POC weekly - quality drift & guardrail investigation with Cliffside Care",
+      "context_chars": 10084,
+      "context_tokens": 1601,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 10.39,
+        "state_ms": 0.0
+      },
+      "latency_ms": 10.39,
+      "model": "mock-v1",
+      "question_id": "qst_0477",
+      "retrieved_artifacts": [
+        "dsid_779f5308d0a348d693b66b11ff36781b"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_c4f41e9f95764c6d970ee084808cef52] Developer consumption sizing and packaging playbook",
+      "context_chars": 8767,
+      "context_tokens": 1140,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.1,
+        "state_ms": 0.0
+      },
+      "latency_ms": 15.1,
+      "model": "mock-v1",
+      "question_id": "qst_0498",
+      "retrieved_artifacts": [
+        "dsid_c4f41e9f95764c6d970ee084808cef52"
+      ],
+      "system": "dense",
+      "token_count": 8
+    },
+    {
+      "answer": "mock: [dsid_79334c936ef34f219988ed5291e12d10] Throughput & Latency Scaling Playbook \u2014 Brainstorm",
+      "context_chars": 7942,
+      "context_tokens": 1131,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.76,
+        "state_ms": 0.0
+      },
+      "latency_ms": 15.76,
+      "model": "mock-v1",
+      "question_id": "qst_0135",
+      "retrieved_artifacts": [
+        "dsid_79334c936ef34f219988ed5291e12d10"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_fcfa836c215844699d796e740a595a2a] Request exemption: higher burst limit for enterprise chat route (/v1/chat/comple",
+      "context_chars": 9257,
+      "context_tokens": 1283,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 18.17,
+        "state_ms": 0.0
+      },
+      "latency_ms": 18.17,
+      "model": "mock-v1",
+      "question_id": "qst_0270",
+      "retrieved_artifacts": [
+        "dsid_fcfa836c215844699d796e740a595a2a"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_b39afbf2cd7841afb6b6e64268e0c5e1] Dock ACPI _DSM change reorders kernel modules and breaks encrypted-home mount du",
+      "context_chars": 11640,
+      "context_tokens": 1635,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 13.58,
+        "state_ms": 0.0
+      },
+      "latency_ms": 13.58,
+      "model": "mock-v1",
+      "question_id": "qst_0323",
+      "retrieved_artifacts": [
+        "dsid_b39afbf2cd7841afb6b6e64268e0c5e1",
+        "dsid_948994ac06714d63a38924a90a81c4cc"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_dab17ee5c3924a9998b17b3591bbae28] On-prem restore fails during manifest apply: missing CRDs / resource ordering ca",
+      "context_chars": 9387,
+      "context_tokens": 1230,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 16.56,
+        "state_ms": 0.0
+      },
+      "latency_ms": 16.56,
+      "model": "mock-v1",
+      "question_id": "qst_0347",
+      "retrieved_artifacts": [
+        "dsid_dab17ee5c3924a9998b17b3591bbae28"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_58652f7aa95b4191bdfe69b5ab6185ce] LucentGrid POC acceptance criteria + security alignment",
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.63,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.63,
+      "model": "mock-v1",
+      "question_id": "qst_0409",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_73c67a536c0d425fa484a2f8eaeb256a] Pool fallbacks and tenant throttle investigation \u2014 nightshift tactical slate",
+      "context_chars": 8800,
+      "context_tokens": 1081,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.41,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.41,
+      "model": "mock-v1",
+      "question_id": "qst_0414",
+      "retrieved_artifacts": [
+        "dsid_73c67a536c0d425fa484a2f8eaeb256a"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_3c500f477fcc461cbeefebf43156f2c5] Accelerator feature flagging and zero-downtime IaC adapter",
+      "context_chars": 10008,
+      "context_tokens": 1260,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.14,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.14,
+      "model": "mock-v1",
+      "question_id": "qst_0431",
+      "retrieved_artifacts": [
+        "dsid_3c500f477fcc461cbeefebf43156f2c5"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_3090ee291df049c28143815ec446364c] Introduce onboarding heuristic ranker and summarized release creator",
+      "context_chars": 11020,
+      "context_tokens": 1481,
+      "evidence_items": 2,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.56,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.56,
+      "model": "mock-v1",
+      "question_id": "qst_0456",
+      "retrieved_artifacts": [
+        "dsid_3090ee291df049c28143815ec446364c",
+        "dsid_99d24d8bab264bce99e8ab40bc3edf43"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_42f3819582db4e1696466bbbbcc3bece] Re: AI data use terms \u2014 training opt-out and subprocessors (Orbital Health)",
+      "context_chars": 9906,
+      "context_tokens": 1350,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.47,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.47,
+      "model": "mock-v1",
+      "question_id": "qst_0473",
+      "retrieved_artifacts": [
+        "dsid_42f3819582db4e1696466bbbbcc3bece"
+      ],
+      "system": "dense",
+      "token_count": 14
+    },
+    {
+      "answer": "mock: [dsid_1cc5220fed924caebe77825c23f81581] Proportional burst allocation and post-facto billing adjustments for Dedicated c",
+      "context_chars": 10700,
+      "context_tokens": 1385,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.95,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.95,
+      "model": "mock-v1",
+      "question_id": "qst_0486",
+      "retrieved_artifacts": [
+        "dsid_1cc5220fed924caebe77825c23f81581"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_4f4f9ea160ee4a6e8c903359fb6c31ad] Mariner Retail - Renewal + EU Edge Capacity Onboarding Sync",
+      "context_chars": 7576,
+      "context_tokens": 1163,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.76,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.76,
+      "model": "mock-v1",
+      "question_id": "qst_0058",
+      "retrieved_artifacts": [
+        "dsid_4f4f9ea160ee4a6e8c903359fb6c31ad"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_3de84b6589a84f6b91f3ac38d292633f] Re: Discovery \u2014 performance targets and Dedicated ask",
+      "context_chars": 7895,
+      "context_tokens": 1152,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 18.05,
+        "state_ms": 0.0
+      },
+      "latency_ms": 18.05,
+      "model": "mock-v1",
+      "question_id": "qst_0208",
+      "retrieved_artifacts": [
+        "dsid_3de84b6589a84f6b91f3ac38d292633f"
+      ],
+      "system": "dense",
+      "token_count": 10
+    },
+    {
+      "answer": "mock: [dsid_0cebe07ca6d143ec81db0065f5fe0c79] Experiment metrics backfill plan (schema change to {experiment_id, variant_id})",
+      "context_chars": 14120,
+      "context_tokens": 2012,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 13.29,
+        "state_ms": 0.0
+      },
+      "latency_ms": 13.29,
+      "model": "mock-v1",
+      "question_id": "qst_0328",
+      "retrieved_artifacts": [
+        "dsid_0cebe07ca6d143ec81db0065f5fe0c79"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_8590bba128564aa7a60be6067b6be779] Noisy-neighbor tail latency increase for non-burst Dedicated tenant during anoth",
+      "context_chars": 10382,
+      "context_tokens": 1490,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 14.04,
+        "state_ms": 0.0
+      },
+      "latency_ms": 14.04,
+      "model": "mock-v1",
+      "question_id": "qst_0366",
+      "retrieved_artifacts": [
+        "dsid_8590bba128564aa7a60be6067b6be779"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_8590bba128564aa7a60be6067b6be779] Noisy-neighbor tail latency increase for non-burst Dedicated tenant during anoth",
+      "context_chars": 10382,
+      "context_tokens": 1490,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 24.83,
+        "state_ms": 0.0
+      },
+      "latency_ms": 24.83,
+      "model": "mock-v1",
+      "question_id": "qst_0397",
+      "retrieved_artifacts": [
+        "dsid_8590bba128564aa7a60be6067b6be779"
+      ],
+      "system": "dense",
+      "token_count": 12
+    }
+  ],
+  "system": "dense"
+}

@@ -1,0 +1,20 @@
+{
+  "answer_model": "mock-v1",
+  "answer_temperature": 0.0,
+  "answer_timeout_s": 30,
+  "benchmark_version": "v1",
+  "commit_sha": "aed49eb608f1be8f6dde470997351b16b2be1ff6",
+  "context_char_budget": 12000,
+  "corpus_mode": "sample-v1",
+  "corpus_path": "data/samples/phase2a-sample.jsonl",
+  "corpus_record_count": 360,
+  "dataset": "EnterpriseRAG-Bench",
+  "dataset_version": "v1.0.0",
+  "note": "Development/regression mode only \u2014 NOT publishable as official benchmark. Only 7 official questions have gold docs in the 360-doc sample.",
+  "official_benchmark": false,
+  "question_count": 75,
+  "question_set_version": "sample-v1-001",
+  "sample_corpus_overlap_count": 3,
+  "selection_seed": 20260816,
+  "top_k": 5
+}

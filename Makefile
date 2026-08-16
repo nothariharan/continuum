@@ -1,6 +1,4 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs identity-pairs-v1 test-identity-data query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution benchmark-e2e
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution calibrate-entity-resolution entity-integration benchmark-e2e
-feature/phase3b-real-entity-integration
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs identity-pairs-v1 test-identity-data query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution calibrate-entity-resolution entity-integration benchmark-e2e build-benchmark-v1 benchmark-foundation benchmark-foundation-official benchmark-foundation-live benchmark-trace test-benchmark
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -121,7 +119,28 @@ entity-integration:
 benchmark-e2e:
 	python scripts/benchmark_e2e_questions.py
 
+build-benchmark-v1:
+	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode all
 
+benchmark-foundation:
+	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode sample-v1
+	PYTHONPATH=. python scripts/run_benchmark_foundation.py --mode sample-v1 --answer-model mock
+
+benchmark-foundation-official:
+	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode full-v1
+	PYTHONPATH=. python scripts/run_benchmark_foundation.py --mode full-v1 --answer-model real
+
+benchmark-foundation-live:
+	PYTHONPATH=. python scripts/run_benchmark_foundation.py --mode sample-v1 --answer-model real --with-graph
+
+QUESTION ?= qst_0001
+benchmark-trace:
+	PYTHONPATH=. python scripts/run_benchmark_foundation.py --mode sample-v1 --trace $(QUESTION) --answer-model mock
+
+test-benchmark:
+	PYTHONPATH=. python -m pytest tests/eval/test_benchmark_*.py -q
+
+hydradb-up:
 	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_hydradb.ps1
 hydradb-stop:
 	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_hydradb.ps1

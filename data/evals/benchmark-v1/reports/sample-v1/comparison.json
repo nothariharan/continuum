@@ -1,0 +1,126 @@
+{
+  "answer_model": "mock-v1",
+  "benchmark_version": "v1",
+  "context_efficiency": {
+    "bm25": {
+      "artifact_count_mean": 1.11,
+      "context_chars_mean": 10368.23,
+      "context_tokens_mean": 1475.39,
+      "evidence_items_mean": 1.11
+    },
+    "continuum": {
+      "artifact_count_mean": 1,
+      "context_chars_mean": 9527.03,
+      "context_tokens_mean": 1353.48,
+      "evidence_items_mean": 1
+    },
+    "dense": {
+      "artifact_count_mean": 1.11,
+      "context_chars_mean": 10368.23,
+      "context_tokens_mean": 1475.39,
+      "evidence_items_mean": 1.11
+    },
+    "hybrid": {
+      "artifact_count_mean": 1.11,
+      "context_chars_mean": 10368.23,
+      "context_tokens_mean": 1475.39,
+      "evidence_items_mean": 1.11
+    }
+  },
+  "continuum_diagnostics": {
+    "abstention_correctness": null,
+    "conflict_correctness": null,
+    "entity_resolution_correctness": null,
+    "note": "Continuum diagnostics require structured eval-questions harness; not run in generic ER-Bench pass.",
+    "provenance_correctness": null,
+    "temporal_correctness": null
+  },
+  "corpus_mode": "sample-v1",
+  "latency": {
+    "bm25": {
+      "stages": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 13.84,
+        "state_ms": 0.0
+      },
+      "total": {
+        "mean": 13.84,
+        "p50": 12.19,
+        "p95": 31.46
+      }
+    },
+    "continuum": {
+      "stages": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 22.71,
+        "state_ms": 0.0
+      },
+      "total": {
+        "mean": 22.71,
+        "p50": 12.53,
+        "p95": 91.61
+      }
+    },
+    "dense": {
+      "stages": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.05,
+        "state_ms": 0.0
+      },
+      "total": {
+        "mean": 12.05,
+        "p50": 11.65,
+        "p95": 24.83
+      }
+    },
+    "hybrid": {
+      "stages": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.01,
+        "state_ms": 0.0
+      },
+      "total": {
+        "mean": 15.01,
+        "p50": 11.3,
+        "p95": 38.73
+      }
+    }
+  },
+  "official_benchmark": false,
+  "official_score": {
+    "bm25": {
+      "answer_correctness": 0.0,
+      "document_recall_mean": 0.0118,
+      "invalid_extra_evidence_mean": 1.082,
+      "question_count": 75
+    },
+    "continuum": {
+      "answer_correctness": 0.0,
+      "document_recall_mean": 0.0118,
+      "invalid_extra_evidence_mean": 0.9508,
+      "question_count": 75
+    },
+    "dense": {
+      "answer_correctness": 0.0,
+      "document_recall_mean": 0.0118,
+      "invalid_extra_evidence_mean": 1.082,
+      "question_count": 75
+    },
+    "hybrid": {
+      "answer_correctness": 0.0,
+      "document_recall_mean": 0.0118,
+      "invalid_extra_evidence_mean": 1.082,
+      "question_count": 75
+    }
+  },
+  "question_count": 75,
+  "runtime_ms": 5022.26
+}
