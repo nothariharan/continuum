@@ -15,7 +15,7 @@ from continuum.entities.store import EntityStore
 from continuum.hydradb import HydraDBClient
 
 from .corpus import load_corpus
-from .runner import _answer_model, _build_systems, _result_row
+from .runner import _answer_model, _build_single_system, _build_systems, _result_row
 from .schema import (
     DEFAULT_BENCHMARK_ROOT,
     BenchmarkManifest,
@@ -105,16 +105,15 @@ def run_baseline(
     corpus_load_s = round(time.perf_counter() - corpus_started, 2)
 
     if index_only:
-        systems = _build_systems(
+        target = system or "bm25"
+        _build_single_system(
             corpus,
+            target,
             with_graph=with_graph,
             fail_on_fallback=fail_on_fallback,
             graph_client=graph_client,
             entity_store=entity_store,
         )
-        target = system or "bm25"
-        if target not in systems:
-            raise ValueError(f"unknown system: {target}")
         return {
             "run_id": run_id,
             "index_only": True,
@@ -125,17 +124,25 @@ def run_baseline(
         }
 
     model = _answer_model(manifest, answer_model)
-    systems = _build_systems(
-        corpus,
-        with_graph=with_graph,
-        fail_on_fallback=fail_on_fallback,
-        graph_client=graph_client,
-        entity_store=entity_store,
-    )
-    if system:
-        if system not in systems:
-            raise ValueError(f"unknown system: {system}")
-        systems = {system: systems[system]}
+    if system and system != "all":
+        systems = {
+            system: _build_single_system(
+                corpus,
+                system,
+                with_graph=with_graph,
+                fail_on_fallback=fail_on_fallback,
+                graph_client=graph_client,
+                entity_store=entity_store,
+            )
+        }
+    else:
+        systems = _build_systems(
+            corpus,
+            with_graph=with_graph,
+            fail_on_fallback=fail_on_fallback,
+            graph_client=graph_client,
+            entity_store=entity_store,
+        )
 
     questions_by_id = {str(q["question_id"]): q for q in questions}
     run_manifest_path = out_root / "run_manifest.json"

@@ -88,6 +88,42 @@ def _build_systems(
     return systems
 
 
+def _build_single_system(
+    corpus,
+    system_name: str,
+    *,
+    with_graph: bool,
+    fail_on_fallback: bool = False,
+    graph_client=None,
+    entity_store=None,
+):
+    if system_name == "bm25":
+        return BM25RAGSystem(corpus)
+    if system_name == "dense":
+        try:
+            return DenseRAGSystem(corpus)
+        except Exception as exc:
+            if fail_on_fallback:
+                raise RuntimeError(f"dense initialization failed: {exc}") from exc
+            return BM25RAGSystem(corpus)
+    if system_name == "hybrid":
+        try:
+            return HybridRAGSystem(corpus)
+        except Exception as exc:
+            if fail_on_fallback:
+                raise RuntimeError(f"hybrid initialization failed: {exc}") from exc
+            return BM25RAGSystem(corpus)
+    if system_name == "continuum":
+        if with_graph:
+            if graph_client is None:
+                raise RuntimeError("with_graph requires an active HydraDB client")
+            from continuum.benchmark.graph_system import GraphContinuumSystem
+
+            return GraphContinuumSystem(graph_client, entity_store=entity_store)
+        return ContinuumSystem(corpus, with_graph=False)
+    raise ValueError(f"unknown system: {system_name}")
+
+
 def _result_row(question_id: str, system: str, model_name: str, run_result) -> dict[str, Any]:
     row = {
         "question_id": question_id,
