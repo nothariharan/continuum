@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "name": "phase2b-extraction-eval-lexicon",
+    "scope": "entities represented in the labeled Phase 2B extraction evaluation set",
+    "source": "resolutions-real.json (known-good fixture lexicon)",
+    "note": "used by scripts/checkpoint_v2.py as the candidate/lexicon gate for relation extraction quality"
+  },
+  "entities": {
+    "person:neha-kapoor": {
+      "name": "Neha Kapoor",
+      "label": "Person",
+      "mentions": [
+        "Neha Kapoor",
+        "Neha"
+      ],
+      "aliases": [
+        "neha.kapoor@redwood.com"
+      ]
+    },
+    "person:priyom-das": {
+      "name": "Priyom Das",
+      "label": "Person",
+      "mentions": [
+        "Priyom Das",
+        "Priyom"
+      ],
+      "aliases": [
+        "priyom.das@redwood.com"
+      ]
+    },
+    "person:jonas-weber": {
+      "name": "Jonas Weber",
+      "label": "Person",
+      "mentions": [
+        "Jonas Weber",
+        "Jonas"
+      ],
+      "aliases": [
+        "jonas_weber@redwood.com"
+      ]
+    },
+    "person:olga-petrov": {
+      "name": "Olga Petrov",
+      "label": "Person",
+      "mentions": [
+        "Olga Petrov",
+        "Olga"
+      ],
+      "aliases": [
+        "olga.petrov@redwood.com"
+      ]
+    },
+    "person:jasmine-liu": {
+      "name": "Jasmine Liu",
+      "label": "Person",
+      "mentions": [
+        "Jasmine Liu",
+        "Jasmine"
+      ],
+      "aliases": [
+        "jasmine_liu",
+        "jasmine.liu@redwood.com"
+      ]
+    },
+    "person:sarah-chen": {
+      "name": "Sarah Chen",
+      "label": "Person",
+      "mentions": [
+        "Sarah Chen",
+        "sarah_csm"
+      ],
+      "aliases": [
+        "sarah_csm"
+      ]
+    },
+    "person:may-patel": {
+      "name": "Maya Patel",
+      "label": "Person",
+      "mentions": [
+        "Maya Patel",
+        "Maya"
+      ],
+      "aliases": [
+        "maya.patel@redwood.com"
+      ]
+    },
+    "person:may-chen": {
+      "name": "Maya Chen",
+      "label": "Person",
+      "mentions": [
+        "Maya Chen"
+      ],
+      "aliases": [
+        "maya.chen@redwood.com"
+      ]
+    },
+    "person:ravi-patel": {
+      "name": "Ravi Patel",
+      "label": "Person",
+      "mentions": [
+        "Ravi Patel",
+        "Ravi"
+      ],
+      "aliases": [
+        "ravi.patel@redwood.com"
+      ]
+    },
+    "person:ethan-cole": {
+      "name": "Ethan Cole",
+      "label": "Person",
+      "mentions": [
+        "Ethan Cole",
+        "Ethan"
+      ],
+      "aliases": [
+        "ethan.cole@redwood.com"
+      ]
+    },
+    "account:acme-health": {
+      "name": "Acme Health",
+      "label": "Account",
+      "mentions": [
+        "Acme Health",
+        "Acme Health Inc."
+      ],
+      "aliases": [
+        "acmehealth.com"
+      ]
+    },
+    "account:acme-analytics": {
+      "name": "Acme Analytics",
+      "label": "Account",
+      "mentions": [
+        "Acme Analytics",
+        "Acme Analytics Procurement"
+      ],
+      "aliases": [
+        "acme-analytics.com"
+      ]
+    },
+    "account:acme-payments": {
+      "name": "Acme Payments",
+      "label": "Account",
+      "mentions": [
+        "Acme Payments"
+      ],
+      "aliases": [
+        "acmepayments.com"
+      ]
+    },
+    "account:acme": {
+      "name": "ACME",
+      "label": "Account",
+      "mentions": [
+        "ACME",
+        "ACME AI"
+      ],
+      "aliases": [
+        "acme"
+      ]
+    },
+    "account:lucentgrid": {
+      "name": "LucentGrid",
+      "label": "Account",
+      "mentions": [
+        "LucentGrid"
+      ],
+      "aliases": [
+        "lucentgrid"
+      ]
+    },
+    "account:skyline-systems": {
+      "name": "Skyline Systems",
+      "label": "Account",
+      "mentions": [
+        "Skyline Systems",
+        "Skyline"
+      ],
+      "aliases": [
+        "skyline-systems"
+      ]
+    },
+    "account:cedarbank": {
+      "name": "CedarBank",
+      "label": "Account",
+      "mentions": [
+        "CedarBank"
+      ],
+      "aliases": [
+        "cedarbank"
+      ]
+    }
+  }
+}

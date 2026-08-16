@@ -22,7 +22,9 @@ TIMELINE_DATE_RE = re.compile(r"^\s*(20[0-9]{2}-[0-9]{2}-[0-9]{2})\s*[-–]", re
 REVISION_DATE_RE = re.compile(
     r"^\s*[-*]\s*(20[0-9]{2}-[0-9]{2}-[0-9]{2})\s*(?:\(|:)", re.MULTILINE
 )
-MEETING_DATE_RE = re.compile(r"^\s*Meeting:\s*(20[0-9]{2}-[0-9]{2}-[0-9]{2})", re.MULTILINE)
+MEETING_DATE_RE = re.compile(
+    r"^\s*(?:[-*]\s*)?(?:Meeting:|Date:)\s*(20[0-9]{2}-[0-9]{2}-[0-9]{2})", re.MULTILINE
+)
 
 
 @dataclass(frozen=True)
@@ -75,6 +77,10 @@ def _split_names(value: str | None) -> list[str]:
 def build_envelope(artifact: Artifact) -> EvidenceEnvelope:
     metadata = artifact.metadata or {}
     content = artifact.content or ""
+    # Normalize literal backslash-n (double-encoded JSON) so header regexes
+    # with ^...$ MULTILINE anchors work on the same text the patterns scan.
+    if "\\n" in content:
+        content = content.replace("\\n", "\n")
     ticket_ids = re.findall(r"\b([A-Z]{2,5}-\d{1,6})\b", content)
 
     email_from = email_to = None

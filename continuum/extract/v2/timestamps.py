@@ -29,7 +29,7 @@ EXPLICIT_TO_RE = re.compile(
     re.IGNORECASE,
 )
 TAKEOVER_RELATIVE_RE = re.compile(
-    r"\b(takes? over|handoff|transition)\b.*?\b(next\s+(?:monday|tuesday|wednesday|"
+    r"\b(takes? over|taking over)\b.*?\b(next\s+(?:monday|tuesday|wednesday|"
     r"thursday|friday|saturday|sunday))\b",
     re.IGNORECASE,
 )
