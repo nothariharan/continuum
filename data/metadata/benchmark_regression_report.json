@@ -1,0 +1,344 @@
+{
+  "gate": "benchmark-regression",
+  "questions": 18,
+  "correct": 16,
+  "accuracy": 0.8889,
+  "by_category": {
+    "single-hop": {
+      "n": 2,
+      "correct": 2
+    },
+    "multi-hop": {
+      "n": 3,
+      "correct": 3
+    },
+    "temporal": {
+      "n": 2,
+      "correct": 2
+    },
+    "conflict": {
+      "n": 2,
+      "correct": 2
+    },
+    "abstention": {
+      "n": 2,
+      "correct": 2
+    },
+    "provenance": {
+      "n": 1,
+      "correct": 1
+    },
+    "entity-resolution": {
+      "n": 6,
+      "correct": 4
+    }
+  },
+  "rows": [
+    {
+      "question_id": "hr-001",
+      "category": "single-hop",
+      "question": "Who owns LucentGrid?",
+      "expected": "Maya Patel",
+      "got": "Maya Patel",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 69.56,
+      "context": {
+        "artifacts": 2,
+        "characters": 46,
+        "tokens_estimate": 11,
+        "claims": 2,
+        "evidence_items": 1
+      }
+    },
+    {
+      "question_id": "hr-002",
+      "category": "single-hop",
+      "question": "Who maintains Skyline Systems?",
+      "expected": "Ravi Patel",
+      "got": "Ravi Patel",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 36.75,
+      "context": {
+        "artifacts": 2,
+        "characters": 46,
+        "tokens_estimate": 11,
+        "claims": 2,
+        "evidence_items": 1
+      }
+    },
+    {
+      "question_id": "hr-003",
+      "category": "multi-hop",
+      "question": "Which source has evidence Maya Patel owns LucentGrid?",
+      "expected": "fireflies",
+      "got": "fireflies",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 30.52,
+      "context": {
+        "artifacts": 2,
+        "characters": 46,
+        "tokens_estimate": 11,
+        "claims": 2,
+        "evidence_items": 1
+      }
+    },
+    {
+      "question_id": "hr-004",
+      "category": "multi-hop",
+      "question": "Which artifact supports Neha Kapoor owning Acme Health?",
+      "expected": "dsid_632713",
+      "got": "gmail artifact dsid_632713f6e1a",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 31.56,
+      "context": {
+        "artifacts": 3,
+        "characters": 84,
+        "tokens_estimate": 21,
+        "claims": 3,
+        "evidence_items": 2
+      }
+    },
+    {
+      "question_id": "hr-005",
+      "category": "multi-hop",
+      "question": "Who else appears in artifacts mentioning Maya Patel?",
+      "expected": "Ethan Cole",
+      "got": "Ethan Cole",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 21.63,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-006",
+      "category": "temporal",
+      "question": "Who owned LucentGrid as of 2027-02-11?",
+      "expected": "Maya Patel",
+      "got": "Maya Patel",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 38.25,
+      "context": {
+        "artifacts": 2,
+        "characters": 46,
+        "tokens_estimate": 11,
+        "claims": 2,
+        "evidence_items": 1
+      }
+    },
+    {
+      "question_id": "hr-007",
+      "category": "temporal",
+      "question": "Who owned LucentGrid before any evidence (2026-01-01)?",
+      "expected": "unknown",
+      "got": "unknown",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 33.12,
+      "context": {
+        "artifacts": 2,
+        "characters": 46,
+        "tokens_estimate": 11,
+        "claims": 2,
+        "evidence_items": 1
+      }
+    },
+    {
+      "question_id": "hr-008",
+      "category": "conflict",
+      "question": "Who owns Acme Health?",
+      "expected": "conflict",
+      "got": "conflict: person:neha-kapoor or person:priyom-das",
+      "status": "conflict",
+      "correct": true,
+      "latency_ms": 25.23,
+      "context": {
+        "artifacts": 3,
+        "characters": 84,
+        "tokens_estimate": 21,
+        "claims": 3,
+        "evidence_items": 2
+      }
+    },
+    {
+      "question_id": "hr-009",
+      "category": "conflict",
+      "question": "Which claims conflict on Acme Health ownership?",
+      "expected": "conflict",
+      "got": "conflict: person:neha-kapoor or person:priyom-das",
+      "status": "conflict",
+      "correct": true,
+      "latency_ms": 29.69,
+      "context": {
+        "artifacts": 3,
+        "characters": 84,
+        "tokens_estimate": 21,
+        "claims": 3,
+        "evidence_items": 2
+      }
+    },
+    {
+      "question_id": "hr-010",
+      "category": "abstention",
+      "question": "Who owns CedarBank?",
+      "expected": "unknown",
+      "got": "unknown",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 24.43,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-011",
+      "category": "abstention",
+      "question": "Who reviews Optimize Conductor?",
+      "expected": "unknown",
+      "got": "unknown",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 20.38,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-012",
+      "category": "provenance",
+      "question": "Show the evidence chain for Acme Health ownership.",
+      "expected": "gmail",
+      "got": "gmail",
+      "status": "definitive",
+      "correct": true,
+      "latency_ms": 30.5,
+      "context": {
+        "artifacts": 3,
+        "characters": 84,
+        "tokens_estimate": 21,
+        "claims": 3,
+        "evidence_items": 2
+      }
+    },
+    {
+      "question_id": "hr-013",
+      "category": "entity-resolution",
+      "question": "Is 'Marcus Lin' the same as 'marcus.lin@redwood.com'?",
+      "expected": "same",
+      "got": "same",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 10.57,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-014",
+      "category": "entity-resolution",
+      "question": "Is 'Maya' Maya Patel or Maya Chen?",
+      "expected": "uncertain",
+      "got": "uncertain",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 12.8,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-015",
+      "category": "entity-resolution",
+      "question": "Are 'Sara Liu' and 'Sarah Liu' the same?",
+      "expected": "uncertain",
+      "got": "uncertain",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 12.29,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-016",
+      "category": "entity-resolution",
+      "question": "Are '@soham' and 'S. Ratnaparkhi' the same person?",
+      "expected": "same",
+      "got": "uncertain",
+      "status": "absent",
+      "correct": false,
+      "latency_ms": 14.08,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-017",
+      "category": "entity-resolution",
+      "question": "Is 'procurement@acme.ai' the same as 'procurement@redwood.com'?",
+      "expected": "different",
+      "got": "different",
+      "status": "absent",
+      "correct": true,
+      "latency_ms": 22.65,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    },
+    {
+      "question_id": "hr-018",
+      "category": "entity-resolution",
+      "question": "Are 'David Park <david.park@redwood.com>' and 'david.park@acme.com' the same?",
+      "expected": "different",
+      "got": "uncertain",
+      "status": "absent",
+      "correct": false,
+      "latency_ms": 13.82,
+      "context": {
+        "artifacts": 0,
+        "characters": 0,
+        "tokens_estimate": 0,
+        "claims": 0,
+        "evidence_items": 0
+      }
+    }
+  ]
+}
