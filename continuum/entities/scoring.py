@@ -67,6 +67,32 @@ def _valid_emails(values) -> set[str]:
     return {v.lower() for v in values if EMAIL_RE.match(v)}
 
 
+def guarded_email_match(sa, sb) -> float | None:
+    """Deterministic email match with all guards applied.
+
+    Returns None when there is no legitimate email evidence on both sides
+    (missing emails, role mailboxes, or invalid emails). Teammate-measured
+    email_match values may fill the None gap — but never when a guard fired,
+    so callers can distinguish 'no data' from 'guarded'.
+    """
+    a_local = {canonical_local(e) for e in _valid_emails(sa.emails)}
+    b_local = {canonical_local(e) for e in _valid_emails(sb.emails)}
+    a_local = {e for e in a_local if not _is_role_mailbox(e)}
+    b_local = {e for e in b_local if not _is_role_mailbox(e)}
+    if a_local and b_local:
+        return 1.0 if a_local & b_local else 0.0
+    return None
+
+
+def is_role_mailbox_pair(sa, sb) -> bool:
+    """True when either side is a role mailbox (functional account)."""
+    for values in (sa.emails, sb.emails):
+        for email in _valid_emails(values):
+            if _is_role_mailbox(email):
+                return True
+    return False
+
+
 def _is_role_mailbox(email: str) -> bool:
     """Role mailboxes (procurement@x.com) are functional accounts."""
     local = canonical_local(email)
@@ -265,5 +291,25 @@ def score_match(a: EntityCandidate, b: EntityCandidate, features: FeatureVector 
 
     if features.source_overlap == 1.0 and 0.0 < score < 0.6:
         score = min(score + 0.05, 0.6)
+
+    # Teammate-measured evidence boosts (never a merge on its own):
+    # strong embedding similarity or co-occurrence lifts a weak/name-only
+    # score into REVIEW territory, so ambiguous pairs surface for human
+    # review instead of being silently dropped or guessed.
+    if score > 0.0:
+        embedding = features.embedding_similarity
+        cooccurrence = features.cooccurrence
+        if embedding is not None and embedding >= 0.90:
+            score = max(score, 0.80)
+            add_signal("embedding-similarity")
+        elif cooccurrence is not None and cooccurrence >= 0.90:
+            score = max(score, 0.80)
+            add_signal("cooccurrence")
+        elif embedding is not None and embedding >= 0.80 and score < 0.60:
+            score = 0.60
+            add_signal("embedding-similarity")
+        elif cooccurrence is not None and cooccurrence >= 0.80 and score < 0.60:
+            score = 0.60
+            add_signal("cooccurrence")
 
     return EntityMatch(a=a, b=b, features=features, score=score, signals=tuple(signals))
