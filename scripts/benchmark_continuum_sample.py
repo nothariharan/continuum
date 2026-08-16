@@ -1,13 +1,14 @@
 """Sample-v1 Continuum benchmark runner (founder side).
 
-Loads the sample question manifest, runs the layered Continuum pipeline,
-and writes question-level results + a comparison-friendly report.
+Loads the benchmark foundation's sample-v1 question manifest, runs the
+graph-backed Continuum pipeline (continuum.benchmark.answer) over every
+question, and writes question-level results + a report.
 
-The official scoring lives on the teammate's benchmark runner; this script
+The official scoring lives on the benchmark foundation runner; this script
 produces the Continuum-side results and diagnostics ONLY.
 
 Usage:
-    python scripts/benchmark_continuum_sample.py [--questions FILE] [--report-out DIR]
+    python scripts/benchmark_continuum_sample.py [--mode sample-v1] [--report-out DIR]
 """
 
 from __future__ import annotations
@@ -19,15 +20,32 @@ from pathlib import Path
 
 from continuum.benchmark import answer_many
 from continuum.entities.store import EntityStore
+from continuum.eval.benchmark.schema import load_manifest, load_questions
 from continuum.hydradb import HydraDBClient
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_QUESTIONS = ROOT / "data" / "labels" / "eval-questions.jsonl"
+DEFAULT_MODE = "sample-v1"
 DEFAULT_OUT = ROOT / "data" / "metadata" / "benchmark_continuum_sample"
 
 
-def main(questions_path: Path, out_dir: Path) -> dict:
-    questions = [json.loads(line) for line in questions_path.open(encoding="utf-8") if line.strip()]
+def main(mode: str, out_dir: Path) -> dict:
+    import subprocess
+    import sys
+
+    # deterministic fixture load (isolated): 360-artifact sample + real claims
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "dataset_load_hydradb.py"), "--reset"],
+        check=True, capture_output=True, text=True,
+    )
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "load_phase2b_claims.py"), "--reset", "--real",
+         "--claims", str(ROOT / "data" / "fixtures" / "phase2b_real_claims.jsonl"),
+         "--resolutions", str(ROOT / "data" / "fixtures" / "phase2b" / "resolutions-real.json")],
+        check=True, capture_output=True, text=True,
+    )
+
+    manifest = load_manifest(mode)
+    questions = load_questions(mode)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     with HydraDBClient() as client:
@@ -40,13 +58,13 @@ def main(questions_path: Path, out_dir: Path) -> dict:
         encoding="utf-8",
     )
     (out_dir / "report.json").write_text(
-        json.dumps(_report(results), indent=2, ensure_ascii=False),
+        json.dumps(_report(results, manifest), indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
-    return _report(results)
+    return _report(results, manifest)
 
 
-def _report(results: list[dict]) -> dict:
+def _report(results: list[dict], manifest=None) -> dict:
     latencies = [r["latency_ms"]["total"] for r in results if r["latency_ms"]["total"]]
     statuses = {}
     for r in results:
@@ -59,6 +77,7 @@ def _report(results: list[dict]) -> dict:
     }
     return {
         "gate": "benchmark-continuum-sample",
+        "mode": manifest.to_dict().get("corpus_mode") if manifest else None,
         "questions": len(results),
         "status_distribution": statuses,
         "latency_ms": {
@@ -72,8 +91,8 @@ def _report(results: list[dict]) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--questions", type=Path, default=DEFAULT_QUESTIONS)
+    parser.add_argument("--mode", default=DEFAULT_MODE, choices=["sample-v1", "full-v1"])
     parser.add_argument("--report-out", type=Path, default=DEFAULT_OUT)
     args = parser.parse_args()
-    report = main(args.questions, args.report_out)
+    report = main(args.mode, args.report_out)
     print(json.dumps(report, indent=2))

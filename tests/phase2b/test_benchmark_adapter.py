@@ -60,10 +60,20 @@ def test_default_answer_generator_value():
     assert _default_answer_generator(result) == "Maya Patel"
 
 
-@pytest.mark.hydradb
-def test_answer_contract_on_real_fixture(client):
+@pytest.fixture(scope="module")
+def real_fixture_graph():
+    """Load the real-claims fixture once per module (isolated from other
+    tests via dataset_load_hydradb --reset + claims --reset)."""
     import subprocess
     import sys
+
+    try:
+        from continuum.hydradb import HydraDBClient
+
+        with HydraDBClient() as client:
+            client.health_check()
+    except Exception as exc:
+        pytest.skip(f"HydraDB must be running: {exc}")
 
     subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "dataset_load_hydradb.py"), "--reset"],
@@ -75,6 +85,11 @@ def test_answer_contract_on_real_fixture(client):
          "--resolutions", str(ROOT / "data" / "fixtures" / "phase2b" / "resolutions-real.json")],
         check=True, capture_output=True, text=True,
     )
+    return True
+
+
+@pytest.mark.hydradb
+def test_answer_contract_on_real_fixture(real_fixture_graph, client):
     store = EntityStore(client)
     question = {
         "question_id": "q-single-01",
@@ -92,20 +107,7 @@ def test_answer_contract_on_real_fixture(client):
 
 
 @pytest.mark.hydradb
-def test_answer_conflict_detected(client):
-    import subprocess
-    import sys
-
-    subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "dataset_load_hydradb.py"), "--reset"],
-        check=True, capture_output=True, text=True,
-    )
-    subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "load_phase2b_claims.py"), "--reset", "--real",
-         "--claims", str(ROOT / "data" / "fixtures" / "phase2b_real_claims.jsonl"),
-         "--resolutions", str(ROOT / "data" / "fixtures" / "phase2b" / "resolutions-real.json")],
-        check=True, capture_output=True, text=True,
-    )
+def test_answer_conflict_detected(real_fixture_graph, client):
     question = {
         "question_id": "q-conflict-01",
         "category": "conflict",
@@ -119,20 +121,7 @@ def test_answer_conflict_detected(client):
 
 
 @pytest.mark.hydradb
-def test_answer_temporal_abstention(client):
-    import subprocess
-    import sys
-
-    subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "dataset_load_hydradb.py"), "--reset"],
-        check=True, capture_output=True, text=True,
-    )
-    subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "load_phase2b_claims.py"), "--reset", "--real",
-         "--claims", str(ROOT / "data" / "fixtures" / "phase2b_real_claims.jsonl"),
-         "--resolutions", str(ROOT / "data" / "fixtures" / "phase2b" / "resolutions-real.json")],
-        check=True, capture_output=True, text=True,
-    )
+def test_answer_temporal_abstention(real_fixture_graph, client):
     question = {
         "question_id": "q-temporal-02",
         "category": "temporal",

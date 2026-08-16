@@ -42,6 +42,21 @@ def _expected_match(got: str, expected: str) -> bool:
 
 
 def main(questions_path: Path, report_out: Path) -> dict:
+    import subprocess
+    import sys
+
+    # deterministic fixture load (isolated): 360-artifact sample + real claims
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "dataset_load_hydradb.py"), "--reset"],
+        check=True, capture_output=True, text=True,
+    )
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "load_phase2b_claims.py"), "--reset", "--real",
+         "--claims", str(ROOT / "data" / "fixtures" / "phase2b_real_claims.jsonl"),
+         "--resolutions", str(ROOT / "data" / "fixtures" / "phase2b" / "resolutions-real.json")],
+        check=True, capture_output=True, text=True,
+    )
+
     questions = [json.loads(line) for line in questions_path.open(encoding="utf-8") if line.strip()]
     with HydraDBClient() as client:
         store = EntityStore(client)
