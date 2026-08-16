@@ -1,0 +1,243 @@
+{
+  "context_efficiency": {
+    "artifact_count_mean": 1,
+    "context_chars_mean": 9870.6,
+    "context_tokens_mean": 1403.6,
+    "evidence_items_mean": 1
+  },
+  "corpus_mode": "sample-v1",
+  "latency": {
+    "stages": {
+      "entity_ms": 0.0,
+      "generation_ms": 0.0,
+      "graph_ms": 0.0,
+      "retrieval_ms": 6.22,
+      "state_ms": 0.0
+    },
+    "total": {
+      "mean": 6.22,
+      "p50": 5.7,
+      "p95": 8.77
+    }
+  },
+  "official_benchmark": false,
+  "official_score": {
+    "answer_correctness": 0.0,
+    "document_recall_mean": 0.0,
+    "invalid_extra_evidence_mean": 1.0,
+    "question_count": 10
+  },
+  "rows": [
+    {
+      "answer": "mock: [dsid_9b2ede513ebe4912b415f00e0132b972] Internal: add Sales Demo Guide v1 (runbook links + backup mode)",
+      "context_chars": 9792,
+      "context_tokens": 1472,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 3.97,
+        "state_ms": 0.0
+      },
+      "latency_ms": 3.97,
+      "model": "mock-v1",
+      "question_id": "qst_0476",
+      "retrieved_artifacts": [
+        "dsid_9b2ede513ebe4912b415f00e0132b972"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_0cebe07ca6d143ec81db0065f5fe0c79] Experiment metrics backfill plan (schema change to {experiment_id, variant_id})",
+      "context_chars": 14120,
+      "context_tokens": 2012,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.77,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.77,
+      "model": "mock-v1",
+      "question_id": "qst_0328",
+      "retrieved_artifacts": [
+        "dsid_0cebe07ca6d143ec81db0065f5fe0c79"
+      ],
+      "system": "dense",
+      "token_count": 11
+    },
+    {
+      "answer": "mock: [dsid_f7ac483bdad44c409ce10eeabcb0e244] Feature Sprocket Sketchbook",
+      "context_chars": 6347,
+      "context_tokens": 953,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.14,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.14,
+      "model": "mock-v1",
+      "question_id": "qst_0472",
+      "retrieved_artifacts": [
+        "dsid_f7ac483bdad44c409ce10eeabcb0e244"
+      ],
+      "system": "dense",
+      "token_count": 5
+    },
+    {
+      "answer": "mock: [dsid_f33d72344d424b6985b53ef91c933082] eng-platform",
+      "context_chars": 11917,
+      "context_tokens": 1692,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 14.65,
+        "state_ms": 0.0
+      },
+      "latency_ms": 14.65,
+      "model": "mock-v1",
+      "question_id": "qst_0496",
+      "retrieved_artifacts": [
+        "dsid_f33d72344d424b6985b53ef91c933082"
+      ],
+      "system": "dense",
+      "token_count": 3
+    },
+    {
+      "answer": "mock: [dsid_7d393dfe025e4664b85617db73cd9ab7] Define \u201cminimum supported\u201d observability pack for Redwood Private (dashboards, a",
+      "context_chars": 12065,
+      "context_tokens": 1574,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.41,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.41,
+      "model": "mock-v1",
+      "question_id": "qst_0474",
+      "retrieved_artifacts": [
+        "dsid_7d393dfe025e4664b85617db73cd9ab7"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_73c67a536c0d425fa484a2f8eaeb256a] Pool fallbacks and tenant throttle investigation \u2014 nightshift tactical slate",
+      "context_chars": 8800,
+      "context_tokens": 1081,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 3.61,
+        "state_ms": 0.0
+      },
+      "latency_ms": 3.61,
+      "model": "mock-v1",
+      "question_id": "qst_0414",
+      "retrieved_artifacts": [
+        "dsid_73c67a536c0d425fa484a2f8eaeb256a"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_be4b992c9bd941c5942e600ef769f6e4] First Week Systems & Badge Onboarding Playbook",
+      "context_chars": 6452,
+      "context_tokens": 904,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 3.97,
+        "state_ms": 0.0
+      },
+      "latency_ms": 3.97,
+      "model": "mock-v1",
+      "question_id": "qst_0413",
+      "retrieved_artifacts": [
+        "dsid_be4b992c9bd941c5942e600ef769f6e4"
+      ],
+      "system": "dense",
+      "token_count": 9
+    },
+    {
+      "answer": "mock: [dsid_5a28f95ede684daa8b1532f02e825769] Jira automation: SLA reminders + triage required-field validation + known-issues",
+      "context_chars": 9877,
+      "context_tokens": 1451,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.78,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.78,
+      "model": "mock-v1",
+      "question_id": "qst_0435",
+      "retrieved_artifacts": [
+        "dsid_5a28f95ede684daa8b1532f02e825769"
+      ],
+      "system": "dense",
+      "token_count": 12
+    },
+    {
+      "answer": "mock: [dsid_64212a1689814ac19deff834ce203ebd] Streaming disconnects behind enterprise proxy; SDK retry guidance + better error",
+      "context_chars": 9252,
+      "context_tokens": 1296,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 7.21,
+        "state_ms": 0.0
+      },
+      "latency_ms": 7.21,
+      "model": "mock-v1",
+      "question_id": "qst_0334",
+      "retrieved_artifacts": [
+        "dsid_64212a1689814ac19deff834ce203ebd"
+      ],
+      "system": "dense",
+      "token_count": 13
+    },
+    {
+      "answer": "mock: [dsid_779f5308d0a348d693b66b11ff36781b] POC weekly - quality drift & guardrail investigation with Cliffside Care",
+      "context_chars": 10084,
+      "context_tokens": 1601,
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.7,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.7,
+      "model": "mock-v1",
+      "question_id": "qst_0477",
+      "retrieved_artifacts": [
+        "dsid_779f5308d0a348d693b66b11ff36781b"
+      ],
+      "system": "dense",
+      "token_count": 13
+    }
+  ],
+  "system": "dense"
+}

@@ -1,0 +1,20 @@
+{
+  "answer_model": "mock-v1",
+  "answer_temperature": 0.0,
+  "answer_timeout_s": 30,
+  "benchmark_version": "v1",
+  "commit_sha": "aed49eb608f1be8f6dde470997351b16b2be1ff6",
+  "context_char_budget": 12000,
+  "corpus_mode": "full-v1",
+  "corpus_path": "data/raw/enterprise-rag-bench-v1.0.0/all_documents.zip",
+  "corpus_record_count": 511963,
+  "dataset": "EnterpriseRAG-Bench",
+  "dataset_version": "v1.0.0",
+  "note": "Official benchmark mode: full EnterpriseRAG question coverage on full corpus.",
+  "official_benchmark": true,
+  "question_count": 500,
+  "question_set_version": "full-v1-001",
+  "sample_corpus_overlap_count": 7,
+  "selection_seed": 20260816,
+  "top_k": 5
+}
