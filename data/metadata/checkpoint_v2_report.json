@@ -1,0 +1,339 @@
+{
+  "gate": "extraction-v2-checkpoint",
+  "lexicon": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\fixtures\\phase2b\\extraction-eval-lexicon.json",
+  "subset": "11",
+  "layers": {
+    "lexicon_coverage": {
+      "artifacts": 11,
+      "with_candidates": 10,
+      "coverage_rate": 0.909
+    },
+    "candidate_pair_coverage": {
+      "with_pair": 10,
+      "pair_rate": 0.909
+    },
+    "relation_extraction": {
+      "claims": 10,
+      "by_predicate": {
+        "OWNS": 7,
+        "ASSIGNED_TO": 1,
+        "LEADS": 1,
+        "MAINTAINS": 1
+      },
+      "artifacts_with_claims": 7
+    },
+    "graph_loadable": {
+      "passed": 10,
+      "failed": 0,
+      "failure_summary": {}
+    },
+    "fixture_eval": {
+      "fixture_claims": 10,
+      "fixture_keys": 10,
+      "extracted_claims": 10,
+      "matched": 7,
+      "precision": 0.7,
+      "recall": 0.7
+    }
+  },
+  "latency_ms": {
+    "pipeline_total": 33.6,
+    "per_artifact": 3.06
+  },
+  "detail": [
+    {
+      "artifact_id": "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+      "source": "fireflies",
+      "candidates": [
+        "account:lucentgrid",
+        "person:may-patel",
+        "person:ethan-cole"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "6419b3bbdb03dd89",
+          "predicate": "OWNS",
+          "subject": "Maya Patel",
+          "object": "LucentGrid",
+          "evidence": "Owner: Maya Patel -",
+          "observed_at": "2027-02-11T00:00:00"
+        },
+        {
+          "claim_id": "93ef14632ec1ca7b",
+          "predicate": "ASSIGNED_TO",
+          "subject": "Ethan Cole",
+          "object": "LucentGrid",
+          "evidence": "Owner: Ethan Cole -",
+          "observed_at": "2027-02-11T00:00:00"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_418f38fa389c47e497463e221751c685",
+      "source": "fireflies",
+      "candidates": [
+        "account:skyline-systems",
+        "person:may-chen",
+        "person:ravi-patel",
+        "person:may-patel"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "b788395dcf2d4325",
+          "predicate": "LEADS",
+          "subject": "Maya Chen",
+          "object": "Skyline Systems",
+          "evidence": "Maya Chen (Redwood AE)",
+          "observed_at": "2026-09-09T00:00:00"
+        },
+        {
+          "claim_id": "577ff81b11df04bb",
+          "predicate": "MAINTAINS",
+          "subject": "Ravi Patel",
+          "object": "Skyline Systems",
+          "evidence": "Ravi Patel (Redwood SE)",
+          "observed_at": "2026-09-09T00:00:00"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+      "source": "gmail",
+      "candidates": [
+        "account:acme-health",
+        "person:neha-kapoor",
+        "account:acme",
+        "person:priyom-das"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "7ebd3f9db2e7b873",
+          "predicate": "OWNS",
+          "subject": "Neha Kapoor",
+          "object": "Acme Health",
+          "evidence": "From: Samantha Holt <samantha.holt@acmehealth.com>",
+          "observed_at": "2026-02-14T00:00:00"
+        },
+        {
+          "claim_id": "cfbce848e9b0eb97",
+          "predicate": "OWNS",
+          "subject": "Priyom Das",
+          "object": "Acme Health",
+          "evidence": "Priyom (AE)",
+          "observed_at": "2026-02-14T00:00:00"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_b5d97257992a4f618c90df006e2e90a8",
+      "source": "gmail",
+      "candidates": [
+        "account:acme-payments",
+        "person:jasmine-liu"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "133e4637150caba6",
+          "predicate": "OWNS",
+          "subject": "Jasmine Liu",
+          "object": "Acme Payments",
+          "evidence": "From: Alex Chen <alex.chen@acmepayments.com>",
+          "observed_at": "2027-02-28T00:00:00"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7",
+      "source": "gmail",
+      "candidates": [
+        "account:acme-health",
+        "person:jonas-weber",
+        "account:acme"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "78f0c83fbed7a002",
+          "predicate": "OWNS",
+          "subject": "Jonas Weber",
+          "object": "Acme Health",
+          "evidence": "From: Sandra Lopez <slopez@acmehealth.com>",
+          "observed_at": "2027-08-04T00:00:00"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_ac80b52fe541428292143997399615e5",
+      "source": "gmail",
+      "candidates": [
+        "person:olga-petrov",
+        "account:acme-analytics",
+        "account:acme"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "bd24375e39185700",
+          "predicate": "OWNS",
+          "subject": "Olga Petrov",
+          "object": "Acme Analytics",
+          "evidence": "From: Olga Petrov <olga.petrov@redwood.com>",
+          "observed_at": "2026-08-18T00:00:00"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503",
+      "source": "gmail",
+      "candidates": [
+        "account:acme",
+        "person:neha-kapoor"
+      ],
+      "pair": true,
+      "claims": []
+    },
+    {
+      "artifact_id": "dsid_fbdb90b68a2c47369bb5011328e67ec2",
+      "source": "google_drive",
+      "candidates": [
+        "account:acme",
+        "person:may-patel"
+      ],
+      "pair": true,
+      "claims": []
+    },
+    {
+      "artifact_id": "dsid_8fb3495571e4429d99184d71090e3828",
+      "source": "google_drive",
+      "candidates": [
+        "person:may-chen",
+        "person:may-patel",
+        "account:acme"
+      ],
+      "pair": true,
+      "claims": []
+    },
+    {
+      "artifact_id": "dsid_2479a77669e042b9b8e5ba51c31e7ea2",
+      "source": "slack",
+      "candidates": [
+        "account:acme",
+        "person:sarah-chen"
+      ],
+      "pair": true,
+      "claims": [
+        {
+          "claim_id": "4797a95ce900cc9c",
+          "predicate": "OWNS",
+          "subject": "Sarah Chen",
+          "object": "ACME",
+          "evidence": "sarah_csm:",
+          "observed_at": "2027-12-28T19:08:31"
+        }
+      ]
+    },
+    {
+      "artifact_id": "dsid_2bdce1fe36d941f091b28044b24d86e3",
+      "source": "slack",
+      "candidates": [],
+      "pair": false,
+      "claims": []
+    }
+  ],
+  "graph_verdicts": [
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:may-patel",
+      "object_id": "account:lucentgrid",
+      "timestamp_source": "claim",
+      "claim_id": "6419b3bbdb03dd89",
+      "predicate": "OWNS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:ethan-cole",
+      "object_id": "account:lucentgrid",
+      "timestamp_source": "claim",
+      "claim_id": "93ef14632ec1ca7b",
+      "predicate": "ASSIGNED_TO"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:may-chen",
+      "object_id": "account:skyline-systems",
+      "timestamp_source": "claim",
+      "claim_id": "b788395dcf2d4325",
+      "predicate": "LEADS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:ravi-patel",
+      "object_id": "account:skyline-systems",
+      "timestamp_source": "claim",
+      "claim_id": "577ff81b11df04bb",
+      "predicate": "MAINTAINS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:neha-kapoor",
+      "object_id": "account:acme-health",
+      "timestamp_source": "claim",
+      "claim_id": "7ebd3f9db2e7b873",
+      "predicate": "OWNS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:priyom-das",
+      "object_id": "account:acme-health",
+      "timestamp_source": "claim",
+      "claim_id": "cfbce848e9b0eb97",
+      "predicate": "OWNS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:jasmine-liu",
+      "object_id": "account:acme-payments",
+      "timestamp_source": "claim",
+      "claim_id": "133e4637150caba6",
+      "predicate": "OWNS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:jonas-weber",
+      "object_id": "account:acme-health",
+      "timestamp_source": "claim",
+      "claim_id": "78f0c83fbed7a002",
+      "predicate": "OWNS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:olga-petrov",
+      "object_id": "account:acme-analytics",
+      "timestamp_source": "claim",
+      "claim_id": "bd24375e39185700",
+      "predicate": "OWNS"
+    },
+    {
+      "status": "PASS",
+      "reason": "graph-loadable",
+      "subject_id": "person:sarah-chen",
+      "object_id": "account:acme",
+      "timestamp_source": "claim",
+      "claim_id": "4797a95ce900cc9c",
+      "predicate": "OWNS"
+    }
+  ]
+}

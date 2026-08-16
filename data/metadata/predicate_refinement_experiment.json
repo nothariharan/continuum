@@ -1,0 +1,128 @@
+{
+  "gate": "predicate-refinement-experiment",
+  "model": "accounts/fireworks/models/gpt-oss-120b",
+  "artifacts": 11,
+  "fixture_claims": 10,
+  "deterministic_latency_ms_per_artifact": 3.24,
+  "modes": {
+    "A": {
+      "mode": "A-deterministic",
+      "claims": 10,
+      "exact_match": 7,
+      "precision": 0.7,
+      "recall": 0.7,
+      "model_calls": 0,
+      "model_calls_per_artifact": 0.0,
+      "model_latency_ms": 0.0,
+      "total_latency_ms_per_artifact": 3.24
+    },
+    "B": {
+      "mode": "B-refine-ambiguous",
+      "claims": 10,
+      "exact_match": 8,
+      "precision": 0.8,
+      "recall": 0.8,
+      "model_calls": 6,
+      "model_calls_per_artifact": 0.55,
+      "model_latency_ms": 14439.4,
+      "total_latency_ms_per_artifact": 1315.91
+    },
+    "C": {
+      "mode": "C-refine-all",
+      "claims": 10,
+      "exact_match": 8,
+      "precision": 0.8,
+      "recall": 0.8,
+      "model_calls": 10,
+      "model_calls_per_artifact": 0.91,
+      "model_latency_ms": 55930.5,
+      "total_latency_ms_per_artifact": 5087.84
+    }
+  },
+  "per_claim": [
+    {
+      "claim_id": "7ebd3f9db2e7b873",
+      "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+      "subject": "Neha Kapoor",
+      "object": "Acme Health",
+      "candidate_predicate": "OWNS",
+      "final_predicate": "OWNS",
+      "confidence": 0.95,
+      "latency_ms": 1938.5,
+      "abstained": false,
+      "refined": false,
+      "expected_predicate": "OWNS",
+      "exact": true
+    },
+    {
+      "claim_id": "cfbce848e9b0eb97",
+      "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+      "subject": "Priyom Das",
+      "object": "Acme Health",
+      "candidate_predicate": "OWNS",
+      "final_predicate": "OWNS",
+      "confidence": 0.95,
+      "latency_ms": 1455.1,
+      "abstained": false,
+      "refined": false,
+      "expected_predicate": "OWNS",
+      "exact": true
+    },
+    {
+      "claim_id": "133e4637150caba6",
+      "artifact_id": "dsid_b5d97257992a4f618c90df006e2e90a8",
+      "subject": "Jasmine Liu",
+      "object": "Acme Payments",
+      "candidate_predicate": "OWNS",
+      "final_predicate": "OWNS",
+      "confidence": 0.0,
+      "latency_ms": 1629.2,
+      "abstained": true,
+      "refined": false,
+      "expected_predicate": "LEADS",
+      "exact": false
+    },
+    {
+      "claim_id": "78f0c83fbed7a002",
+      "artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7",
+      "subject": "Jonas Weber",
+      "object": "Acme Health",
+      "candidate_predicate": "OWNS",
+      "final_predicate": "OWNS",
+      "confidence": 0.9,
+      "latency_ms": 1504.6,
+      "abstained": true,
+      "refined": false,
+      "expected_predicate": "MAINTAINS",
+      "exact": false
+    },
+    {
+      "claim_id": "bd24375e39185700",
+      "artifact_id": "dsid_ac80b52fe541428292143997399615e5",
+      "subject": "Olga Petrov",
+      "object": "Acme Analytics",
+      "candidate_predicate": "OWNS",
+      "final_predicate": "MAINTAINS",
+      "confidence": 0.75,
+      "latency_ms": 2412.4,
+      "abstained": false,
+      "refined": true,
+      "expected_predicate": "MAINTAINS",
+      "exact": true
+    },
+    {
+      "claim_id": "4797a95ce900cc9c",
+      "artifact_id": "dsid_2479a77669e042b9b8e5ba51c31e7ea2",
+      "subject": "Sarah Chen",
+      "object": "ACME",
+      "candidate_predicate": "OWNS",
+      "final_predicate": "OWNS",
+      "confidence": 0.95,
+      "latency_ms": 1107.3,
+      "abstained": false,
+      "refined": false,
+      "expected_predicate": "OWNS",
+      "exact": true
+    }
+  ]
+}
