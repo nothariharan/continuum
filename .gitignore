@@ -12,6 +12,7 @@ data/raw/
 *.checkpoint.jsonl
 data/evals/run_*/predictions/
 data/entity_resolution/*.parquet
+data/entity_resolution/**/embeddings/
 .cache/
 models/
 embeddings/

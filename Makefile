@@ -1,4 +1,4 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs identity-pairs-v1 test-identity-data query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -69,6 +69,14 @@ eval-synthetic-claims:
 
 identity-pairs:
 	python scripts/build_identity_pairs.py
+
+identity-pairs-v1:
+	python scripts/build_identity_pairs_v1.py
+	python scripts/generate_identity_features.py
+	python scripts/eval_identity_pairs.py
+
+test-identity-data:
+	python -m pytest tests/eval/test_identity_pairs_v1.py -q
 
 query-shapes:
 	python scripts/measure_query_shapes.py
