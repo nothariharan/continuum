@@ -1,0 +1,41 @@
+{
+  "gate": "benchmark-continuum-sample",
+  "questions": 20,
+  "status_distribution": {
+    "definitive": 11,
+    "absent": 7,
+    "conflict": 2
+  },
+  "latency_ms": {
+    "p50": 43.0,
+    "max": 89.36
+  },
+  "context_totals": {
+    "artifacts": 29,
+    "characters": 746,
+    "claims": 4,
+    "evidence_items": 17
+  },
+  "question_ids": [
+    "q-single-01",
+    "q-single-02",
+    "q-single-03",
+    "q-single-04",
+    "q-single-05",
+    "q-multi-01",
+    "q-multi-02",
+    "q-multi-03",
+    "q-temporal-01",
+    "q-temporal-02",
+    "q-temporal-03",
+    "q-conflict-01",
+    "q-conflict-02",
+    "q-abstain-01",
+    "q-abstain-02",
+    "q-provenance-01",
+    "q-provenance-02",
+    "q-er-01",
+    "q-er-02",
+    "q-er-03"
+  ]
+}

@@ -74,8 +74,8 @@ FEATURE_NAMES = (
 class IdentityPair:
     pair_id: str
     mention_a: str
-    type_a: str
-    source_a: str | None
+    type_a: str = "person"
+    source_a: str | None = None
     emails_a: tuple[str, ...] = ()
     usernames_a: tuple[str, ...] = ()
     external_ids_a: tuple[str, ...] = ()
