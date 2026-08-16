@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://continuum.local/schemas/identity-pairs-v1.json",
+  "title": "IdentityPairRow",
+  "type": "object",
+  "required": [
+    "pair_id",
+    "a",
+    "b",
+    "label",
+    "difficulty_tags",
+    "label_rationale",
+    "candidate_source",
+    "features"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "pair_id": {
+      "type": "string",
+      "pattern": "^ip-[0-9]{3}$"
+    },
+    "a": { "$ref": "#/$defs/mentionSide" },
+    "b": { "$ref": "#/$defs/mentionSide" },
+    "label": {
+      "type": "string",
+      "enum": ["SAME_ENTITY", "DIFFERENT_ENTITY", "UNCERTAIN"]
+    },
+    "difficulty_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "label_rationale": { "type": "string" },
+    "candidate_source": { "type": "string" },
+    "features": { "$ref": "#/$defs/featureVector" }
+  },
+  "$defs": {
+    "mentionSide": {
+      "type": "object",
+      "required": ["mention", "type", "emails", "usernames", "external_ids", "sources", "frequency"],
+      "additionalProperties": false,
+      "properties": {
+        "mention": { "type": "string", "minLength": 1 },
+        "type": { "type": "string" },
+        "emails": { "type": "array", "items": { "type": "string" } },
+        "usernames": { "type": "array", "items": { "type": "string" } },
+        "external_ids": { "type": "array", "items": { "type": "string" } },
+        "sources": { "type": "array", "items": { "type": "string" } },
+        "frequency": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "featureVector": {
+      "type": "object",
+      "required": [
+        "name_similarity",
+        "email_match",
+        "email_username_match",
+        "username_match",
+        "external_id_match",
+        "source_overlap",
+        "cooccurrence",
+        "embedding_similarity",
+        "shared_project",
+        "shared_repository",
+        "shared_channel"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name_similarity": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "email_match": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "email_username_match": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "username_match": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "external_id_match": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "source_overlap": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "cooccurrence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "embedding_similarity": { "type": ["number", "null"], "minimum": -1, "maximum": 1 },
+        "shared_project": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "shared_repository": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "shared_channel": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

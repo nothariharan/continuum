@@ -1,0 +1,129 @@
+{
+  "candidate_source_breakdown": {
+    "cross-source-email": 1,
+    "cross-source-nickname": 1,
+    "email-local-part-hard-negative": 1,
+    "first-name-vs-full-name": 4,
+    "functional-account-cross-domain": 1,
+    "functional-cross-domain": 1,
+    "initials-full-name": 1,
+    "legacy-phase3-labels": 87,
+    "role-mailbox-vs-person": 2,
+    "ticket-key-fuzzy": 1,
+    "ticket-key-overlap": 1,
+    "username-alias": 1,
+    "username-email-local-part": 1
+  },
+  "commit_sha": "c8fc41c4539222cedea23a24eb758e5b37202045",
+  "dataset_version": "v1",
+  "difficulty_tag_histogram": {
+    "cross_domain": 2,
+    "cross_source": 3,
+    "cross_source_overlap": 11,
+    "distinct_emails": 3,
+    "distinct_first_names": 1,
+    "distinct_full_names": 20,
+    "domain": 1,
+    "email": 1,
+    "email_local_part": 22,
+    "email_thread": 1,
+    "exact_first_name": 1,
+    "exact_name": 2,
+    "first_name": 3,
+    "first_name_vs_full_name": 42,
+    "full_name": 1,
+    "functional_account": 2,
+    "fuzzy": 2,
+    "initials": 1,
+    "name_vs_email": 12,
+    "nickname": 1,
+    "role": 1,
+    "role_mailbox": 4,
+    "role_match": 1,
+    "role_only": 1,
+    "role_qualifier": 2,
+    "shared_token": 1,
+    "ticket_key": 2,
+    "username": 1,
+    "username_alias": 1,
+    "username_base": 1
+  },
+  "feature_coverage": {
+    "cooccurrence": 0.9806,
+    "email_match": 0.2233,
+    "email_username_match": 0.0,
+    "embedding_similarity": 0.0,
+    "external_id_match": 0.1068,
+    "name_similarity": 1.0,
+    "shared_channel": 0.0291,
+    "shared_project": 0.0291,
+    "shared_repository": 0.0097,
+    "source_overlap": 0.7573,
+    "username_match": 0.0097
+  },
+  "feature_stats": {
+    "cooccurrence": {
+      "max": 1.0,
+      "mean": 0.1329,
+      "min": 0.0
+    },
+    "email_match": {
+      "max": 1.0,
+      "mean": 0.913,
+      "min": 0.0
+    },
+    "email_username_match": {
+      "max": null,
+      "mean": null,
+      "min": null
+    },
+    "embedding_similarity": {
+      "max": null,
+      "mean": null,
+      "min": null
+    },
+    "external_id_match": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0
+    },
+    "name_similarity": {
+      "max": 1.0,
+      "mean": 0.4049,
+      "min": 0.0
+    },
+    "shared_channel": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0
+    },
+    "shared_project": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0
+    },
+    "shared_repository": {
+      "max": 1.0,
+      "mean": 1.0,
+      "min": 1.0
+    },
+    "source_overlap": {
+      "max": 1.0,
+      "mean": 0.7821,
+      "min": 0.0
+    },
+    "username_match": {
+      "max": 1.0,
+      "mean": 1.0,
+      "min": 1.0
+    }
+  },
+  "inventory_hash": "ea5ee7a894c8",
+  "label_distribution": {
+    "DIFFERENT_ENTITY": 25,
+    "SAME_ENTITY": 27,
+    "UNCERTAIN": 51
+  },
+  "pair_count": 103,
+  "system_owner_next_step": "Wire data/entity_resolution/v1/identity-pairs.jsonl into the resolver eval harness; tune REVIEW threshold on the UNCERTAIN tail using FeatureVector slots without changing continuum/entities/resolver.py."
+}
