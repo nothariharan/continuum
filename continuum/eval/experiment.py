@@ -3,13 +3,17 @@
 from __future__ import annotations
 
 import json
-import resource
 import sys
 import time
 import tracemalloc
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+
+try:
+    import resource  # Unix-only; optional (Windows falls back to tracemalloc)
+except ImportError:  # pragma: no cover - Windows
+    resource = None
 
 from continuum.dataset.artifact import Artifact
 from continuum.eval.failures import build_failure_corpus
@@ -127,12 +131,13 @@ class ExtractionEvalRun:
         tracemalloc.stop()
         memory_peak_mb = round(peak_bytes / (1024 * 1024), 2)
         try:
-            rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-            if sys.platform == "darwin":
-                rss_mb = rss / (1024 * 1024)
-            else:
-                rss_mb = rss / 1024
-            memory_peak_mb = round(max(memory_peak_mb, rss_mb), 2)
+            if resource is not None:
+                rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+                if sys.platform == "darwin":
+                    rss_mb = rss / (1024 * 1024)
+                else:
+                    rss_mb = rss / 1024
+                memory_peak_mb = round(max(memory_peak_mb, rss_mb), 2)
         except Exception:
             pass
 
