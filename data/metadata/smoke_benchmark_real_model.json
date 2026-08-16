@@ -1,0 +1,1222 @@
+{
+  "gate": "smoke-benchmark-real-model",
+  "answer_model": "accounts/fireworks/models/gpt-oss-20b",
+  "questions": 10,
+  "systems": [
+    "bm25",
+    "continuum",
+    "dense",
+    "hybrid"
+  ],
+  "rows": [
+    {
+      "question_id": "q-single-01",
+      "system": "bm25",
+      "answer": "LucentGrid is owned by the following individuals: Maya Patel, Ethan Cole, Priya Menon, and Omar Reyes.",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 4294.57,
+      "latency_breakdown": {
+        "retrieval_ms": 1.87,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 4292.7
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-01",
+      "system": "hybrid",
+      "answer": "LucentGrid is owned by the following individuals: Maya Patel, Ethan Cole, Priya Menon, and Omar Reyes.",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 1935.35,
+      "latency_breakdown": {
+        "retrieval_ms": 33.52,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1901.83
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-01",
+      "system": "dense",
+      "answer": "The LucentGrid POC is owned by the following individuals: Maya Patel, Ethan Cole, Priya Menon, and Omar Reyes.",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+        "dsid_c2daaab889b246df8652445b3ff184fa"
+      ],
+      "context_chars": 10077,
+      "context_tokens": 1458,
+      "evidence_items": 2,
+      "latency_ms": 1968.6,
+      "latency_breakdown": {
+        "retrieval_ms": 38.04,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1930.56
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-01",
+      "system": "continuum",
+      "answer": "Maya Patel.",
+      "retrieved_artifacts": [
+        "account:lucentgrid"
+      ],
+      "context_chars": 481,
+      "context_tokens": 40,
+      "evidence_items": 1,
+      "latency_ms": 799.72,
+      "latency_breakdown": {
+        "retrieval": 19.835400002193637,
+        "entity_resolution": 6.618299994443078,
+        "traversal": 0.0,
+        "state": 34.44419999868842,
+        "evidence_selection": 12.66800000303192,
+        "total": 73.56589999835705,
+        "total_ms": 73.66,
+        "generation_ms": 578.93
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:lucentgrid"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:lucentgrid",
+          "predicate": "OWNS",
+          "status": "definitive",
+          "value": {
+            "entity_id": "person:may-patel",
+            "name": "Maya Patel"
+          },
+          "valid_from": "2027-02-11",
+          "valid_to": null,
+          "confidence": 0.96,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:may-patel-owns-lucentgrid",
+            "subject_mention": "Maya Patel",
+            "object_mention": "LucentGrid",
+            "artifact_id": "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+            "artifact_kind": "meeting_transcript",
+            "source_id": "source:fireflies",
+            "source": "fireflies",
+            "observed_at": "2027-02-11T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-single-02",
+      "system": "bm25",
+      "answer": "Alex Rivera, the CTO of Skyline Systems.",
+      "retrieved_artifacts": [
+        "dsid_418f38fa389c47e497463e221751c685"
+      ],
+      "context_chars": 11233,
+      "context_tokens": 1732,
+      "evidence_items": 1,
+      "latency_ms": 1367.5,
+      "latency_breakdown": {
+        "retrieval_ms": 1.45,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1366.05
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-02",
+      "system": "hybrid",
+      "answer": "Skyline Systems is maintained by Alex Rivera, the company’s CTO.",
+      "retrieved_artifacts": [
+        "dsid_418f38fa389c47e497463e221751c685",
+        "dsid_ded987ab84a54577908e4a41b08ad60d"
+      ],
+      "context_chars": 11674,
+      "context_tokens": 1782,
+      "evidence_items": 2,
+      "latency_ms": 2862.66,
+      "latency_breakdown": {
+        "retrieval_ms": 41.23,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 2821.43
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-02",
+      "system": "dense",
+      "answer": "Alex Rivera, the CTO of Skyline Systems.",
+      "retrieved_artifacts": [
+        "dsid_418f38fa389c47e497463e221751c685"
+      ],
+      "context_chars": 11233,
+      "context_tokens": 1732,
+      "evidence_items": 1,
+      "latency_ms": 2894.06,
+      "latency_breakdown": {
+        "retrieval_ms": 41.09,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 2852.97
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-02",
+      "system": "continuum",
+      "answer": "Ravi Patel.",
+      "retrieved_artifacts": [
+        "account:skyline-systems"
+      ],
+      "context_chars": 497,
+      "context_tokens": 40,
+      "evidence_items": 1,
+      "latency_ms": 989.32,
+      "latency_breakdown": {
+        "retrieval": 57.633000003988855,
+        "entity_resolution": 13.761499998508953,
+        "traversal": 0.0,
+        "state": 17.765099997632205,
+        "evidence_selection": 19.504000003507826,
+        "total": 108.66360000363784,
+        "total_ms": 108.78,
+        "generation_ms": 663.21
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:skyline-systems"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:skyline-systems",
+          "predicate": "MAINTAINS",
+          "status": "definitive",
+          "value": {
+            "entity_id": "person:ravi-patel",
+            "name": "Ravi Patel"
+          },
+          "valid_from": "2026-09-09",
+          "valid_to": null,
+          "confidence": 0.96,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:ravi-maintains-skyline",
+            "subject_mention": "Ravi Patel",
+            "object_mention": "Skyline Systems",
+            "artifact_id": "dsid_418f38fa389c47e497463e221751c685",
+            "artifact_kind": "meeting_transcript",
+            "source_id": "source:fireflies",
+            "source": "fireflies",
+            "observed_at": "2026-09-09T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-single-03",
+      "system": "bm25",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      ],
+      "context_chars": 10066,
+      "context_tokens": 1452,
+      "evidence_items": 1,
+      "latency_ms": 644.93,
+      "latency_breakdown": {
+        "retrieval_ms": 1.51,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 643.42
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-03",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      ],
+      "context_chars": 10066,
+      "context_tokens": 1452,
+      "evidence_items": 1,
+      "latency_ms": 658.92,
+      "latency_breakdown": {
+        "retrieval_ms": 84.25,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 574.67
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-03",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_faac5db76bdb43d399ff09fe6d97f503"
+      ],
+      "context_chars": 8567,
+      "context_tokens": 1292,
+      "evidence_items": 1,
+      "latency_ms": 695.45,
+      "latency_breakdown": {
+        "retrieval_ms": 34.77,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 660.68
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-03",
+      "system": "continuum",
+      "answer": "Answer: Jasmine Liu.",
+      "retrieved_artifacts": [
+        "account:acme-payments"
+      ],
+      "context_chars": 487,
+      "context_tokens": 40,
+      "evidence_items": 1,
+      "latency_ms": 755.17,
+      "latency_breakdown": {
+        "retrieval": 24.853499999153428,
+        "entity_resolution": 10.847400000784546,
+        "traversal": 0.0,
+        "state": 11.261999999987893,
+        "evidence_selection": 18.72400000138441,
+        "total": 65.68690000131028,
+        "total_ms": 65.77,
+        "generation_ms": 558.03
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:acme-payments"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:acme-payments",
+          "predicate": "LEADS",
+          "status": "definitive",
+          "value": {
+            "entity_id": "person:jasmine-liu",
+            "name": "Jasmine Liu"
+          },
+          "valid_from": "2027-02-28",
+          "valid_to": null,
+          "confidence": 0.96,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:jasmine-leads-acme-payments",
+            "subject_mention": "Jasmine Liu",
+            "object_mention": "Acme Payments",
+            "artifact_id": "dsid_b5d97257992a4f618c90df006e2e90a8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2027-02-28T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-single-05",
+      "system": "bm25",
+      "answer": "The following individuals are assigned to the LucentGrid project:\n\n- Maya Patel  \n- Ethan Cole  \n- Priya Menon  \n- Omar Reyes",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 2075.68,
+      "latency_breakdown": {
+        "retrieval_ms": 1.71,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 2073.97
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-05",
+      "system": "hybrid",
+      "answer": "The following individuals are assigned to the LucentGrid project:\n\n- Maya Patel  \n- Ethan Cole  \n- Priya Menon  \n- Omar Reyes",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 2026.86,
+      "latency_breakdown": {
+        "retrieval_ms": 33.89,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1992.97
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-05",
+      "system": "dense",
+      "answer": "The following individuals are assigned to the LucentGrid project:\n\n- Maya Patel  \n- Ethan Cole  \n- Priya Menon  \n- Omar Reyes",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 2069.57,
+      "latency_breakdown": {
+        "retrieval_ms": 37.0,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 2032.57
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-single-05",
+      "system": "continuum",
+      "answer": "Answer: Ethan Cole",
+      "retrieved_artifacts": [
+        "account:lucentgrid"
+      ],
+      "context_chars": 489,
+      "context_tokens": 40,
+      "evidence_items": 1,
+      "latency_ms": 731.89,
+      "latency_breakdown": {
+        "retrieval": 10.506400001759175,
+        "entity_resolution": 4.976600001100451,
+        "traversal": 0.0,
+        "state": 5.742499997722916,
+        "evidence_selection": 8.01330000103917,
+        "total": 29.238800001621712,
+        "total_ms": 29.32,
+        "generation_ms": 644.09
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:lucentgrid"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:lucentgrid",
+          "predicate": "ASSIGNED_TO",
+          "status": "definitive",
+          "value": {
+            "entity_id": "person:ethan-cole",
+            "name": "Ethan Cole"
+          },
+          "valid_from": "2027-02-11",
+          "valid_to": null,
+          "confidence": 0.96,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:ethan-assigned-lucentgrid",
+            "subject_mention": "Ethan Cole",
+            "object_mention": "LucentGrid",
+            "artifact_id": "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+            "artifact_kind": "meeting_transcript",
+            "source_id": "source:fireflies",
+            "source": "fireflies",
+            "observed_at": "2027-02-11T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-temporal-01",
+      "system": "bm25",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 885.0,
+      "latency_breakdown": {
+        "retrieval_ms": 2.31,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 882.69
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-temporal-01",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 818.01,
+      "latency_breakdown": {
+        "retrieval_ms": 38.83,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 779.18
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-temporal-01",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+        "dsid_c2daaab889b246df8652445b3ff184fa"
+      ],
+      "context_chars": 10077,
+      "context_tokens": 1458,
+      "evidence_items": 2,
+      "latency_ms": 1483.72,
+      "latency_breakdown": {
+        "retrieval_ms": 43.76,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1439.96
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-temporal-01",
+      "system": "continuum",
+      "answer": "Maya Patel.",
+      "retrieved_artifacts": [
+        "account:lucentgrid"
+      ],
+      "context_chars": 497,
+      "context_tokens": 40,
+      "evidence_items": 1,
+      "latency_ms": 737.21,
+      "latency_breakdown": {
+        "retrieval": 14.055999999982305,
+        "entity_resolution": 16.450299997814,
+        "traversal": 0.0,
+        "state": 8.305499999551103,
+        "evidence_selection": 8.892899997590575,
+        "total": 47.70469999493798,
+        "total_ms": 47.78,
+        "generation_ms": 594.02
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:lucentgrid"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:lucentgrid",
+          "predicate": "OWNS",
+          "status": "definitive",
+          "value": {
+            "entity_id": "person:may-patel",
+            "name": "Maya Patel"
+          },
+          "valid_from": "2027-02-11",
+          "valid_to": "9999-12-31",
+          "confidence": 0.96,
+          "as_of": "2027-02-11",
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:may-patel-owns-lucentgrid",
+            "subject_mention": "Maya Patel",
+            "object_mention": "LucentGrid",
+            "artifact_id": "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+            "artifact_kind": "meeting_transcript",
+            "source_id": "source:fireflies",
+            "source": "fireflies",
+            "observed_at": "2027-02-11T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-temporal-02",
+      "system": "bm25",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 845.1,
+      "latency_breakdown": {
+        "retrieval_ms": 3.98,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 841.12
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-temporal-02",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "context_chars": 8304,
+      "context_tokens": 1293,
+      "evidence_items": 1,
+      "latency_ms": 801.24,
+      "latency_breakdown": {
+        "retrieval_ms": 40.46,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 760.78
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-temporal-02",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+        "dsid_c2daaab889b246df8652445b3ff184fa"
+      ],
+      "context_chars": 10077,
+      "context_tokens": 1458,
+      "evidence_items": 2,
+      "latency_ms": 1583.21,
+      "latency_breakdown": {
+        "retrieval_ms": 59.7,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1523.51
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-temporal-02",
+      "system": "continuum",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "account:lucentgrid"
+      ],
+      "context_chars": 418,
+      "context_tokens": 36,
+      "evidence_items": 1,
+      "latency_ms": 1124.55,
+      "latency_breakdown": {
+        "retrieval": 10.584100004052743,
+        "entity_resolution": 3.5957000000053085,
+        "traversal": 0.0,
+        "state": 4.011200006061699,
+        "evidence_selection": 6.82980000419775,
+        "total": 25.0208000143175,
+        "total_ms": 25.07,
+        "generation_ms": 1049.44
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:lucentgrid"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:lucentgrid",
+          "predicate": "OWNS",
+          "status": "absent",
+          "value": null,
+          "valid_from": null,
+          "valid_to": null,
+          "confidence": null,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:may-patel-owns-lucentgrid",
+            "subject_mention": "Maya Patel",
+            "object_mention": "LucentGrid",
+            "artifact_id": "dsid_58652f7aa95b4191bdfe69b5ab6185ce",
+            "artifact_kind": "meeting_transcript",
+            "source_id": "source:fireflies",
+            "source": "fireflies",
+            "observed_at": "2027-02-11T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-conflict-01",
+      "system": "bm25",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_7ed7af6fdb7b42098b11c194198b5c8c"
+      ],
+      "context_chars": 5998,
+      "context_tokens": 800,
+      "evidence_items": 1,
+      "latency_ms": 527.59,
+      "latency_breakdown": {
+        "retrieval_ms": 1.48,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 526.11
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-conflict-01",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_faac5db76bdb43d399ff09fe6d97f503"
+      ],
+      "context_chars": 8567,
+      "context_tokens": 1292,
+      "evidence_items": 1,
+      "latency_ms": 829.64,
+      "latency_breakdown": {
+        "retrieval_ms": 42.44,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 787.2
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-conflict-01",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_faac5db76bdb43d399ff09fe6d97f503",
+        "dsid_4aaa7fb2522f4b3b921b42103c345650",
+        "dsid_38cdf908b41d43d9b7bb9e338815da57"
+      ],
+      "context_chars": 9846,
+      "context_tokens": 1452,
+      "evidence_items": 3,
+      "latency_ms": 721.88,
+      "latency_breakdown": {
+        "retrieval_ms": 36.95,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 684.93
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-conflict-01",
+      "system": "continuum",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "account:acme-health"
+      ],
+      "context_chars": 1162,
+      "context_tokens": 80,
+      "evidence_items": 2,
+      "latency_ms": 1050.64,
+      "latency_breakdown": {
+        "retrieval": 22.814900003140792,
+        "entity_resolution": 4.409999994095415,
+        "traversal": 0.0,
+        "state": 12.584500000230037,
+        "evidence_selection": 16.01189999928465,
+        "total": 55.821299996750895,
+        "total_ms": 55.91,
+        "generation_ms": 883.09
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:acme-health"
+        ],
+        "claims_used": [
+          "claim:neha-owns-acme-health",
+          "claim:priyom-owns-acme-health"
+        ],
+        "state_result": {
+          "entity_id": "account:acme-health",
+          "predicate": "OWNS",
+          "status": "conflict",
+          "value": null,
+          "valid_from": null,
+          "valid_to": null,
+          "confidence": null,
+          "as_of": null,
+          "conflicting_subjects": [
+            "person:neha-kapoor",
+            "person:priyom-das"
+          ],
+          "claims": [
+            {
+              "claim_id": "claim:neha-owns-acme-health",
+              "subject_id": "person:neha-kapoor",
+              "subject_name": "Neha Kapoor",
+              "subject_mention": "Neha Kapoor",
+              "object_mention": "Acme Health",
+              "observed_at": "2026-02-14",
+              "valid_from": "2026-02-14",
+              "valid_to": "9999-12-31"
+            },
+            {
+              "claim_id": "claim:priyom-owns-acme-health",
+              "subject_id": "person:priyom-das",
+              "subject_name": "Priyom Das",
+              "subject_mention": "Priyom Das",
+              "object_mention": "Acme Health",
+              "observed_at": "2026-02-14",
+              "valid_from": "2026-02-14",
+              "valid_to": "9999-12-31"
+            }
+          ],
+          "evidence": []
+        },
+        "conflicts": [
+          "person:neha-kapoor",
+          "person:priyom-das"
+        ],
+        "evidence": [
+          {
+            "claim_id": "claim:neha-owns-acme-health",
+            "subject_mention": "Neha Kapoor",
+            "object_mention": "Acme Health",
+            "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2026-02-14T00:00:00"
+          },
+          {
+            "claim_id": "claim:priyom-owns-acme-health",
+            "subject_mention": "Priyom Das",
+            "object_mention": "Acme Health",
+            "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2026-02-14T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-abstain-01",
+      "system": "bm25",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_d04ead3e1e2d4c9f9cd34c73dca30b5d",
+        "dsid_7ed7af6fdb7b42098b11c194198b5c8c"
+      ],
+      "context_chars": 6780,
+      "context_tokens": 904,
+      "evidence_items": 2,
+      "latency_ms": 705.38,
+      "latency_breakdown": {
+        "retrieval_ms": 1.07,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 704.31
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-abstain-01",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_d04ead3e1e2d4c9f9cd34c73dca30b5d",
+        "dsid_513c85de39f74de1aad861909328f35c"
+      ],
+      "context_chars": 6090,
+      "context_tokens": 850,
+      "evidence_items": 2,
+      "latency_ms": 778.92,
+      "latency_breakdown": {
+        "retrieval_ms": 35.18,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 743.74
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-abstain-01",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_d04ead3e1e2d4c9f9cd34c73dca30b5d",
+        "dsid_2957f94fca1648aa92fd12c60ead4d9d"
+      ],
+      "context_chars": 5244,
+      "context_tokens": 761,
+      "evidence_items": 2,
+      "latency_ms": 691.3,
+      "latency_breakdown": {
+        "retrieval_ms": 48.33,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 642.97
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-abstain-01",
+      "system": "continuum",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "account:cedarbank"
+      ],
+      "context_chars": 326,
+      "context_tokens": 33,
+      "evidence_items": 0,
+      "latency_ms": 829.17,
+      "latency_breakdown": {
+        "retrieval": 12.325799994869158,
+        "entity_resolution": 4.932000003464054,
+        "traversal": 0.0,
+        "state": 4.027299997687805,
+        "evidence_selection": 5.310499996994622,
+        "total": 26.59559999301564,
+        "total_ms": 26.7,
+        "generation_ms": 749.28
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:cedarbank"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:cedarbank",
+          "predicate": "OWNS",
+          "status": "absent",
+          "value": null,
+          "valid_from": null,
+          "valid_to": null,
+          "confidence": null,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": []
+        },
+        "conflicts": [],
+        "evidence": []
+      }
+    },
+    {
+      "question_id": "q-provenance-01",
+      "system": "bm25",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_86d691cee0b548bcb22d8428dc7b6ce7"
+      ],
+      "context_chars": 9340,
+      "context_tokens": 1318,
+      "evidence_items": 1,
+      "latency_ms": 887.72,
+      "latency_breakdown": {
+        "retrieval_ms": 3.25,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 884.47
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-provenance-01",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      ],
+      "context_chars": 10066,
+      "context_tokens": 1452,
+      "evidence_items": 1,
+      "latency_ms": 1665.86,
+      "latency_breakdown": {
+        "retrieval_ms": 48.59,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 1617.27
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-provenance-01",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      ],
+      "context_chars": 10066,
+      "context_tokens": 1452,
+      "evidence_items": 1,
+      "latency_ms": 994.94,
+      "latency_breakdown": {
+        "retrieval_ms": 35.96,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 958.98
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-provenance-01",
+      "system": "continuum",
+      "answer": "**Evidence chain for the ownership of Acme Health**\n\n| Step | Claim ID | Subject | Object | Artifact ID | Artifact Kind | Source | Observed |\n|------|----------|---------|--------|-------------|------",
+      "retrieved_artifacts": [
+        "account:acme-health"
+      ],
+      "context_chars": 1138,
+      "context_tokens": 79,
+      "evidence_items": 2,
+      "latency_ms": 2765.19,
+      "latency_breakdown": {
+        "retrieval": 13.5974000004353,
+        "entity_resolution": 5.448399999295361,
+        "traversal": 0.0,
+        "state": 10.51269999879878,
+        "evidence_selection": 12.256400004844181,
+        "total": 41.81490000337362,
+        "total_ms": 41.9,
+        "generation_ms": 2639.66
+      },
+      "continuum": {
+        "resolved_entities": [
+          "account:acme-health"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "entity_id": "account:acme-health",
+          "predicate": "OWNS",
+          "status": "definitive",
+          "value": {
+            "entity_id": "person:priyom-das",
+            "name": "Priyom Das"
+          },
+          "valid_from": null,
+          "valid_to": null,
+          "confidence": null,
+          "as_of": null,
+          "conflicting_subjects": [],
+          "claims": [],
+          "evidence": [
+            {
+              "claim_id": "claim:neha-owns-acme-health",
+              "subject_mention": "Neha Kapoor",
+              "object_mention": "Acme Health",
+              "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+              "artifact_kind": "gmail_message",
+              "source_id": "source:gmail",
+              "source": "gmail",
+              "observed_at": "2026-02-14T00:00:00"
+            },
+            {
+              "claim_id": "claim:priyom-owns-acme-health",
+              "subject_mention": "Priyom Das",
+              "object_mention": "Acme Health",
+              "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+              "artifact_kind": "gmail_message",
+              "source_id": "source:gmail",
+              "source": "gmail",
+              "observed_at": "2026-02-14T00:00:00"
+            }
+          ]
+        },
+        "conflicts": [],
+        "evidence": [
+          {
+            "claim_id": "claim:neha-owns-acme-health",
+            "subject_mention": "Neha Kapoor",
+            "object_mention": "Acme Health",
+            "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2026-02-14T00:00:00"
+          },
+          {
+            "claim_id": "claim:priyom-owns-acme-health",
+            "subject_mention": "Priyom Das",
+            "object_mention": "Acme Health",
+            "artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8",
+            "artifact_kind": "gmail_message",
+            "source_id": "source:gmail",
+            "source": "gmail",
+            "observed_at": "2026-02-14T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "question_id": "q-er-01",
+      "system": "bm25",
+      "answer": "Yes – the name “Marcus Lin” and the email address “marcus.lin@redwood.com” refer to the same individual.",
+      "retrieved_artifacts": [
+        "dsid_ac80b52fe541428292143997399615e5"
+      ],
+      "context_chars": 6478,
+      "context_tokens": 942,
+      "evidence_items": 1,
+      "latency_ms": 913.88,
+      "latency_breakdown": {
+        "retrieval_ms": 3.57,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 910.31
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-er-01",
+      "system": "hybrid",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_5ba14da677f442ffb6dc417291548f76"
+      ],
+      "context_chars": 10513,
+      "context_tokens": 1584,
+      "evidence_items": 1,
+      "latency_ms": 1017.88,
+      "latency_breakdown": {
+        "retrieval_ms": 66.87,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 951.01
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-er-01",
+      "system": "dense",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "dsid_af7b21f96c3c4d48b99c340680f4ad30"
+      ],
+      "context_chars": 8244,
+      "context_tokens": 1304,
+      "evidence_items": 1,
+      "latency_ms": 846.55,
+      "latency_breakdown": {
+        "retrieval_ms": 78.13,
+        "entity_ms": 0.0,
+        "graph_ms": 0.0,
+        "state_ms": 0.0,
+        "generation_ms": 768.42
+      },
+      "continuum": {}
+    },
+    {
+      "question_id": "q-er-01",
+      "system": "continuum",
+      "answer": "unknown - abstain",
+      "retrieved_artifacts": [
+        "Marcus Lin",
+        "marcus.lin@redwood.com"
+      ],
+      "context_chars": 159,
+      "context_tokens": 17,
+      "evidence_items": 0,
+      "latency_ms": 1238.96,
+      "latency_breakdown": {
+        "retrieval": 0.0014999968698248267,
+        "entity_resolution": 17.885300003399607,
+        "traversal": 0.0,
+        "state": 0.0022000021999701858,
+        "evidence_selection": 0.0011000010999850929,
+        "total": 17.890100003569387,
+        "total_ms": 17.95,
+        "generation_ms": 1185.23
+      },
+      "continuum": {
+        "resolved_entities": [
+          "Marcus Lin",
+          "marcus.lin@redwood.com"
+        ],
+        "claims_used": [],
+        "state_result": {
+          "status": "absent",
+          "value": null
+        },
+        "conflicts": [],
+        "evidence": []
+      }
+    }
+  ]
+}
