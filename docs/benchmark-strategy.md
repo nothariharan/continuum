@@ -1,10 +1,9 @@
 # Benchmark Strategy — Continuum vs Conventional RAG
 
-Status: **specified, not run**. The evaluation question set exists
-(`data/labels/eval-questions.jsonl`, 20 questions across 7 categories) and
-the latency harness exists (`scripts/eval_real_claims.py`). The full
-comparison is deferred until the claims graph is populated with graph-grade
-claims (Gate 2 pass).
+Status: **superseded for execution** by [`benchmark-protocol-v1.md`](benchmark-protocol-v1.md).
+This document retains category rationale and thesis framing. The structured
+Continuum question bank (`data/labels/eval-questions.jsonl`) remains the
+diagnostic overlay; official ER-Bench comparisons use the protocol v1 harness.
 
 ## 1. The claim to prove
 
