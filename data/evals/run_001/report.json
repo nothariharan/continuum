@@ -1,0 +1,98 @@
+{
+  "run_id": "001",
+  "strategy": "deterministic",
+  "dataset_version": "gold-v1-20260816",
+  "commit_sha": "dcf7acfa9d064d8b237bb43f74190b2fc2612a4a",
+  "model": null,
+  "prompt_version": "extract-v2-gapfill-20260816",
+  "runtime": {
+    "runtime_sec": 0.926,
+    "memory_peak_mb": 25.68,
+    "model_calls": 0,
+    "avg_inference_ms": 0.0,
+    "total_inference_ms": 0.0
+  },
+  "metrics": {
+    "mention": {
+      "precision": 0.7143,
+      "recall": 0.9543,
+      "f1": 0.817,
+      "tp": 355,
+      "fp": 142,
+      "fn": 17
+    },
+    "claim_strict": {
+      "precision": 0.1429,
+      "recall": 0.1111,
+      "f1": 0.125,
+      "tp": 1,
+      "fp": 6,
+      "fn": 8
+    },
+    "claim_abstention": {
+      "precision": 0.0123,
+      "recall": 0.1111,
+      "f1": 0.0222,
+      "tp": 1,
+      "fp": 80,
+      "fn": 8,
+      "tn": 107,
+      "abstention_precision": 0.5722,
+      "ambiguous_artifacts_excluded": 0
+    },
+    "claim_by_predicate": {
+      "ASSIGNED_TO": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 4,
+        "fn": 1
+      },
+      "BLOCKS": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "LEADS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "MAINTAINS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 2
+      },
+      "OWNS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 4
+      }
+    },
+    "counts": {
+      "artifacts": 150,
+      "mentions_extracted": 2299,
+      "claims_extracted": 81
+    }
+  },
+  "failure_summary": {
+    "INVALID_OBJECT": 6,
+    "FALSE_POSITIVE_ABSTENTION": 74,
+    "MISSING_CLAIM": 8
+  },
+  "failure_example_count": 88,
+  "system_owner_next_step": "Review failure corpus top categories: FALSE_POSITIVE_ABSTENTION=74, MISSING_CLAIM=8, INVALID_OBJECT=6."
+}

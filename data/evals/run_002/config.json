@@ -1,0 +1,10 @@
+{
+  "run_id": "002",
+  "strategy": "hybrid",
+  "dataset_version": "gold-v1-20260816",
+  "commit_sha": "dcf7acfa9d064d8b237bb43f74190b2fc2612a4a",
+  "prompt_version": "extract-v2-gapfill-20260816",
+  "model": "accounts/fireworks/models/gpt-oss-20b",
+  "llm_available": true,
+  "workers": 5
+}

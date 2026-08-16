@@ -1,0 +1,76 @@
+{
+  "mention": {
+    "precision": 0.6755,
+    "recall": 0.957,
+    "f1": 0.792,
+    "tp": 356,
+    "fp": 171,
+    "fn": 16
+  },
+  "claim_strict": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0,
+    "fp": 0,
+    "fn": 9
+  },
+  "claim_abstention": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0,
+    "fp": 0,
+    "fn": 9,
+    "tn": 144,
+    "abstention_precision": 1.0,
+    "ambiguous_artifacts_excluded": 0
+  },
+  "claim_by_predicate": {
+    "ASSIGNED_TO": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "BLOCKS": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "LEADS": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "MAINTAINS": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    "OWNS": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4
+    }
+  },
+  "counts": {
+    "artifacts": 150,
+    "mentions_extracted": 2430,
+    "claims_extracted": 0
+  }
+}

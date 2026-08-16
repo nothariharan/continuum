@@ -1,0 +1,96 @@
+{
+  "run_id": "002",
+  "strategy": "hybrid",
+  "dataset_version": "gold-v1-20260816",
+  "commit_sha": "dcf7acfa9d064d8b237bb43f74190b2fc2612a4a",
+  "model": "accounts/fireworks/models/gpt-oss-20b",
+  "prompt_version": "extract-v2-gapfill-20260816",
+  "runtime": {
+    "runtime_sec": 688.828,
+    "memory_peak_mb": 128.5,
+    "model_calls": 21,
+    "avg_inference_ms": 9192.45,
+    "total_inference_ms": 193041.42
+  },
+  "metrics": {
+    "mention": {
+      "precision": 0.6755,
+      "recall": 0.957,
+      "f1": 0.792,
+      "tp": 356,
+      "fp": 171,
+      "fn": 16
+    },
+    "claim_strict": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 9
+    },
+    "claim_abstention": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 9,
+      "tn": 144,
+      "abstention_precision": 1.0,
+      "ambiguous_artifacts_excluded": 0
+    },
+    "claim_by_predicate": {
+      "ASSIGNED_TO": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "BLOCKS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "LEADS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "MAINTAINS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 2
+      },
+      "OWNS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 4
+      }
+    },
+    "counts": {
+      "artifacts": 150,
+      "mentions_extracted": 2430,
+      "claims_extracted": 0
+    }
+  },
+  "failure_summary": {
+    "MISSING_CLAIM": 9
+  },
+  "failure_example_count": 9,
+  "system_owner_next_step": "Expand VALID gold claim labels and tighten extraction prompts for entity-pair claims."
+}
