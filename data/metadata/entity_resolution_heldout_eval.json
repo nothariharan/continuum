@@ -1,0 +1,1575 @@
+{
+  "gate": "entity-resolution-heldout-eval",
+  "dataset": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\entity_resolution\\v1\\identity-pairs.jsonl",
+  "seed": 42,
+  "eval_fraction": 0.3,
+  "note": "small dataset (103 pairs): held-out numbers carry wide error bars",
+  "split": {
+    "calibration": 72,
+    "evaluation": 31,
+    "calibration_labels": {
+      "UNCERTAIN": 36,
+      "SAME_ENTITY": 19,
+      "DIFFERENT_ENTITY": 17
+    },
+    "evaluation_labels": {
+      "SAME_ENTITY": 8,
+      "UNCERTAIN": 15,
+      "DIFFERENT_ENTITY": 8
+    }
+  },
+  "calibration_metrics": {
+    "pair_accuracy": 0.875,
+    "same_precision": 1.0,
+    "same_recall": 0.7368,
+    "same_f1": 0.8485,
+    "different_precision": 0.8824,
+    "different_recall": 0.8824,
+    "different_f1": 0.8824,
+    "false_merge_rate": 0.0,
+    "false_merge_count": 0,
+    "false_split_rate": 0.1053,
+    "false_split_count": 2,
+    "review_rate": 0.5417,
+    "abstain_rate": 0.0278,
+    "review_count": 39,
+    "abstain_count": 2
+  },
+  "evaluation_metrics": {
+    "pair_accuracy": 0.9355,
+    "same_precision": 1.0,
+    "same_recall": 0.875,
+    "same_f1": 0.9333,
+    "different_precision": 0.8889,
+    "different_recall": 1.0,
+    "different_f1": 0.9412,
+    "false_merge_rate": 0.0,
+    "false_merge_count": 0,
+    "false_split_rate": 0.125,
+    "false_split_count": 1,
+    "review_rate": 0.4839,
+    "abstain_rate": 0.0,
+    "review_count": 15,
+    "abstain_count": 0
+  },
+  "calibration_rows": [
+    {
+      "pair_id": "ip-042",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-035",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-087",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-005",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_INITIALS",
+      "notes": "shared evidence but not conclusive (full-name) | FALSE_SPLIT_INITIALS"
+    },
+    {
+      "pair_id": "ip-049",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-040",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-036",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-038",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-027",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "ABSTAIN",
+      "score": 0.0,
+      "signals": [
+        "source-overlap"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "ABSTAIN_INSUFFICIENT_EVIDENCE",
+      "notes": "no conclusive evidence either way | ABSTAIN_INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "pair_id": "ip-011",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (daniel park vs daniel carter)"
+    },
+    {
+      "pair_id": "ip-090",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "role mailboxes are distinct functional accounts"
+    },
+    {
+      "pair_id": "ip-061",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, full-name)"
+    },
+    {
+      "pair_id": "ip-086",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-024",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "REVIEW_AMBIGUOUS",
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single) | REVIEW_AMBIGUOUS"
+    },
+    {
+      "pair_id": "ip-076",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-089",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.88,
+      "signals": [
+        "username"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_USERNAME",
+      "notes": "shared evidence but not conclusive (username) | FALSE_SPLIT_USERNAME"
+    },
+    {
+      "pair_id": "ip-026",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (arjun patel vs maya patel)"
+    },
+    {
+      "pair_id": "ip-097",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-094",
+      "gold": "UNCERTAIN",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": true,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "full names with no identity signal (inc 2026 vs inv 2026) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "ip-017",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (dana liu vs dana lo)"
+    },
+    {
+      "pair_id": "ip-069",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-051",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-033",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-039",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-052",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-072",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-070",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-056",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-095",
+      "gold": "UNCERTAIN",
+      "decision": "ABSTAIN",
+      "score": 0.0,
+      "signals": [
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "no conclusive evidence either way"
+    },
+    {
+      "pair_id": "ip-022",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (marco alvarez vs marco diaz)"
+    },
+    {
+      "pair_id": "ip-096",
+      "gold": "UNCERTAIN",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": false,
+      "false_merge": false,
+      "false_split": true,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "role mailboxes are distinct functional accounts | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "ip-067",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-048",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-080",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-064",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-032",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-092",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "role mailboxes are distinct functional accounts"
+    },
+    {
+      "pair_id": "ip-047",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-021",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (arjun patel vs arjun desai)"
+    },
+    {
+      "pair_id": "ip-002",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-053",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-057",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-099",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-046",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-082",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-078",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-083",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-079",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-020",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (ana costa vs ana gomez)"
+    },
+    {
+      "pair_id": "ip-012",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (marcus reed vs marcus li)"
+    },
+    {
+      "pair_id": "ip-003",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name",
+        "cooccurrence"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_INITIALS",
+      "notes": "shared evidence but not conclusive (source-overlap, full-name, cooccurrence) | FALSE_SPLIT_INITIALS"
+    },
+    {
+      "pair_id": "ip-073",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-023",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (marcus kim vs marcus li)"
+    },
+    {
+      "pair_id": "ip-008",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (samantha holt vs samantha reed)"
+    },
+    {
+      "pair_id": "ip-045",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-068",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-066",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-101",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-001",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-015",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (nina park vs nina petrova)"
+    },
+    {
+      "pair_id": "ip-025",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (liam park vs lina park)"
+    },
+    {
+      "pair_id": "ip-050",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-088",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_INITIALS",
+      "notes": "shared evidence but not conclusive (full-name) | FALSE_SPLIT_INITIALS"
+    },
+    {
+      "pair_id": "ip-004",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name",
+        "cooccurrence"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_INITIALS",
+      "notes": "shared evidence but not conclusive (source-overlap, full-name, cooccurrence) | FALSE_SPLIT_INITIALS"
+    },
+    {
+      "pair_id": "ip-007",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (maya chen vs maya patel)"
+    },
+    {
+      "pair_id": "ip-085",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-034",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-065",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-030",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-063",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-103",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-013",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (marco diaz vs marco bianchi)"
+    }
+  ],
+  "evaluation_rows": [
+    {
+      "pair_id": "ip-081",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-093",
+      "gold": "UNCERTAIN",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": true,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "full names with no identity signal (inc 2026 vs inc 2029) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "ip-060",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-014",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (mina haddad vs mina aurumx)"
+    },
+    {
+      "pair_id": "ip-062",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-044",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-100",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (marcus lin vs marcus li)"
+    },
+    {
+      "pair_id": "ip-098",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-018",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (eliot barnes vs eliot cho)"
+    },
+    {
+      "pair_id": "ip-016",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (lena fischer vs lena ford)"
+    },
+    {
+      "pair_id": "ip-102",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-006",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_INITIALS",
+      "notes": "shared evidence but not conclusive (source-overlap, full-name) | FALSE_SPLIT_INITIALS"
+    },
+    {
+      "pair_id": "ip-019",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-tokens"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (liam cto vs liam connor)"
+    },
+    {
+      "pair_id": "ip-010",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (ethan cole vs ethan ross)"
+    },
+    {
+      "pair_id": "ip-055",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-009",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (samantha reed vs samantha lee)"
+    },
+    {
+      "pair_id": "ip-071",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-043",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-028",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-059",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-084",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-037",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-054",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.8,
+      "signals": [
+        "source-overlap",
+        "name-token-single",
+        "cooccurrence"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single, cooccurrence)"
+    },
+    {
+      "pair_id": "ip-091",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "role mailboxes are distinct functional accounts"
+    },
+    {
+      "pair_id": "ip-041",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-031",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "ip-074",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-029",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-058",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (source-overlap, name-token-single)"
+    },
+    {
+      "pair_id": "ip-075",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "ip-077",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    }
+  ]
+}

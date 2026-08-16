@@ -1,0 +1,29 @@
+{
+  "canonical": {
+    "person:soham": [
+      "@soham",
+      "soham-dev",
+      "soham@company.com"
+    ]
+  },
+  "bridged_subject": "person:soham",
+  "bridged_status": "review",
+  "state": {
+    "entity_id": "account:acme",
+    "predicate": "OWNS",
+    "status": "definitive",
+    "value": {
+      "entity_id": "person:soham",
+      "name": "Soham Ratnaparkhi"
+    },
+    "valid_from": "2026-07-29",
+    "valid_to": null,
+    "confidence": 0.96,
+    "as_of": null,
+    "conflicting_subjects": [],
+    "claims": [],
+    "evidence": []
+  },
+  "provenance_status": "definitive",
+  "state_latency_ms": 15.0
+}

@@ -227,6 +227,78 @@ def load_identity_pairs(path: Path | str) -> list[IdentityPair]:
     return pairs
 
 
+# Teammate row format: {"a": {mention, type, emails, usernames, external_ids,
+# sources, frequency}, "b": {...}, "label", "features": {cooccurrence, ...}}
+_NESTED_KEYS = {
+    "mention": "mention",
+    "type": "type",
+    "emails": "emails",
+    "usernames": "usernames",
+    "external_ids": "external_ids",
+    "sources": "sources",
+}
+
+_FEATURE_ALIASES = {
+    "cooccurrence": "cooccurrence_score",
+}
+
+
+def _nested_side(row: dict, side: str) -> dict:
+    return dict(row.get(side) or {})
+
+
+def load_teammate_identity_pairs(path: Path | str) -> list[IdentityPair]:
+    """Adapter for the teammate's identity-pairs.jsonl format.
+
+    The teammate emits rows as {"a": {...}, "b": {...}, "label", "features"}
+    with features keyed `cooccurrence`; the founder contract uses flat
+    mention_a/mention_b and `cooccurrence_score`. This adapter maps the file
+    onto the contract WITHOUT changing feature meaning, and validates every
+    row through IdentityPair.validate (label, ranges, non-empty mentions).
+    """
+    pairs = []
+    with Path(path).open(encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            row = json.loads(line)
+            if "a" not in row or "b" not in row:
+                raise ValueError(f"line {line_number}: expected nested a/b row format")
+            a, b = row["a"], row["b"]
+            features = dict(row.get("features") or {})
+            renamed = {
+                _FEATURE_ALIASES.get(key, key): value
+                for key, value in features.items()
+            }
+            pair = IdentityPair(
+                pair_id=str(row.get("pair_id", f"line-{line_number}")),
+                mention_a=str(a.get("mention", "")),
+                type_a=str(a.get("type", "person")),
+                source_a=_first_source(a),
+                emails_a=tuple(a.get("emails") or ()),
+                usernames_a=tuple(a.get("usernames") or ()),
+                external_ids_a=tuple(a.get("external_ids") or ()),
+                mention_b=str(b.get("mention", "")),
+                type_b=str(b.get("type", "person")),
+                source_b=_first_source(b),
+                emails_b=tuple(b.get("emails") or ()),
+                usernames_b=tuple(b.get("usernames") or ()),
+                external_ids_b=tuple(b.get("external_ids") or ()),
+                label=str(row.get("label", "UNCERTAIN")),
+                features=renamed,
+                notes=row.get("label_rationale", "") or str(row.get("difficulty_tags", "")),
+            )
+            pair.validate()
+            pairs.append(pair)
+    return pairs
+
+
+def _first_source(side: dict) -> str | None:
+    sources = side.get("sources") or []
+    return str(sources[0]) if sources else None
+
+
 def write_identity_pairs(path: Path | str, pairs: Iterable[IdentityPair]) -> int:
     count = 0
     with Path(path).open("w", encoding="utf-8") as handle:

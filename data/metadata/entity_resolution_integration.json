@@ -23,9 +23,9 @@
     "separate_pairs": 454380
   },
   "latency_ms": {
-    "clustering": 44700.6,
-    "store_save": 22153.8,
-    "query_sample": 45.2
+    "clustering": 58783.7,
+    "store_save": 22271.1,
+    "query_sample": 86.7
   },
   "mention_resolution_sample": {
     "@soham": "absent",

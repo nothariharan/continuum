@@ -19,7 +19,7 @@ import json
 from pathlib import Path
 
 from continuum.entities.eval import evaluate_pairs
-from continuum.entities.pairs import load_identity_pairs
+from continuum.entities.pairs import load_identity_pairs, load_teammate_identity_pairs
 from continuum.entities.resolver import EntityResolver
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,8 +27,16 @@ DEFAULT_PAIRS = ROOT / "data" / "fixtures" / "phase3" / "identity-pairs-tiny.jso
 REPORT_OUT = ROOT / "data" / "metadata" / "entity_resolution_eval.json"
 
 
+def load_pairs_auto(path: Path) -> list:
+    """Load pairs from either the founder (flat) or teammate (nested a/b) format."""
+    first_line = path.open(encoding="utf-8").readline().strip()
+    if first_line and '"a"' in first_line and '"b"' in first_line:
+        return load_teammate_identity_pairs(path)
+    return load_identity_pairs(path)
+
+
 def main(pairs_path: Path, report_out: Path) -> int:
-    pairs = load_identity_pairs(pairs_path)
+    pairs = load_pairs_auto(pairs_path)
     resolver = EntityResolver()
     report = evaluate_pairs(pairs, resolver)
     report_out.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -42,6 +50,7 @@ def main(pairs_path: Path, report_out: Path) -> int:
     print(f"FALSE SPLIT RATE     {m['false_split_rate']}  ({m['false_split_count']} separates on SAME)")
     print(f"REVIEW rate          {m['review_rate']}  ABSTAIN rate {m['abstain_rate']}")
     print(f"decisions: {report['decision_distribution']}")
+    print(f"error taxonomy: {report.get('error_taxonomy')}")
     print(f"\nwrote {report_out}")
     return 0
 
