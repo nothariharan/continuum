@@ -107,11 +107,13 @@ eval-run:
 test-eval:
 	python -m pytest tests/eval -q
 
+DATA ?= data/fixtures/phase3/identity-pairs-tiny.jsonl
+
 eval-entity-resolution:
-	python scripts/eval_entity_resolution.py
+	python scripts/eval_entity_resolution.py --pairs $(DATA)
 
 calibrate-entity-resolution:
-	python scripts/calibrate_entity_resolution.py
+	python scripts/calibrate_entity_resolution.py --pairs $(DATA)
 
 entity-integration:
 	python scripts/entity_resolution_integration.py --reset

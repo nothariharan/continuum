@@ -68,7 +68,11 @@ def classify_error(pair: IdentityPair, decision: ResolutionDecision, signals: tu
             if "name-token-single" in signal_set or (features.get("name_similarity") or 0) < 0.5:
                 return "FALSE_MERGE_TOKEN_OVERLAP"
             return "FALSE_MERGE_NAME"
-        return "FALSE_MERGE_TOKEN_OVERLAP"  # REVIEW/ABSTAIN on a different pair is a soft error
+        # REVIEW / ABSTAIN on a DIFFERENT pair is a SAFE non-merge (no graph
+        # corruption). Classify the mechanism, but it is not a false merge.
+        if decision == ResolutionDecision.REVIEW:
+            return "REVIEW_AMBIGUOUS"
+        return "ABSTAIN_INSUFFICIENT_EVIDENCE"
 
     # UNCERTAIN gold
     if decision in {ResolutionDecision.REVIEW, ResolutionDecision.ABSTAIN}:
