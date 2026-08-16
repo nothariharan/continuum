@@ -96,10 +96,18 @@ class EntityResolver:
         a: EntityCandidate | CanonicalEntity,
         b: EntityCandidate | CanonicalEntity,
         extra_features: dict[str, float] | None = None,
+        features: "FeatureVector | None" = None,
     ) -> ResolutionVerdict:
-        """Resolve one candidate pair to MERGE / KEEP_SEPARATE / REVIEW / ABSTAIN."""
+        """Resolve one candidate pair to MERGE / KEEP_SEPARATE / REVIEW / ABSTAIN.
+
+        `features` accepts a pre-built FeatureVector (e.g. merged from the
+        teammate's identity-pairs measurements); when provided it is used
+        as-is for scoring. `extra_features` overlays raw dict values on the
+        deterministic computation (kept for backward compatibility).
+        """
         a_cand, b_cand = self._as_candidates(a, b)
-        features = compute_features(a_cand, b_cand, extra=extra_features)
+        if features is None:
+            features = compute_features(a_cand, b_cand, extra=extra_features)
         match = score_match(a_cand, b_cand, features)
         score = match.score
         signals = match.signals
@@ -113,6 +121,22 @@ class EntityResolver:
                 signals=signals,
                 reason=f"strong identity evidence: {', '.join(signals) or 'score'}",
                 confidence=score,
+            )
+
+        # Role mailboxes with different domains are distinct functional
+        # accounts (procurement@acme.ai vs procurement@redwood.com) — never
+        # merge, never abstain: deterministically separate.
+        from .scoring import is_role_mailbox_pair
+
+        if is_role_mailbox_pair(a_cand.signals, b_cand.signals):
+            return ResolutionVerdict(
+                a_id=a_cand.candidate_id,
+                b_id=b_cand.candidate_id,
+                decision=ResolutionDecision.KEEP_SEPARATE,
+                score=score,
+                signals=signals,
+                reason="role mailboxes are distinct functional accounts",
+                confidence=0.9,
             )
 
         a_tokens = _full_name_tokens(a_cand.mention)
