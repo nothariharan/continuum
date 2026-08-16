@@ -1,0 +1,18 @@
+{
+  "category_counts": {
+    "basic": 175,
+    "completeness": 20,
+    "conflicting_info": 20,
+    "constrained": 30,
+    "high_level": 10,
+    "info_not_found": 20,
+    "intra_document_reasoning": 40,
+    "miscellaneous": 20,
+    "project_related": 40,
+    "semantic": 125
+  },
+  "commit_sha": "a7f3e2560bdb37b1cb638b1fa07f5b8b8a94301a",
+  "question_count": 500,
+  "questions_sha256": "005b07622860ed7dfda96ca3d00e1cc8f3735397caf959250f3417d5f68ee338",
+  "unique_ids": 500
+}

@@ -1,0 +1,20 @@
+{
+  "archive_path": "/Users/apple/Desktop/Manan/Continumm/continuum/data/raw/enterprise-rag-bench-v1.0.0/all_documents.zip",
+  "archive_sha256": "9d1174928696ad08bc15f3f104739519de633c1605a4ec2034e0e3c0087bc5cd",
+  "commit_sha": "a7f3e2560bdb37b1cb638b1fa07f5b8b8a94301a",
+  "dataset_release": "v1.0.0",
+  "document_count": 511963,
+  "extraction_timestamp": "2026-08-16T17:56:59.095990+00:00",
+  "source_counts": {
+    "confluence": 5189,
+    "fireflies": 10173,
+    "github": 8052,
+    "gmail": 121390,
+    "google_drive": 25108,
+    "hubspot": 15017,
+    "jira": 6120,
+    "linear": 35308,
+    "slack": 285605
+  },
+  "total_bytes": 2474399575
+}
