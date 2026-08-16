@@ -1,0 +1,372 @@
+{"artifact_id": "dsid_0729a18a396a49609d196645ccc9fde3", "raw_text": "HarborCall Insights", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_07f5933466124e33b86daa9031ec3e5a", "raw_text": "SDK experiments: bench harness and bootstrapping pathways (working notes)", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_0cebe07ca6d143ec81db0065f5fe0c79", "raw_text": "ADR-048", "type": "ticket", "source_identity": "ADR-048", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_0cebe07ca6d143ec81db0065f5fe0c79", "raw_text": "PR-28741", "type": "ticket", "source_identity": "PR-28741", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_0cebe07ca6d143ec81db0065f5fe0c79", "raw_text": "PR-28622", "type": "ticket", "source_identity": "PR-28622", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_0cebe07ca6d143ec81db0065f5fe0c79", "raw_text": "PR-28705", "type": "ticket", "source_identity": "PR-28705", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_0cebe07ca6d143ec81db0065f5fe0c79", "raw_text": "Experiment metrics backfill plan (schema change to {experiment_id, variant_id})", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_1210070edd15485ea4a35f87b3d8b829", "raw_text": "ENG-614730", "type": "ticket", "source_identity": "ENG-614730", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_12c1aebf042d4224b21eb7f15a4b06df", "raw_text": "Gullridge Logistics Intelligence", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_1afe209ed9084bcf89e7f2d44cb30d10", "raw_text": "SEC-2040", "type": "ticket", "source_identity": "SEC-2040", "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_1afe209ed9084bcf89e7f2d44cb30d10", "raw_text": "Oakbridge Synthesis Labs", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_1fcbc7dbfa93473cabc5c3263a47cc7a", "raw_text": "INF-4223", "type": "ticket", "source_identity": "INF-4223", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_1fcbc7dbfa93473cabc5c3263a47cc7a", "raw_text": "INF-4298", "type": "ticket", "source_identity": "INF-4298", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_1fcbc7dbfa93473cabc5c3263a47cc7a", "raw_text": "Capacity signal debrief — regional demand variance and next steps", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_20a3f7ec315a47d28b92133f1aba9481", "raw_text": "Cerberus Defensive Retrieval", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_22cf75c2a0ec4786ad7d32374a05cfaf", "raw_text": "SUP-24811", "type": "ticket", "source_identity": "SUP-24811", "notes": "gold labels for github"}
+{"artifact_id": "dsid_22cf75c2a0ec4786ad7d32374a05cfaf", "raw_text": "ENG-3817", "type": "ticket", "source_identity": "ENG-3817", "notes": "gold labels for github"}
+{"artifact_id": "dsid_243c7a94f2b3410c98d7fa574121c26c", "raw_text": "cross-functional-planning-retreat-annotated-agenda-v0-1", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_2479a77669e042b9b8e5ba51c31e7ea2", "raw_text": "INV-2026", "type": "ticket", "source_identity": "INV-2026", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_2479a77669e042b9b8e5ba51c31e7ea2", "raw_text": "PO-889", "type": "ticket", "source_identity": "PO-889", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_2479a77669e042b9b8e5ba51c31e7ea2", "raw_text": "PO-777", "type": "ticket", "source_identity": "PO-777", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_25b203f16b3d40f883d2f5a7dfdb65b2", "raw_text": "ENG-7721", "type": "ticket", "source_identity": "ENG-7721", "notes": "gold labels for github"}
+{"artifact_id": "dsid_25b203f16b3d40f883d2f5a7dfdb65b2", "raw_text": "ENG-7818", "type": "ticket", "source_identity": "ENG-7818", "notes": "gold labels for github"}
+{"artifact_id": "dsid_25b203f16b3d40f883d2f5a7dfdb65b2", "raw_text": "SUP-501", "type": "ticket", "source_identity": "SUP-501", "notes": "gold labels for github"}
+{"artifact_id": "dsid_25b203f16b3d40f883d2f5a7dfdb65b2", "raw_text": "ENG-7900", "type": "ticket", "source_identity": "ENG-7900", "notes": "gold labels for github"}
+{"artifact_id": "dsid_25b203f16b3d40f883d2f5a7dfdb65b2", "raw_text": "ENG-7921", "type": "ticket", "source_identity": "ENG-7921", "notes": "gold labels for github"}
+{"artifact_id": "dsid_25b203f16b3d40f883d2f5a7dfdb65b2", "raw_text": "ENG-8003", "type": "ticket", "source_identity": "ENG-8003", "notes": "gold labels for github"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "Aditya Rao", "type": "person", "source_identity": "aditya@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "aditya@redwood.ai", "type": "email", "source_identity": "aditya@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "Sara Clark", "type": "person", "source_identity": "sara.clark@integronhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "sara.clark@integronhealth.com", "type": "email", "source_identity": "sara.clark@integronhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "Tom Ellis", "type": "person", "source_identity": "t.ellis@integronhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "t.ellis@integronhealth.com", "type": "email", "source_identity": "t.ellis@integronhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "Stephanie Nguyen", "type": "person", "source_identity": "stephanie_nguyen@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "stephanie_nguyen@redwood.ai", "type": "email", "source_identity": "stephanie_nguyen@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "Lauren Bishop", "type": "person", "source_identity": "lauren_bishop@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_268287822e4f4db88b955f7321c25283", "raw_text": "lauren_bishop@redwood.ai", "type": "email", "source_identity": "lauren_bishop@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_2b4ca76777b8473b8dea9ef2aee89884", "raw_text": "ENG-6342", "type": "ticket", "source_identity": "ENG-6342", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_30b76ac074c841ef9afcb34c178c40d7", "raw_text": "ENG-5126", "type": "ticket", "source_identity": "ENG-5126", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_35328fa5b66045129c4319e5e76390cd", "raw_text": "PD-4321", "type": "ticket", "source_identity": "PD-4321", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_35328fa5b66045129c4319e5e76390cd", "raw_text": "PD-789", "type": "ticket", "source_identity": "PD-789", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_35328fa5b66045129c4319e5e76390cd", "raw_text": "Cust VPC Change Simulator and Sample Audit Corpus", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_3670389668214a54bc542bf418ab931e", "raw_text": "INC-3150", "type": "ticket", "source_identity": "INC-3150", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_39539725fdef491e8562dd4bd788fa95", "raw_text": "Event Log Mapping Playbook (v0.7 exploratory)", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "Emily Park <emily.park@thermionics.com>\\nTo: Priyom Das", "type": "person", "source_identity": "priyom.das@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "priyom.das@redwoodinference.com", "type": "email", "source_identity": "priyom.das@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "procure@redwoodinference.com\\nCc: David Chen <david.chen@thermionics.com>\\nDate: Fri", "type": "email", "source_identity": "procure@redwoodinference.com\\nCc: David Chen <david.chen@thermionics.com>\\nDate: Fri", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "\\nEmily Park\\nHead of Finance | Thermionics Inc.\\nemily.park@thermionics.com | +1 (415) 555-0142\\n\\n---\\n\\nFrom: Priyom Das <priyom.das@redwoodinference.com>\\nTo: Emily Park <emily.park@thermionics.com>; David Chen <david.chen@thermionics.com>\\nCc: Naomi Feldman", "type": "person", "source_identity": "naomi.feldman@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "naomi.feldman@redwoodinference.com", "type": "email", "source_identity": "naomi.feldman@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "2026 at 11:45 AM Naomi Feldman <naomi.feldman@redwoodinference.com> wrote:\\n> Priyom / Emily — quick internal note: we usually prefer separate POs when the invoicing entity differs from the legal vendor on the primary contract. It reduces currency-conversion and tax reconciliation work.\\n>\\n> For the SG entity we will need either: final signed W-8BEN-E with a registered local address and a bank letter confirming account ownership; OR a US-based intermediary invoice path where Thermionics Inc. invoices Redwood and pays the APAC subsidiary separately (we avoid that route unless requested).\\n>\\n> I will ask Kimberly to outline the timing for PO issuance and whether AR needs pre-approval from Finance for multi-entity payouts.\\n>\\n> Naomi Feldman\\n> Sr. Vendor Operations | Redwood Inference\\n\\n---\\n\\nFrom: Priyom Das <priyom.das@redwoodinference.com>\\nTo: Kimberly Park", "type": "person", "source_identity": "kimberly.park@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "kimberly.park@redwoodinference.com", "type": "email", "source_identity": "kimberly.park@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "Jonas Weber", "type": "person", "source_identity": "jonas.weber@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "jonas.weber@redwoodinference.com", "type": "email", "source_identity": "jonas.weber@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "Monica Patel <monica.patel@redwoodinference.com>\\nCc: Emily Park", "type": "person", "source_identity": "emily.park@thermionics.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "emily.park@thermionics.com", "type": "email", "source_identity": "emily.park@thermionics.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "I'll share the PO drafts with Thermionics for signature.\\n\\nThanks — Priyom\\n\\n---\\n\\nFrom: Kimberly Park <kimberly.park@redwoodinference.com>\\nTo: Priyom Das", "type": "person", "source_identity": "priyom.das@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "\\nKimberly Park\\nSr. Procurement Lead | Redwood Inference\\nkimberly.park@redwoodinference.com | +1 (212) 555-0117\\n\\nAttachment: vendor-setup-checklist.csv\\n\\n---\\n\\nFrom: Emily Park <emily.park@thermionics.com>\\nTo: Kimberly Park", "type": "person", "source_identity": "kimberly.park@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "Priyom Das", "type": "person", "source_identity": "priyom.das@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_3f539363a56f4de9b881107fd79202be", "raw_text": "PR-8931", "type": "ticket", "source_identity": "PR-8931", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_41a1c92c9f384026a9bc5717629209bc", "raw_text": "INC-1234", "type": "ticket", "source_identity": "INC-1234", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_41a1c92c9f384026a9bc5717629209bc", "raw_text": "INFR-4526", "type": "ticket", "source_identity": "INFR-4526", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_41a1c92c9f384026a9bc5717629209bc", "raw_text": "triage-bullet-journal-aisha", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_43430c5451d942f9a0f4175f6344146c", "raw_text": "Larkspur Payments", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "Eliot Barnes", "type": "person", "source_identity": "eliot.barnes@brightwell.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "eliot.barnes@brightwell.ai", "type": "email", "source_identity": "eliot.barnes@brightwell.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "Jordan Blake", "type": "person", "source_identity": "jordan.blake@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "jordan.blake@redwoodinference.com", "type": "email", "source_identity": "jordan.blake@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "contracts@brightwell.ai", "type": "email", "source_identity": "contracts@brightwell.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "kimberly_park@redwoodinference.com", "type": "email", "source_identity": "kimberly_park@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "ben_carter@redwoodinference.com", "type": "email", "source_identity": "ben_carter@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "grace_oconnor@redwoodinference.com", "type": "email", "source_identity": "grace_oconnor@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "Kimberly Park", "type": "person", "source_identity": "kimberly_park@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "Ben Carter", "type": "person", "source_identity": "ben_carter@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_44467e8cb77944a487dc1c85dc89d72b", "raw_text": "Grace O'Connor", "type": "person", "source_identity": "grace_oconnor@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5402", "type": "ticket", "source_identity": "ENG-5402", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5404", "type": "ticket", "source_identity": "ENG-5404", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5405", "type": "ticket", "source_identity": "ENG-5405", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5406", "type": "ticket", "source_identity": "ENG-5406", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5408", "type": "ticket", "source_identity": "ENG-5408", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5414", "type": "ticket", "source_identity": "ENG-5414", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5417", "type": "ticket", "source_identity": "ENG-5417", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5410", "type": "ticket", "source_identity": "ENG-5410", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_45164b8ed02e4145a70e78844162fd9e", "raw_text": "ENG-5418", "type": "ticket", "source_identity": "ENG-5418", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Nina Petrova", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Victor Alvarez", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Irene Choi", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Bruno Silva", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Sean Gallagher", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Allison Grant", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Rafael Mendes", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "Simran Kaur", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4880231e6b1547f9ba5cb7222210353f", "raw_text": "PR-19110", "type": "ticket", "source_identity": "PR-19110", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_492fc836778a4fdc8e778788ee1067bb", "raw_text": "AES-256", "type": "ticket", "source_identity": "AES-256", "notes": "gold labels for fireflies"}
+{"artifact_id": "dsid_4b4f5e5863684c7c92fdff7992bfae81", "raw_text": "INC-2026", "type": "ticket", "source_identity": "INC-2026", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_4d93bbc9c74c49faad483d0a6e17dff7", "raw_text": "INF-4122", "type": "ticket", "source_identity": "INF-4122", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_4d93bbc9c74c49faad483d0a6e17dff7", "raw_text": "Release Conservatory Runpad — 24hr Stabilization Log & Compact Checklist", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_4e53b25eeb3f43d592dea4222b8691f4", "raw_text": "ENG-4821", "type": "ticket", "source_identity": "ENG-4821", "notes": "gold labels for github"}
+{"artifact_id": "dsid_4e53b25eeb3f43d592dea4222b8691f4", "raw_text": "ENG-4923", "type": "ticket", "source_identity": "ENG-4923", "notes": "gold labels for github"}
+{"artifact_id": "dsid_4e63926d07c144dcab36501f32c3e3a1", "raw_text": "ENG-3419", "type": "ticket", "source_identity": "ENG-3419", "notes": "gold labels for github"}
+{"artifact_id": "dsid_4e63926d07c144dcab36501f32c3e3a1", "raw_text": "PM-4128", "type": "ticket", "source_identity": "PM-4128", "notes": "gold labels for github"}
+{"artifact_id": "dsid_4e63926d07c144dcab36501f32c3e3a1", "raw_text": "SUP-1221", "type": "ticket", "source_identity": "SUP-1221", "notes": "gold labels for github"}
+{"artifact_id": "dsid_4e63926d07c144dcab36501f32c3e3a1", "raw_text": "ENG-3428", "type": "ticket", "source_identity": "ENG-3428", "notes": "gold labels for github"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "Ben Carter", "type": "person", "source_identity": "ben.carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "ben.carter@redwood.com", "type": "email", "source_identity": "ben.carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "Ana Costa", "type": "person", "source_identity": "ana.costa@pelionhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "ana.costa@pelionhealth.com", "type": "email", "source_identity": "ana.costa@pelionhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "Kimberly Park", "type": "person", "source_identity": "kimberly_park@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "kimberly_park@redwood.com", "type": "email", "source_identity": "kimberly_park@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "Karthik Iyer", "type": "person", "source_identity": "karthik_iyer@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "karthik_iyer@redwood.com", "type": "email", "source_identity": "karthik_iyer@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "marissa_cole@redwood.com", "type": "email", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "Marco Bianchi", "type": "person", "source_identity": "m.bianchi@pelionhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "m.bianchi@pelionhealth.com", "type": "email", "source_identity": "m.bianchi@pelionhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50886e519c5948a0ac3f711331d3e71b", "raw_text": "procurement@pelionhealth.com", "type": "email", "source_identity": "procurement@pelionhealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_50be9d685d8649c88eae267d30ae5560", "raw_text": "HelioHealth", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_558c975012f54c16997a515053599638", "raw_text": "Driftwood QuickServe", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_5aa8c8b423f0437d83f681dbe10ef4e8", "raw_text": "SUP-4895", "type": "ticket", "source_identity": "SUP-4895", "notes": "gold labels for github"}
+{"artifact_id": "dsid_5d66d8f4c1324c03ae3cff64e6f24a94", "raw_text": "DR-01", "type": "ticket", "source_identity": "DR-01", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_5d66d8f4c1324c03ae3cff64e6f24a94", "raw_text": "DR-02", "type": "ticket", "source_identity": "DR-02", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_5d66d8f4c1324c03ae3cff64e6f24a94", "raw_text": "DR-03", "type": "ticket", "source_identity": "DR-03", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_5d66d8f4c1324c03ae3cff64e6f24a94", "raw_text": "DR-04", "type": "ticket", "source_identity": "DR-04", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_5d66d8f4c1324c03ae3cff64e6f24a94", "raw_text": "ADR-022", "type": "ticket", "source_identity": "ADR-022", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_5d66d8f4c1324c03ae3cff64e6f24a94", "raw_text": "ADR-021", "type": "ticket", "source_identity": "ADR-021", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_600cd27c2ec24a66a4d99b015210bef6", "raw_text": "INT-224530", "type": "ticket", "source_identity": "INT-224530", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_601c6297b43b4950810993a7f2883b47", "raw_text": "FountainDesk AI", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_606b8e5a6f1e4df797331d561c4c4963", "raw_text": "ZEN-901", "type": "ticket", "source_identity": "ZEN-901", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_612a81b1589d4ddc824237106165cfd5", "raw_text": "ENG-68211", "type": "ticket", "source_identity": "ENG-68211", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_612a81b1589d4ddc824237106165cfd5", "raw_text": "ENG-31877", "type": "ticket", "source_identity": "ENG-31877", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_612a81b1589d4ddc824237106165cfd5", "raw_text": "ENG-46002", "type": "ticket", "source_identity": "ENG-46002", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "Samantha Holt", "type": "person", "source_identity": "samantha.holt@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "samantha.holt@acmehealth.com", "type": "email", "source_identity": "samantha.holt@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "Neha Kapoor", "type": "person", "source_identity": "neha.kapoor@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "neha.kapoor@redwood.com", "type": "email", "source_identity": "neha.kapoor@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "Ben Atkinson", "type": "person", "source_identity": "ben.atkinson@atkinsonlaw.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "ben.atkinson@atkinsonlaw.com", "type": "email", "source_identity": "ben.atkinson@atkinsonlaw.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "Marcus Lin", "type": "person", "source_identity": "marcus.lin@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "marcus.lin@redwood.com", "type": "email", "source_identity": "marcus.lin@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "Priyom Das", "type": "person", "source_identity": "priyom.das@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "priyom.das@redwood.com", "type": "email", "source_identity": "priyom.das@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "Rishi Malhotra", "type": "person", "source_identity": "rishi.malhotra@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_632713f6e1a745abb4a8ebb6da6f1dd8", "raw_text": "rishi.malhotra@redwood.com", "type": "email", "source_identity": "rishi.malhotra@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "Evelyn Hart", "type": "person", "source_identity": "evelyn.hart@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "evelyn.hart@redwood.com", "type": "email", "source_identity": "evelyn.hart@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "Samantha Reed", "type": "person", "source_identity": "samantha.reed@finlytics.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "samantha.reed@finlytics.ai", "type": "email", "source_identity": "samantha.reed@finlytics.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "Oliver Grant", "type": "person", "source_identity": "oliver@finlytics.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "oliver@finlytics.ai", "type": "email", "source_identity": "oliver@finlytics.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "Ben Carter", "type": "person", "source_identity": "ben.carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "ben.carter@redwood.com", "type": "email", "source_identity": "ben.carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa.cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "marissa.cole@redwood.com", "type": "email", "source_identity": "marissa.cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_63ae0eb69eb545b884608ea149419ae9", "raw_text": "procurement@finlytics.ai", "type": "email", "source_identity": "procurement@finlytics.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_64212a1689814ac19deff834ce203ebd", "raw_text": "INT-1182", "type": "ticket", "source_identity": "INT-1182", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_68acf4a8383749809adf512b6a49a14d", "raw_text": "PM-413", "type": "ticket", "source_identity": "PM-413", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "Vanessa Ortiz", "type": "person", "source_identity": "vanessa@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "vanessa@redwood.com", "type": "email", "source_identity": "vanessa@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "Emily Zhang", "type": "person", "source_identity": "emily@skyware.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "emily@skyware.ai", "type": "email", "source_identity": "emily@skyware.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "Jorge Ramos", "type": "person", "source_identity": "jorge.r@skyware.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "jorge.r@skyware.ai", "type": "email", "source_identity": "jorge.r@skyware.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "lauren_bishop@redwood.com", "type": "email", "source_identity": "lauren_bishop@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "procurement@skyware.ai", "type": "email", "source_identity": "procurement@skyware.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "marcus_lin@redwood.com", "type": "email", "source_identity": "marcus_lin@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "dev_patel@redwood.com", "type": "email", "source_identity": "dev_patel@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "Marcus Lin", "type": "person", "source_identity": "marcus_lin@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "Dev Patel", "type": "person", "source_identity": "dev_patel@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6984b15e38fb401c86c5a7d5fd52b093", "raw_text": "SW-2027", "type": "ticket", "source_identity": "SW-2027", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_6d111c6dad6b4e67936e3479a9a65ce2", "raw_text": "QuantaLedger", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_70f0e381c0584253a5a199cc66d02b3c", "raw_text": "ENG-7612", "type": "ticket", "source_identity": "ENG-7612", "notes": "gold labels for github"}
+{"artifact_id": "dsid_70f0e381c0584253a5a199cc66d02b3c", "raw_text": "ENG-7688", "type": "ticket", "source_identity": "ENG-7688", "notes": "gold labels for github"}
+{"artifact_id": "dsid_73c67a536c0d425fa484a2f8eaeb256a", "raw_text": "VND-112233", "type": "ticket", "source_identity": "VND-112233", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_73c67a536c0d425fa484a2f8eaeb256a", "raw_text": "RED-9876", "type": "ticket", "source_identity": "RED-9876", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_73c67a536c0d425fa484a2f8eaeb256a", "raw_text": "Pool fallbacks and tenant throttle investigation — nightshift tactical slate", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_7ed7af6fdb7b42098b11c194198b5c8c", "raw_text": "PLAT-4121", "type": "ticket", "source_identity": "PLAT-4121", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_7ed7af6fdb7b42098b11c194198b5c8c", "raw_text": "Control plane decomposition & regional routing playbook", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_855e90efc08b41c1970978519ae3838c", "raw_text": "INT-4012", "type": "ticket", "source_identity": "INT-4012", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Sandra Lopez", "type": "person", "source_identity": "slopez@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "slopez@acmehealth.com", "type": "email", "source_identity": "slopez@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Jonas Weber", "type": "person", "source_identity": "jonas_weber@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "jonas_weber@redwood.com", "type": "email", "source_identity": "jonas_weber@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Procurement Team", "type": "person", "source_identity": "procurement@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "procurement@acmehealth.com", "type": "email", "source_identity": "procurement@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "marissa_cole@redwood.com", "type": "email", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Laura Bennett", "type": "person", "source_identity": "laura_bennett@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "laura_bennett@redwood.com", "type": "email", "source_identity": "laura_bennett@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Aditya Rao", "type": "person", "source_identity": "aditya_rao@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "aditya_rao@redwood.com", "type": "email", "source_identity": "aditya_rao@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "Acme Health Legal", "type": "person", "source_identity": "legal@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_86d691cee0b548bcb22d8428dc7b6ce7", "raw_text": "legal@acmehealth.com", "type": "email", "source_identity": "legal@acmehealth.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_8be47e742d7c4ddaae9b7d73410df51a", "raw_text": "ADR-019", "type": "ticket", "source_identity": "ADR-019", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_8e9d8eff077e46a2b0e75d3e66f90f69", "raw_text": "INT-7112", "type": "ticket", "source_identity": "INT-7112", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_9291e4abdec54e108c37f0c0918f5972", "raw_text": "SUP-48219", "type": "ticket", "source_identity": "SUP-48219", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_9291e4abdec54e108c37f0c0918f5972", "raw_text": "PR-28544", "type": "ticket", "source_identity": "PR-28544", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_9291e4abdec54e108c37f0c0918f5972", "raw_text": "PR-28480", "type": "ticket", "source_identity": "PR-28480", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_9291e4abdec54e108c37f0c0918f5972", "raw_text": "PR-28473", "type": "ticket", "source_identity": "PR-28473", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_9291e4abdec54e108c37f0c0918f5972", "raw_text": "PR-933", "type": "ticket", "source_identity": "PR-933", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_92c52f05ee784d6086cb8e266ebf2fbd", "raw_text": "Tidecrest dispatch assistant integration journal", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_986cd70fcd7a4c2e81511d7888a0432a", "raw_text": "SHA-256", "type": "ticket", "source_identity": "SHA-256", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_986cd70fcd7a4c2e81511d7888a0432a", "raw_text": "Offline bundle signing – threat model brainstorm notes (working)", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_99799c7ad3d24023bfd23c4806629350", "raw_text": "ENG-5124", "type": "ticket", "source_identity": "ENG-5124", "notes": "gold labels for github"}
+{"artifact_id": "dsid_99799c7ad3d24023bfd23c4806629350", "raw_text": "ENG-5128", "type": "ticket", "source_identity": "ENG-5128", "notes": "gold labels for github"}
+{"artifact_id": "dsid_99799c7ad3d24023bfd23c4806629350", "raw_text": "ENG-5126", "type": "ticket", "source_identity": "ENG-5126", "notes": "gold labels for github"}
+{"artifact_id": "dsid_9a4c3cc5d6ef4f57b4aae6b243cb4dfa", "raw_text": "Lodestar Retail AI", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_a0b68a02e96443119135c2a8841f1676", "raw_text": "INF-4128", "type": "ticket", "source_identity": "INF-4128", "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_a0b68a02e96443119135c2a8841f1676", "raw_text": "Auric Bridge Tech", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "Claire Owens <claire.owens@nimbushealth.com>\\nTo: Stephanie Nguyen", "type": "person", "source_identity": "stephanie_nguyen@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "stephanie_nguyen@redwood.ai", "type": "email", "source_identity": "stephanie_nguyen@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "procurement@nimbushealth.com\\nDate: Mon", "type": "email", "source_identity": "procurement@nimbushealth.com\\nDate: Mon", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "rishi_malhotra@redwood.ai", "type": "email", "source_identity": "rishi_malhotra@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "marcus_lin@redwood.ai\\nDate: Mon", "type": "email", "source_identity": "marcus_lin@redwood.ai\\nDate: Mon", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "Rishi Malhotra <rishi_malhotra@redwood.ai>\\nTo: Stephanie Nguyen", "type": "person", "source_identity": "stephanie_nguyen@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "Marcus Lin <marcus_lin@redwood.ai>\\nTo: Stephanie Nguyen", "type": "person", "source_identity": "stephanie_nguyen@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "rishi_malhotra@redwood.ai\\nDate: Tue", "type": "email", "source_identity": "rishi_malhotra@redwood.ai\\nDate: Tue", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "marcus_lin@redwood.ai\\nDate: Wed", "type": "email", "source_identity": "marcus_lin@redwood.ai\\nDate: Wed", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a6c544a5dd834ab59df1153636f11071", "raw_text": "HS-987654", "type": "ticket", "source_identity": "HS-987654", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_a99355b2deaf48caa93d432a0f88513e", "raw_text": "FinTrust", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_aaa09e73affb4385b1ba1eb49db7a380", "raw_text": "VC-3321", "type": "ticket", "source_identity": "VC-3321", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_aaa09e73affb4385b1ba1eb49db7a380", "raw_text": "Colocation rack power & cooling planning — on-prem GPU pools (Q2 2026)", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_b39afbf2cd7841afb6b6e64268e0c5e1", "raw_text": "INT-884421", "type": "ticket", "source_identity": "INT-884421", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_b39afbf2cd7841afb6b6e64268e0c5e1", "raw_text": "DCK-2026", "type": "ticket", "source_identity": "DCK-2026", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_b499818ebbd2434ab97693f3bec12413", "raw_text": "CLOUD-9987", "type": "ticket", "source_identity": "CLOUD-9987", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Sahana Iyer", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Devon Price", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Hanae Suzuki", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Step", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Error", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Marcus Lin", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Ethan Park", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Olga Petrov", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Daniel Carter", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Sean Gallagher", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Logan Wright", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "Neha Kapoor", "type": "person", "source_identity": null, "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "PR-24947", "type": "ticket", "source_identity": "PR-24947", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "ENG-4825", "type": "ticket", "source_identity": "ENG-4825", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b51f97c6c7cf4838a7914f913cbc5094", "raw_text": "ENG-4862", "type": "ticket", "source_identity": "ENG-4862", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "Sarah Lin", "type": "person", "source_identity": "sarah.lin@therasys.health", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "sarah.lin@therasys.health", "type": "email", "source_identity": "sarah.lin@therasys.health", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "vanessa_ortiz", "type": "person", "source_identity": "vanessa_ortiz@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "vanessa_ortiz@redwood.ai", "type": "email", "source_identity": "vanessa_ortiz@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "Legal", "type": "person", "source_identity": "legal@therasys.health", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "legal@therasys.health", "type": "email", "source_identity": "legal@therasys.health", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "karthik_iyer", "type": "person", "source_identity": "karthik_iyer@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "karthik_iyer@redwood.ai", "type": "email", "source_identity": "karthik_iyer@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "laura_bennett", "type": "person", "source_identity": "laura_bennett@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "laura_bennett@redwood.ai", "type": "email", "source_identity": "laura_bennett@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "ben_carter", "type": "person", "source_identity": "ben_carter@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "ben_carter@redwood.ai", "type": "email", "source_identity": "ben_carter@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b58597e62bd74bf6a39d0a672bc5a132", "raw_text": "RDW-3487", "type": "ticket", "source_identity": "RDW-3487", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_b837e1140d1a4c3d8efd2f42d9b6a799", "raw_text": "SUP-19344", "type": "ticket", "source_identity": "SUP-19344", "notes": "gold labels for github"}
+{"artifact_id": "dsid_b837e1140d1a4c3d8efd2f42d9b6a799", "raw_text": "INC-2026", "type": "ticket", "source_identity": "INC-2026", "notes": "gold labels for github"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-881", "type": "ticket", "source_identity": "PR-881", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-412", "type": "ticket", "source_identity": "PR-412", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "ENG-4822", "type": "ticket", "source_identity": "ENG-4822", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-19342", "type": "ticket", "source_identity": "PR-19342", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-19405", "type": "ticket", "source_identity": "PR-19405", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-19371", "type": "ticket", "source_identity": "PR-19371", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-19388", "type": "ticket", "source_identity": "PR-19388", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "PR-19422", "type": "ticket", "source_identity": "PR-19422", "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_bb265ab0d219433ca7e12ab455f92bb0", "raw_text": "KV cache compaction experiments tracker (parameter sweeps + defaults)", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_c12a8ecfbbc749b99c9a3ab6e3ebdaec", "raw_text": "PRIV-41", "type": "ticket", "source_identity": "PRIV-41", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c12a8ecfbbc749b99c9a3ab6e3ebdaec", "raw_text": "GATE-2026", "type": "ticket", "source_identity": "GATE-2026", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c13a1548cea44f6b8dd63ea816a759cf", "raw_text": "ENG-18428", "type": "ticket", "source_identity": "ENG-18428", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c188c231ad3b4861b289d14d2c529177", "raw_text": "SUP-527890", "type": "ticket", "source_identity": "SUP-527890", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_c2379afa6436453c8fecff0334728115", "raw_text": "ENG-1842", "type": "ticket", "source_identity": "ENG-1842", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c2daaab889b246df8652445b3ff184fa", "raw_text": "SEV-2", "type": "ticket", "source_identity": "SEV-2", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_c2daaab889b246df8652445b3ff184fa", "raw_text": "INC-2026", "type": "ticket", "source_identity": "INC-2026", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_c2daaab889b246df8652445b3ff184fa", "raw_text": "SEV-3", "type": "ticket", "source_identity": "SEV-3", "notes": "gold labels for confluence"}
+{"artifact_id": "dsid_c3d6eab57c9e4d6482a673fd8a492a91", "raw_text": "SHA-256", "type": "ticket", "source_identity": "SHA-256", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c5e63c41c530472eab7e5733df62d624", "raw_text": "Feature-gated traffic shift — internal announce + Q&A (notes)", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_c71e19604663474283d0f26164dff96b", "raw_text": "ENG-27108", "type": "ticket", "source_identity": "ENG-27108", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c71e19604663474283d0f26164dff96b", "raw_text": "ENG-27345", "type": "ticket", "source_identity": "ENG-27345", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c71e19604663474283d0f26164dff96b", "raw_text": "ENG-26890", "type": "ticket", "source_identity": "ENG-26890", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c71e19604663474283d0f26164dff96b", "raw_text": "ENG-27910", "type": "ticket", "source_identity": "ENG-27910", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_c71e19604663474283d0f26164dff96b", "raw_text": "PM-24321", "type": "ticket", "source_identity": "PM-24321", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_cdd989ec7eb5435698162e9dc60d426b", "raw_text": "Sofia Ivanova <sofia_ivanova@redwood.ai>\\nTo: Alice Monroe <alice@twinleaf.ai>\\nCc: Karthik Iyer", "type": "person", "source_identity": "karthik_iyer@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_cdd989ec7eb5435698162e9dc60d426b", "raw_text": "karthik_iyer@redwood.ai", "type": "email", "source_identity": "karthik_iyer@redwood.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d45b165437834544b798a18544d8996c", "raw_text": "ENG-4822", "type": "ticket", "source_identity": "ENG-4822", "notes": "gold labels for github"}
+{"artifact_id": "dsid_d45b165437834544b798a18544d8996c", "raw_text": "PR-612", "type": "ticket", "source_identity": "PR-612", "notes": "gold labels for github"}
+{"artifact_id": "dsid_d45b165437834544b798a18544d8996c", "raw_text": "PR-18428", "type": "ticket", "source_identity": "PR-18428", "notes": "gold labels for github"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "Alyssa Turner", "type": "person", "source_identity": "alyssa.turner@summitworks.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "alyssa.turner@summitworks.com", "type": "email", "source_identity": "alyssa.turner@summitworks.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "Monica Patel", "type": "person", "source_identity": "monica.patel@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "monica.patel@redwood.com", "type": "email", "source_identity": "monica.patel@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "Evan Li", "type": "person", "source_identity": "evan.li@summitworks.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "evan.li@summitworks.com", "type": "email", "source_identity": "evan.li@summitworks.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "Dev Patel", "type": "person", "source_identity": "dev.patel@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "dev.patel@redwood.com", "type": "email", "source_identity": "dev.patel@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "Laura Bennett", "type": "person", "source_identity": "laura.bennett@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "laura.bennett@redwood.com", "type": "email", "source_identity": "laura.bennett@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "procurement@summitworks.com", "type": "email", "source_identity": "procurement@summitworks.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "Rishi Malhotra", "type": "person", "source_identity": "rishi.malhotra@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "rishi.malhotra@redwood.com", "type": "email", "source_identity": "rishi.malhotra@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "SW-2026", "type": "ticket", "source_identity": "SW-2026", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d593a3719d0a4d4e837625dce70b54a4", "raw_text": "ABC-123", "type": "ticket", "source_identity": "ABC-123", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_d5be97ddaae84693b16b27b7a1c00617", "raw_text": "ENG-1190", "type": "ticket", "source_identity": "ENG-1190", "notes": "gold labels for github"}
+{"artifact_id": "dsid_d5be97ddaae84693b16b27b7a1c00617", "raw_text": "SUP-2213", "type": "ticket", "source_identity": "SUP-2213", "notes": "gold labels for github"}
+{"artifact_id": "dsid_d5be97ddaae84693b16b27b7a1c00617", "raw_text": "SRE-47", "type": "ticket", "source_identity": "SRE-47", "notes": "gold labels for github"}
+{"artifact_id": "dsid_d661e1d2332846bbbd8e99733100a572", "raw_text": "SHA-256", "type": "ticket", "source_identity": "SHA-256", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_d661e1d2332846bbbd8e99733100a572", "raw_text": "ENG-21278", "type": "ticket", "source_identity": "ENG-21278", "notes": "gold labels for linear"}
+{"artifact_id": "dsid_dab17ee5c3924a9998b17b3591bbae28", "raw_text": "ENG-9822", "type": "ticket", "source_identity": "ENG-9822", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_dab17ee5c3924a9998b17b3591bbae28", "raw_text": "ENG-9830", "type": "ticket", "source_identity": "ENG-9830", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_dab17ee5c3924a9998b17b3591bbae28", "raw_text": "ENG-9828", "type": "ticket", "source_identity": "ENG-9828", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_dab17ee5c3924a9998b17b3591bbae28", "raw_text": "SUP-18421", "type": "ticket", "source_identity": "SUP-18421", "notes": "gold labels for jira"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "Dev Patel", "type": "person", "source_identity": "dev.patel@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "dev.patel@redwoodinference.com", "type": "email", "source_identity": "dev.patel@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "Samira Khan", "type": "person", "source_identity": "samira.k@fintechco.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "samira.k@fintechco.com", "type": "email", "source_identity": "samira.k@fintechco.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "Ben Liu", "type": "person", "source_identity": "ben.liu@fintechco.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "ben.liu@fintechco.com", "type": "email", "source_identity": "ben.liu@fintechco.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa.cole@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_de2b4390f50941ceb325ba84278fb86d", "raw_text": "marissa.cole@redwoodinference.com", "type": "email", "source_identity": "marissa.cole@redwoodinference.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_ded987ab84a54577908e4a41b08ad60d", "raw_text": "Northstar Query Systems", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_dee01be2ca8844ac9627fea4fac5f29e", "raw_text": "ENG-1248", "type": "ticket", "source_identity": "ENG-1248", "notes": "gold labels for github"}
+{"artifact_id": "dsid_e020ba1f2bf14c1dbceedacb2bf87793", "raw_text": "Spectra Bridge SaaSWorks", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "Ava Lemos", "type": "person", "source_identity": "ava.lemos@priorityenergy.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "ava.lemos@priorityenergy.com", "type": "email", "source_identity": "ava.lemos@priorityenergy.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "Naomi Feldman", "type": "person", "source_identity": "naomi_feldman@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "naomi_feldman@redwood.com", "type": "email", "source_identity": "naomi_feldman@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "procurement@priorityenergy.com", "type": "email", "source_identity": "procurement@priorityenergy.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "Ben Carter", "type": "person", "source_identity": "ben_carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "ben_carter@redwood.com", "type": "email", "source_identity": "ben_carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "Priyom Das", "type": "person", "source_identity": "priyom_das@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "priyom_das@redwood.com", "type": "email", "source_identity": "priyom_das@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "marissa_cole@redwood.com", "type": "email", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_e1689a71bbf14300aa6a7bc39fd60018", "raw_text": "DEAL-9876", "type": "ticket", "source_identity": "DEAL-9876", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "Vanessa Ortiz", "type": "person", "source_identity": "vanessa@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "vanessa@redwood.com", "type": "email", "source_identity": "vanessa@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "Claire Hsu", "type": "person", "source_identity": "claired@vendr.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "claired@vendr.com", "type": "email", "source_identity": "claired@vendr.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "marissa@redwood.com", "type": "email", "source_identity": "marissa@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "Ben Carter", "type": "person", "source_identity": "ben@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "ben@redwood.com", "type": "email", "source_identity": "ben@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "procure@bluecrest.com", "type": "email", "source_identity": "procure@bluecrest.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "vendr-upload-team@vendr.com", "type": "email", "source_identity": "vendr-upload-team@vendr.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_eb7beaaaeb4a4bc2b4dc8c981640430c", "raw_text": "archer-onboarding@archersec.io", "type": "email", "source_identity": "archer-onboarding@archersec.io", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_edf8a5b7e4bd491faffa68adba1213ff", "raw_text": "Arcadia Merchant Foundry", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_f2722b2717cb48bc8e6f44ff25cd7f3e", "raw_text": "INT-3984", "type": "ticket", "source_identity": "INT-3984", "notes": "gold labels for github"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "Ben Carter", "type": "person", "source_identity": "ben.carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "ben.carter@redwood.com", "type": "email", "source_identity": "ben.carter@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "Olga Petrov", "type": "person", "source_identity": "olga.petrov@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "olga.petrov@redwood.com", "type": "email", "source_identity": "olga.petrov@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "Laura Bennett", "type": "person", "source_identity": "laura.bennett@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "laura.bennett@redwood.com", "type": "email", "source_identity": "laura.bennett@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "Jordan Blake", "type": "person", "source_identity": "jordan.blake@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "jordan.blake@redwood.com", "type": "email", "source_identity": "jordan.blake@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "Sana Malik", "type": "person", "source_identity": "sana@silphlabs.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "sana@silphlabs.com", "type": "email", "source_identity": "sana@silphlabs.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f347e4c4abd445eaa00b50a42718ed2c", "raw_text": "procurement@silphlabs.com", "type": "email", "source_identity": "procurement@silphlabs.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_f352299c7cf54715aab457c8354771d7", "raw_text": "INC-7123", "type": "ticket", "source_identity": "INC-7123", "notes": "gold labels for slack"}
+{"artifact_id": "dsid_f760d5131c344d6b8b3e7e3dc274aeaf", "raw_text": "AES-256", "type": "ticket", "source_identity": "AES-256", "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_f760d5131c344d6b8b3e7e3dc274aeaf", "raw_text": "Archipelago MedData Solutions", "type": "org", "source_identity": null, "notes": "gold labels for hubspot"}
+{"artifact_id": "dsid_f8d023b8ef5f4c5b8b367efa96538533", "raw_text": "Progressive Tool Fusion and Client Surface — Lab Notes", "type": "org", "source_identity": null, "notes": "gold labels for google_drive"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "Dylan Brooks", "type": "person", "source_identity": "dylan.brooks@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "dylan.brooks@redwood.com", "type": "email", "source_identity": "dylan.brooks@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "Sarah Liu", "type": "person", "source_identity": "sarah.liu@cloudpartner.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "sarah.liu@cloudpartner.com", "type": "email", "source_identity": "sarah.liu@cloudpartner.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "Tomasz Nowak", "type": "person", "source_identity": "tomasz.nowak@oemhw.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "tomasz.nowak@oemhw.com", "type": "email", "source_identity": "tomasz.nowak@oemhw.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "Karthik Iyer", "type": "person", "source_identity": "karthik_iyer@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "karthik_iyer@redwood.com", "type": "email", "source_identity": "karthik_iyer@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "Marissa Cole", "type": "person", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "marissa_cole@redwood.com", "type": "email", "source_identity": "marissa_cole@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "ACME AI - Procurement", "type": "person", "source_identity": "procurement@acme.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "procurement@acme.ai", "type": "email", "source_identity": "procurement@acme.ai", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "Neha Kapoor", "type": "person", "source_identity": "neha_kapoor@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "neha_kapoor@redwood.com", "type": "email", "source_identity": "neha_kapoor@redwood.com", "notes": "gold labels for gmail"}
+{"artifact_id": "dsid_faac5db76bdb43d399ff09fe6d97f503", "raw_text": "ACME-1293", "type": "ticket", "source_identity": "ACME-1293", "notes": "gold labels for gmail"}
