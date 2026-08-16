@@ -80,16 +80,30 @@ class StateQueryAdapter:
     (Phase 3); until then mention strings must already be canonical keys.
     """
 
-    def __init__(self, client: HydraDBClient, entity_resolver=None) -> None:
+    def __init__(self, client: HydraDBClient, entity_store=None) -> None:
         self._client = client
-        self._entity_resolver = entity_resolver
+        self._entity_store = entity_store
 
     def resolve_entity(self, mention: str) -> dict[str, Any]:
-        if self._entity_resolver is None:
-            # Phase 3 not wired: treat the mention as a canonical key.
+        if self._entity_store is None:
+            # Phase 3 store not wired: treat the mention as a canonical key.
             return {"status": "definitive", "entity_key": mention, "resolver": "passthrough"}
-        verdict = self._entity_resolver.resolve_mention(mention)
-        return verdict.to_dict() if hasattr(verdict, "to_dict") else verdict
+        return self._entity_store.resolve_mention(mention)
+
+    def get_entity_aliases(self, entity_key: str) -> dict[str, Any]:
+        if self._entity_store is None:
+            return {"status": "absent", "entity_key": entity_key, "aliases": []}
+        return self._entity_store.get_entity_aliases(entity_key)
+
+    def get_entity_sources(self, entity_key: str) -> dict[str, Any]:
+        if self._entity_store is None:
+            return {"status": "absent", "entity_key": entity_key, "sources": []}
+        return self._entity_store.get_entity_sources(entity_key)
+
+    def get_entity_evidence(self, entity_key: str) -> dict[str, Any]:
+        if self._entity_store is None:
+            return {"status": "absent", "entity_key": entity_key, "evidence": []}
+        return self._entity_store.get_entity_evidence(entity_key)
 
     def get_current_state(self, entity_key: str, predicate: str = "OWNS") -> dict[str, Any]:
         return resolve_state(self._client, entity_key, predicate)

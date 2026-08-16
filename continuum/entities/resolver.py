@@ -224,6 +224,7 @@ class EntityResolver:
         review: list[ResolutionVerdict] = []
         abstained: list[ResolutionVerdict] = []
         separate: list[ResolutionVerdict] = []
+        merge_verdicts: list[ResolutionVerdict] = []
 
         def root(key: str) -> str:
             while parent[key] != key:
@@ -237,6 +238,7 @@ class EntityResolver:
                 verdict = self.resolve_pair(a, b, extra_features=extra_features)
                 if verdict.decision == ResolutionDecision.MERGE:
                     parent[root(a.candidate_id)] = root(b.candidate_id)
+                    merge_verdicts.append(verdict)
                 elif verdict.decision == ResolutionDecision.REVIEW:
                     review.append(verdict)
                 elif verdict.decision == ResolutionDecision.KEEP_SEPARATE:
@@ -297,6 +299,12 @@ class EntityResolver:
             )
             for candidate in group:
                 entity.absorb(candidate)
+            # provenance: the MERGE verdicts that linked this cluster
+            member_ids = {c.candidate_id for c in group}
+            for verdict in merge_verdicts:
+                if verdict.a_id in member_ids or verdict.b_id in member_ids:
+                    if verdict.a_id in member_ids and verdict.b_id in member_ids:
+                        entity.add_resolution_provenance(verdict)
             merged[entity.entity_key] = entity
 
         return {
