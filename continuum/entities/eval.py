@@ -46,6 +46,7 @@ class PairEvalRow:
     correct: bool
     false_merge: bool = False
     false_split: bool = False
+    error_class: str | None = None
     notes: str = ""
 
     def to_dict(self) -> dict[str, Any]:
@@ -58,6 +59,7 @@ class PairEvalRow:
             "correct": self.correct,
             "false_merge": self.false_merge,
             "false_split": self.false_split,
+            "error_class": self.error_class,
             "notes": self.notes,
         }
 
@@ -100,6 +102,10 @@ class EntityResolutionEval:
             false_merge = decision == ResolutionDecision.MERGE
             false_split = decision == ResolutionDecision.KEEP_SEPARATE
 
+        from .taxonomy import classify_error
+
+        error_class = None if correct else classify_error(pair, decision, verdict.signals)
+
         return PairEvalRow(
             pair_id=pair.pair_id,
             gold=gold,
@@ -109,7 +115,8 @@ class EntityResolutionEval:
             correct=correct,
             false_merge=false_merge,
             false_split=false_split,
-            notes=verdict.reason[:160],
+            error_class=error_class,
+            notes=f"{verdict.reason[:140]} | {error_class}" if error_class else verdict.reason[:160],
         )
 
     def summary(self) -> dict[str, Any]:
@@ -143,6 +150,7 @@ class EntityResolutionEval:
         from collections import Counter
 
         decision_dist = Counter(r.decision.value for r in self.rows)
+        error_dist = Counter(r.error_class for r in self.rows if r.error_class)
 
         # False-merge rate: MERGE decisions on non-SAME gold / all MERGE decisions.
         merges = [r for r in self.rows if r.decision == ResolutionDecision.MERGE]
@@ -178,6 +186,7 @@ class EntityResolutionEval:
             },
             "decision_distribution": dict(decision_dist),
             "gold_distribution": dict(Counter(r.gold for r in self.rows)),
+            "error_taxonomy": dict(error_dist),
             "rows": [r.to_dict() for r in self.rows],
         }
 

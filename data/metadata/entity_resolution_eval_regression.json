@@ -1,0 +1,365 @@
+{
+  "pairs": 24,
+  "metrics": {
+    "pair_accuracy": 0.7083,
+    "same_precision": 1.0,
+    "same_recall": 0.5,
+    "same_f1": 0.6667,
+    "different_precision": 0.75,
+    "different_recall": 0.9,
+    "different_f1": 0.8182,
+    "false_merge_rate": 0.0,
+    "false_merge_count": 0,
+    "false_split_rate": 0.3,
+    "false_split_count": 3,
+    "review_rate": 0.2917,
+    "abstain_rate": 0.0,
+    "review_count": 7,
+    "abstain_count": 0
+  },
+  "decision_distribution": {
+    "MERGE": 5,
+    "REVIEW": 7,
+    "KEEP_SEPARATE": 12
+  },
+  "gold_distribution": {
+    "SAME_ENTITY": 10,
+    "DIFFERENT_ENTITY": 10,
+    "UNCERTAIN": 4
+  },
+  "error_taxonomy": {
+    "FALSE_SPLIT_USERNAME": 1,
+    "FALSE_SPLIT_ALIAS": 5,
+    "FALSE_MERGE_TOKEN_OVERLAP": 1
+  },
+  "rows": [
+    {
+      "pair_id": "er-001",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part"
+    },
+    {
+      "pair_id": "er-002",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part"
+    },
+    {
+      "pair_id": "er-003",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.88,
+      "signals": [
+        "username"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_USERNAME",
+      "notes": "shared evidence but not conclusive (username) | FALSE_SPLIT_USERNAME"
+    },
+    {
+      "pair_id": "er-004",
+      "gold": "SAME_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": true,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "full names with no identity signal (sarah csm vs sarah chen) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "er-005",
+      "gold": "SAME_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": true,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "full names with no identity signal (soham dev vs s ratnaparkhi) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "er-006",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.9,
+      "signals": [
+        "external-id"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: external-id"
+    },
+    {
+      "pair_id": "er-007",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "shared evidence but not conclusive (full-name) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "er-008",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part"
+    },
+    {
+      "pair_id": "er-009",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (maya chen vs maya patel)"
+    },
+    {
+      "pair_id": "er-010",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (sarah chen vs sarah liu)"
+    },
+    {
+      "pair_id": "er-011",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (diego alvarez vs diego fuentes)"
+    },
+    {
+      "pair_id": "er-012",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "role mailboxes are distinct functional accounts"
+    },
+    {
+      "pair_id": "er-013",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "role mailboxes are distinct functional accounts"
+    },
+    {
+      "pair_id": "er-014",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "role mailboxes are distinct functional accounts"
+    },
+    {
+      "pair_id": "er-015",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (maya chen vs sarah chen)"
+    },
+    {
+      "pair_id": "er-016",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "er-017",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "er-018",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (name-token-single)"
+    },
+    {
+      "pair_id": "er-019",
+      "gold": "UNCERTAIN",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.0,
+      "signals": [],
+      "correct": false,
+      "false_merge": false,
+      "false_split": true,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "full names with no identity signal (zephyr unknown vs quasar nobody) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "er-020",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (marcus reed vs marcus li)"
+    },
+    {
+      "pair_id": "er-021",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.55,
+      "signals": [
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (alex chen vs alex martinez)"
+    },
+    {
+      "pair_id": "er-022",
+      "gold": "SAME_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_SPLIT_ALIAS",
+      "notes": "shared evidence but not conclusive (full-name) | FALSE_SPLIT_ALIAS"
+    },
+    {
+      "pair_id": "er-023",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part"
+    },
+    {
+      "pair_id": "er-024",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "FALSE_MERGE_TOKEN_OVERLAP",
+      "notes": "shared evidence but not conclusive (full-name) | FALSE_MERGE_TOKEN_OVERLAP"
+    }
+  ]
+}

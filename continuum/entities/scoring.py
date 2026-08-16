@@ -67,6 +67,15 @@ def _valid_emails(values) -> set[str]:
     return {v.lower() for v in values if EMAIL_RE.match(v)}
 
 
+def _domain_family(domain: str) -> str:
+    """Identity domain family: redwood.com/redwood.ai/redwoodinference.com
+    are the same org; acme.com vs redwood.com are different orgs."""
+    value = domain.lower().strip(".")
+    if "redwood" in value:
+        return "redwood"
+    return value
+
+
 def guarded_email_match(sa, sb) -> float | None:
     """Deterministic email match with all guards applied.
 
@@ -74,14 +83,25 @@ def guarded_email_match(sa, sb) -> float | None:
     (missing emails, role mailboxes, or invalid emails). Teammate-measured
     email_match values may fill the None gap — but never when a guard fired,
     so callers can distinguish 'no data' from 'guarded'.
+
+    Local-part equality is identity evidence only within the same domain
+    family: david.park@redwood.com vs david.park@acme.com are DIFFERENT
+    people (acme.com is not a redwood alias).
     """
     a_local = {canonical_local(e) for e in _valid_emails(sa.emails)}
     b_local = {canonical_local(e) for e in _valid_emails(sb.emails)}
     a_local = {e for e in a_local if not _is_role_mailbox(e)}
     b_local = {e for e in b_local if not _is_role_mailbox(e)}
-    if a_local and b_local:
-        return 1.0 if a_local & b_local else 0.0
-    return None
+    if not a_local or not b_local:
+        return None
+    shared_local = a_local & b_local
+    if not shared_local:
+        return 0.0
+    a_domains = {_domain_family(e.split("@")[-1]) for e in _valid_emails(sa.emails)}
+    b_domains = {_domain_family(e.split("@")[-1]) for e in _valid_emails(sb.emails)}
+    if a_domains & b_domains:
+        return 1.0
+    return 0.0
 
 
 def is_role_mailbox_pair(sa, sb) -> bool:
@@ -188,13 +208,9 @@ def compute_features(
     a_local = {canonical_local(e) for e in _valid_emails(sa.emails)}
     b_local = {canonical_local(e) for e in _valid_emails(sb.emails)}
     # Role mailboxes are functional accounts, not people: matching local
-    # parts like 'procurement' must not be identity evidence.
-    a_local = {e for e in a_local if not _is_role_mailbox(e)}
-    b_local = {e for e in b_local if not _is_role_mailbox(e)}
-    if a_local and b_local:
-        email_match = 1.0 if a_local & b_local else 0.0
-    else:
-        email_match = None
+    # parts like 'procurement' must not be identity evidence. Local-part
+    # matches across different domain families are not identity either.
+    email_match = guarded_email_match(sa, sb)
 
     a_users = {u.lower() for u in sa.usernames}
     b_users = {u.lower() for u in sb.usernames}

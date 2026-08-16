@@ -44,3 +44,7 @@ __all__ = [
     "compute_features",
     "score_match",
 ]
+
+from .store import EntityStore
+from .pairs import IdentityPair, load_identity_pairs
+from .bridge_claims import bridge_claim, bridge_claims

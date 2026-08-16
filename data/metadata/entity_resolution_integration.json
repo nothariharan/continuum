@@ -1,0 +1,44 @@
+{
+  "gate": "entity-resolution-integration",
+  "mentions": 1126,
+  "excluded": 254,
+  "clusters": {
+    "merged_count": 87,
+    "cluster_sizes": [
+      9,
+      7,
+      7,
+      7,
+      7,
+      6,
+      6,
+      5,
+      5,
+      5
+    ],
+    "max_cluster_size": 9,
+    "mentions_absorbed": 247,
+    "review_pairs": 1043,
+    "abstained_pairs": 177662,
+    "separate_pairs": 454380
+  },
+  "latency_ms": {
+    "clustering": 44700.6,
+    "store_save": 22153.8,
+    "query_sample": 45.2
+  },
+  "mention_resolution_sample": {
+    "@soham": "absent",
+    "Jonas Weber": "definitive",
+    "Maya Patel": "absent",
+    "Acme Health": "absent",
+    "unknown-panda": "absent"
+  },
+  "claim_bridge": {
+    "claims": 10,
+    "resolved": 0,
+    "review": 5,
+    "unresolved": 5,
+    "resolve_rate": 0.0
+  }
+}

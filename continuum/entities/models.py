@@ -184,18 +184,39 @@ class CanonicalEntity:
     external_ids: set[str] = field(default_factory=set)
     sources: set[str] = field(default_factory=set)
     members: list[str] = field(default_factory=list)  # candidate_ids merged in
+    alias_sources: dict[str, set[str]] = field(default_factory=dict)  # alias -> {source}
+    resolution_provenance: list[dict[str, Any]] = field(default_factory=list)
 
     def absorb(self, candidate: EntityCandidate) -> None:
         """Merge a candidate's signals into this entity (never deletes)."""
         signals = candidate.signals
         self.mentions.add(signals.mention)
         self.aliases.add(signals.mention)
+        self.alias_sources.setdefault(signals.mention, set())
+        if signals.source:
+            self.alias_sources[signals.mention].add(signals.source)
         self.emails.update(signals.emails)
         self.usernames.update(signals.usernames)
         self.external_ids.update(signals.external_ids)
         if signals.source:
             self.sources.add(signals.source)
         self.members.append(candidate.candidate_id)
+
+    def add_resolution_provenance(self, verdict: "ResolutionVerdict | dict") -> None:
+        """Record WHY this entity was formed (decision, score, signals, evidence)."""
+        if isinstance(verdict, dict):
+            self.resolution_provenance.append(verdict)
+            return
+        self.resolution_provenance.append({
+            "decision": verdict.decision.value,
+            "score": round(verdict.score, 4),
+            "signals": list(verdict.signals),
+            "reason": verdict.reason,
+            "pair": (verdict.a_id, verdict.b_id),
+        })
+
+    def alias_sources_dict(self) -> dict[str, list[str]]:
+        return {alias: sorted(ss) for alias, ss in self.alias_sources.items()}
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -209,4 +230,6 @@ class CanonicalEntity:
             "external_ids": sorted(self.external_ids),
             "sources": sorted(self.sources),
             "members": sorted(self.members),
+            "alias_sources": self.alias_sources_dict(),
+            "resolution_provenance": self.resolution_provenance,
         }

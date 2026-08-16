@@ -1,4 +1,4 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution benchmark-e2e
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution calibrate-entity-resolution entity-integration benchmark-e2e
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -99,6 +99,12 @@ test-eval:
 
 eval-entity-resolution:
 	python scripts/eval_entity_resolution.py
+
+calibrate-entity-resolution:
+	python scripts/calibrate_entity_resolution.py
+
+entity-integration:
+	python scripts/entity_resolution_integration.py --reset
 
 benchmark-e2e:
 	python scripts/benchmark_e2e_questions.py
