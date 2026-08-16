@@ -23,12 +23,16 @@ from continuum.benchmark import answer as continuum_answer
 from continuum.hydradb import HydraDBClient
 
 try:
+    from continuum.eval.benchmark.context import estimate_tokens
     from continuum.eval.benchmark.systems.base import AnswerModel, SystemRunResult
     from continuum.eval.benchmark.corpus import BenchmarkCorpus
 except ImportError:  # benchmark foundation not installed (defensive)
     AnswerModel = Any
     SystemRunResult = Any
     BenchmarkCorpus = Any
+
+    def estimate_tokens(text: str) -> int:
+        return max(len(text.split()), 1)
 
 
 class GraphContinuumSystem:
@@ -73,20 +77,25 @@ class GraphContinuumSystem:
             f"Evidence:\n{evidence_lines or 'none'}"
         )
 
+        # Context accounting is apples-to-apples with the RAG systems: the
+        # foundation's estimate_tokens() over the CONTEXT string (not the
+        # answer). The answer model returns only the final answer text.
+        context_chars = min(len(structured), char_budget)
+        context_tokens = estimate_tokens(structured[:char_budget])
+
         if answer_model is not None:
-            answer, token_count, generation_ms = answer_model.generate(
+            answer, _answer_tokens, generation_ms = answer_model.generate(
                 str(question.get("question", "")), structured[:char_budget]
             )
             latency["generation_ms"] = round(generation_ms, 2)
         else:
             answer = result.get("answer") or "unknown"
-            token_count = result.get("context", {}).get("tokens_estimate", 0)
 
         return SystemRunResult(
             answer=answer,
             retrieved_artifacts=result.get("retrieval_artifacts", result.get("resolved_entities", [])),
-            context_chars=min(len(structured), char_budget),
-            context_tokens=token_count,
+            context_chars=context_chars,
+            context_tokens=context_tokens,
             evidence_items=result.get("context", {}).get("evidence_items", 0),
             latency_breakdown=latency,
             continuum={
