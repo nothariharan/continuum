@@ -1,4 +1,4 @@
-.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark
+.PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -81,6 +81,21 @@ real-claims-benchmark:
 
 test-phase2b-integration:
 	python -m pytest tests/phase2b -m hydradb -q
+
+gold-v1:
+	python scripts/build_gold_benchmark_v1.py
+
+enrich-gold-claims:
+	python scripts/enrich_gold_claims_v1.py
+
+RUN ?= 001
+STRATEGY ?= deterministic
+
+eval-run:
+	python scripts/run_extraction_eval.py --run $(RUN) --strategy $(STRATEGY)
+
+test-eval:
+	python -m pytest tests/eval -q
 
 
 	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_hydradb.ps1

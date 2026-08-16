@@ -2,11 +2,19 @@
 
 from __future__ import annotations
 
+import time
+
 from continuum.dataset.artifact import Artifact
 
 from .deterministic import DeterministicMentionExtractor, extract_claims_from_artifact
 from .llm_client import create_llm_client, llm_available, llm_model_name, parse_json_array
 from .schemas import Claim, Mention
+
+try:
+    from continuum.eval.experiment import record_llm_call
+except ImportError:
+    def record_llm_call(_duration_ms: float) -> None:
+        return None
 
 
 class HybridMentionExtractor:
@@ -56,11 +64,13 @@ def _llm_mentions(artifact: Artifact) -> list[Mention]:
         f"Artifact source={artifact.source}\n\n{artifact.content[:4000]}"
     )
     try:
+        started = time.perf_counter()
         response = client.chat.completions.create(
             model=llm_model_name(),
             messages=[{"role": "user", "content": prompt}],
             temperature=0,
         )
+        record_llm_call((time.perf_counter() - started) * 1000)
         payload = parse_json_array(response.choices[0].message.content or "[]")
     except Exception:
         return []
@@ -102,11 +112,13 @@ def _llm_claims(artifact: Artifact) -> list[Claim]:
         f"Artifact source={artifact.source}\n\n{artifact.content[:4000]}"
     )
     try:
+        started = time.perf_counter()
         response = client.chat.completions.create(
             model=llm_model_name(),
             messages=[{"role": "user", "content": prompt}],
             temperature=0,
         )
+        record_llm_call((time.perf_counter() - started) * 1000)
         payload = parse_json_array(response.choices[0].message.content or "[]")
     except Exception:
         return []

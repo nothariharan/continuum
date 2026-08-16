@@ -1,0 +1,38 @@
+{
+  "version": "v1",
+  "dataset_version": "gold-v1-20260816",
+  "artifact_count": 150,
+  "mention_count": 372,
+  "claim_count": 9,
+  "ambiguity_count": 0,
+  "selection_seed": 20260816,
+  "source_coverage": {
+    "confluence": 16,
+    "fireflies": 19,
+    "github": 17,
+    "gmail": 18,
+    "google_drive": 16,
+    "hubspot": 16,
+    "jira": 16,
+    "linear": 16,
+    "slack": 16
+  },
+  "commit_sha": "dcf7acfa9d064d8b237bb43f74190b2fc2612a4a",
+  "difficulty_tag_vocab": [
+    "ownership",
+    "assignment",
+    "leadership",
+    "maintenance",
+    "dependencies",
+    "conflicts",
+    "temporal",
+    "multi_entity",
+    "no_relationship",
+    "ambiguous",
+    "long_artifact",
+    "short_artifact",
+    "messy_thread"
+  ],
+  "notes": "Bootstrap from phase2b-ground-truth; claim labels expand incrementally.",
+  "claim_label_seed": "/Users/apple/Desktop/Manan/Continumm/continuum/data/fixtures/phase2b_real_claims.jsonl"
+}

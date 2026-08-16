@@ -10,3 +10,8 @@ hydradb-data/
 *.log
 data/raw/
 *.checkpoint.jsonl
+data/evals/run_*/predictions/
+data/entity_resolution/*.parquet
+.cache/
+models/
+embeddings/
