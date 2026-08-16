@@ -10,7 +10,7 @@ from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
-from continuum.dataset.download import all_documents_path, benchmark_cache_dir, download_all_documents
+from continuum.dataset.download import all_documents_path, download_all_documents
 from continuum.dataset.inventory import inventory_corpus
 from continuum.dataset.manifest import load_manifest as load_dataset_manifest
 from continuum.eval.benchmark.questions import load_official_questions
@@ -36,14 +36,13 @@ def main() -> None:
     args = parser.parse_args()
 
     cache_dir = ROOT / "data" / "raw"
-    cache = benchmark_cache_dir(cache_dir)
     manifest = load_dataset_manifest()
     asset = next(a for a in manifest["assets"] if a["name"] == "all_documents.zip")
 
     if not args.skip_download:
-        download_all_documents(cache, verify=True)
+        download_all_documents(cache_dir, verify=True)
 
-    zip_path = all_documents_path(cache)
+    zip_path = all_documents_path(cache_dir)
     if not zip_path.exists():
         raise SystemExit(f"missing corpus: {zip_path}")
 
