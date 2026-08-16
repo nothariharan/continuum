@@ -32,8 +32,45 @@ def _download(url: str, destination: Path) -> None:
     tmp.rename(destination)
 
 
+def benchmark_cache_dir(cache_dir: Path) -> Path:
+    return cache_dir / "enterprise-rag-bench-v1.0.0"
+
+
+def asset_path(cache_dir: Path, asset_name: str) -> Path:
+    return benchmark_cache_dir(cache_dir) / asset_name
+
+
+def download_asset(cache_dir: Path, asset_name: str, verify: bool = True) -> Path:
+    """Download a pinned manifest asset with optional SHA-256 verification."""
+    asset = asset_by_name(asset_name)
+    if asset is None:
+        raise RuntimeError(f"{asset_name} not found in pinned manifest")
+
+    destination = asset_path(cache_dir, asset_name)
+    if not destination.exists():
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        _download(asset["url"], destination)
+
+    if verify:
+        actual = _sha256(destination)
+        if actual != asset["sha256"]:
+            destination.unlink(missing_ok=True)
+            raise RuntimeError(
+                f"checksum mismatch for {asset_name}: expected {asset['sha256']}, got {actual}"
+            )
+    return destination
+
+
+def download_questions_jsonl(cache_dir: Path, verify: bool = True) -> Path:
+    return download_asset(cache_dir, "questions.jsonl", verify=verify)
+
+
+def download_extra_questions_jsonl(cache_dir: Path, verify: bool = True) -> Path:
+    return download_asset(cache_dir, "extra_questions.jsonl", verify=verify)
+
+
 def all_documents_path(cache_dir: Path) -> Path:
-    return cache_dir / "enterprise-rag-bench-v1.0.0" / "all_documents.zip"
+    return benchmark_cache_dir(cache_dir) / "all_documents.zip"
 
 
 def download_all_documents(cache_dir: Path, verify: bool = True) -> Path:
