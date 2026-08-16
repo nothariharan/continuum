@@ -196,6 +196,8 @@ def extract_relations(
         confidence: float,
         subject_text: str | None = None,
         object_text: str | None = None,
+        signal: str = "pattern",
+        ambiguous: bool = False,
     ) -> None:
         if not pair_supported(predicate, subject.label, obj.label):
             return
@@ -221,7 +223,11 @@ def extract_relations(
                     "v2": True,
                     "subject_key": subject.entity_key,
                     "object_key": obj.entity_key,
-                    "signal": "pattern",
+                    "subject_label": subject.label,
+                    "object_label": obj.label,
+                    "signal": signal,
+                    "ambiguous": ambiguous,
+                    "candidate_predicate": predicate,
                 },
             }
         )
@@ -257,6 +263,7 @@ def extract_relations(
         return None
 
     # 1. Owner: / Assigned: lines (meeting notes, CRM records)
+    #    A role tag determines the predicate deterministically -> not ambiguous.
     owner_lined_pairs: set[tuple[str, str]] = set()
     for match in OWNER_LINE_RE.finditer(content):
         name = match.group(1).strip()
@@ -264,8 +271,9 @@ def extract_relations(
         if subject is None:
             continue
         for obj in account_candidates:
-            predicate = _owner_line_predicate(role_for(name))
-            emit(predicate, subject, obj, match.group(0), 0.78)
+            role = role_for(name)
+            predicate = _owner_line_predicate(role)
+            emit(predicate, subject, obj, match.group(0), 0.78, signal="owner-line")
             owner_lined_pairs.add((subject.entity_key, obj.entity_key))
 
     for match in ASSIGNED_LINE_RE.finditer(content):
@@ -274,7 +282,7 @@ def extract_relations(
         if subject is None:
             continue
         for obj in account_candidates:
-            emit("ASSIGNED_TO", subject, obj, match.group(0), 0.80)
+            emit("ASSIGNED_TO", subject, obj, match.group(0), 0.80, signal="assigned-line")
 
     # 2. Verb patterns with explicit subject and object text
     for pattern, predicate, confidence in (
@@ -292,6 +300,7 @@ def extract_relations(
                 predicate, subject, obj, match.group(0), confidence,
                 subject_text=match.group(1).strip(),
                 object_text=match.group(2).strip(),
+                signal=f"verb:{predicate}",
             )
 
     # 3. Passive assignment: "assigned to <Person>" with account context
@@ -301,7 +310,8 @@ def extract_relations(
         if subject is None:
             continue
         for obj in account_candidates:
-            emit("ASSIGNED_TO", subject, obj, match.group(0), 0.76, subject_text=name)
+            emit("ASSIGNED_TO", subject, obj, match.group(0), 0.76,
+                 subject_text=name, signal="passive-assigned")
 
     # 4. Email thread ownership: redwood person + customer domain <-> account
     redwood_name, customer_domain = _redwood_person_on_thread(envelope)
@@ -321,6 +331,8 @@ def extract_relations(
                         "OWNS", subject, obj, EMAIL_FROM_RE.search(content).group(0), 0.82,
                         subject_text=_canonical_mention(subject.entity_key, resolutions),
                         object_text=account_name,
+                        signal="email-thread",
+                        ambiguous=True,
                     )
                     thread_account = obj
                     break
@@ -337,10 +349,12 @@ def extract_relations(
             evidence = f"{name} ({role})"
             if evidence not in content:
                 continue
-            emit("OWNS", subject, thread_account, evidence, 0.74)
+            emit("OWNS", subject, thread_account, evidence, 0.74,
+                 signal="thread-ae-label", ambiguous=True)
 
     # 5. Attendee role tags when the account is the artifact's subject (title).
     #    Skipped for pairs already covered by an Owner line (Owner wins).
+    #    A role tag determines the predicate deterministically -> not ambiguous.
     if len(account_candidates) == 1:
         account = account_candidates[0]
         for name, role in roles.items():
@@ -349,7 +363,8 @@ def extract_relations(
                 continue
             if (subject.entity_key, account.entity_key) in owner_lined_pairs:
                 continue
-            emit(_attendee_role_predicate(role), subject, account, f"{name} ({role})", 0.72)
+            emit(_attendee_role_predicate(role), subject, account, f"{name} ({role})", 0.72,
+                 signal="attendee-role")
 
     # 6. Slack CSM username: "<name>_csm:" speaker drives the mentioned account
     if envelope.source == "slack" and len(account_candidates) >= 1:
@@ -359,7 +374,9 @@ def extract_relations(
             if subject is None:
                 continue
             for obj in account_candidates:
-                emit("OWNS", subject, obj, match.group(0), 0.74, subject_text=_canonical_mention(subject.entity_key, resolutions))
+                emit("OWNS", subject, obj, match.group(0), 0.74,
+                     subject_text=_canonical_mention(subject.entity_key, resolutions),
+                     signal="slack-csm", ambiguous=True)
 
     # dedupe by claim_id
     seen: set[str] = set()
