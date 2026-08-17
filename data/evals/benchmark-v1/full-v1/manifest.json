@@ -3,7 +3,7 @@
   "answer_temperature": 0.0,
   "answer_timeout_s": 30,
   "benchmark_version": "v1",
-  "commit_sha": "aed49eb608f1be8f6dde470997351b16b2be1ff6",
+  "commit_sha": "514d5fe70fef395d3df56cd1790f91c976958a0f",
   "context_char_budget": 12000,
   "corpus_mode": "full-v1",
   "corpus_path": "data/raw/enterprise-rag-bench-v1.0.0/all_documents.zip",

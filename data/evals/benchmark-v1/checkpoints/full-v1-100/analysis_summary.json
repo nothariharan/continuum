@@ -1,0 +1,65 @@
+{
+  "official_score_100q": {
+    "answer_correctness": 0.13,
+    "document_recall_mean": 0.54,
+    "invalid_extra_evidence_mean": 0.9,
+    "question_count": 100
+  },
+  "by_question_type": {
+    "basic": {
+      "count": 100,
+      "answer_correctness": 0.13,
+      "doc_recall_mean": 0.54
+    }
+  },
+  "question_types": {
+    "basic": 100
+  },
+  "sample_answers": [
+    {
+      "id": "qst_0001",
+      "type": "basic",
+      "q": "What are the default size limits for file uploads and total request size for the",
+      "gold": "The default limits are 10 MiB per file (max_file_size) and 50 MiB total per request (max_total_reque",
+      "got": "The new multipart upload support on the OpenAI\u2011compatible API endpoints uses the following conservat",
+      "correct": false,
+      "recall": 1.0
+    },
+    {
+      "id": "qst_0002",
+      "type": "basic",
+      "q": "What is the name of the new metric added so SRE can track when server-side strea",
+      "gold": "The new metric is `stream.timebox_finalized` (with labels for route and model).",
+      "got": "The new metric is called **`stream.timebox_finalized`**.",
+      "correct": false,
+      "recall": 1.0
+    },
+    {
+      "id": "qst_0003",
+      "type": "basic",
+      "q": "What are the acceptance criteria for the project introducing an algorithm to gen",
+      "gold": "The acceptance criteria are: (1) deliver a stable design JSON token spec including the base palette,",
+      "got": "**Acceptance criteria for the \u201cinteractive UI color states + Kappa\u2011style elevation\u201d project**\n\n1. **",
+      "correct": false,
+      "recall": 1.0
+    },
+    {
+      "id": "qst_0004",
+      "type": "basic",
+      "q": "In the meeting about onboarding a SaaS product to Google Cloud Marketplace, what",
+      "gold": "The GCP team said entitlement propagation delays can happen, so the onboarding UX should handle a \"p",
+      "got": "The GCP team said that if a new subscription entitlement isn\u2019t showing up right away, you should:\n\n1",
+      "correct": false,
+      "recall": 0.0
+    },
+    {
+      "id": "qst_0005",
+      "type": "basic",
+      "q": "What failover sequence and recovery targets did MedThink specify for handling an",
+      "gold": "MedThink's preferred failover hierarchy is EU primary \u2192 EU warm standby \u2192 US emergency failover. The",
+      "got": "MedThink\u2019s plan for an EU\u2011region outage is:\n\n1. **Fail\u2011over order**  \n   * **Primary** \u2013 EU region (",
+      "correct": false,
+      "recall": 1.0
+    }
+  ]
+}
