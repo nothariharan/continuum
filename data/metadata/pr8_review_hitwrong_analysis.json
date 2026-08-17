@@ -1,0 +1,597 @@
+{
+  "hit_wrong": [
+    {
+      "qid": "qst_0001",
+      "overlap": 0.35,
+      "gold_len": 23,
+      "got_len": 44,
+      "question": "What are the default size limits for file uploads and total request size for the new multipart upload support on the Ope"
+    },
+    {
+      "qid": "qst_0002",
+      "overlap": 0.364,
+      "gold_len": 11,
+      "got_len": 6,
+      "question": "What is the name of the new metric added so SRE can track when server-side streaming sessions get finalized due to hitti"
+    },
+    {
+      "qid": "qst_0003",
+      "overlap": 0.311,
+      "gold_len": 112,
+      "got_len": 120,
+      "question": "What are the acceptance criteria for the project introducing an algorithm to generate interactive UI color states and a "
+    },
+    {
+      "qid": "qst_0005",
+      "overlap": 0.465,
+      "gold_len": 52,
+      "got_len": 85,
+      "question": "What failover sequence and recovery targets did MedThink specify for handling an EU region outage, including any limits "
+    },
+    {
+      "qid": "qst_0008",
+      "overlap": 0.538,
+      "gold_len": 15,
+      "got_len": 23,
+      "question": "In the internal shiproom runner notes, what is the target time-to-recover threshold for a verified rollback in staging?"
+    },
+    {
+      "qid": "qst_0009",
+      "overlap": 0.34,
+      "gold_len": 57,
+      "got_len": 56,
+      "question": "In the EdgePath evaluation email thread, what alternative Year 1 pricing package did Redwood propose instead of matching"
+    },
+    {
+      "qid": "qst_0011",
+      "overlap": 0.455,
+      "gold_len": 11,
+      "got_len": 7,
+      "question": "How long is the validity period for the telemetry driven runbook author certification from the operator training bootcam"
+    },
+    {
+      "qid": "qst_0012",
+      "overlap": 0.472,
+      "gold_len": 40,
+      "got_len": 49,
+      "question": "What was identified as the root cause of the intermittent VPN connectivity blackholes and duplicate IP warnings for user"
+    },
+    {
+      "qid": "qst_0015",
+      "overlap": 0.192,
+      "gold_len": 28,
+      "got_len": 16,
+      "question": "What was the high-percentile latency concern reported after a smoke test of about 50 concurrent streaming chat sessions "
+    },
+    {
+      "qid": "qst_0017",
+      "overlap": 0.333,
+      "gold_len": 24,
+      "got_len": 42,
+      "question": "What service credit percentages were proposed in the tiered uptime SLA counteroffer for the maritime logistics SaaS cust"
+    },
+    {
+      "qid": "qst_0019",
+      "overlap": 0.308,
+      "gold_len": 28,
+      "got_len": 22,
+      "question": "After a recent network change at the SoMa office, users on corporate WiFi saw VPN access to an internal 10.11.x service "
+    },
+    {
+      "qid": "qst_0020",
+      "overlap": 0.467,
+      "gold_len": 34,
+      "got_len": 46,
+      "question": "In the recent update to the chat completions compatibility adapter, how does the parameter normalizer handle a client se"
+    },
+    {
+      "qid": "qst_0021",
+      "overlap": 0.533,
+      "gold_len": 16,
+      "got_len": 17,
+      "question": "What is the expected turnaround time for security to approve access to a high risk internal tool role in Redwood's tool "
+    },
+    {
+      "qid": "qst_0023",
+      "overlap": 0.241,
+      "gold_len": 30,
+      "got_len": 55,
+      "question": "In the customer docs plan for the opt-in quantization profile feature, what are the review roles required before the doc"
+    },
+    {
+      "qid": "qst_0024",
+      "overlap": 0.15,
+      "gold_len": 21,
+      "got_len": 8,
+      "question": "What is the default time limit for automatically expiring guest or contractor accounts in the plan to set up a temporary"
+    },
+    {
+      "qid": "qst_0029",
+      "overlap": 0.438,
+      "gold_len": 36,
+      "got_len": 67,
+      "question": "What caused the nightly evaluation cron jobs in the production us-east cluster to fail with an invalid refresh token err"
+    },
+    {
+      "qid": "qst_0034",
+      "overlap": 0.435,
+      "gold_len": 27,
+      "got_len": 28,
+      "question": "In the Console nav redesign prototype with compact workspace chips and a contextual micro-rail, how is the micro-rail st"
+    },
+    {
+      "qid": "qst_0038",
+      "overlap": 0.143,
+      "gold_len": 17,
+      "got_len": 8,
+      "question": "In the sandbox onboarding demo with NimbusApps, what median and p95 latency did the 50-concurrency 1-minute performance "
+    },
+    {
+      "qid": "qst_0040",
+      "overlap": 0.425,
+      "gold_len": 48,
+      "got_len": 37,
+      "question": "What are the retention time windows for these lightweight kernel state snapshots (in-memory cache, indexed store, and an"
+    },
+    {
+      "qid": "qst_0045",
+      "overlap": 0.368,
+      "gold_len": 20,
+      "got_len": 16,
+      "question": "What is the estimated compressed size for the customers requested 12 month structured audit log export for their SIEM pr"
+    },
+    {
+      "qid": "qst_0047",
+      "overlap": 0.483,
+      "gold_len": 32,
+      "got_len": 43,
+      "question": "In some lab notes about reducing few-shot example copying, what tradeoff was noted when rotating the order of exemplars "
+    },
+    {
+      "qid": "qst_0048",
+      "overlap": 0.105,
+      "gold_len": 22,
+      "got_len": 21,
+      "question": "What are the initial weighting percentages for the signals used in the Model Resilience Propensity Index, before the 4-w"
+    },
+    {
+      "qid": "qst_0049",
+      "overlap": 0.2,
+      "gold_len": 16,
+      "got_len": 8,
+      "question": "In the email thread about BrightPath considering a marketplace pilot versus a direct contract for an AI inference vendor"
+    },
+    {
+      "qid": "qst_0056",
+      "overlap": 0.333,
+      "gold_len": 26,
+      "got_len": 18,
+      "question": "In a recent GPU incident in us-east after a driver update, what load balancer network setting change was suspected as co"
+    },
+    {
+      "qid": "qst_0057",
+      "overlap": 0.24,
+      "gold_len": 28,
+      "got_len": 14,
+      "question": "In our staging cluster, checkpoint downloads sometimes hang when resuming with an HTTP Range request to a cloud storage "
+    },
+    {
+      "qid": "qst_0059",
+      "overlap": 0.583,
+      "gold_len": 13,
+      "got_len": 16,
+      "question": "In the incident where a CI runner service token was suspected of being used from two different datacenter IP ranges minu"
+    },
+    {
+      "qid": "qst_0060",
+      "overlap": 0.438,
+      "gold_len": 58,
+      "got_len": 74,
+      "question": "What was identified as the root cause of the hover double-outline or glow issue on small icon-style buttons, and what ch"
+    },
+    {
+      "qid": "qst_0068",
+      "overlap": 0.391,
+      "gold_len": 26,
+      "got_len": 43,
+      "question": "What is the default wait time used by the new tool-call batching invoker, and how does it differ between hosted and dedi"
+    },
+    {
+      "qid": "qst_0070",
+      "overlap": 0.393,
+      "gold_len": 30,
+      "got_len": 36,
+      "question": "In our internal dry run of marketplace onboarding, what time window did the team suggest we describe as a normal entitle"
+    },
+    {
+      "qid": "qst_0071",
+      "overlap": 0.316,
+      "gold_len": 19,
+      "got_len": 19,
+      "question": "In the Private VPC console prototype for an interactive network path storyboard used to rehearse cluster upgrades, what "
+    },
+    {
+      "qid": "qst_0074",
+      "overlap": 0.5,
+      "gold_len": 37,
+      "got_len": 56,
+      "question": "How does the new v1 chat compatibility layer handle invalid tool or function schemas, and what HTTP status does it retur"
+    },
+    {
+      "qid": "qst_0075",
+      "overlap": 0.391,
+      "gold_len": 23,
+      "got_len": 37,
+      "question": "What change was introduced to prevent oscillations in the new GPU scratch memory allocator that can trigger repeated mic"
+    },
+    {
+      "qid": "qst_0076",
+      "overlap": 0.379,
+      "gold_len": 70,
+      "got_len": 120,
+      "question": "Why are some newly created Okta provisioned users getting a 403 when accessing the model observability metrics or dashbo"
+    },
+    {
+      "qid": "qst_0078",
+      "overlap": 0.5,
+      "gold_len": 14,
+      "got_len": 16,
+      "question": "In the proposal for an anchor-based trace drilldown panel that pins a span or request correlation, what is the MVP limit"
+    },
+    {
+      "qid": "qst_0080",
+      "overlap": 0.36,
+      "gold_len": 93,
+      "got_len": 189,
+      "question": "What was the low-risk mitigation plan for BrightHealth AI to reduce recurring tail-latency spikes after enabling aggress"
+    },
+    {
+      "qid": "qst_0083",
+      "overlap": 0.4,
+      "gold_len": 65,
+      "got_len": 72,
+      "question": "What was the root cause of the customer invoice overcharge where an organization-wide promotional credit was mistakenly "
+    },
+    {
+      "qid": "qst_0085",
+      "overlap": 0.5,
+      "gold_len": 12,
+      "got_len": 9,
+      "question": "What are the three request quality and cost tiers proposed in the lightweight interaction tiering model for user facing "
+    },
+    {
+      "qid": "qst_0086",
+      "overlap": 0.365,
+      "gold_len": 58,
+      "got_len": 110,
+      "question": "Why would Apple Silicon MacBooks coming back from logic board repair get stuck during automated DEP or MDM setup at firs"
+    },
+    {
+      "qid": "qst_0088",
+      "overlap": 0.417,
+      "gold_len": 13,
+      "got_len": 6,
+      "question": "In the Slack chat about a desk plant rap contest, where was the remaining sticker stock said to be stored?"
+    },
+    {
+      "qid": "qst_0094",
+      "overlap": 0.35,
+      "gold_len": 21,
+      "got_len": 20,
+      "question": "What is the recommended emergency action to temporarily simplify routing policy rules when the edge route agent is causi"
+    },
+    {
+      "qid": "qst_0095",
+      "overlap": 0.5,
+      "gold_len": 12,
+      "got_len": 16,
+      "question": "What are the five synthetic workload templates defined for the repeatable probe harness that compares competitor model e"
+    },
+    {
+      "qid": "qst_0096",
+      "overlap": 0.444,
+      "gold_len": 56,
+      "got_len": 119,
+      "question": "When an employee is marked for immediate termination in Workday, why can a third party SaaS seat stay billable for aroun"
+    },
+    {
+      "qid": "qst_0097",
+      "overlap": 0.552,
+      "gold_len": 33,
+      "got_len": 54,
+      "question": "In the OpenAI Responses v3 compatibility work, how are overly large user-provided seeds handled to keep determinism, and"
+    },
+    {
+      "qid": "qst_0098",
+      "overlap": 0.486,
+      "gold_len": 41,
+      "got_len": 48,
+      "question": "In the MedSecure logging and PII redaction POC email thread, what method did Redwood propose for pseudonymizing trace or"
+    },
+    {
+      "qid": "qst_0099",
+      "overlap": 0.375,
+      "gold_len": 25,
+      "got_len": 21,
+      "question": "What was the temporary mitigation applied to the internal load balancer serving the gen-infer VIPs around 03:40 UTC that"
+    }
+  ],
+  "miss_ranking": [
+    {
+      "qid": "qst_0004",
+      "gold_overlap": 0.967741935483871,
+      "retrieved_max": 0.7419354838709677,
+      "retrieved_avg": 0.7419354838709677
+    },
+    {
+      "qid": "qst_0006",
+      "gold_overlap": 0.75,
+      "retrieved_max": 0.78125,
+      "retrieved_avg": 0.78125
+    },
+    {
+      "qid": "qst_0007",
+      "gold_overlap": 0.78125,
+      "retrieved_max": 0.75,
+      "retrieved_avg": 0.71875
+    },
+    {
+      "qid": "qst_0010",
+      "gold_overlap": 0.64,
+      "retrieved_max": 0.72,
+      "retrieved_avg": 0.72
+    },
+    {
+      "qid": "qst_0013",
+      "gold_overlap": 0.5806451612903226,
+      "retrieved_max": 0.7419354838709677,
+      "retrieved_avg": 0.7419354838709677
+    },
+    {
+      "qid": "qst_0014",
+      "gold_overlap": 0.8846153846153846,
+      "retrieved_max": 0.8846153846153846,
+      "retrieved_avg": 0.8846153846153846
+    },
+    {
+      "qid": "qst_0016",
+      "gold_overlap": 0.7727272727272727,
+      "retrieved_max": 0.7727272727272727,
+      "retrieved_avg": 0.7272727272727273
+    },
+    {
+      "qid": "qst_0025",
+      "gold_overlap": 0.6551724137931034,
+      "retrieved_max": 0.8275862068965517,
+      "retrieved_avg": 0.8275862068965517
+    },
+    {
+      "qid": "qst_0026",
+      "gold_overlap": 0.7666666666666667,
+      "retrieved_max": 0.8,
+      "retrieved_avg": 0.8
+    },
+    {
+      "qid": "qst_0027",
+      "gold_overlap": 0.75,
+      "retrieved_max": 0.7083333333333334,
+      "retrieved_avg": 0.7083333333333334
+    },
+    {
+      "qid": "qst_0028",
+      "gold_overlap": 0.7391304347826086,
+      "retrieved_max": 0.7391304347826086,
+      "retrieved_avg": 0.6956521739130435
+    },
+    {
+      "qid": "qst_0030",
+      "gold_overlap": 0.6071428571428571,
+      "retrieved_max": 0.8214285714285714,
+      "retrieved_avg": 0.8214285714285714
+    },
+    {
+      "qid": "qst_0031",
+      "gold_overlap": 0.7272727272727273,
+      "retrieved_max": 0.8181818181818182,
+      "retrieved_avg": 0.8181818181818182
+    },
+    {
+      "qid": "qst_0032",
+      "gold_overlap": 0.7,
+      "retrieved_max": 0.65,
+      "retrieved_avg": 0.65
+    },
+    {
+      "qid": "qst_0033",
+      "gold_overlap": 0.7916666666666666,
+      "retrieved_max": 0.8333333333333334,
+      "retrieved_avg": 0.8333333333333334
+    },
+    {
+      "qid": "qst_0036",
+      "gold_overlap": 0.84,
+      "retrieved_max": 0.76,
+      "retrieved_avg": 0.76
+    },
+    {
+      "qid": "qst_0037",
+      "gold_overlap": 0.9047619047619048,
+      "retrieved_max": 0.8095238095238095,
+      "retrieved_avg": 0.8095238095238095
+    },
+    {
+      "qid": "qst_0039",
+      "gold_overlap": 0.7307692307692307,
+      "retrieved_max": 0.7307692307692307,
+      "retrieved_avg": 0.7307692307692307
+    },
+    {
+      "qid": "qst_0041",
+      "gold_overlap": 0.8928571428571429,
+      "retrieved_max": 0.75,
+      "retrieved_avg": 0.75
+    },
+    {
+      "qid": "qst_0042",
+      "gold_overlap": 0.5357142857142857,
+      "retrieved_max": 0.7142857142857143,
+      "retrieved_avg": 0.7142857142857143
+    },
+    {
+      "qid": "qst_0043",
+      "gold_overlap": 0.52,
+      "retrieved_max": 0.8,
+      "retrieved_avg": 0.8
+    },
+    {
+      "qid": "qst_0050",
+      "gold_overlap": 0.7142857142857143,
+      "retrieved_max": 0.7142857142857143,
+      "retrieved_avg": 0.7142857142857143
+    },
+    {
+      "qid": "qst_0051",
+      "gold_overlap": 0.5833333333333334,
+      "retrieved_max": 0.7916666666666666,
+      "retrieved_avg": 0.7916666666666666
+    },
+    {
+      "qid": "qst_0052",
+      "gold_overlap": 0.7894736842105263,
+      "retrieved_max": 0.8947368421052632,
+      "retrieved_avg": 0.8947368421052632
+    },
+    {
+      "qid": "qst_0053",
+      "gold_overlap": 0.7692307692307693,
+      "retrieved_max": 0.7692307692307693,
+      "retrieved_avg": 0.7692307692307693
+    },
+    {
+      "qid": "qst_0054",
+      "gold_overlap": 0.5,
+      "retrieved_max": 0.6538461538461539,
+      "retrieved_avg": 0.6538461538461539
+    },
+    {
+      "qid": "qst_0058",
+      "gold_overlap": 0.6818181818181818,
+      "retrieved_max": 0.5909090909090909,
+      "retrieved_avg": 0.5909090909090909
+    },
+    {
+      "qid": "qst_0061",
+      "gold_overlap": 0.6956521739130435,
+      "retrieved_max": 0.7391304347826086,
+      "retrieved_avg": 0.7391304347826086
+    },
+    {
+      "qid": "qst_0062",
+      "gold_overlap": 0.782608695652174,
+      "retrieved_max": 0.8695652173913043,
+      "retrieved_avg": 0.8695652173913043
+    },
+    {
+      "qid": "qst_0064",
+      "gold_overlap": 0.5,
+      "retrieved_max": 0.9375,
+      "retrieved_avg": 0.9375
+    },
+    {
+      "qid": "qst_0065",
+      "gold_overlap": 0.7307692307692307,
+      "retrieved_max": null,
+      "retrieved_avg": null
+    },
+    {
+      "qid": "qst_0067",
+      "gold_overlap": 0.5263157894736842,
+      "retrieved_max": 0.631578947368421,
+      "retrieved_avg": 0.5526315789473684
+    },
+    {
+      "qid": "qst_0069",
+      "gold_overlap": 0.8076923076923077,
+      "retrieved_max": 0.6538461538461539,
+      "retrieved_avg": 0.6538461538461539
+    },
+    {
+      "qid": "qst_0072",
+      "gold_overlap": 0.5,
+      "retrieved_max": 0.8,
+      "retrieved_avg": 0.7250000000000001
+    },
+    {
+      "qid": "qst_0077",
+      "gold_overlap": 0.6470588235294118,
+      "retrieved_max": 0.8235294117647058,
+      "retrieved_avg": 0.8235294117647058
+    },
+    {
+      "qid": "qst_0079",
+      "gold_overlap": 0.6923076923076923,
+      "retrieved_max": 0.8461538461538461,
+      "retrieved_avg": 0.8461538461538461
+    },
+    {
+      "qid": "qst_0081",
+      "gold_overlap": 0.6956521739130435,
+      "retrieved_max": 0.8695652173913043,
+      "retrieved_avg": 0.8043478260869565
+    },
+    {
+      "qid": "qst_0082",
+      "gold_overlap": 0.75,
+      "retrieved_max": 0.65,
+      "retrieved_avg": 0.65
+    },
+    {
+      "qid": "qst_0084",
+      "gold_overlap": 0.6666666666666666,
+      "retrieved_max": 0.7916666666666666,
+      "retrieved_avg": 0.75
+    },
+    {
+      "qid": "qst_0087",
+      "gold_overlap": 0.5263157894736842,
+      "retrieved_max": 0.631578947368421,
+      "retrieved_avg": 0.631578947368421
+    },
+    {
+      "qid": "qst_0089",
+      "gold_overlap": 0.6842105263157895,
+      "retrieved_max": 0.6842105263157895,
+      "retrieved_avg": 0.6842105263157895
+    },
+    {
+      "qid": "qst_0090",
+      "gold_overlap": 0.5384615384615384,
+      "retrieved_max": 0.8461538461538461,
+      "retrieved_avg": 0.8461538461538461
+    },
+    {
+      "qid": "qst_0091",
+      "gold_overlap": 0.8947368421052632,
+      "retrieved_max": 0.9473684210526315,
+      "retrieved_avg": 0.9473684210526315
+    },
+    {
+      "qid": "qst_0092",
+      "gold_overlap": 0.5714285714285714,
+      "retrieved_max": 0.8095238095238095,
+      "retrieved_avg": 0.8095238095238095
+    },
+    {
+      "qid": "qst_0093",
+      "gold_overlap": 0.36363636363636365,
+      "retrieved_max": 0.5,
+      "retrieved_avg": 0.5
+    },
+    {
+      "qid": "qst_0100",
+      "gold_overlap": 0.76,
+      "retrieved_max": 0.96,
+      "retrieved_avg": 0.96
+    }
+  ]
+}
