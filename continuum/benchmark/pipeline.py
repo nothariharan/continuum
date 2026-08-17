@@ -26,11 +26,14 @@ from typing import Any, Callable
 
 from continuum.hydradb import HydraDBClient
 from continuum.query import (
-    resolve_conflicts,
     resolve_provenance,
     resolve_state,
     resolve_state_on,
 )
+from continuum.query.conflict import resolve_conflict_state
+from continuum.query.context import QueryContext
+from continuum.query.decompose import decompose_question
+from continuum.query.temporal import resolve_state_for_constraints
 
 from .contract import LAYER_NAMES, empty_result
 
@@ -39,6 +42,13 @@ AnswerGenerator = Callable[[dict[str, Any]], str]
 _MENTION_RE = re.compile(r"'([^']+)'|\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 _USERNAME_RE = re.compile(r"@[A-Za-z0-9_.-]+")
+
+
+def _default_as_of() -> str:
+    """Fallback 'as of' date when a temporal question has no extracted date."""
+    from datetime import date
+
+    return date.today().isoformat()
 
 
 def _extract_mentions(question_text: str) -> list[str]:
@@ -158,6 +168,12 @@ class ContinuumPipeline:
         predicate = question.get("predicate")
         category = question.get("category")
 
+        # ---- decomposition (source-agnostic boundary) ----
+        started = time.perf_counter()
+        ctx = decompose_question(question)
+        result["query_context"] = ctx.to_dict()
+        result["latency_ms"]["decomposition"] = (time.perf_counter() - started) * 1000
+
         # ---- retrieval (candidate scoping) ----
         started = time.perf_counter()
         retrieval = self._retrieve(question_text, entity)
@@ -176,9 +192,9 @@ class ContinuumPipeline:
 
         canonical = resolution.get("canonical_key") or entity
 
-        # ---- state resolution ----
+        # ---- state resolution (uses decomposed intent + temporal) ----
         started = time.perf_counter()
-        state = self._state(canonical, predicate, category, question_text)
+        state = self._state(canonical, predicate, category, question_text, ctx)
         result["latency_ms"]["state"] = (time.perf_counter() - started) * 1000
         result["state_result"] = state
         result["status"] = state.get("status", "absent")
@@ -297,24 +313,28 @@ class ContinuumPipeline:
         predicate: str | None,
         category: str | None,
         question_text: str,
+        ctx: QueryContext | None = None,
     ) -> dict[str, Any]:
         if canonical is None:
             return {"status": "absent", "value": None}
         lower = question_text.lower()
-        if category == "conflict" or "conflict" in lower:
-            return resolve_conflicts(self._client, canonical, predicate or "OWNS")
-        # co-occurrence must precede the generic multi-hop branch and the
-        # predicate default (its questions carry predicate=None)
-        if ("who else" in lower or "appears in artifacts" in lower) and predicate is None:
+        intent = ctx.intent if ctx is not None else None
+
+        if intent == "CONFLICT" or category == "conflict" or "conflict" in lower:
+            return resolve_conflict_state(self._client, canonical, predicate or "OWNS")
+        if intent == "PROVENANCE" or "which source" in lower or "which artifact" in lower or "evidence chain" in lower:
+            return resolve_provenance(self._client, canonical, predicate or "OWNS")
+        if intent == "CO_OCCURRENCE" or ("who else" in lower or "appears in artifacts" in lower) and predicate is None:
             return self._cooccurrence(canonical)
+        if intent == "DECISION":
+            return resolve_provenance(self._client, canonical, predicate or "OWNS")
+        if ctx is not None and ctx.temporal:
+            return resolve_state_for_constraints(
+                self._client, canonical, predicate or "OWNS", ctx.temporal
+            )
         predicate = predicate or "OWNS"
-        if category in {"multi-hop", "provenance"} or "which source" in lower or "which artifact" in lower or "evidence chain" in lower:
-            return resolve_provenance(self._client, canonical, predicate)
-        if category == "temporal" and ("before" in lower or "previously" in lower):
-            # temporal abstention: no claim valid at an early date
-            return resolve_state_on(self._client, canonical, "2026-01-01", predicate)
         if category == "temporal" or "as of" in lower or "when did" in lower:
-            return resolve_state_on(self._client, canonical, "2027-02-11", predicate)
+            return resolve_state_on(self._client, canonical, _default_as_of(), predicate)
         return resolve_state(self._client, canonical, predicate)
 
     def _cooccurrence(self, entity: str) -> dict[str, Any]:
