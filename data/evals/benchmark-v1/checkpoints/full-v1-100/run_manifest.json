@@ -1,0 +1,22 @@
+{
+  "answer_model": "accounts/fireworks/models/gpt-oss-20b",
+  "commit_sha": "1340de98472428e8ad689ce9bbcf07ba54a8a96e",
+  "context_char_budget": 12000,
+  "corpus_limit": 0,
+  "corpus_records_loaded": 511962,
+  "environment": {
+    "numpy": "1.26.4",
+    "platform": "macOS-26.5.2-x86_64-i386-64bit",
+    "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "scipy": "1.18.0"
+  },
+  "mode": "full-v1",
+  "question_count": 500,
+  "regression": false,
+  "run_id": "full-v1-baseline-001",
+  "started_at": "2026-08-16T18:30:36.268825+00:00",
+  "temperature": 0.0,
+  "timeout_s": 30,
+  "top_k": 5,
+  "with_graph": false
+}

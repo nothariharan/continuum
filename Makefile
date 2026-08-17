@@ -147,6 +147,9 @@ benchmark-full-v1-baseline:
 analyze-full-v1-baseline:
 	PYTHONPATH=. python scripts/analyze_full_v1_baseline.py --run-id full-v1-baseline-001
 
+benchmark-full-v1-resume-bm25:
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id full-v1-baseline-001 --system bm25 --answer-model real --no-graph --fail-on-fallback
+
 benchmark-foundation:
 	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode sample-v1
 	PYTHONPATH=. python scripts/run_benchmark_foundation.py --mode sample-v1 --answer-model mock

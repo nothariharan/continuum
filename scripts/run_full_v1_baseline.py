@@ -27,6 +27,7 @@ def main() -> None:
     parser.add_argument("--no-graph", action="store_true")
     parser.add_argument("--fail-on-fallback", action="store_true", default=True)
     parser.add_argument("--index-only", action="store_true")
+    parser.add_argument("--max-questions", type=int, default=0, help="Stop after N questions (checkpoint runs)")
     parser.add_argument("--skip-graph-setup", action="store_true")
     parser.add_argument("--root", type=Path, default=DEFAULT_BENCHMARK_ROOT)
     args = parser.parse_args()
@@ -57,6 +58,7 @@ def main() -> None:
         corpus_limit=args.corpus_limit,
         fail_on_fallback=args.fail_on_fallback,
         index_only=args.index_only,
+        max_questions=args.max_questions,
         root=args.root,
         graph_client=graph_client,
         entity_store=entity_store,

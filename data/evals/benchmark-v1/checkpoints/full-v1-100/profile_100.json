@@ -1,0 +1,48 @@
+{
+  "label": "FULL-V1 PARTIAL CHECKPOINT \u2014 100/500",
+  "system": "bm25",
+  "not_official_benchmark_score": true,
+  "checkpoint_question_count": 100,
+  "persisted_at_stop": 101,
+  "question_ids_first": "qst_0001",
+  "question_ids_last": "qst_0100",
+  "overall_total_latency": {
+    "count": 100,
+    "mean_s": 378.97,
+    "median_s": 377.97,
+    "p90_s": 522.56,
+    "p95_s": 559.75,
+    "min_s": 0.0,
+    "max_s": 642.93
+  },
+  "stage_latency": {
+    "retrieval_ms": {
+      "count": 100,
+      "mean_s": 375.27,
+      "median_s": 371.77,
+      "p90_s": 519.57,
+      "p95_s": 556.36,
+      "min_s": 0.0,
+      "max_s": 637.44
+    },
+    "generation_ms": {
+      "count": 100,
+      "mean_s": 3.7,
+      "median_s": 3.04,
+      "p90_s": 5.95,
+      "p95_s": 7.16,
+      "min_s": 0.0,
+      "max_s": 12.86
+    }
+  },
+  "context_tokens": {
+    "count": 100,
+    "mean_s": 1.27,
+    "median_s": 1.23,
+    "p90_s": 1.75,
+    "p95_s": 1.95,
+    "min_s": 0.0,
+    "max_s": 4.02
+  },
+  "errors": 1
+}

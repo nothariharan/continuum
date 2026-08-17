@@ -62,6 +62,10 @@ def _append_jsonl(path: Path, row: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+        handle.flush()
+        import os
+
+        os.fsync(handle.fileno())
 
 
 def _graph_coverage(row: dict[str, Any]) -> dict[str, Any]:
@@ -91,6 +95,7 @@ def run_baseline(
     corpus_limit: int = 0,
     fail_on_fallback: bool = True,
     index_only: bool = False,
+    max_questions: int = 0,
     root: Path | None = None,
     graph_client: HydraDBClient | None = None,
     entity_store: EntityStore | None = None,
@@ -98,6 +103,8 @@ def run_baseline(
     benchmark_root = root or DEFAULT_BENCHMARK_ROOT
     manifest = load_manifest(mode, benchmark_root)
     questions = load_questions(mode, benchmark_root, regression=regression)
+    if max_questions > 0:
+        questions = questions[:max_questions]
     out_root = run_dir(run_id, benchmark_root)
 
     corpus_started = time.perf_counter()
