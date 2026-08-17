@@ -4,9 +4,13 @@ from __future__ import annotations
 
 import json
 import platform
-import resource
 import sys
 import time
+
+try:
+    import resource
+except ImportError:  # pragma: no cover - POSIX-only module
+    resource = None
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -48,23 +52,30 @@ def _load_completed_ids(path: Path) -> set[str]:
     if not path.exists():
         return set()
     done: set[str] = set()
-    with path.open(encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
             row = json.loads(line)
-            done.add(str(row["question_id"]))
+        except json.JSONDecodeError:
+            continue
+        done.add(str(row["question_id"]))
     return done
 
 
 def _append_jsonl(path: Path, row: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
-        handle.flush()
-        import os
+    import os
 
+    path.parent.mkdir(parents=True, exist_ok=True)
+    line = json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n"
+    with path.open("a+b") as handle:
+        if path.stat().st_size > 0:
+            handle.seek(-1, 2)
+            if handle.read(1) != b"\n":
+                handle.write(b"\n")
+        handle.write(line.encode("utf-8"))
+        handle.flush()
         os.fsync(handle.fileno())
 
 
@@ -127,7 +138,9 @@ def run_baseline(
             "system": target,
             "corpus_records": len(corpus.records),
             "corpus_load_s": corpus_load_s,
-            "peak_rss_mb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024 / 1024, 2),
+            "peak_rss_mb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024 / 1024, 2)
+            if resource is not None
+            else None,
         }
 
     model = _answer_model(manifest, answer_model)
@@ -227,11 +240,16 @@ def run_baseline(
 
     for system_name in systems:
         results_path = out_root / system_name / "results.jsonl"
-        rows = [
-            json.loads(line)
-            for line in results_path.read_text(encoding="utf-8").splitlines()
-            if line.strip()
-        ] if results_path.exists() else []
+        raw_lines = results_path.read_text(encoding="utf-8").splitlines() if results_path.exists() else []
+        rows: list[dict[str, Any]] = []
+        for line in raw_lines:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
         report = {
             "run_id": run_id,
             "system": system_name,
