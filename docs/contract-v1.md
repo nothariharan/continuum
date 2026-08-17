@@ -25,6 +25,11 @@ id, source, source_id, type, author, timestamp, title, content, metadata
 
 Real artifacts use `id = dsid_<32-hex>`.
 
+**Live source ingestion** (Slack, Gmail, etc.) uses `Artifact.from_source_record()`
+and stores the native upstream ID in `source_id`. See
+[`source-ingestion-contract.md`](source-ingestion-contract.md) for the adapter
+boundary and provenance metadata rules.
+
 ## Mention (Phase 2B output)
 
 | Field | Type | Description |

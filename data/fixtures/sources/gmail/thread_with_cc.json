@@ -1,0 +1,5 @@
+{
+  "message_id": "gmail-msg-002",
+  "thread_id": "gmail-thread-001",
+  "rfc822": "From: soham@company.com\nTo: Sarah Chen <sarah.chen@redwood.com>, Jonas Weber <jonas.weber@redwood.com>\nCc: finance-ops@redwood.com\nDate: Mon, 28 Jul 2026 09:15:00 +0000\nSubject: Re: Acme Payments batching\n\nTeam,\n\nPlease review the batching fix before Friday: https://github.com/redwood/payments-service/pull/442\n\n— Soham"
+}

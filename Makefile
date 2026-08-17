@@ -1,8 +1,6 @@
 .PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs identity-pairs-v1 test-identity-data query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution calibrate-entity-resolution entity-integration benchmark-e2e build-benchmark-v1 benchmark-foundation benchmark-foundation-official benchmark-foundation-live benchmark-trace test-benchmark
 .PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs identity-pairs-v1 test-identity-data query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution benchmark-e2e
 .PHONY: hydradb-up hydradb-stop hydradb-health hydradb-smoke hydradb-reset test-hydradb dataset-info dataset-download dataset-sample dataset-inventory dataset-quality dataset-load-hydradb embedding-experiment extract-mentions extract-claims extract-dataset validate-extraction eval-extraction mention-inventory build-ground-truth test-phase2b test-phase2b-integration claims-load claims-benchmark checkpoint-claims real-claims-e2e eval-real-claims eval-synthetic-claims identity-pairs query-shapes real-claims-load real-claims-benchmark gold-v1 enrich-gold-claims eval-run test-eval eval-entity-resolution calibrate-entity-resolution entity-integration benchmark-e2e benchmark-continuum-sample benchmark-trace
-feature/phase3b-real-entity-integration
-d5b83db (feat(benchmark): Continuum benchmark adapter (WIP before PR #5 sync))
 
 dataset-info:
 	python scripts/dataset_info.py
@@ -180,4 +178,13 @@ hydradb-reset:
 	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/reset_hydradb.ps1
 test-hydradb:
 	python -m pytest -m hydradb -q
+
+ingest-slack-fixtures:
+	python3 scripts/ingest_slack.py --mode fixtures
+
+ingest-gmail-fixtures:
+	python3 scripts/ingest_gmail.py --mode fixtures
+
+test-sources:
+	python3 -m pytest tests/sources/ -q
 

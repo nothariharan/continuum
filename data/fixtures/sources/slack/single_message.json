@@ -1,0 +1,21 @@
+{
+  "channel_id": "C07HANDOFF01",
+  "channel_name": "product-handoffs",
+  "workspace_id": "T0REDWOOD01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01MAYA": {
+      "name": "maya.patel",
+      "real_name": "Maya Patel",
+      "profile": {"display_name": "Maya Patel"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728291000.123456",
+      "user": "U01MAYA",
+      "text": "Handing off CedarBank account to Camila Reyes effective July 28. Linear ticket ENG-5842 tracks the transition."
+    }
+  ],
+  "replies": {}
+}

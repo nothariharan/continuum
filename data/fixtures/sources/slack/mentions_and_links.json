@@ -1,0 +1,27 @@
+{
+  "channel_id": "C07CSM01",
+  "channel_name": "customer-success",
+  "workspace_id": "T0REDWOOD01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01ZOE": {
+      "name": "zoe.martinez",
+      "real_name": "Zoe Martinez",
+      "profile": {"display_name": "Zoe Martinez"}
+    },
+    "U01SOHAM": {
+      "name": "soham",
+      "real_name": "Soham Ratnaparkhi",
+      "profile": {"display_name": "Soham Ratnaparkhi"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728292000.300000",
+      "user": "U01ZOE",
+      "text": "Hey <@U01SOHAM> — can you review the Acme Health dashboard before Friday? Link: https://linear.app/redwood/issue/ENG-9001",
+      "permalink": "https://redwood-acme.slack.com/archives/C07CSM01/p1728292000300000"
+    }
+  ],
+  "replies": {}
+}

@@ -1,0 +1,31 @@
+{
+  "channel_id": "C07ACCT01",
+  "channel_name": "account-updates",
+  "workspace_id": "T0REDWOOD01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01MAYA": {
+      "name": "maya.patel",
+      "real_name": "Maya Patel",
+      "profile": {"display_name": "Maya Patel"}
+    },
+    "U01CAMILA": {
+      "name": "camila.reyes",
+      "real_name": "Camila Reyes",
+      "profile": {"display_name": "Camila Reyes"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728200000.400000",
+      "user": "U01MAYA",
+      "text": "I still own CedarBank until end of month per the Gmail thread."
+    },
+    {
+      "ts": "1728295000.500000",
+      "user": "U01CAMILA",
+      "text": "Confirmed — I'm taking over CedarBank ownership from July 28. Slack + Linear both updated."
+    }
+  ],
+  "replies": {}
+}

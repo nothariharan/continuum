@@ -1,0 +1,37 @@
+{
+  "channel_id": "C07ENG01",
+  "channel_name": "eng-payments",
+  "workspace_id": "T0REDWOOD01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01JONAS": {
+      "name": "jonas.weber",
+      "real_name": "Jonas Weber",
+      "profile": {"display_name": "Jonas Weber"}
+    },
+    "U01SARAH": {
+      "name": "sarah.chen",
+      "real_name": "Sarah Chen",
+      "profile": {"display_name": "Sarah Chen"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728290000.100000",
+      "user": "U01JONAS",
+      "text": "Payments-service dependency on billing-api is blocking the release.",
+      "thread_ts": "1728290000.100000",
+      "reply_count": 1
+    }
+  ],
+  "replies": {
+    "1728290000.100000": [
+      {
+        "ts": "1728290100.200000",
+        "user": "U01SARAH",
+        "text": "Acknowledged — I'll coordinate with finance ops on the batching fix.",
+        "thread_ts": "1728290000.100000"
+      }
+    ]
+  }
+}

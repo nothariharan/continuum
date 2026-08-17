@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+import hashlib
 import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 
 from .manifest import SOURCE_ALIASES
+
+ARTIFACT_ID_RE = re.compile(r"^dsid_[0-9a-f]{32}$")
 
 DSID_RE = re.compile(r"^dsid_([0-9a-f]{32})__")
 SLUG_RE = re.compile(r"^dsid_[0-9a-f]{32}__(.+)\.txt$")
@@ -95,6 +98,71 @@ class Artifact:
             content=text,
             metadata=metadata,
         )
+
+    @classmethod
+    def from_source_record(
+        cls,
+        *,
+        source: str,
+        native_source_id: str,
+        type: str,
+        content: str,
+        author: str | None = None,
+        timestamp: str | None = None,
+        title: str | None = None,
+        metadata: dict | None = None,
+    ) -> Artifact:
+        """Build an Artifact from a live source record (Slack, Gmail, etc.).
+
+        Stable ``id`` is derived from ``source`` + ``native_source_id`` so
+        re-ingestion is idempotent. ``source_id`` stores the native identifier
+        from the upstream system (not the dsid hash used by benchmark files).
+        """
+        if source not in SOURCE_ALIASES:
+            raise ValueError(f"unsupported source: {source}")
+        native_source_id = native_source_id.strip()
+        if not native_source_id:
+            raise ValueError("native_source_id must be non-empty")
+        if not content.strip():
+            raise ValueError("content must be non-empty")
+
+        artifact_id = artifact_id_from_native(source, native_source_id)
+        meta = dict(metadata or {})
+        meta.setdefault("native_source_id", native_source_id)
+
+        return cls(
+            id=artifact_id,
+            source=source,
+            source_id=native_source_id,
+            type=type,
+            author=author,
+            timestamp=timestamp,
+            title=title,
+            content=content,
+            metadata=meta,
+        )
+
+
+def artifact_id_from_native(source: str, native_source_id: str) -> str:
+    """Deterministic dsid from source + native upstream identifier."""
+    payload = f"{source}|{native_source_id}"
+    digest = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:32]
+    return f"dsid_{digest}"
+
+
+def artifact_from_dict(data: dict) -> Artifact:
+    """Reconstruct an Artifact from JSONL / dict interchange."""
+    return Artifact(
+        id=data["id"],
+        source=data["source"],
+        source_id=data["source_id"],
+        type=data["type"],
+        author=data.get("author"),
+        timestamp=data.get("timestamp"),
+        title=data.get("title"),
+        content=data["content"],
+        metadata=dict(data.get("metadata") or {}),
+    )
 
 
 def _slug_timestamp(slug: str | None) -> str | None:

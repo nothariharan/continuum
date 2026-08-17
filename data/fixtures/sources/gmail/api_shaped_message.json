@@ -1,0 +1,20 @@
+{
+  "messages": [
+    {
+      "id": "gmail-api-msg-003",
+      "threadId": "gmail-thread-002",
+      "snippet": "Linear ticket ENG-5842 updated for OrionAI transition.",
+      "payload": {
+        "headers": [
+          {"name": "From", "value": "Sarah Chen <sarah.chen@redwood.com>"},
+          {"name": "To", "value": "orion-team@redwood.com"},
+          {"name": "Date", "value": "2026-08-01T14:00:00Z"},
+          {"name": "Subject", "value": "OrionAI transition checklist"}
+        ]
+      },
+      "body": "Linear ticket ENG-5842 updated for OrionAI transition. Please confirm dependencies.",
+      "source_url": "https://mail.google.com/mail/u/0/#inbox/gmail-api-msg-003",
+      "links": ["https://linear.app/redwood/issue/ENG-5842"]
+    }
+  ]
+}
