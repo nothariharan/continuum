@@ -51,6 +51,8 @@ ENVELOPE_KEYS = frozenset(
         "conflicting_subjects",
         "claims",
         "evidence",
+        "history",
+        "resolution",
     }
 )
 
@@ -67,6 +69,8 @@ def result(
     conflicting_subjects: list[str] | None = None,
     claims: list[dict[str, Any]] | None = None,
     evidence: list[dict[str, Any]] | None = None,
+    history: list[dict[str, Any]] | None = None,
+    resolution: str | None = None,
 ) -> dict[str, Any]:
     return {
         "entity_id": entity_id,
@@ -80,6 +84,8 @@ def result(
         "conflicting_subjects": conflicting_subjects or [],
         "claims": claims or [],
         "evidence": evidence or [],
+        "history": history or [],
+        "resolution": resolution,
     }
 
 

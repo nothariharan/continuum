@@ -67,6 +67,7 @@ SET a:Artifact,
     a.kind = row.kind,
     a.observed_at = row.observed_at,
     a.content = row.content,
+    a.title = row.title,
     a.source_id = row.source_id
 """
 

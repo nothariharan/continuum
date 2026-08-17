@@ -50,6 +50,7 @@ Contract (frozen for the benchmark phase):
         "abstention_ok": bool | None,
         "provenance_ok": bool | None,
       },
+      "query_context": {...},            # decomposed QueryContext (source-agnostic)
       "trace": [...]                     # human-readable trace steps
     }
 """
@@ -73,6 +74,7 @@ CONTRACT_FIELDS = (
     "latency_ms",
     "diagnostics",
     "trace",
+    "query_context",
 )
 
 LAYER_NAMES = (
@@ -104,7 +106,8 @@ def empty_result(question_id: str, question: str) -> dict[str, Any]:
             "claims": 0,
             "evidence_items": 0,
         },
-        "latency_ms": {name: 0.0 for name in LAYER_NAMES} | {"total": 0.0},
+        "latency_ms": {name: 0.0 for name in LAYER_NAMES}
+        | {"decomposition": 0.0, "total": 0.0},
         "diagnostics": {
             "entity_resolution_ok": None,
             "temporal_ok": None,
@@ -112,6 +115,7 @@ def empty_result(question_id: str, question: str) -> dict[str, Any]:
             "abstention_ok": None,
             "provenance_ok": None,
         },
+        "query_context": {},
         "trace": [],
     }
 
