@@ -24,18 +24,19 @@ from .result import absent, evidence_item, result
 OPEN_END = "9999-12-31"
 
 CURRENT_STATE = """
-MATCH (s)-[r:{rel}]->(o {{key: $entity_key}})
-WHERE r.valid_to = $open_end
-RETURN s.key AS subject_id, s.name AS subject_name, r.valid_from AS valid_from
-ORDER BY r.valid_from DESC LIMIT 1
+MATCH (c:Claim {object_id: $entity_key, predicate: $predicate})
+WHERE c.valid_to = $open_end
+RETURN c.subject_id AS subject_id, c.subject_name AS subject_name,
+       c.valid_from AS valid_from
+ORDER BY c.valid_from DESC LIMIT 1
 """
 
 STATE_ON = """
-MATCH (s)-[r:{rel}]->(o {{key: $entity_key}})
-WHERE r.valid_from <= $date AND r.valid_to > $date
-RETURN s.key AS subject_id, s.name AS subject_name,
-       r.valid_from AS valid_from, r.valid_to AS valid_to
-ORDER BY r.valid_from DESC LIMIT 1
+MATCH (c:Claim {object_id: $entity_key, predicate: $predicate})
+WHERE c.valid_from <= $date AND c.valid_to > $date
+RETURN c.subject_id AS subject_id, c.subject_name AS subject_name,
+       c.valid_from AS valid_from, c.valid_to AS valid_to
+ORDER BY c.valid_from DESC LIMIT 1
 """
 
 CONFLICTS = """
@@ -77,8 +78,8 @@ def resolve_state(client: HydraDBClient, entity_key: str, predicate: str = "OWNS
     """Current resolved state: latest open-validity subject for (entity, predicate)."""
     row = one(
         client,
-        CURRENT_STATE.format(rel=_rel(predicate)),
-        {"entity_key": entity_key, "open_end": OPEN_END},
+        CURRENT_STATE,
+        {"entity_key": entity_key, "predicate": _rel(predicate), "open_end": OPEN_END},
     )
     if not row:
         return absent(entity_key, predicate)
@@ -96,11 +97,11 @@ def resolve_state(client: HydraDBClient, entity_key: str, predicate: str = "OWNS
 def resolve_state_on(
     client: HydraDBClient, entity_key: str, date: str, predicate: str = "OWNS"
 ) -> dict[str, Any]:
-    """State as of a date, from the validity intervals on the resolved relationship."""
+    """State as of a date, from the claim validity intervals."""
     row = one(
         client,
-        STATE_ON.format(rel=_rel(predicate)),
-        {"entity_key": entity_key, "date": date},
+        STATE_ON,
+        {"entity_key": entity_key, "predicate": _rel(predicate), "date": date},
     )
     if not row:
         return absent(entity_key, predicate)

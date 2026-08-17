@@ -25,18 +25,19 @@ from .state import OPEN_END, resolve_state, resolve_state_on
 from .result import absent, result
 
 HISTORY = """
-MATCH (s)-[r:{rel}]->(o {{key: $entity_key}})
-RETURN s.key AS subject_id, s.name AS subject_name,
-       r.valid_from AS valid_from, r.valid_to AS valid_to,
-       r.observed_at AS observed_at
-ORDER BY r.valid_from, r.observed_at
+MATCH (c:Claim {object_id: $entity_key, predicate: $predicate})
+RETURN c.subject_id AS subject_id, c.subject_name AS subject_name,
+       c.valid_from AS valid_from, c.valid_to AS valid_to,
+       c.observed_at AS observed_at
+ORDER BY c.valid_from, c.observed_at
 """
 
-ANCHOR_DATE = """
+ANCHOR_ARTIFACTS = """
 MATCH (a:Artifact)
-WHERE toLower(a.title) CONTAINS $anchor
-RETURN a.timestamp AS ts ORDER BY a.timestamp DESC LIMIT 1
+RETURN a.title AS title, a.timestamp AS ts
 """
+
+BEFORE_ENTITY = None
 
 
 def _prev_day(value: str) -> str:
@@ -61,8 +62,8 @@ def resolve_state_history(
     valid_to, observed_at}] ordered by valid_from then observed_at.
     """
     rows = client.execute(
-        HISTORY.format(rel=predicate),
-        {"entity_key": entity_key},
+        HISTORY,
+        {"entity_key": entity_key, "predicate": predicate},
     ).rows
     if not rows:
         return absent(entity_key, predicate)
@@ -98,24 +99,24 @@ def resolve_state_before(
     """
     row = client.execute(
         """
-        MATCH (s)-[r:{rel}]->(o {{key: $entity_key}})
-        WHERE r.valid_from <= $before AND r.valid_to > $before
-        RETURN s.key AS subject_id, s.name AS subject_name,
-               r.valid_from AS valid_from, r.valid_to AS valid_to
-        ORDER BY r.valid_from DESC LIMIT 1
-        """.format(rel=predicate),
-        {"entity_key": entity_key, "before": _prev_day(date)},
+        MATCH (c:Claim {object_id: $entity_key, predicate: $predicate})
+        WHERE c.valid_from <= $before AND c.valid_to > $before
+        RETURN c.subject_id AS subject_id, c.subject_name AS subject_name,
+               c.valid_from AS valid_from, c.valid_to AS valid_to
+        ORDER BY c.valid_from DESC LIMIT 1
+        """,
+        {"entity_key": entity_key, "predicate": predicate, "before": _prev_day(date)},
     ).rows
     if not row:
         row = client.execute(
             """
-            MATCH (s)-[r:{rel}]->(o {{key: $entity_key}})
-            WHERE r.valid_to < $date
-            RETURN s.key AS subject_id, s.name AS subject_name,
-                   r.valid_from AS valid_from, r.valid_to AS valid_to
-            ORDER BY r.valid_to DESC LIMIT 1
-            """.format(rel=predicate),
-            {"entity_key": entity_key, "date": date},
+            MATCH (c:Claim {object_id: $entity_key, predicate: $predicate})
+            WHERE c.valid_to < $date
+            RETURN c.subject_id AS subject_id, c.subject_name AS subject_name,
+                   c.valid_from AS valid_from, c.valid_to AS valid_to
+            ORDER BY c.valid_to DESC LIMIT 1
+            """,
+            {"entity_key": entity_key, "predicate": predicate, "date": date},
         ).rows
     if not row:
         return absent(entity_key, predicate)
@@ -133,23 +134,60 @@ def resolve_state_before(
     )
 
 
+def resolve_state_before_entity(
+    client: HydraDBClient,
+    entity_key: str,
+    predicate: str,
+    reference: str,
+) -> dict[str, Any]:
+    """State valid immediately before a referenced subject's first claim.
+
+    Answers "who owned Acme before Priya?": finds the earliest validity start
+    for the referenced subject (Priya) and resolves the state right before it.
+    Claims are fetched once and matched in Python (the HydraDB query engine's
+    WHERE clause does not support string functions/contains).
+    """
+    from .state import CONFLICTS
+
+    rows = client.execute(
+        CONFLICTS,
+        {"entity_key": entity_key, "predicate": predicate},
+    ).rows
+    ref = reference.strip().lower()
+    matches = [
+        r for r in rows
+        if ref in str(r.get("subject_name") or "").lower()
+        or ref in str(r.get("subject_mention") or "").lower()
+    ]
+    if not matches:
+        return absent(entity_key, predicate)
+    earliest = min(str(r.get("valid_from") or OPEN_END) for r in matches)
+    if earliest == OPEN_END:
+        return absent(entity_key, predicate)
+    return resolve_state_before(client, entity_key, earliest, predicate)
+
+
 def anchor_date(client: HydraDBClient, anchor: str | None) -> str | None:
     """Latest dated artifact whose title mentions the anchor event/keyword.
 
     Lets "after the authentication outage" resolve to a real date when the
-    corpus contains the outage artifact. Deterministic, graph-native.
+    corpus contains the outage artifact. Deterministic and graph-native:
+    artifact titles are fetched once and matched in Python (the HydraDB
+    query engine's WHERE clause does not support string functions/contains).
     """
     if not anchor:
         return None
-    rows = client.execute(
-        ANCHOR_DATE,
-        {"anchor": anchor.strip().lower()},
-    ).rows
+    needle = anchor.strip().lower()
+    rows = client.execute(ANCHOR_ARTIFACTS).rows
+    best: str | None = None
     for row in rows:
+        title = str(row.get("title") or "")
         ts = row.get("ts")
-        if ts:
-            return str(ts)[:10]
-    return None
+        if ts and needle in title.lower():
+            candidate = str(ts)[:10]
+            if best is None or candidate > best:
+                best = candidate
+    return best
 
 
 def resolve_state_for_constraints(
@@ -178,6 +216,8 @@ def resolve_state_for_constraints(
             value = c.value or anchor_date(client, c.anchor)
             if value:
                 return resolve_state_before(client, entity_key, value, predicate)
+            if c.anchor:
+                return resolve_state_before_entity(client, entity_key, predicate, c.anchor)
         if c.kind == "after":
             value = c.value or anchor_date(client, c.anchor)
             if value:

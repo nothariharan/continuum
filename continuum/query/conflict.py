@@ -110,9 +110,10 @@ def resolve_conflict_state(
             resolution="succession-disjoint-intervals",
         )
 
-    dated = [c for c in rows if c.get("observed_at")]
-    if dated and len(dated) >= len(rows) and len({c["subject_id"] for c in dated}) > 1:
-        latest = max(rows, key=_sort_key)
+    observed = [c.get("observed_at") for c in ordered]
+    strictly_ordered = all(observed) and len({o for o in observed if o}) == len(ordered)
+    if strictly_ordered and len({c["subject_id"] for c in ordered}) > 1:
+        latest = ordered[-1]
         return result(
             entity_id=entity_key,
             predicate=predicate,
@@ -127,7 +128,7 @@ def resolve_conflict_state(
             resolution="superseded-by-later-observation",
         )
 
-    if all(c.get("observed_at") or c.get("valid_from") for c in rows):
+    if any(c.get("observed_at") or c.get("valid_from") for c in rows):
         return result(
             entity_id=entity_key,
             predicate=predicate,

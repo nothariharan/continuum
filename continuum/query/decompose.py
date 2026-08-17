@@ -196,16 +196,16 @@ def parse_temporal_constraints(question: str) -> list[TemporalConstraint]:
             )
         return constraints
 
-    m = re.search(r"\bbefore\b\s+(?:the\s+|that\s+)?([a-z][a-z0-9 _-]{1,40}?)\.?\s*(?:,|$|\?| who| what| did)", lowered)
+    m = re.search(r"\bbefore\b\s+(?:the\s+|that\s+)?([a-z][a-z0-9 _'-]{1,40}?)(?:[.,]|$|\?|,? (?:who|what|did))", lowered)
     if m and not re.search(r"\b(before \d)", lowered):
-        anchor = m.group(1).strip()
+        anchor = m.group(1).strip().strip("'")
         constraints.append(
             TemporalConstraint(kind="before", value=None, anchor=anchor or None, raw=m.group(0).strip())
         )
 
-    m = re.search(r"\bafter\b\s+(?:the\s+|that\s+)?([a-z][a-z0-9 _-]{1,40}?)\.?\s*(?:,|$|\?| who| what| did)", lowered)
+    m = re.search(r"\bafter\b\s+(?:the\s+|that\s+)?([a-z][a-z0-9 _'-]{1,40}?)(?:[.,]|$|\?|,? (?:who|what|did))", lowered)
     if m and not re.search(r"\b(after \d)", lowered):
-        anchor = m.group(1).strip()
+        anchor = m.group(1).strip().strip("'")
         constraints.append(
             TemporalConstraint(kind="after", value=None, anchor=anchor or None, raw=m.group(0).strip())
         )

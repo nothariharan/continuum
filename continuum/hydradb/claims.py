@@ -68,6 +68,7 @@ SET a:Artifact,
     a.observed_at = row.observed_at,
     a.content = row.content,
     a.title = row.title,
+    a.timestamp = row.timestamp,
     a.source_id = row.source_id
 """
 
@@ -188,6 +189,46 @@ class LoadResult:
     read_back_ms: float
     read_back_count: int
     mismatches: int
+
+
+def artifact_to_claim_fixture(artifact: "Artifact") -> dict[str, Any]:
+    """Map a source-derived Artifact to the fixture shape load_claims expects.
+
+    This is the glue between the source adapters (continuum.sources) and the
+    existing claim ingestion boundary. Only canonical Artifact fields are
+    used — no source-specific logic. Artifact.timestamp (ISO) becomes the
+    graph's observed_at (day precision).
+    """
+    observed_at = str(artifact.timestamp or "")[:10] or None
+    return {
+        "key": artifact.id,
+        "kind": artifact.type,
+        "content": artifact.content,
+        "observed_at": observed_at,
+        "title": artifact.title,
+        "source_id": f"source:{artifact.source}",
+    }
+
+
+SOURCE_DISPLAY = {
+    "slack": "Slack",
+    "gmail": "Gmail",
+    "github": "GitHub",
+    "jira": "Jira",
+    "linear": "Linear",
+    "fireflies": "Fireflies",
+    "confluence": "Confluence",
+    "google_drive": "Google Drive",
+    "hubspot": "HubSpot",
+}
+
+
+def artifact_source_fixture(artifact: "Artifact") -> dict[str, Any]:
+    """Source node fixture for a source-derived Artifact."""
+    return {
+        "key": f"source:{artifact.source}",
+        "name": SOURCE_DISPLAY.get(artifact.source, artifact.source),
+    }
 
 
 def _next_ids(count: int, offset: int = ID_OFFSET) -> list[int]:
@@ -334,10 +375,20 @@ def load_claims(
         relationships += len(source_list)
 
     if artifact_list:
-        client.execute_batch(
-            CREATE_ARTIFACT_FIXTURE,
-            [{"id": artifact_num_ids[a["key"]], **a, "source_id": source_num_ids[a["source_id"]]} for a in artifact_list],
-        )
+        artifact_rows = [
+            {
+                "id": artifact_num_ids[a["key"]],
+                "key": a["key"],
+                "kind": a.get("kind", ""),
+                "content": a.get("content", ""),
+                "observed_at": a.get("observed_at"),
+                "title": a.get("title", ""),
+                "timestamp": a.get("timestamp") or a.get("observed_at"),
+                "source_id": source_num_ids[a["source_id"]],
+            }
+            for a in artifact_list
+        ]
+        client.execute_batch(CREATE_ARTIFACT_FIXTURE, artifact_rows)
         relationships += len(artifact_list)
 
     entity_rows = [

@@ -121,7 +121,7 @@ def build_cross_source_scenario() -> dict:
             subject_mention="Priya",
             predicate="OWNS",
             object_mention="Acme",
-            observed_at="2026-06-12",
+            observed_at="2026-06-10",
             valid_from="2026-06-10",
             valid_to=None,
             evidence_span="Priya still owns Acme as of today",

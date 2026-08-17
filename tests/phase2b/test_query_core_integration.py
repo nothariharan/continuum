@@ -16,12 +16,25 @@ import pytest
 
 from continuum.benchmark import answer
 from continuum.hydradb import HydraDBClient
+from continuum.hydradb.artifacts import delete_all_artifacts
 from continuum.hydradb.claims import load_claims
 from continuum.query.conflict import resolve_conflict_state
 from continuum.query.failures import classify_result
 from continuum.query.fixtures import build_cross_source_scenario
 from continuum.query.state import resolve_state, resolve_state_on
 from continuum.query.temporal import resolve_state_before
+
+
+@pytest.fixture(scope="module", autouse=True)
+def clean_artifact_graph():
+    """Clear pre-existing Artifact nodes so anchor/evidence resolution only
+    sees this module's fixtures (deterministic vertical tests)."""
+    try:
+        with HydraDBClient() as client:
+            client.health_check()
+            delete_all_artifacts(client)
+    except Exception as exc:
+        pytest.skip(f"HydraDB must be running: {exc}")
 
 
 @pytest.mark.hydradb
