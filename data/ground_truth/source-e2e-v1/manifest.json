@@ -1,0 +1,23 @@
+{
+  "version": "source-e2e-v1",
+  "commit_sha": "7995ecf0f2620ee7d9756bd195f7fcba77390a48",
+  "fireworks_budget_cap": 20,
+  "ingested_at": "2026-01-01T00:00:00+00:00",
+  "fixture_files": {
+    "slack": [
+      "cross_reference_handoff.json",
+      "mentions_and_links.json",
+      "soham_handoff.json",
+      "acme_conflict.json",
+      "acme_handoff_slack.json"
+    ],
+    "gmail": [
+      "handoff_thread.json",
+      "soham_ownership.json",
+      "acme_handoff_morgan.json"
+    ]
+  },
+  "programmatic_artifacts": [],
+  "gold_dir": "/Users/apple/Desktop/Manan/Continumm/continuum/data/ground_truth/source-e2e-v1",
+  "rebuild_artifacts": true
+}

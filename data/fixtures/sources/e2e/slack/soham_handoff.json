@@ -1,0 +1,21 @@
+{
+  "channel_id": "C07SOHAM",
+  "channel_name": "account-updates",
+  "workspace_id": "T0ACME01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01SOH": {
+      "name": "soham",
+      "real_name": "Soham Ratnaparkhi",
+      "profile": {"display_name": "Soham Ratnaparkhi"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728345600.000000",
+      "user": "U01SOH",
+      "text": "@soham owns Acme now."
+    }
+  ],
+  "replies": {}
+}

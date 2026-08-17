@@ -1,0 +1,20 @@
+{"question_id": "se2e-01", "category": "single-hop", "question": "Who owns CedarBank now?", "expected_answer": "Camila Reyes", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-02", "category": "temporal", "question": "Who owned CedarBank before Camila Reyes?", "expected_answer": "Maya Patel", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-03", "category": "single-hop", "question": "Who owns Acme now?", "expected_answer": "Soham Ratnaparkhi", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-04", "category": "cross-source", "question": "Who owns Acme now after the handoff?", "expected_answer": "Priya", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-05", "category": "temporal", "question": "Who owned Acme before Priya?", "expected_answer": "Morgan", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-06", "category": "conflict", "question": "Who actually owns Acme right now?", "expected_answer": "CONFLICT: Morgan or Priya", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-07", "category": "provenance", "question": "Show the evidence chain for who owns CedarBank.", "expected_answer": "2 claim(s) via Gmail, Slack", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-08", "category": "multi-hop", "question": "Which source contains evidence that Camila Reyes owns CedarBank?", "expected_answer": "Slack", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-09", "category": "entity-resolution", "question": "Are '@soham' and 'soham@company.com' the same person?", "expected_answer": "same", "evidence_entity": null, "predicate": null}
+{"question_id": "se2e-10", "category": "abstention", "question": "Who owns Acme Health?", "expected_answer": "unknown - abstain", "evidence_entity": "account:acme-health", "predicate": "OWNS"}
+{"question_id": "se2e-11", "category": "temporal", "question": "When did Camila Reyes become owner of CedarBank?", "expected_answer": "2026-07-28", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-12", "category": "provenance", "question": "Which claim and artifact support Soham Ratnaparkhi owning Acme?", "expected_answer": "claim", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-13", "category": "single-hop", "question": "Who owns Acme according to Gmail?", "expected_answer": "Soham Ratnaparkhi|Morgan", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-14", "category": "cross-source", "question": "Does Slack or Gmail show the CedarBank handoff?", "expected_answer": "Gmail|Slack", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-15", "category": "conflict", "question": "What are the conflicting ownership claims for Acme?", "expected_answer": "CONFLICT", "evidence_entity": "account:acme", "predicate": "OWNS"}
+{"question_id": "se2e-16", "category": "temporal", "question": "Who owned CedarBank as of 2026-07-27?", "expected_answer": "Maya Patel", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-17", "category": "single-hop", "question": "Who is taking over CedarBank ownership?", "expected_answer": "Camila Reyes", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}
+{"question_id": "se2e-18", "category": "entity-resolution", "question": "Is 'Morgan' the same as 'morgan@company.com'?", "expected_answer": "same", "evidence_entity": null, "predicate": null}
+{"question_id": "se2e-19", "category": "abstention", "question": "Who maintains Acme Health?", "expected_answer": "unknown - abstain", "evidence_entity": "account:acme-health", "predicate": "MAINTAINS"}
+{"question_id": "se2e-20", "category": "multi-hop", "question": "What artifacts support CedarBank ownership?", "expected_answer": "gmail artifact", "evidence_entity": "account:cedarbank", "predicate": "OWNS"}

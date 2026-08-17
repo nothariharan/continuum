@@ -1,0 +1,10 @@
+{
+  "commit_sha": "7995ecf0f2620ee7d9756bd195f7fcba77390a48",
+  "stages_ms": {
+    "ingest": 31.63,
+    "entity_resolution": 13.26,
+    "extract": 21.14,
+    "refine": 0.08
+  },
+  "fireworks_calls": 0
+}
