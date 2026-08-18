@@ -49,7 +49,10 @@ def to_resolutions(entities: Iterable[CanonicalEntity]) -> dict[str, dict]:
     resolutions: dict[str, dict] = {}
     for entity in entities:
         label = canonical_label(entity)
-        mentions = sorted(entity.mentions | entity.aliases)
+        # Identity surface forms are all resolvable mentions: verbatim
+        # mentions/aliases plus emails and usernames (Slack handles and
+        # Gmail local-parts are how a mention appears in source text).
+        mentions = sorted(entity.mentions | entity.aliases | entity.emails | entity.usernames)
         if not mentions:
             continue
         resolutions[entity.entity_key] = {
