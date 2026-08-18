@@ -1,0 +1,23 @@
+{"entity_key": "person:maya-patel", "mention": "Maya Patel", "label": "Person"}
+{"entity_key": "person:maya-patel", "mention": "Maya", "label": "Person"}
+{"entity_key": "person:maya-patel", "mention": "maya.patel", "label": "Person"}
+{"entity_key": "person:maya-patel", "mention": "maya.patel@redwood.com", "label": "Person"}
+{"entity_key": "person:camila-reyes", "mention": "Camila Reyes", "label": "Person"}
+{"entity_key": "person:camila-reyes", "mention": "Camila", "label": "Person"}
+{"entity_key": "person:camila-reyes", "mention": "camila.reyes", "label": "Person"}
+{"entity_key": "person:camila-reyes", "mention": "camila.reyes@redwood.com", "label": "Person"}
+{"entity_key": "person:soham-ratnaparkhi", "mention": "Soham Ratnaparkhi", "label": "Person"}
+{"entity_key": "person:soham-ratnaparkhi", "mention": "Soham", "label": "Person"}
+{"entity_key": "person:soham-ratnaparkhi", "mention": "soham", "label": "Person"}
+{"entity_key": "person:soham-ratnaparkhi", "mention": "@soham", "label": "Person"}
+{"entity_key": "person:soham-ratnaparkhi", "mention": "soham@company.com", "label": "Person"}
+{"entity_key": "person:morgan", "mention": "Morgan", "label": "Person"}
+{"entity_key": "person:morgan", "mention": "morgan", "label": "Person"}
+{"entity_key": "person:morgan", "mention": "morgan@company.com", "label": "Person"}
+{"entity_key": "person:priya", "mention": "Priya", "label": "Person"}
+{"entity_key": "person:priya", "mention": "priya", "label": "Person"}
+{"entity_key": "person:zoe-martinez", "mention": "Zoe Martinez", "label": "Person"}
+{"entity_key": "person:zoe-martinez", "mention": "zoe.martinez", "label": "Person"}
+{"entity_key": "account:cedarbank", "mention": "CedarBank", "label": "Account"}
+{"entity_key": "account:acme", "mention": "Acme", "label": "Account"}
+{"entity_key": "account:acme-health", "mention": "Acme Health", "label": "Account"}
