@@ -85,7 +85,7 @@ class SlackQueryBot:
             raise RuntimeError(f"Slack post failed: {result.get('error')}")
 
 
-def build_bot_from_env() -> SlackQueryBot:
+def build_bot_from_env(post_message: Callable[[str, dict[str, Any], str | None], None] | None = None) -> SlackQueryBot:
     client = HydraDBClient()
     client.health_check()
-    return SlackQueryBot(client)
+    return SlackQueryBot(client, post_message=post_message)

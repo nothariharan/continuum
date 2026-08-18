@@ -16,9 +16,11 @@ def _run_socket_mode() -> int:
     except ImportError:
         raise SystemExit("Install delivery deps: pip install slack-bolt")
 
-    from continuum.delivery.slack_bot import build_bot_from_env
+    from continuum.delivery.slack_bot import SlackQueryBot, build_bot_from_env
 
-    bot = build_bot_from_env()
+    bot = build_bot_from_env(
+        post_message=lambda channel, payload, thread_ts: None  # Socket Mode replies via say() only
+    )
     app = App(token=os.environ["SLACK_BOT_TOKEN"])
 
     @app.event("app_mention")

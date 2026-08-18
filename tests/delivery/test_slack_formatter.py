@@ -27,3 +27,29 @@ def test_format_abstention():
     }
     payload = format_slack_answer(result)
     assert "Unknown" in payload["text"] or "insufficient" in payload["text"]
+
+
+def test_format_conflict():
+    result = {
+        "question": "Who owns X?",
+        "status": "conflict",
+        "answer": None,
+        "state_result": {"status": "conflict"},
+        "evidence": [],
+    }
+    payload = format_slack_answer(result)
+    assert "conflicting" in payload["text"].lower()
+
+
+def test_format_historical_answer():
+    result = {
+        "question": "Who owned Acme before?",
+        "status": "definitive",
+        "answer": "Morgan",
+        "state_result": {"status": "definitive", "resolution": "before", "value": {"name": "Morgan"}},
+        "evidence": [{"source": "Gmail", "observed_at": "2026-01-05"}],
+    }
+    payload = format_slack_answer(result)
+    assert "Previous holder: Morgan" in payload["text"]
+    assert "Gmail" in payload["text"]
+    assert len(payload["blocks"]) >= 2  # answer + evidence block
