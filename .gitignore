@@ -4,6 +4,7 @@ __pycache__/
 .egg-info/
 *.egg-info/
 .venv/
+.venv312/
 venv/
 .env
 hydradb-data/
