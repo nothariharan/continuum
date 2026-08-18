@@ -188,3 +188,6 @@ ingest-gmail-fixtures:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+
+ingest-source:
+	python3 scripts/ingest_source.py --source $(SOURCE) --mode $(MODE)
