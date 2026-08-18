@@ -301,6 +301,34 @@ def _delete_phase2b_graph(client: HydraDBClient) -> None:
         )
 
 
+def wipe_for_entities(client: HydraDBClient, entity_keys: Iterable[str]) -> None:
+    """Entity-scoped graph cleanup across ALL id ranges (B4 hermeticity).
+
+    State/provenance/conflict queries match claims by entity key, not id
+    range, so a reset scoped to one id range can leave other-range claims
+    about the same entities behind (e.g. Phase 1 synthetic claims about
+    account:acme), silently corrupting answers when suites run together.
+    This wipes every claim referencing the given entity keys plus their
+    entity nodes, then verifies the wipe — a failed cleanup raises instead
+    of running a compromised graph.
+    """
+    keys = sorted(set(entity_keys))
+    for key in keys:
+        client.execute("MATCH (c:Claim {object_id: $key}) DETACH DELETE c", {"key": key})
+        client.execute("MATCH (c:Claim {subject_id: $key}) DETACH DELETE c", {"key": key})
+    for key in keys:
+        for label in ENTITY_LABELS:
+            client.execute(f"MATCH (n:{label} {{key: $key}}) DETACH DELETE n", {"key": key})
+    leftover = 0
+    for key in keys:
+        rows = client.execute("MATCH (c:Claim {object_id: $key}) RETURN count(*) AS n", {"key": key}).rows
+        leftover += int(rows[0]["n"])
+        rows = client.execute("MATCH (c:Claim {subject_id: $key}) RETURN count(*) AS n", {"key": key}).rows
+        leftover += int(rows[0]["n"])
+    if leftover:
+        raise RuntimeError(f"entity-scoped wipe left {leftover} claim(s); refusing to load on dirty graph")
+
+
 def load_claims(
     client: HydraDBClient,
     claims: list[Claim],

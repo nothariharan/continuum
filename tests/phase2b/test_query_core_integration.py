@@ -17,7 +17,7 @@ import pytest
 from continuum.benchmark import answer
 from continuum.hydradb import HydraDBClient
 from continuum.hydradb.artifacts import delete_all_artifacts
-from continuum.hydradb.claims import load_claims
+from continuum.hydradb.claims import load_claims, wipe_for_entities
 from continuum.query.conflict import resolve_conflict_state
 from continuum.query.failures import classify_result
 from continuum.query.fixtures import build_cross_source_scenario
@@ -27,12 +27,16 @@ from continuum.query.temporal import resolve_state_before
 
 @pytest.fixture(scope="module", autouse=True)
 def clean_artifact_graph():
-    """Clear pre-existing Artifact nodes so anchor/evidence resolution only
-    sees this module's fixtures (deterministic vertical tests)."""
+    """Clear pre-existing Artifact nodes + entity-scoped claims so anchor,
+    evidence, and state resolution only see this module's fixtures. The
+    entity-scoped wipe covers ALL id ranges (Phase 1 synthetic claims about
+    the same entities would otherwise survive this module's range-scoped
+    reset and corrupt answers in combined suite runs)."""
     try:
         with HydraDBClient() as client:
             client.health_check()
             delete_all_artifacts(client)
+            wipe_for_entities(client, build_cross_source_scenario()["resolutions"].keys())
     except Exception as exc:
         pytest.skip(f"HydraDB must be running: {exc}")
 

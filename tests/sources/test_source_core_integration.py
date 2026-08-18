@@ -20,6 +20,7 @@ from continuum.hydradb.claims import (
     artifact_source_fixture,
     artifact_to_claim_fixture,
     load_claims,
+    wipe_for_entities,
 )
 from continuum.query.decompose import decompose_question
 from continuum.query.failures import classify_result
@@ -31,12 +32,16 @@ from continuum.sources.slack.normalize import normalize_slack_message
 
 @pytest.fixture(scope="module", autouse=True)
 def clean_artifact_graph():
-    """Clear pre-existing Artifact nodes so anchor/evidence resolution only
-    sees the fixtures this module loads (deterministic vertical tests)."""
+    """Clear pre-existing Artifact nodes + entity-scoped claims so anchor,
+    evidence, and state resolution only see the fixtures this module loads.
+    The entity-scoped wipe covers ALL id ranges: this module's range-scoped
+    reset alone would leave Phase 1 synthetic claims about the same entities
+    (e.g. account:acme) behind, corrupting answers in combined suite runs."""
     try:
         with HydraDBClient() as client:
             client.health_check()
             delete_all_artifacts(client)
+            wipe_for_entities(client, RESOLUTIONS.keys())
     except Exception as exc:
         pytest.skip(f"HydraDB must be running for source integration tests: {exc}")
 

@@ -25,6 +25,7 @@ from continuum.hydradb.claims import (
     artifact_source_fixture,
     artifact_to_claim_fixture,
     load_claims,
+    wipe_for_entities,
 )
 from continuum.sources.gmail.models import GmailMessage
 from continuum.sources.gmail.normalize import normalize_gmail_message
@@ -715,35 +716,6 @@ def gate_claims_for_load(
     return loadable, rejected
 
 
-ENTITY_NODE_LABELS = ("Person", "Account", "Project", "Service", "Team")
-
-
-def wipe_for_entities(client, resolutions: dict[str, dict]) -> None:
-    """Entity-scoped graph cleanup across ALL id ranges (B4 hermeticity).
-
-    The state/provenance queries match claims by entity key, not id range,
-    so a reset scoped to one id range can leave other-range claims about the
-    same entities behind (e.g. phase1 synthetic claims about account:acme),
-    silently corrupting answers. This wipes every claim referencing the
-    loaded entities plus their entity nodes, then verifies the wipe — a
-    failed cleanup raises instead of running a compromised graph.
-    """
-    for key in resolutions:
-        client.execute("MATCH (c:Claim {object_id: $key}) DETACH DELETE c", {"key": key})
-        client.execute("MATCH (c:Claim {subject_id: $key}) DETACH DELETE c", {"key": key})
-    for key in resolutions:
-        for label in ENTITY_NODE_LABELS:
-            client.execute(f"MATCH (n:{label} {{key: $key}}) DETACH DELETE n", {"key": key})
-    leftover = 0
-    for key in resolutions:
-        rows = client.execute("MATCH (c:Claim {object_id: $key}) RETURN count(*) AS n", {"key": key}).rows
-        leftover += int(rows[0]["n"])
-        rows = client.execute("MATCH (c:Claim {subject_id: $key}) RETURN count(*) AS n", {"key": key}).rows
-        leftover += int(rows[0]["n"])
-    if leftover:
-        raise RuntimeError(f"entity-scoped wipe left {leftover} claim(s); refusing to load on dirty graph")
-
-
 def score_extraction_vs_gold(
     predicted: list[dict[str, Any]],
     gold: list[dict[str, Any]],
@@ -875,7 +847,7 @@ class SourceE2EPipeline:
         store = None
         if client is not None and load_graph and loadable:
             t0 = time.perf_counter()
-            wipe_for_entities(client, resolutions)
+            wipe_for_entities(client, resolutions.keys())
             fixture_artifacts = [artifact_to_claim_fixture(a) for a in artifacts]
             sources: dict[str, dict] = {}
             for artifact in artifacts:
