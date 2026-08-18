@@ -143,3 +143,17 @@ def test_claims_metadata_has_labels():
     claim = _claim()
     assert claim["metadata"]["subject_label"] == "Person"
     assert claim["metadata"]["object_label"] == "Account"
+
+
+def test_malformed_json_abstains():
+    assert validate_refinement({"predicate": "INVENTED", "confidence": 0.9})["predicate"] == ABSTAIN
+    assert validate_refinement("not json")["predicate"] == ABSTAIN
+
+
+def test_create_refinement_provider_falls_back_without_key(monkeypatch):
+    monkeypatch.delenv("FIREWORKS_API_KEY", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    from continuum.extract.v2.refinement import MockPredicateProvider, create_refinement_provider
+
+    provider = create_refinement_provider("auto")
+    assert isinstance(provider, MockPredicateProvider)
