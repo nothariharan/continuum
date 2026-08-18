@@ -1,6 +1,6 @@
 {
   "version": "source-e2e-v1",
-  "commit_sha": "7995ecf0f2620ee7d9756bd195f7fcba77390a48",
+  "commit_sha": "0e6ea4ef2755e9787f26881e9b14b5571f38e17e",
   "fireworks_budget_cap": 20,
   "ingested_at": "2026-01-01T00:00:00+00:00",
   "fixture_files": {
@@ -18,6 +18,6 @@
     ]
   },
   "programmatic_artifacts": [],
-  "gold_dir": "/Users/apple/Desktop/Manan/Continumm/continuum/data/ground_truth/source-e2e-v1",
+  "gold_dir": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\ground_truth\\source-e2e-v1",
   "rebuild_artifacts": true
 }

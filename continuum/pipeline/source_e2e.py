@@ -40,6 +40,34 @@ ACCOUNT_NAME_RE = re.compile(
     re.IGNORECASE,
 )
 
+# "Display Name <email@example.com>" -> display name (email preserved elsewhere
+# as provenance). Bare emails pass through unchanged.
+EMAIL_IN_ANGLE_RE = re.compile(r"^(.*?)\s*<([^<>]+@[^<>]+)>\s*$")
+
+# Horizontal whitespace only between subject tokens and the ownership verb.
+# A subject must not span a newline (blocks "ownership\n\nMorgan") and must
+# not start immediately after an email/mention character (blocks ".com owns",
+# "@handle owns" from the generic pattern).
+_HW = r"[ \t]+"
+_NAME = r"[A-Z][a-z]+(?:[ \t]+[A-Z][a-z]+)?"
+_NO_EMAIL_EDGE = r"(?<![\w@.])"
+
+
+def _normalize_person_mention(raw: str) -> str:
+    """Extract a display name from a raw author/person string.
+
+    'Maya Patel <maya.patel@redwood.com>' -> 'Maya Patel'
+    'morgan <morgan@company.com>'        -> 'morgan'
+    'Maya Patel'                         -> 'Maya Patel'
+    '<maya@x.com>'                       -> 'maya@x.com'  (bare email preserved)
+    """
+    value = (raw or "").strip().strip('"').strip()
+    match = EMAIL_IN_ANGLE_RE.match(value)
+    if match:
+        name = match.group(1).strip().strip('"').strip()
+        return name if name else match.group(2).strip()
+    return value
+
 
 @dataclass
 class FireworksBudget:
@@ -183,7 +211,13 @@ def _participant_candidates(artifact: Artifact) -> list[EntityCandidate]:
     for participant in participants:
         if not isinstance(participant, dict):
             continue
-        name = str(participant.get("name") or participant.get("display") or "").strip()
+        raw_name = str(
+            participant.get("name")
+            or participant.get("display")
+            or participant.get("display_name")
+            or ""
+        )
+        name = _normalize_person_mention(raw_name)
         email = str(participant.get("email") or "").strip()
         username = str(participant.get("username") or "").strip()
         if name.lower() in skip_names or (not name and not email):
@@ -208,14 +242,24 @@ def _participant_candidates(artifact: Artifact) -> list[EntityCandidate]:
             )
         )
     if artifact.author and artifact.author.strip() and artifact.author.lower() not in skip_names:
-        candidates.append(
-            candidate_from_mention(
-                mention=artifact.author.strip(),
-                type="person",
-                source=artifact.source,
-                candidate_id=f"cand:{artifact.id}:author",
-            )
+        author_name = _normalize_person_mention(artifact.author.strip())
+        # The author is normally already a participant (with email/username
+        # signals); adding a bare author candidate would split the identity
+        # into a second key. Only add it when no participant covers it.
+        covered = any(
+            c.signals.mention.lower() == author_name.lower()
+            or author_name.lower() in c.signals.mention.lower()
+            for c in candidates
         )
+        if not covered:
+            candidates.append(
+                candidate_from_mention(
+                    mention=author_name,
+                    type="person",
+                    source=artifact.source,
+                    candidate_id=f"cand:{artifact.id}:author",
+                )
+            )
     return candidates
 
 
@@ -259,9 +303,17 @@ def _slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "unknown"
 
 
-def _person_entity_key(mention: str, email: str = "") -> str:
+def _person_entity_key(mention: str, email: str = "", username: str = "") -> str:
+    """Canonical person key from the strongest identity signal.
+
+    email local-part > username > mention slug. Slack usernames and Gmail
+    local-parts coincide for the same person, so cross-source mentions
+    converge on one key without any hardcoded alias table.
+    """
     if email and "@" in email:
         return f"person:{_slug(email.split('@')[0])}"
+    if username:
+        return f"person:{_slug(username.lstrip('@'))}"
     return f"person:{_slug(mention)}"
 
 
@@ -281,14 +333,39 @@ def _mention_variants(mention: str, email: str = "", username: str = "") -> set[
     return {v for v in variants if v}
 
 
+def _accounts_in_text(content: str) -> set[str]:
+    accounts: set[str] = set()
+    for match in OWNS_VERB_RE.finditer(content):
+        accounts.add(match.group(2).strip())
+    for match in ACCOUNT_NAME_RE.finditer(content):
+        raw = match.group(1).strip()
+        words = raw.split()
+        while words and words[-1].lower() in {
+            "account", "ownership", "access", "keys", "management", "the",
+            "from", "to", "on", "for", "of", "in", "at",
+        }:
+            words.pop()
+        accounts.add(" ".join(words) if words else raw)
+    return accounts
+
+
 def resolve_entities_from_artifacts(artifacts: list[Artifact]) -> tuple[dict[str, dict], list[CanonicalEntity]]:
-    """Stage B: conservative participant indexing + targeted merges."""
+    """Stage B: signal-driven entity resolution — no hardcoded whitelist.
+
+    Candidates come only from artifact signals: participants, authors,
+    @mentions, and ownership/handoff objects. Canonical keys derive from the
+    strongest identity signal per candidate (email local-part, then username,
+    then mention slug), so cross-source aliases converge deterministically.
+    No entity is deleted for "not being predeclared" — entities exist only
+    because artifact signals produced them.
+    """
     entities: dict[str, CanonicalEntity] = {}
 
     for artifact in artifacts:
         for candidate in _participant_candidates(artifact):
             email = candidate.signals.emails[0] if candidate.signals.emails else ""
-            key = _person_entity_key(candidate.mention, email)
+            username = candidate.signals.usernames[0] if candidate.signals.usernames else ""
+            key = _person_entity_key(candidate.mention, email, username)
             if key not in entities:
                 entities[key] = CanonicalEntity(
                     entity_key=key,
@@ -297,11 +374,11 @@ def resolve_entities_from_artifacts(artifacts: list[Artifact]) -> tuple[dict[str
                 )
             entities[key].absorb(candidate)
 
-    # Slack @mentions in content
+    # Slack @mentions in content (not email domains, not <@userid> forms)
     for artifact in artifacts:
-        for match in re.finditer(r"@([A-Za-z0-9_.-]+)", artifact.content or ""):
+        for match in re.finditer(r"(?<![\w.<])@([A-Za-z0-9_.-]+)", artifact.content or ""):
             username = f"@{match.group(1)}"
-            key = _person_entity_key(match.group(1))
+            key = _person_entity_key(match.group(1), username=username)
             cand = candidate_from_mention(
                 mention=username,
                 type="person",
@@ -313,100 +390,30 @@ def resolve_entities_from_artifacts(artifacts: list[Artifact]) -> tuple[dict[str
             entities[key].absorb(cand)
 
     for artifact in artifacts:
-        text = artifact.content or ""
-        for match in OWNS_VERB_RE.finditer(text):
-            account = match.group(2).strip()
+        for account in _accounts_in_text(artifact.content or ""):
             key = _account_entity_key(account)
             cand = candidate_from_mention(mention=account, type="account", source=artifact.source)
             if key not in entities:
                 entities[key] = CanonicalEntity(entity_key=key, label="account", name=account)
             entities[key].absorb(cand)
 
-    # Targeted high-confidence merges (cross-source identity)
-    merge_groups = [
-        ("person:soham-ratnaparkhi", {"Soham Ratnaparkhi", "Soham", "soham", "@soham", "soham@company.com"}),
-        ("person:maya-patel", {"Maya Patel", "maya.patel", "maya.patel@redwood.com"}),
-        ("person:camila-reyes", {"Camila Reyes", "camila.reyes", "camila.reyes@redwood.com", "Camila"}),
-        ("person:morgan", {"Morgan", "morgan", "morgan@company.com"}),
-        ("person:priya", {"Priya", "priya"}),
-        ("person:zoe-martinez", {"Zoe Martinez", "zoe.martinez"}),
-    ]
-    for target_key, names in merge_groups:
-        absorbed: CanonicalEntity | None = None
-        for key, entity in list(entities.items()):
-            if key == target_key:
-                absorbed = entity
-                continue
-            mentions = entity.mentions | entity.aliases | {entity.name}
-            if mentions & names or any(n.lower() in {m.lower() for m in mentions} for n in names):
-                if absorbed is None:
-                    absorbed = CanonicalEntity(entity_key=target_key, label=entity.label, name=entity.name)
-                    entities[target_key] = absorbed
-                for mention in mentions:
-                    absorbed.mentions.add(mention)
-                absorbed.emails.update(entity.emails)
-                absorbed.usernames.update(entity.usernames)
-                if key != target_key:
-                    del entities[key]
-        if absorbed is not None:
-            preferred = names & {"Maya Patel", "Camila Reyes", "Soham Ratnaparkhi", "Morgan", "Priya", "Zoe Martinez", "Soham"}
-            if preferred:
-                absorbed.name = next(iter(preferred))
-            absorbed.mentions.update(names)
-
-    account_aliases = {
-        "account:cedarbank": {"CedarBank"},
-        "account:acme": {"Acme"},
-        "account:acme-health": {"Acme Health"},
-    }
-    for artifact in artifacts:
-        content = artifact.content or ""
-        if "CedarBank" in content:
-            account_aliases.setdefault("account:cedarbank", set()).add("CedarBank")
-        if "Acme Health" in content:
-            account_aliases.setdefault("account:acme-health", set()).add("Acme Health")
-        if re.search(r"\bAcme\b", content):
-            account_aliases.setdefault("account:acme", set()).add("Acme")
-    for target_key, names in account_aliases.items():
-        mentioned = any(
-            any(name in (artifact.content or "") or name in (artifact.title or "") for name in names)
-            for artifact in artifacts
-        )
-        if mentioned and target_key not in entities:
-            entities[target_key] = CanonicalEntity(
-                entity_key=target_key,
-                label="account",
-                name=sorted(names, key=len)[0],
-            )
-            entities[target_key].mentions.update(names)
-        for key, entity in list(entities.items()):
-            if entity.label != "account":
-                continue
-            if entity.name in names or key.replace("account:", "") in {_slug(n) for n in names}:
-                if target_key not in entities:
-                    entities[target_key] = CanonicalEntity(entity_key=target_key, label="account", name=next(iter(names)))
-                entities[target_key].mentions.update(names)
-                entities[target_key].mentions.add(entity.name)
-                if key != target_key:
-                    del entities[key]
-
-    keep_keys = {k for k, _ in merge_groups} | set(account_aliases.keys())
-    for key in list(entities.keys()):
-        if key not in keep_keys:
-            del entities[key]
-
     resolutions = to_resolutions(entities.values())
     return resolutions, list(entities.values())
 
 
 HANDOFF_PATTERNS = [
-    (re.compile(r"\bstill own ([A-Z][A-Za-z0-9-]+)", re.IGNORECASE), "OWNS"),
-    (re.compile(r"\btaking over ([A-Z][A-Za-z0-9-]+)(?:\s+ownership)?", re.IGNORECASE), "OWNS"),
-    (re.compile(r"\bhanding off ([A-Z][A-Za-z0-9-]+)(?:\s+account)?(?:\s+ownership)?", re.IGNORECASE), "OWNS"),
-    (re.compile(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+owns\s+([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS"),
-    (re.compile(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+is taking over\s+([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS"),
-    (re.compile(r"\bsoham@company\.com\s+owns\s+([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS"),
-    (re.compile(r"@soham\s+owns\s+([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS"),
+    # (pattern, predicate, subject_source)
+    #   author : subject is the artifact author (1 capture group = account)
+    #   inline : subject is captured in the text (2 groups = subject, account)
+    #   email  : subject is the email local-part before "owns" (1 group = account)
+    #   handle : subject is the @handle before "owns" (1 group = account)
+    (re.compile(_NO_EMAIL_EDGE + r"still own " + r"([A-Z][A-Za-z0-9-]+)", re.IGNORECASE), "OWNS", "author"),
+    (re.compile(_NO_EMAIL_EDGE + r"taking over ([A-Z][A-Za-z0-9-]+)(?: ownership)?", re.IGNORECASE), "OWNS", "author"),
+    (re.compile(_NO_EMAIL_EDGE + r"handing off ([A-Z][A-Za-z0-9-]+)(?: account)?(?: ownership)?", re.IGNORECASE), "OWNS", "author"),
+    (re.compile(_NO_EMAIL_EDGE + r"(" + _NAME + r")" + _HW + r"owns" + _HW + r"([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS", "inline"),
+    (re.compile(_NO_EMAIL_EDGE + r"(" + _NAME + r")" + _HW + r"is taking over" + _HW + r"([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS", "inline"),
+    (re.compile(_NO_EMAIL_EDGE + r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+" + _HW + r"owns" + _HW + r"([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS", "email"),
+    (re.compile(_NO_EMAIL_EDGE + r"@[A-Za-z0-9_.-]+" + _HW + r"owns" + _HW + r"([A-Z][A-Za-z0-9-]+)\b", re.IGNORECASE), "OWNS", "handle"),
 ]
 
 
@@ -433,6 +440,133 @@ def _resolve_object_mention(name: str, resolutions: dict[str, dict]) -> str | No
     return target if target else None
 
 
+# ---------------------------------------------------------------------------
+# Effective-date extraction (B2) — deterministic, evidence-derived validity.
+#
+# "taking over CedarBank ownership from July 28"      -> valid_from = 2026-07-28
+# "handing off CedarBank account ownership effective July 28" -> valid_to
+#
+# Year resolution (never guesses):
+#   1. explicit year wins
+#   2. date within [-7, +45] days of the artifact's observed date -> observed year
+#   3. else a cross-artifact anchor year for the same account (a related
+#      artifact established the year of this event) -> that year
+#   4. else abstain (validity left unset) — never invent a year
+# ---------------------------------------------------------------------------
+_MONTHS = r"(?:January|February|March|April|May|June|July|August|September|October|November|December)"
+_MONTH_DAY = r"(" + _MONTHS + r")\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s*,\s*(20\d{2}))?"
+EFFECTIVE_DATE_RE = re.compile(r"(?i)\b(?:effective|starting|beginning|as of|from)\s+" + _MONTH_DAY)
+UNTIL_DATE_RE = re.compile(r"(?i)\b(?:until|through|till|by)\s+" + _MONTH_DAY)
+
+_MONTH_NUM = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
+}
+
+
+def _parse_month_day(match: re.Match[str]) -> tuple[int, int, int | None]:
+    month = _MONTH_NUM[match.group(1).lower()]
+    day = int(match.group(2))
+    year = int(match.group(3)) if match.group(3) else None
+    return month, day, year
+
+
+def _collect_effective_anchors(artifacts: list[Artifact]) -> dict[str, int]:
+    """Cross-artifact year anchors: account -> year.
+
+    A year-less effective date whose month/day falls near the artifact's
+    observed date establishes that account's event year. A later artifact
+    referencing the same account can then reuse it.
+    """
+    from datetime import date
+
+    anchors: dict[str, int] = {}
+    for artifact in artifacts:
+        content = artifact.content or ""
+        observed = (artifact.timestamp or "")[:10] or ""
+        if not observed:
+            continue
+        try:
+            observed_date = date.fromisoformat(observed)
+        except ValueError:
+            continue
+        for match in list(EFFECTIVE_DATE_RE.finditer(content)) + list(UNTIL_DATE_RE.finditer(content)):
+            month, day, year = _parse_month_day(match)
+            if year is not None:
+                continue
+            try:
+                candidate = date(observed_date.year, month, day)
+            except ValueError:
+                continue
+            if -7 <= (candidate - observed_date).days <= 45:
+                for account in _accounts_in_text(content):
+                    anchors.setdefault(account.lower(), observed_date.year)
+    return anchors
+
+
+def _resolve_effective_year(
+    month: int,
+    day: int,
+    year: int | None,
+    observed_at: str | None,
+    account: str,
+    anchor_years: dict[str, int],
+) -> str | None:
+    from datetime import date
+
+    if year is not None:
+        return f"{year:04d}-{month:02d}-{day:02d}"
+    anchor = anchor_years.get(account.lower()) if account else None
+    observed = (observed_at or "")[:10]
+    if observed:
+        try:
+            observed_date = date.fromisoformat(observed)
+            candidate = date(observed_date.year, month, day)
+        except ValueError:
+            candidate = None
+        if candidate is not None and -7 <= (candidate - observed_date).days <= 45:
+            return candidate.isoformat()
+    if anchor:
+        return f"{anchor:04d}-{month:02d}-{day:02d}"
+    return None
+
+
+def _effective_dates(
+    content: str,
+    observed_at: str | None,
+    account: str,
+    anchor_years: dict[str, int],
+) -> tuple[str | None, str | None]:
+    """Return (effective_iso, until_iso) from explicit date phrases."""
+    effective: str | None = None
+    until: str | None = None
+    match = EFFECTIVE_DATE_RE.search(content)
+    if match:
+        month, day, year = _parse_month_day(match)
+        effective = _resolve_effective_year(month, day, year, observed_at, account, anchor_years)
+    match = UNTIL_DATE_RE.search(content)
+    if match:
+        month, day, year = _parse_month_day(match)
+        until = _resolve_effective_year(month, day, year, observed_at, account, anchor_years)
+    return effective, until
+
+
+def _claim_validity(
+    evidence: str,
+    effective: str | None,
+    until: str | None,
+) -> tuple[str | None, str | None]:
+    """Assign valid_from/valid_to from verb semantics in the evidence."""
+    lowered = evidence.lower()
+    if "handing off" in lowered or "handing over" in lowered:
+        return None, effective
+    if "taking over" in lowered:
+        return effective, None
+    if "still own" in lowered:
+        return None, until
+    return effective, None
+
+
 def supplement_handoff_claims(
     artifacts: list[Artifact],
     resolutions: dict[str, dict],
@@ -440,31 +574,42 @@ def supplement_handoff_claims(
     """Deterministic Slack/Gmail handoff phrases using artifact author when patterns lack a subject."""
     from continuum.claims.schema import Claim
 
+    anchor_years = _collect_effective_anchors(artifacts)
     claims: list[dict[str, Any]] = []
     for artifact in artifacts:
         content = artifact.content or ""
-        author = (artifact.author or "").strip()
-        for pattern, predicate in HANDOFF_PATTERNS:
+        author = _normalize_person_mention((artifact.author or "").strip())
+        observed_at = (artifact.timestamp or "")[:10] or None
+        for pattern, predicate, subject_source in HANDOFF_PATTERNS:
             for match in pattern.finditer(content):
                 groups = match.groups()
-                if pattern.pattern.startswith("@soham") or "soham@company" in pattern.pattern:
-                    subject = _resolve_subject_mention("Soham", resolutions)
+                if subject_source == "email":
+                    email = match.group(0).split()[0]
+                    subject = _resolve_subject_mention(email.split("@")[0], resolutions)
                     obj = _resolve_object_mention(groups[0], resolutions)
-                elif len(groups) == 1:
-                    subject = _resolve_subject_mention(author, resolutions)
+                elif subject_source == "handle":
+                    handle = match.group(0).split()[0]
+                    subject = _resolve_subject_mention(handle, resolutions)
                     obj = _resolve_object_mention(groups[0], resolutions)
-                else:
+                elif subject_source == "inline":
                     subject = _resolve_subject_mention(groups[0], resolutions)
                     obj = _resolve_object_mention(groups[1], resolutions)
+                else:
+                    subject = _resolve_subject_mention(author, resolutions)
+                    obj = _resolve_object_mention(groups[0], resolutions)
                 if not subject or not obj:
                     continue
                 evidence = match.group(0).strip()
+                effective, until = _effective_dates(content, observed_at, obj or "", anchor_years)
+                valid_from, valid_to = _claim_validity(evidence, effective, until)
                 claim = Claim.create(
                     artifact_id=artifact.id,
                     subject_mention=subject,
                     predicate=predicate,
                     object_mention=obj,
-                    observed_at=(artifact.timestamp or "")[:10] or None,
+                    observed_at=observed_at,
+                    valid_from=valid_from,
+                    valid_to=valid_to,
                     evidence_span=evidence[:200],
                     extraction_method="deterministic-handoff",
                     metadata={"v2": True, "signal": "source-handoff"},
@@ -570,6 +715,35 @@ def gate_claims_for_load(
     return loadable, rejected
 
 
+ENTITY_NODE_LABELS = ("Person", "Account", "Project", "Service", "Team")
+
+
+def wipe_for_entities(client, resolutions: dict[str, dict]) -> None:
+    """Entity-scoped graph cleanup across ALL id ranges (B4 hermeticity).
+
+    The state/provenance queries match claims by entity key, not id range,
+    so a reset scoped to one id range can leave other-range claims about the
+    same entities behind (e.g. phase1 synthetic claims about account:acme),
+    silently corrupting answers. This wipes every claim referencing the
+    loaded entities plus their entity nodes, then verifies the wipe — a
+    failed cleanup raises instead of running a compromised graph.
+    """
+    for key in resolutions:
+        client.execute("MATCH (c:Claim {object_id: $key}) DETACH DELETE c", {"key": key})
+        client.execute("MATCH (c:Claim {subject_id: $key}) DETACH DELETE c", {"key": key})
+    for key in resolutions:
+        for label in ENTITY_NODE_LABELS:
+            client.execute(f"MATCH (n:{label} {{key: $key}}) DETACH DELETE n", {"key": key})
+    leftover = 0
+    for key in resolutions:
+        rows = client.execute("MATCH (c:Claim {object_id: $key}) RETURN count(*) AS n", {"key": key}).rows
+        leftover += int(rows[0]["n"])
+        rows = client.execute("MATCH (c:Claim {subject_id: $key}) RETURN count(*) AS n", {"key": key}).rows
+        leftover += int(rows[0]["n"])
+    if leftover:
+        raise RuntimeError(f"entity-scoped wipe left {leftover} claim(s); refusing to load on dirty graph")
+
+
 def score_extraction_vs_gold(
     predicted: list[dict[str, Any]],
     gold: list[dict[str, Any]],
@@ -627,16 +801,16 @@ def format_answer_from_result(result: dict[str, Any], question: dict[str, Any]) 
     state = result.get("state_result") or {}
     category = question.get("category") or ""
     if result.get("resolved_entities") and question.get("evidence_entity") is None:
-        pair = result.get("entity_resolution") or {}
+        pair = (result.get("layers") or {}).get("entity_resolution") or {}
         if pair.get("pair_verdict"):
             return pair["pair_verdict"]
     payload = {
         **state,
         "evidence": result.get("evidence") or [],
-        "claims": result.get("conflicts") or state.get("claims") or [],
+        "claims": state.get("claims") or [],
         "conflicting_subjects": [
             c.get("subject_name") or c.get("subject")
-            for c in (result.get("conflicts") or [])
+            for c in (state.get("claims") or [])
             if isinstance(c, dict)
         ],
     }
@@ -701,6 +875,7 @@ class SourceE2EPipeline:
         store = None
         if client is not None and load_graph and loadable:
             t0 = time.perf_counter()
+            wipe_for_entities(client, resolutions)
             fixture_artifacts = [artifact_to_claim_fixture(a) for a in artifacts]
             sources: dict[str, dict] = {}
             for artifact in artifacts:
@@ -744,7 +919,7 @@ class SourceE2EPipeline:
                     got, _, gen_ms = answer_generator.generate(str(question.get("question", "")), structured)
                     self.budget.consume("answer", gen_ms, answer_generator.name)
                 else:
-                    got = result.get("answer") or format_answer_from_result(result, question)
+                    got = format_answer_from_result(result, question) or result.get("answer") or "unknown - abstain"
                 latency_ms = round((time.perf_counter() - t0) * 1000, 2)
                 expected = question.get("expected_answer", "")
                 question_results.append(

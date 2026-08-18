@@ -146,6 +146,11 @@ Return to founder:
 ## Remaining blockers
 
 1. **Retrieval stub** — pipeline answers from loaded claims, not BM25 over ingested corpus
-2. **Handoff supplement** — CedarBank Slack phrasing required glue patterns beyond generic v2 relations
+2. **Query decomposition gaps** — cross-source/provenance phrasings (see `docs/phase-source-to-answer-e2e-report.md` §6)
 3. **HydraDB local** — integration tests skip when Docker/HydraDB not running
-4. **Entity resolution** — targeted merge rules for E2E gold; full automatic clustering not yet production-grade
+4. **Entity resolution** — signal-driven key derivation is in place and deterministic; full automatic clustering (fuzzy matching, cross-org guards) is Phase 3
+
+> Stabilization history: B1–B4 fixes (extraction quality, temporal
+> validity, whitelist-free entity resolution, hermetic HydraDB lifecycle)
+> are documented with before/after evidence in
+> `docs/phase-source-to-answer-e2e-report.md`.
