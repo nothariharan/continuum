@@ -1,0 +1,31 @@
+{
+  "commit_sha": "7995ecf0f2620ee7d9756bd195f7fcba77390a48",
+  "metrics": {
+    "gold_count": 7,
+    "predicted_count": 8,
+    "true_positives": 6,
+    "false_positives": 2,
+    "false_negatives": 1,
+    "precision": 0.75,
+    "recall": 0.857,
+    "pipeline": {
+      "artifacts": 10,
+      "with_candidates": 10,
+      "with_pair": 10,
+      "claims_before_refinement": 11
+    },
+    "refinement": {
+      "calls": 0,
+      "refined": 0,
+      "abstained": 0,
+      "latency_ms": 0.0
+    },
+    "latency_ms": {
+      "extract": 21.14,
+      "refine": 0.08
+    },
+    "claims_after_refinement": 11
+  },
+  "loadable_claims": 8,
+  "rejected_claims": 3
+}

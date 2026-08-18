@@ -22,5 +22,6 @@ include = ["continuum*"]
 [tool.pytest.ini_options]
 markers = [
   "hydradb: requires a running local HydraDB instance",
+  "fireworks: requires FIREWORKS_API_KEY and uses live API (budget capped)",
 ]
 testpaths = ["tests"]

@@ -1,0 +1,31 @@
+{
+  "channel_id": "C07CONFLICT",
+  "channel_name": "account-updates",
+  "workspace_id": "T0ACME01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01MOR": {
+      "name": "morgan",
+      "real_name": "Morgan",
+      "profile": {"display_name": "Morgan"}
+    },
+    "U01PRI": {
+      "name": "priya",
+      "real_name": "Priya",
+      "profile": {"display_name": "Priya"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728100000.000000",
+      "user": "U01MOR",
+      "text": "Morgan owns Acme."
+    },
+    {
+      "ts": "1728100000.100000",
+      "user": "U01PRI",
+      "text": "Priya owns Acme too."
+    }
+  ],
+  "replies": {}
+}
