@@ -14,6 +14,8 @@ test = ["pytest>=8.0"]
 embed = ["sentence-transformers>=3.0", "numpy>=1.26", "rank-bm25>=0.2"]
 extract = ["rapidfuzz>=3.0"]
 llm = ["openai>=1.0"]
+google = ["google-api-python-client>=2.0", "google-auth-oauthlib>=1.0"]
+delivery = ["fastapi>=0.100", "uvicorn>=0.23", "slack-bolt>=1.18", "pydantic>=2.0"]
 
 [tool.setuptools.packages.find]
 include = ["continuum*"]
@@ -21,5 +23,6 @@ include = ["continuum*"]
 [tool.pytest.ini_options]
 markers = [
   "hydradb: requires a running local HydraDB instance",
+  "fireworks: requires FIREWORKS_API_KEY and uses live API (budget capped)",
 ]
 testpaths = ["tests"]

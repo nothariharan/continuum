@@ -62,12 +62,13 @@ def collect_participants(message: SlackMessage) -> list[dict[str, str]]:
         if not msg.user_id or msg.user_id in seen:
             return
         seen.add(msg.user_id)
-        participants.append(
-            {
-                "user_id": msg.user_id,
-                "display_name": msg.user_display or msg.user_id,
-            }
-        )
+        participant = {
+            "user_id": msg.user_id,
+            "display_name": msg.user_display or msg.user_id,
+        }
+        if msg.username:
+            participant["username"] = msg.username
+        participants.append(participant)
 
     add(message)
     for reply in message.replies:

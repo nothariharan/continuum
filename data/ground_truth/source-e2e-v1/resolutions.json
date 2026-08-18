@@ -1,0 +1,88 @@
+{
+  "person:maya-patel": {
+    "label": "Person",
+    "name": "Maya Patel",
+    "mentions": [
+      "Maya Patel",
+      "Maya",
+      "maya.patel",
+      "maya.patel@redwood.com"
+    ],
+    "aliases": []
+  },
+  "person:camila-reyes": {
+    "label": "Person",
+    "name": "Camila Reyes",
+    "mentions": [
+      "Camila Reyes",
+      "Camila",
+      "camila.reyes",
+      "camila.reyes@redwood.com"
+    ],
+    "aliases": []
+  },
+  "person:soham-ratnaparkhi": {
+    "label": "Person",
+    "name": "Soham Ratnaparkhi",
+    "mentions": [
+      "Soham Ratnaparkhi",
+      "Soham",
+      "soham",
+      "@soham",
+      "soham@company.com"
+    ],
+    "aliases": []
+  },
+  "person:morgan": {
+    "label": "Person",
+    "name": "Morgan",
+    "mentions": [
+      "Morgan",
+      "morgan",
+      "morgan@company.com"
+    ],
+    "aliases": []
+  },
+  "person:priya": {
+    "label": "Person",
+    "name": "Priya",
+    "mentions": [
+      "Priya",
+      "priya"
+    ],
+    "aliases": []
+  },
+  "person:zoe-martinez": {
+    "label": "Person",
+    "name": "Zoe Martinez",
+    "mentions": [
+      "Zoe Martinez",
+      "zoe.martinez"
+    ],
+    "aliases": []
+  },
+  "account:cedarbank": {
+    "label": "Account",
+    "name": "CedarBank",
+    "mentions": [
+      "CedarBank"
+    ],
+    "aliases": []
+  },
+  "account:acme": {
+    "label": "Account",
+    "name": "Acme",
+    "mentions": [
+      "Acme"
+    ],
+    "aliases": []
+  },
+  "account:acme-health": {
+    "label": "Account",
+    "name": "Acme Health",
+    "mentions": [
+      "Acme Health"
+    ],
+    "aliases": []
+  }
+}

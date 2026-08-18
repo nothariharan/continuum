@@ -185,9 +185,35 @@ ingest-slack-fixtures:
 ingest-gmail-fixtures:
 	python3 scripts/ingest_gmail.py --mode fixtures
 
+build-source-e2e-gold:
+	PYTHONPATH=. python3 scripts/build_source_e2e_gold.py
+
+source-e2e:
+	PYTHONPATH=. python3 scripts/source_to_answer_e2e.py --refinement mock
+
+source-e2e-fireworks-smoke:
+	PYTHONPATH=. python3 scripts/source_to_answer_e2e.py --refinement fireworks --fireworks-answer --fireworks-budget 20
+
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
-
 expand-identity-gold:
 	python3 scripts/expand_identity_pairs_gold.py
+
+test-delivery:
+	python3 -m pytest tests/delivery/ -q
+
+run-query-api:
+	PYTHONPATH=. python3 scripts/run_query_api.py
+
+run-slack-bot:
+	PYTHONPATH=. python3 scripts/run_slack_bot.py
+
+run-slack-events:
+	PYTHONPATH=. python3 scripts/run_slack_events_gateway.py
+
+ingest-source:
+	python3 scripts/ingest_source.py --source $(SOURCE) --mode $(MODE)
+
+post-stabilization-health:
+	PYTHONPATH=. python3 scripts/post_stabilization_health_check.py
