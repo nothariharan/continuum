@@ -1,7 +1,5 @@
 """Optional FastAPI HTTP wrapper for QueryService."""
 
-from __future__ import annotations
-
 from typing import Any
 
 from continuum.delivery.query_service import QueryService
