@@ -42,10 +42,15 @@ make source-e2e
 
 | Suite | Result |
 |-------|--------|
-| source-e2e | _/20 |
-| memory_worker | _ |
-| demo_harness | _ |
-| hydradb combined | _ |
+| source-e2e | **20/20** (deterministic × 2) |
+| memory_worker | **3/3 passed** |
+| demo_harness | **3/3 passed** |
+| query core unit | **40/40 passed** |
+
+## Live matrix (operator)
+
+Automated harness covers B9/B15/B16. Steps B6–B12 and B20 require posting in the
+demo Slack workspace per [slack-demo-script.md](./slack-demo-script.md).
 
 ## Observations
 
