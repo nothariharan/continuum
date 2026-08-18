@@ -28,7 +28,11 @@ def verify_slack_signature(
     *,
     max_age_seconds: int = 300,
 ) -> bool:
-    if abs(time.time() - int(timestamp)) > max_age_seconds:
+    try:
+        ts_int = int(timestamp)
+    except ValueError:
+        return False
+    if abs(time.time() - ts_int) > max_age_seconds:
         return False
     base = f"v0:{timestamp}:{body.decode('utf-8')}".encode("utf-8")
     digest = hmac.new(signing_secret.encode("utf-8"), base, hashlib.sha256).hexdigest()
@@ -54,7 +58,10 @@ class SlackEventsGateway:
         if not verify_slack_signature(self._signing_secret, body, timestamp, signature):
             return 401, {"error": "invalid signature"}
 
-        payload = json.loads(body.decode("utf-8"))
+        try:
+            payload = json.loads(body.decode("utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            return 400, {"error": "malformed payload"}
         if payload.get("type") == "url_verification":
             return 200, {"challenge": payload.get("challenge")}
 
