@@ -1,0 +1,91 @@
+"""Slack query bot handlers — slash command and app_mention."""
+
+from __future__ import annotations
+
+import json
+import os
+import re
+import urllib.error
+import urllib.request
+from typing import Any, Callable
+
+from continuum.delivery.query_service import QueryService
+from continuum.delivery.slack_formatter import format_slack_answer
+from continuum.hydradb import HydraDBClient
+
+_MENTION_RE = re.compile(r"<@[A-Z0-9]+>\s*", re.IGNORECASE)
+
+
+def extract_question(text: str) -> str:
+    return _MENTION_RE.sub("", text).strip()
+
+
+class SlackQueryBot:
+    """Handle Slack queries via QueryService — no duplicated reasoning."""
+
+    def __init__(
+        self,
+        client: HydraDBClient,
+        *,
+        entity_store=None,
+        post_message: Callable[[str, dict[str, Any], str | None], None] | None = None,
+    ) -> None:
+        self._client = client
+        self._entity_store = entity_store
+        self._post = post_message or self._default_post_message
+
+    def _service(self) -> QueryService:
+        return QueryService(self._client, entity_store=self._entity_store)
+
+    def handle_text(self, text: str, *, channel: str, thread_ts: str | None = None) -> dict[str, Any]:
+        question = extract_question(text)
+        if not question:
+            payload = {"text": "Ask a question, e.g. `@continuum who owns Acme?`"}
+            self._post(channel, payload, thread_ts)
+            return payload
+        result = self._service().ask(question)
+        payload = format_slack_answer(result)
+        self._post(channel, payload, thread_ts)
+        return payload
+
+    def handle_slash(self, text: str, *, channel: str, user_id: str) -> dict[str, Any]:
+        return self.handle_text(text or "", channel=channel, thread_ts=None)
+
+    def handle_app_mention(self, event: dict[str, Any]) -> dict[str, Any]:
+        return self.handle_text(
+            str(event.get("text") or ""),
+            channel=str(event.get("channel")),
+            thread_ts=event.get("thread_ts") or event.get("ts"),
+        )
+
+    @staticmethod
+    def _default_post_message(channel: str, payload: dict[str, Any], thread_ts: str | None) -> None:
+        token = os.environ.get("SLACK_BOT_TOKEN")
+        if not token:
+            raise RuntimeError("SLACK_BOT_TOKEN required to post messages")
+        body: dict[str, Any] = {"channel": channel, **payload}
+        if thread_ts:
+            body["thread_ts"] = thread_ts
+        data = json.dumps(body).encode("utf-8")
+        req = urllib.request.Request(
+            "https://slack.com/api/chat.postMessage",
+            data=data,
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                result = json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            raise RuntimeError(f"Slack post failed: {exc}") from exc
+        if not result.get("ok"):
+            raise RuntimeError(f"Slack post failed: {result.get('error')}")
+
+
+def build_bot_from_env() -> SlackQueryBot:
+    client = HydraDBClient()
+    client.health_check()
+    return SlackQueryBot(client)

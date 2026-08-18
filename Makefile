@@ -194,3 +194,6 @@ test-delivery:
 
 run-query-api:
 	PYTHONPATH=. python3 scripts/run_query_api.py
+
+run-slack-bot:
+	PYTHONPATH=. python3 scripts/run_slack_bot.py
