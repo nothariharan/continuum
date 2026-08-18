@@ -1,0 +1,21 @@
+{
+  "channel_id": "C07HANDOFF",
+  "channel_name": "account-updates",
+  "workspace_id": "T0ACME01",
+  "workspace_subdomain": "redwood-acme",
+  "users": {
+    "U01PRI": {
+      "name": "priya",
+      "real_name": "Priya",
+      "profile": {"display_name": "Priya"}
+    }
+  },
+  "messages": [
+    {
+      "ts": "1728345600.000000",
+      "user": "U01PRI",
+      "text": "Priya is taking over Acme."
+    }
+  ],
+  "replies": {}
+}

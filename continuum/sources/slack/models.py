@@ -26,6 +26,7 @@ class SlackMessage:
     text: str
     user_id: str | None = None
     user_display: str | None = None
+    username: str | None = None
     thread_ts: str | None = None
     reply_count: int = 0
     workspace_id: str = "T00000000"
@@ -51,8 +52,10 @@ class SlackMessage:
         users = users or {}
         user_id = message.get("user")
         user_display = None
+        username = None
         if user_id and user_id in users:
             user_display = users[user_id].display_name
+            username = users[user_id].name or None
         elif message.get("username"):
             user_display = message["username"]
 
@@ -63,6 +66,7 @@ class SlackMessage:
             text=str(message.get("text") or ""),
             user_id=user_id,
             user_display=user_display,
+            username=username,
             thread_ts=message.get("thread_ts"),
             reply_count=int(message.get("reply_count") or 0),
             workspace_id=workspace_id,

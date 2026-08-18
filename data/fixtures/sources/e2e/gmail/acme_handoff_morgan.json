@@ -1,0 +1,5 @@
+{
+  "message_id": "gmail-msg-morgan",
+  "thread_id": "gmail-thread-acme",
+  "rfc822": "From: morgan <morgan@company.com>\nTo: ops <ops@company.com>\nDate: Tue, 01 Oct 2024 09:00:00 +0000\nSubject: Acme ownership\n\nMorgan owns Acme."
+}
