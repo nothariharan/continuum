@@ -188,3 +188,6 @@ ingest-gmail-fixtures:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+
+expand-identity-gold:
+	python3 scripts/expand_identity_pairs_gold.py
