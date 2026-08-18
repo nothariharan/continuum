@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-08-18T13:19:05+00:00",
+  "master_sha": "3386ae8fcf7c8a0c07636252a0e64fb5fab588a3",
+  "tests": {
+    "sources": {
+      "command": "C:\\Users\\HARIHARAN\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m pytest tests/sources/ -m not hydradb -q --tb=no",
+      "exit_code": 0,
+      "stdout_tail": [
+        ".............................................................            [100%]",
+        "61 passed, 11 deselected in 9.12s"
+      ],
+      "stderr_tail": []
+    },
+    "query_core": {
+      "command": "C:\\Users\\HARIHARAN\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m pytest tests/phase2b/test_query_core.py -q --tb=no",
+      "exit_code": 0,
+      "stdout_tail": [
+        "....................................                                     [100%]",
+        "36 passed in 0.09s"
+      ],
+      "stderr_tail": []
+    }
+  },
+  "benchmark_checkpoints_untouched": {
+    "full-v1-100": "{\n  \"bm25/results.jsonl\": \"c6aa982a53a9f7fd65612c29895ffc2379698"
+  },
+  "gold_set": {
+    "note": "Run scripts/benchmark_e2e_questions.py with HydraDB for 20/20 score"
+  }
+}

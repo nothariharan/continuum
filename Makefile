@@ -197,3 +197,6 @@ source-e2e-fireworks-smoke:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+
+post-stabilization-health:
+	PYTHONPATH=. python3 scripts/post_stabilization_health_check.py
