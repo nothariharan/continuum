@@ -44,6 +44,7 @@ INTENTS = frozenset(
         "DEPENDENCY",
         "CO_OCCURRENCE",
         "ENTITY_RESOLUTION",
+        "SOURCE_PRESENCE",
         "GENERIC",
     }
 )

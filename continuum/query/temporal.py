@@ -34,7 +34,13 @@ ORDER BY c.valid_from, c.observed_at
 
 ANCHOR_ARTIFACTS = """
 MATCH (a:Artifact)
-RETURN a.title AS title, a.timestamp AS ts
+RETURN a.title AS title, a.timestamp AS ts, a.content AS content
+"""
+
+ANCHOR_CLAIMS = """
+MATCH (c:Claim {object_id: $entity_key, predicate: $predicate})
+RETURN c.subject_name AS subject_name, c.valid_from AS valid_from,
+       c.observed_at AS observed_at, c.claim_id AS claim_id
 """
 
 BEFORE_ENTITY = None
@@ -168,13 +174,7 @@ def resolve_state_before_entity(
 
 
 def anchor_date(client: HydraDBClient, anchor: str | None) -> str | None:
-    """Latest dated artifact whose title mentions the anchor event/keyword.
-
-    Lets "after the authentication outage" resolve to a real date when the
-    corpus contains the outage artifact. Deterministic and graph-native:
-    artifact titles are fetched once and matched in Python (the HydraDB
-    query engine's WHERE clause does not support string functions/contains).
-    """
+    """Latest dated artifact whose title or content mentions the anchor event/keyword."""
     if not anchor:
         return None
     needle = anchor.strip().lower()
@@ -182,12 +182,110 @@ def anchor_date(client: HydraDBClient, anchor: str | None) -> str | None:
     best: str | None = None
     for row in rows:
         title = str(row.get("title") or "")
+        content = str(row.get("content") or "")
         ts = row.get("ts")
-        if ts and needle in title.lower():
+        haystack = f"{title}\n{content}".lower()
+        if ts and needle in haystack:
             candidate = str(ts)[:10]
             if best is None or candidate > best:
                 best = candidate
     return best
+
+
+def anchor_date_from_claims(
+    client: HydraDBClient,
+    entity_key: str,
+    predicate: str,
+    anchor: str | None,
+) -> str | None:
+    """Resolve an event anchor (e.g. handoff) to a claim transition date."""
+    if not anchor:
+        return None
+    needle = anchor.strip().lower()
+    handoff_terms = ("handoff", "hand off", "taking over", "take over", needle)
+    rows = client.execute(
+        ANCHOR_CLAIMS,
+        {"entity_key": entity_key, "predicate": predicate},
+    ).rows
+    best: str | None = None
+    for row in rows:
+        span = str(row.get("claim_id") or "")
+        # evidence_span is not on Claim node in graph — use subject + dates
+        subject = str(row.get("subject_name") or "").lower()
+        if not any(term in subject or term in span for term in handoff_terms):
+            # For generic "handoff" anchor, accept taking-over transitions
+            if needle == "handoff" and "taking" not in subject and "hand" not in span:
+                continue
+        date = row.get("valid_from") or row.get("observed_at")
+        if not date:
+            continue
+        candidate = str(date)[:10]
+        if best is None or candidate > best:
+            best = candidate
+    return best
+
+
+def resolve_state_after_event(
+    client: HydraDBClient,
+    entity_key: str,
+    predicate: str,
+    anchor: str | None,
+) -> dict[str, Any]:
+    """Owner at the first ownership transition after an anchored event."""
+    rows = client.execute(
+        HISTORY,
+        {"entity_key": entity_key, "predicate": predicate},
+    ).rows
+    if not rows:
+        return absent(entity_key, predicate)
+
+    ordered = sorted(
+        rows,
+        key=lambda r: (str(r.get("valid_from") or ""), str(r.get("observed_at") or "")),
+    )
+
+    # Prefer closed-interval handoffs when the graph stores valid_to faithfully.
+    for index, row in enumerate(ordered):
+        if not row.get("valid_to") or row.get("valid_to") == OPEN_END:
+            continue
+        if index + 1 >= len(ordered):
+            break
+        nxt = ordered[index + 1]
+        return result(
+            entity_id=entity_key,
+            predicate=predicate,
+            status="definitive",
+            value={"entity_id": nxt["subject_id"], "name": nxt["subject_name"]},
+            valid_from=nxt.get("valid_from"),
+            valid_to=nxt.get("valid_to"),
+            confidence=0.92,
+            history=ordered,
+            resolution="after-event",
+        )
+
+    previous_subject: str | None = None
+    for row in ordered:
+        subject_id = str(row.get("subject_id") or "")
+        if not subject_id:
+            continue
+        if previous_subject and subject_id != previous_subject:
+            return result(
+                entity_id=entity_key,
+                predicate=predicate,
+                status="definitive",
+                value={"entity_id": row["subject_id"], "name": row["subject_name"]},
+                valid_from=row.get("valid_from"),
+                valid_to=row.get("valid_to"),
+                confidence=0.9,
+                history=ordered,
+                resolution="after-event-transition",
+            )
+        previous_subject = subject_id
+
+    date = anchor_date_from_claims(client, entity_key, predicate, anchor) or anchor_date(client, anchor)
+    if date:
+        return resolve_state_on(client, entity_key, date, predicate)
+    return absent(entity_key, predicate)
 
 
 def resolve_state_for_constraints(
@@ -219,7 +317,11 @@ def resolve_state_for_constraints(
             if c.anchor:
                 return resolve_state_before_entity(client, entity_key, predicate, c.anchor)
         if c.kind == "after":
-            value = c.value or anchor_date(client, c.anchor)
+            if c.anchor and c.anchor.strip().lower() in {"handoff", "the handoff"}:
+                return resolve_state_after_event(client, entity_key, predicate, c.anchor)
+            value = c.value or anchor_date_from_claims(client, entity_key, predicate, c.anchor)
+            if not value:
+                value = anchor_date(client, c.anchor)
             if value:
                 return resolve_state_on(client, entity_key, value, predicate)
         if c.kind == "interval" and c.value:

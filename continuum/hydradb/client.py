@@ -11,6 +11,28 @@ from neo4j import GraphDatabase
 from .config import HydraDBConfig
 
 
+def _allow_hydradb_server_product() -> None:
+    """HydraDB advertises SlateDBGraph/*; official neo4j 5.x driver rejects it."""
+    try:
+        import neo4j._sync.io._common as bolt_common
+    except ImportError:
+        return
+    original = getattr(bolt_common, "check_supported_server_product", None)
+    if original is None or not callable(original):
+        return
+
+    def _patched(agent: str) -> None:
+        if str(agent).startswith("SlateDBGraph/"):
+            return
+        original(agent)
+
+    if getattr(bolt_common.check_supported_server_product, "__name__", "") != "_patched":
+        bolt_common.check_supported_server_product = _patched  # type: ignore[assignment]
+
+
+_allow_hydradb_server_product()
+
+
 @dataclass(frozen=True)
 class QueryResult:
     rows: list[dict[str, Any]]
