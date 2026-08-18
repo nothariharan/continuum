@@ -188,3 +188,9 @@ ingest-gmail-fixtures:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+
+test-delivery:
+	python3 -m pytest tests/delivery/ -q
+
+run-query-api:
+	PYTHONPATH=. python3 scripts/run_query_api.py
