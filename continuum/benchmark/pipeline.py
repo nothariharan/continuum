@@ -284,6 +284,24 @@ class ContinuumPipeline:
         mentions = _extract_mentions(question_text)
         if len(mentions) < 2:
             return {"entities": [], "canonical_key": None, "trace": ["entity resolution: no mention pair"]}
+        # Consistency with the extraction path: when an EntityStore exists
+        # (graph loaded from resolved entities), both mentions resolve
+        # through the SAME canonical identity the extraction produced.
+        if self._store is not None:
+            left = self._store.resolve_mention(mentions[0])
+            right = self._store.resolve_mention(mentions[1])
+            if left["status"] == "definitive" and right["status"] == "definitive":
+                same = left["entity_key"] == right["entity_key"]
+                return {
+                    "entities": [mentions[0], mentions[1]],
+                    "canonical_key": None,
+                    "pair_verdict": "same" if same else "different",
+                    "trace": [
+                        f"entity resolution: {mentions[0]} vs {mentions[1]} -> "
+                        f"{'same' if same else 'different'} (store keys "
+                        f"{left['entity_key']} vs {right['entity_key']})"
+                    ],
+                }
         pair = _pair_with_inventory_signals(mentions, question_text)
         verdict = EntityResolver().resolve_pair(
             pair.candidate_a(),
