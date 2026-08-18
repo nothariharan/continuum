@@ -188,3 +188,6 @@ ingest-gmail-fixtures:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+
+run-slack-events:
+	PYTHONPATH=. python3 scripts/run_slack_events_gateway.py
