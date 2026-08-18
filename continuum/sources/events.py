@@ -20,15 +20,17 @@ class SourceEvent:
 
     @property
     def dedup_key(self) -> str:
-        return f"{self.source}|{self.event_id}|{self.native_id or ''}"
+        return f"{self.source}|{self.native_id or ''}"
 
 
 @dataclass
 class EventQueue:
     path: Path
     _seen: set[str] = field(default_factory=set, repr=False)
+    _loaded: bool = False
 
     def load(self) -> list[SourceEvent]:
+        self._loaded = True
         if not self.path.exists():
             return []
         events: list[SourceEvent] = []
@@ -36,12 +38,16 @@ class EventQueue:
             if not line.strip():
                 continue
             row = json.loads(line)
-            events.append(SourceEvent(**row))
-            self._seen.add(row["event_id"])
+            event = SourceEvent(**row)
+            events.append(event)
+            self._seen.add(event.event_id)
+            self._seen.add(event.dedup_key)
         return events
 
     def enqueue(self, event: SourceEvent) -> bool:
-        """Return False if duplicate."""
+        """Return False if duplicate (by event_id or source/native record)."""
+        if not self._loaded:
+            self.load()
         if event.dedup_key in self._seen or event.event_id in self._seen:
             return False
         self.path.parent.mkdir(parents=True, exist_ok=True)
