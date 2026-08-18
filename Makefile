@@ -197,6 +197,8 @@ source-e2e-fireworks-smoke:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+run-slack-events:
+	PYTHONPATH=. python3 scripts/run_slack_events_gateway.py
 
 ingest-source:
 	python3 scripts/ingest_source.py --source $(SOURCE) --mode $(MODE)
