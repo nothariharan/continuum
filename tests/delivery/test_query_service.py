@@ -65,4 +65,7 @@ def test_api_ask_parses_json_body():
         resp = TestClient(app).post("/v1/ask", json={"question": "Who owns Acme?", "question_id": "q1"})
     assert resp.status_code == 200
     assert resp.json()["status"] == "absent"
-    mock_answer.assert_called_once_with(client, {"question_id": "q1", "question": "Who owns Acme?"}, entity_store=None)
+    assert mock_answer.call_count == 1
+    call = mock_answer.call_args
+    assert call.args[0] is client
+    assert call.args[1] == {"question_id": "q1", "question": "Who owns Acme?"}

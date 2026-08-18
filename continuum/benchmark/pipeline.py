@@ -174,6 +174,18 @@ class ContinuumPipeline:
         result["query_context"] = ctx.to_dict()
         result["latency_ms"]["decomposition"] = (time.perf_counter() - started) * 1000
 
+        # ---- ad-hoc questions: derive entity/predicate from decomposition ----
+        # Manifest rows (benchmark/gold) supply evidence_entity + predicate
+        # explicitly. Ad-hoc transport questions (QueryService / Slack bot /
+        # HTTP) do not, so derive them deterministically from the decomposed
+        # context to keep them on the exact same reasoning path. Entity-pair
+        # (ENTITY_RESOLUTION) questions deliberately keep entity=None so the
+        # pair resolver runs.
+        if entity is None and ctx.intent != "ENTITY_RESOLUTION" and ctx.entities:
+            entity = ctx.entities[0].mention
+        if predicate is None and ctx.relationships:
+            predicate = ctx.relationships[0].predicate
+
         # ---- retrieval (candidate scoping) ----
         started = time.perf_counter()
         retrieval = self._retrieve(question_text, entity)

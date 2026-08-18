@@ -25,7 +25,7 @@ from .context import QueryContext, QueryEntity, QueryRelationship, TemporalConst
 _MENTION_QUOTED = re.compile(r"'([^']+)'")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 _USERNAME_RE = re.compile(r"@[A-Za-z0-9_.-]+")
-_NAME_RE = re.compile(r"\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\b")
+_NAME_RE = re.compile(r"\b[A-Z][A-Za-z0-9]*(?:[_-][A-Za-z0-9]+)*(?:\s+[A-Z][a-z]+)?\b")
 _DATE_RE = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
 _MONTH_YEAR_RE = re.compile(
     r"\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})\b",
