@@ -197,6 +197,12 @@ source-e2e-fireworks-smoke:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+test-delivery:
+	python3 -m pytest tests/delivery/ -q
+
+run-query-api:
+	PYTHONPATH=. python3 scripts/run_query_api.py
+
 run-slack-events:
 	PYTHONPATH=. python3 scripts/run_slack_events_gateway.py
 
