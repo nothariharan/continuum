@@ -198,5 +198,8 @@ test-sources:
 	python3 -m pytest tests/sources/ -q
 
 
+ingest-source:
+	python3 scripts/ingest_source.py --source $(SOURCE) --mode $(MODE)
+
 post-stabilization-health:
 	PYTHONPATH=. python3 scripts/post_stabilization_health_check.py
