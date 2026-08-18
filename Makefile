@@ -197,6 +197,9 @@ source-e2e-fireworks-smoke:
 test-sources:
 	python3 -m pytest tests/sources/ -q
 
+expand-identity-gold:
+	python3 scripts/expand_identity_pairs_gold.py
+
 test-delivery:
 	python3 -m pytest tests/delivery/ -q
 
