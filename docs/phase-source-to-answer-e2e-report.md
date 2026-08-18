@@ -194,3 +194,71 @@ question with `--fireworks-answer`; 0 refinement calls on this fixture.
 | No scope expansion | ✓ |
 
 **Decision: MERGE PR #10.**
+
+---
+
+## 10. Post-merge validation (Phase L) — COMPLETE
+
+**Final master SHA:** `f3044c7b29877bc583526874f939319b9c34cf97`
+(merge commit: PR #10 `0e6ea4e` + stabilization `995e0a9`)
+
+| Validation item | Result |
+|---|---|
+| 1. master points to merged stabilization commit | ✓ `f3044c7` |
+| 2. Full non-HydraDB suite | ✓ 264 passed, 68 deselected (4m36s) |
+| 3. Source + HydraDB integration suite | ✓ 78 passed (4m25s) |
+| 4. Deterministic E2E repeats identically | ✓ 17/20 × 6 runs |
+| 5. Slack/Gmail extraction is automatic + claim-based | ✓ 10 artifacts → 9 claims, 0 rejected (`deterministic-v2`/`deterministic-handoff`) |
+| 6. Temporal handoff correct | ✓ se2e-11 → 2026-07-28; se2e-16 → Maya |
+| 7. Conflict stays conflict when ambiguous | ✓ se2e-06/15 → CONFLICT (both claims preserved) |
+| 8. Entity resolution deterministic | ✓ se2e-09/18 → same (store-consistent) |
+| 9. Provenance reaches original artifacts | ✓ se2e-07 → 3 claim(s) via Gmail, Slack (dsid artifacts) |
+| 10. Fireworks smoke bounded + passes | ✓ 1 passed, ≤20 calls, temp 0 |
+| 11. No benchmark artifacts modified | ✓ (report JSONs restored; zero diff) |
+| 12. Working tree clean | ✓ only pre-existing untracked files |
+
+### Remaining 3/20 query-decomposition failures (deterministic, known)
+
+| Q | Question | Expected | Got | Root cause |
+|---|---|---|---|---|
+| se2e-04 | Who owns Acme now **after the handoff**? | Priya | Soham Ratnaparkhi | event-anchored question; gold answer conflicts with current state (se2e-03 says Soham is current) |
+| se2e-12 | Which **claim and artifact** support Soham owning Acme? | claim | CONFLICT | "which claim" matches the CONFLICT intent rule; provenance phrasing not detected |
+| se2e-14 | Does **Slack or Gmail** show the CedarBank handoff? | Gmail\|Slack | Camila Reyes | cross-source presence question; falls through to current state |
+
+All three live in `continuum/query/decompose.py` intent routing / question
+semantics — the query layer, not extraction or state.
+
+### Exact remaining technical blockers
+
+1. **Query decomposition gaps** (3/20 above) — intent routing for
+   event-anchored ("after the handoff"), provenance-phrased ("which claim
+   and artifact"), and cross-source presence ("does Slack or Gmail show")
+   questions.
+2. **Retrieval stub** — the vertical answers from loaded claims; BM25 over
+   the ingested corpus is not wired into `answer()`.
+3. **Full automatic entity resolution** — signal-driven key derivation is
+   in place; broad clustering (fuzzy similarity, cross-org local-part
+   guards, REVIEW/ABSTAIN decisions at scale) is Phase 3.
+4. **HydraDB integration test speed** — phase1/phase2b tests take ~1–3 min
+   each (pre-existing; not a correctness issue).
+
+### Production-shaped now
+
+- Automatic Slack/Gmail → canonical Artifact → deterministic claim
+  extraction → validated load → HydraDB graph → temporal/conflict state →
+  provenance → deterministic or Fireworks-backed answers.
+- Safe abstention, bounded model usage, deterministic-first extraction,
+  hermetic test lifecycle, Claim v1 contract.
+
+### Still fixture-only / live-unwired
+
+- **Live Slack/Gmail sync (OAuth, webhooks) — NOT implemented.** All
+  source data is fixture JSON in `data/fixtures/sources/`.
+- Fireworks refinement (predicate disambiguation) is wired but never
+  triggered by the current fixture (0 ambiguous claims).
+- BM25/dense retrieval over the corpus — not part of this vertical.
+- MCP / UI — not started.
+
+**STOP. No further work without a new decision.** Next highest-value step:
+fix the 3 query-decomposition gaps (`decompose.py` intent routing), then
+re-run the 20-question gold set aiming for 20/20.
