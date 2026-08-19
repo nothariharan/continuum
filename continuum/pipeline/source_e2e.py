@@ -20,7 +20,12 @@ from continuum.entities.store import EntityStore
 from continuum.extract.v2.candidates import find_candidates
 from continuum.extract.v2.pipeline import refine_ambiguous_claims, run_pipeline
 from continuum.extract.v2.refinement import ABSTAIN, create_refinement_provider
-from continuum.extract.v2.relations import OWNS_VERB_RE, extract_relations
+from continuum.extract.v2.relations import (
+    HANDED_TO_VERB_RE,
+    OWNS_VERB_RE,
+    RESPONSIBLE_VERB_RE,
+    extract_relations,
+)
 from continuum.hydradb.claims import (
     artifact_source_fixture,
     artifact_to_claim_fixture,
@@ -334,6 +339,30 @@ def _mention_variants(mention: str, email: str = "", username: str = "") -> set[
     return {v for v in variants if v}
 
 
+def _relation_person_names(content: str) -> list[str]:
+    """Third-person person names from relation-verb subjects/recipients.
+
+    A body name becomes a person entity only when it is the grammatical
+    subject or recipient of a recognized ownership/handoff/responsibility
+    verb — never every capitalized token. Uses the SAME regexes as claim
+    extraction so resolution and extraction always agree.
+    """
+    names: list[str] = []
+    for match in OWNS_VERB_RE.finditer(content):
+        names.append(match.group(1).strip())
+    for match in RESPONSIBLE_VERB_RE.finditer(content):
+        names.append(match.group(1).strip())
+    for match in HANDED_TO_VERB_RE.finditer(content):
+        names.append(match.group(1).strip())
+        names.append(match.group(2).strip())
+    return names
+
+
+def _relation_account_names(content: str) -> list[str]:
+    """Account objects of responsibility verbs (Batch 1)."""
+    return [match.group(2).strip() for match in RESPONSIBLE_VERB_RE.finditer(content)]
+
+
 def _accounts_in_text(content: str) -> set[str]:
     accounts: set[str] = set()
     for match in OWNS_VERB_RE.finditer(content):
@@ -392,6 +421,25 @@ def resolve_entities_from_artifacts(artifacts: list[Artifact]) -> tuple[dict[str
 
     for artifact in artifacts:
         for account in _accounts_in_text(artifact.content or ""):
+            key = _account_entity_key(account)
+            cand = candidate_from_mention(mention=account, type="account", source=artifact.source)
+            if key not in entities:
+                entities[key] = CanonicalEntity(entity_key=key, label="account", name=account)
+            entities[key].absorb(cand)
+
+    # Third-person relation-verb subjects/recipients (Batch 1): a body name
+    # like "Morgan owns Acme" mints person:morgan even when no participant/
+    # @mention/email signal exists. The same pass mints the account object of
+    # a responsibility verb ("responsible for the Redwood account").
+    for artifact in artifacts:
+        content = artifact.content or ""
+        for name in _relation_person_names(content):
+            key = _person_entity_key(name)
+            cand = candidate_from_mention(mention=name, type="person", source=artifact.source)
+            if key not in entities:
+                entities[key] = CanonicalEntity(entity_key=key, label="person", name=name)
+            entities[key].absorb(cand)
+        for account in _relation_account_names(content):
             key = _account_entity_key(account)
             cand = candidate_from_mention(mention=account, type="account", source=artifact.source)
             if key not in entities:

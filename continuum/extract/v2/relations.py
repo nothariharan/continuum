@@ -34,7 +34,13 @@ from .timestamps import resolve_timestamps
 OWNER_LINE_RE = re.compile(r"^\s*Owner:\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*-", re.MULTILINE)
 ASSIGNED_LINE_RE = re.compile(r"^\s*Assigned(?: to)?:\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)", re.MULTILINE)
 OWNS_VERB_RE = re.compile(
-    r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:owns|is the owner of|is owner of|is taking over|takes over)\s+(?:the\s+)?([A-Z][\w-]+(?:\s+[A-Z][\w-]+){0,3})"
+    r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:owns|is the owner of|is owner of|is taking over|takes over|took over)\s+(?:the\s+)?([A-Z][\w-]+(?:\s+[A-Z][\w-]+){0,3})"
+)
+RESPONSIBLE_VERB_RE = re.compile(
+    r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:is\s+(?:now\s+)?responsible\s+for)\s+(?:the\s+)?([A-Z][\w-]+(?:\s+(?!account\b)[A-Z][\w-]+){0,2})"
+)
+HANDED_TO_VERB_RE = re.compile(
+    r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:handed|handing)\s+(?:the\s+)?[\w-]+(?:\s+[\w-]+){0,2}?\s+to\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)"
 )
 LEADS_VERB_RE = re.compile(
     r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:leads|is leading|is driving|drives)\s+(?:the\s+)?([A-Z][\w-]+(?:\s+[A-Z][\w-]+){0,3})"
@@ -287,6 +293,7 @@ def extract_relations(
     # 2. Verb patterns with explicit subject and object text
     for pattern, predicate, confidence in (
         (OWNS_VERB_RE, "OWNS", 0.85),
+        (RESPONSIBLE_VERB_RE, "OWNS", 0.84),
         (LEADS_VERB_RE, "LEADS", 0.84),
         (MAINTAINS_VERB_RE, "MAINTAINS", 0.83),
         (ASSIGNED_TO_VERB_RE, "ASSIGNED_TO", 0.84),
