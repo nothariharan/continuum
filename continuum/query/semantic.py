@@ -131,6 +131,25 @@ class StateQueryAdapter:
     def get_evidence(self, entity_key: str, predicate: str = "OWNS") -> dict[str, Any]:
         return resolve_provenance(self._client, entity_key, predicate)
 
+    def get_ranked_evidence(self, entity_key: str, predicate: str = "OWNS") -> dict[str, Any]:
+        """Provenance evidence ranked + grouped around the current state (Sec 10).
+
+        Adds a ``cross_source`` summary (strongest item first, evidence grouped
+        by subject, which source systems corroborate) on top of the standard
+        provenance envelope. Never fabricates confidence.
+        """
+        from continuum.query.evidence import summarize_cross_source
+
+        prov = resolve_provenance(self._client, entity_key, predicate)
+        current = resolve_state(self._client, entity_key, predicate)
+        subject = None
+        if current.get("status") == "definitive" and current.get("value"):
+            subject = current["value"].get("name") or current["value"].get("entity_id")
+        summary = summarize_cross_source(prov.get("evidence") or [], current_subject=subject)
+        prov["evidence"] = summary["ranked"]
+        prov["cross_source"] = summary
+        return prov
+
     def get_dependencies(self, entity_key: str) -> dict[str, Any]:
         rows = self._client.execute(
             DEPENDENCIES_QUERY,

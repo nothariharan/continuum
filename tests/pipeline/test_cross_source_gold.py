@@ -160,3 +160,19 @@ def test_gold_evidence_spans_both_sources(client: HydraDBClient, gold_state: dic
     )
     sources = {e.get("source") for e in now["evidence"]} | {e.get("source") for e in before["evidence"]}
     assert {"Slack", "Gmail"} <= sources
+
+
+@pytest.mark.hydradb
+def test_gold_ranked_evidence_is_cross_source(client: HydraDBClient, gold_state: dict):
+    from continuum.query.semantic import StateQueryAdapter
+
+    adapter = StateQueryAdapter(client)
+    ranked = adapter.get_ranked_evidence("account:acme", "OWNS")
+    summary = ranked["cross_source"]
+    # One fact, corroborated by both source systems (Sec 10).
+    assert summary["multi_source"] is True
+    assert {"Slack", "Gmail"} <= set(summary["sources"])
+    # The strongest evidence leads and supports the current owner.
+    assert summary["top"] is not None
+    assert "Priya" in str(summary["top"].get("subject_mention"))
+
