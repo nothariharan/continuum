@@ -18,7 +18,11 @@ def _adapter() -> ContinuumMCPAdapter:
 def test_tool_catalog_is_mcp_shaped():
     tools = _adapter().tools()
     names = {t["name"] for t in tools}
-    assert names == {"ask", "get_current_state", "get_history", "get_conflicts", "get_evidence", "resolve_entity", "export_graph"}
+    assert names == {
+        "ask", "get_current_state", "get_state_as_of", "get_history",
+        "get_conflicts", "get_evidence", "get_dependencies", "resolve_entity",
+        "export_graph",
+    }
     for tool in tools:
         assert tool["name"] and tool["description"]
         schema = tool["inputSchema"]

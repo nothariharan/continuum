@@ -34,12 +34,26 @@ _TOOL_SPECS: list[tuple[str, str, dict[str, Any]]] = [
         },
     ),
     (
+        "get_state_as_of",
+        "Resolved state for an entity and predicate as of a given date (YYYY-MM-DD).",
+        {
+            "entity_key": {"type": "string"},
+            "date": {"type": "string"},
+            "predicate": {"type": "string", "default": "OWNS"},
+        },
+    ),
+    (
         "get_history",
         "Ordered history of resolved state transitions for an entity.",
         {
             "entity_key": {"type": "string"},
             "predicate": {"type": "string", "default": "OWNS"},
         },
+    ),
+    (
+        "get_dependencies",
+        "Graph dependencies (DEPENDS_ON) for an entity.",
+        {"entity_key": {"type": "string"}},
     ),
     (
         "get_conflicts",
@@ -102,6 +116,12 @@ class ContinuumMCPAdapter:
             return self._query.ask(str(arguments.get("question", "")), question_id="mcp")
         if tool == "get_current_state":
             return self._semantic.get_current_state(arguments["entity_key"], arguments.get("predicate", "OWNS"))
+        if tool == "get_state_as_of":
+            return self._semantic.get_state_as_of(
+                arguments["entity_key"], arguments["date"], arguments.get("predicate", "OWNS")
+            )
+        if tool == "get_dependencies":
+            return self._semantic.get_dependencies(arguments["entity_key"])
         if tool == "get_history":
             return self._semantic.get_history(arguments["entity_key"], arguments.get("predicate", "OWNS"))
         if tool == "get_conflicts":

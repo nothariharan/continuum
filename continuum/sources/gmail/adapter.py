@@ -138,7 +138,15 @@ class GmailAdapter:
     def normalize(self, raw: Any) -> Artifact:
         if not isinstance(raw, GmailMessage):
             raise TypeError(f"expected GmailMessage, got {type(raw)}")
-        return normalize_gmail_message(raw)
+        try:
+            return normalize_gmail_message(raw)
+        except Exception as exc:  # noqa: BLE001 - surface parse failures, never drop silently
+            from .live import GmailLiveError
+
+            raise GmailLiveError(
+                f"Gmail message {getattr(raw, 'message_id', '?')} failed to normalize: {exc}",
+                code="GMAIL_PARSE_FAILURE",
+            ) from exc
 
     def cursor(self, raw: Any) -> SyncCursor:
         if not isinstance(raw, GmailMessage):

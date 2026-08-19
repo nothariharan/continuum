@@ -163,6 +163,30 @@ def test_gold_evidence_spans_both_sources(client: HydraDBClient, gold_state: dic
 
 
 @pytest.mark.hydradb
+def test_gold_query_trace_is_safe_and_complete(client: HydraDBClient, gold_state: dict):
+    from continuum.query.trace import build_query_trace, render_trace
+
+    question = {
+        "question_id": "gold_trace", "question": "Who owns Acme now?",
+        "predicate": "OWNS", "evidence_entity": "account:acme",
+    }
+    trace = build_query_trace(client, question)
+
+    # Complete: every stage present (Sec 20).
+    assert trace["decomposition"]["intent"]
+    assert trace["state"]["owner"] == "Priya"
+    assert trace["temporal"]["valid_from"] == "2026-08-01"
+    assert {"Slack", "Gmail"} <= set(trace["evidence"]["sources"])
+    assert trace["evidence"]["multi_source"] is True
+
+    # Safe: no raw private content, no tokens anywhere in the rendered trace.
+    rendered = render_trace(trace)
+    assert "transfers from Morgan" not in rendered  # no raw message body
+    assert "token" not in rendered.lower()
+    assert "Priya" in rendered
+
+
+@pytest.mark.hydradb
 def test_gold_ranked_evidence_is_cross_source(client: HydraDBClient, gold_state: dict):
     from continuum.query.semantic import StateQueryAdapter
 
@@ -175,4 +199,62 @@ def test_gold_ranked_evidence_is_cross_source(client: HydraDBClient, gold_state:
     # The strongest evidence leads and supports the current owner.
     assert summary["top"] is not None
     assert "Priya" in str(summary["top"].get("subject_mention"))
+
+
+@pytest.mark.hydradb
+def test_gold_graph_reflects_cross_source(client: HydraDBClient, gold_state: dict):
+    # Section 17: the exported graph shows Morgan -> Acme -> Priya with evidence
+    # nodes from BOTH sources — one graph, not source-specific graphs.
+    from continuum.query.graph_export import export_graph
+
+    graph = export_graph(client, "account:acme")
+    names = {n.get("name") for n in graph["nodes"] if n.get("type") == "entity"}
+    assert {"Morgan", "Priya"} <= names
+
+    owns_edges = [(e["source"], e["target"]) for e in graph["edges"] if e["rel"] == "OWNS"]
+    assert ("person:morgan", "account:acme") in owns_edges
+    assert ("person:priya", "account:acme") in owns_edges
+
+    source_names = {n.get("name") for n in graph["nodes"] if n.get("type") == "source"}
+    assert {"Slack", "Gmail"} <= source_names
+
+
+@pytest.mark.hydradb
+def test_gold_mcp_matches_slack_state(client: HydraDBClient, gold_state: dict):
+    # Section 18: MCP returns the SAME state the Slack bot consumes — both are
+    # thin transports over the one query layer.
+    from continuum.delivery.mcp_adapter import ContinuumMCPAdapter
+
+    mcp = ContinuumMCPAdapter(client)
+    mcp_state = mcp.call("get_current_state", {"entity_key": "account:acme", "predicate": "OWNS"})
+
+    # The Slack bot answers via the same core (answer -> state_result).
+    slack_answer = answer(
+        client,
+        {"question_id": "gold_slack", "question": "Who owns Acme now?", "predicate": "OWNS", "evidence_entity": "account:acme"},
+    )
+    slack_state = slack_answer["state_result"]
+
+    assert mcp_state["status"] == slack_state["status"] == "definitive"
+    assert mcp_state["value"]["name"] == slack_state["value"]["name"] == "Priya"
+    assert mcp_state["valid_from"] == slack_state["valid_from"] == "2026-08-01"
+
+    # MCP also exposes as-of and history over the same state.
+    hist = mcp.call("get_history", {"entity_key": "account:acme"})
+    assert hist["status"] == "definitive"
+
+
+@pytest.mark.hydradb
+def test_gold_slack_block_kit_shows_cross_source(client: HydraDBClient, gold_state: dict):
+    from continuum.delivery.slack_formatter import format_slack_answer
+
+    slack_answer = answer(
+        client,
+        {"question_id": "gold_fmt", "question": "Who owns Acme now?", "predicate": "OWNS", "evidence_entity": "account:acme"},
+    )
+    rendered = format_slack_answer(slack_answer)
+    text = rendered["text"]
+    assert "Priya owns Acme now." in text
+    assert "Slack" in text and "Gmail" in text  # both sources cited
+    assert isinstance(rendered["blocks"], list) and rendered["blocks"]
 
