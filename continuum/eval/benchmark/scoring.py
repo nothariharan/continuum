@@ -25,7 +25,10 @@ def _is_abstention(text: str) -> bool:
     return any(marker in text for marker in ABSTENTION_MARKERS)
 
 
-def score_answer(got: str, gold: str) -> bool:
+def score_answer_v1(got: str, gold: str) -> bool:
+    """Legacy scorer (pre-versioning). Preserved verbatim for reproducing old
+    benchmark numbers. Known bug: an empty `got` passes the substring check
+    (`"" in gold_n` is True), so `score_answer_v1("", gold) == True`."""
     got_n = normalize_text(got)
     gold_n = normalize_text(gold)
     if not gold_n:
@@ -43,6 +46,43 @@ def score_answer(got: str, gold: str) -> bool:
         if overlap >= 0.6:
             return True
     return False
+
+
+def score_answer_v2(got: str, gold: str) -> bool:
+    """Current official scorer.
+
+    Differences vs v1:
+    - rejects empty/whitespace `got` up front (v1 let `"" in gold` pass);
+    - requires a minimum informative answer (empty and 1-char answers never
+      pass);
+    - everything else (exact, substring, abstention symmetry, token overlap)
+      is unchanged.
+    """
+    got_n = normalize_text(got)
+    gold_n = normalize_text(gold)
+    if not got_n or not gold_n:
+        return False
+    if len(got_n) < 2:
+        return False
+    if got_n == gold_n:
+        return True
+    if gold_n in got_n or got_n in gold_n:
+        return True
+    if _is_abstention(gold_n) and _is_abstention(got_n):
+        return True
+    gold_tokens = set(gold_n.split())
+    got_tokens = set(got_n.split())
+    if len(gold_tokens) >= 3:
+        overlap = len(gold_tokens & got_tokens) / len(gold_tokens)
+        if overlap >= 0.6:
+            return True
+    return False
+
+
+# Backward-compatible alias: analysis/audit scripts that reproduce the OLD
+# number keep importing `score_answer` (== v1). The official leaderboard uses
+# `score_rows`, which is versioned to v2.
+score_answer = score_answer_v1
 
 
 def score_document_recall(retrieved_ids: list[str], expected_ids: list[str]) -> float | None:
@@ -69,7 +109,7 @@ def score_rows(rows: list[dict[str, Any]], questions_by_id: dict[str, dict[str, 
     for row in rows:
         question = questions_by_id[row["question_id"]]
         expected_ids = question.get("expected_doc_ids") or []
-        if score_answer(str(row.get("answer", "")), str(question.get("gold_answer", ""))):
+        if score_answer_v2(str(row.get("answer", "")), str(question.get("gold_answer", ""))):
             answer_correct += 1
         recall = score_document_recall(row.get("retrieved_artifacts") or [], expected_ids)
         if recall is not None:
