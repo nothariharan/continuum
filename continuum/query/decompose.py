@@ -48,8 +48,17 @@ _SKIP_WORDS = frozenset(
 
 _INTENT_RULES: list[tuple[str, re.Pattern]] = [
     ("ENTITY_RESOLUTION", re.compile(r"\b(same person|same as|also known as|same account|identical to|is .* and .* the same)\b", re.IGNORECASE)),
-    ("PROVENANCE", re.compile(r"\b(which source|which artifact|where does .* come|evidence chain|provenance|which document|which message)\b", re.IGNORECASE)),
-    ("CONFLICT", re.compile(r"\b(who actually|which claim|contradicts?|conflicting claims|inconsistent claims|disagree)\b", re.IGNORECASE)),
+    ("SOURCE_PRESENCE", re.compile(r"\bdoes\b.*\bshow\b|\bwhich of\b.*\b(slack|gmail|github|linear|jira|confluence)\b", re.IGNORECASE)),
+    ("PROVENANCE", re.compile(
+        r"\b(which source|which artifact|which claim and artifact|where does .* come|"
+        r"evidence chain|provenance|which document|which message|show the evidence)\b",
+        re.IGNORECASE,
+    )),
+    ("CONFLICT", re.compile(
+        r"\b(who actually|which claim(?! and artifact)|contradicts?|conflicting claims|"
+        r"inconsistent claims|disagree)\b",
+        re.IGNORECASE,
+    )),
     ("DECISION", re.compile(r"\b(decided|decision|decided to|decided by|who approved|who chose|who picked)\b", re.IGNORECASE)),
     ("HISTORY", re.compile(r"\b(used to|previously|before|was .* previously|what changed|who owned it then|at that time|originally)\b", re.IGNORECASE)),
     ("DEPENDENCY", re.compile(r"\b(depends on|depend on|blocked by|blocks|relies on|dependency)\b", re.IGNORECASE)),
@@ -214,9 +223,9 @@ def parse_temporal_constraints(question: str) -> list[TemporalConstraint]:
         past = re.search(r"\b(used to|previously|was .* before|did .* own|originally)\b", lowered)
         if past:
             constraints.append(TemporalConstraint(kind="historical", value=None, anchor=None, raw=past.group(0)))
-        present = re.search(r"\b(now|currently|current|today|as of now)\b", lowered)
-        if present:
-            constraints.append(TemporalConstraint(kind="current", value=None, anchor=None, raw=present.group(0)))
+    present = re.search(r"\b(now|currently|current|today|as of now)\b", lowered)
+    if present and not any(c.kind == "current" for c in constraints):
+        constraints.append(TemporalConstraint(kind="current", value=None, anchor=None, raw=present.group(0)))
 
     return constraints
 

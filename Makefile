@@ -212,6 +212,12 @@ run-slack-bot:
 run-slack-events:
 	PYTHONPATH=. python3 scripts/run_slack_events_gateway.py
 
+run-memory-worker:
+	PYTHONPATH=. python3 scripts/run_memory_worker.py --mode fixtures
+
+slack-demo-sync:
+	PYTHONPATH=. python3 scripts/slack_demo_initial_sync.py --mode fixtures
+
 ingest-source:
 	python3 scripts/ingest_source.py --source $(SOURCE) --mode $(MODE)
 
