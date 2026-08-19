@@ -1,4 +1,4 @@
-"""Tests for Gmail live scaffold — explicit failure states, no fake success."""
+"""Tests for Gmail live client credential/auth guards (no network, no deps)."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from continuum.sources.gmail.live import GmailLiveClient
+from continuum.sources.gmail.live import GmailLiveClient, GmailLiveError
 from continuum.sources.gmail.oauth import GmailCredentials
 
 
@@ -16,23 +16,24 @@ def test_live_client_requires_credentials_file(tmp_path: Path):
         client.authenticate()
 
 
-def test_live_client_list_messages_not_wired(tmp_path: Path):
-    creds = tmp_path / "creds.json"
-    creds.write_text("{}", encoding="utf-8")
-    client = GmailLiveClient(credentials_path=creds)
-    with pytest.raises(NotImplementedError, match="list_messages"):
-        client.list_messages()
+def test_live_client_requires_credentials_path_when_no_service():
+    client = GmailLiveClient()
+    with pytest.raises(GmailLiveError, match="credentials_path is required"):
+        client.authenticate()
 
 
-def test_live_client_get_message_not_wired(tmp_path: Path):
-    creds = tmp_path / "creds.json"
-    creds.write_text("{}", encoding="utf-8")
-    client = GmailLiveClient(credentials_path=creds)
-    with pytest.raises(NotImplementedError, match="not wired"):
-        client.get_message("msg-1")
+def test_injected_service_skips_credentials(tmp_path: Path):
+    # A pre-built service bypasses all credential handling.
+    client = GmailLiveClient(service=object())
+    client.authenticate()  # no error
 
 
 def test_credentials_from_env_requires_path(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.delenv("GMAIL_CREDENTIALS_PATH", raising=False)
     with pytest.raises(ValueError, match="GMAIL_CREDENTIALS_PATH is required"):
         GmailCredentials.from_env()
+
+
+def test_resolved_token_path_defaults_next_to_credentials(tmp_path: Path):
+    creds = GmailCredentials(credentials_path=tmp_path / "credentials.json")
+    assert creds.resolved_token_path == tmp_path / "gmail_token.json"
