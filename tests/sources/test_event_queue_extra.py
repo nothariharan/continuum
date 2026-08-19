@@ -67,8 +67,18 @@ def test_mark_processed_persists_status(tmp_path: Path):
     assert events[0].status == "processed"
 
 
-def test_malformed_line_raises_loudly(tmp_path: Path):
+def test_malformed_line_skipped_not_raised(tmp_path: Path):
     path = tmp_path / "events.jsonl"
-    path.write_text('{"event_id": "ok"}\n{not-json\n', encoding="utf-8")
-    with pytest.raises((json.JSONDecodeError, TypeError, KeyError)):
-        EventQueue(path).load()
+    path.write_text('{"event_id": "ok", "source": "slack", "event_type": "message", "native_id": "C1:1.0", "payload": {}, "received_at": "2026-08-18T00:00:00+00:00"}\n{not-json\n', encoding="utf-8")
+    events = EventQueue(path).load()
+    assert len(events) == 1
+    assert events[0].event_id == "ok"
+
+
+def test_mark_processed_is_atomic_no_tmp_leftover(tmp_path: Path):
+    path = tmp_path / "events.jsonl"
+    queue = EventQueue(path)
+    queue.enqueue(_event("evt-1", "C1:1.0"))
+    queue.mark_processed("evt-1", status="processed")
+    assert not path.with_suffix(".jsonl.tmp").exists()
+    assert [e.status for e in EventQueue(path).load()] == ["processed"]

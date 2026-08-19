@@ -48,6 +48,7 @@ class MemoryWorker:
     artifacts_path: Path = DEFAULT_ARTIFACTS
     resolutions_path: Path = DEFAULT_RESOLUTIONS
     refinement_provider: str = "mock"
+    max_attempts: int = 3
     _resolutions: dict[str, dict[str, Any]] = field(default_factory=dict, init=False)
     _seen_artifacts: set[str] = field(default_factory=set, init=False)
 
@@ -120,6 +121,19 @@ class MemoryWorker:
             detail=f"{len(fresh)} artifact(s), {len(rejected)} rejected",
         )
 
+    def _record_failure(self, event: SourceEvent, detail: str) -> MemoryWorkerResult:
+        """Bounded retry: leave pending until max_attempts, then mark failed.
+
+        A poison event (e.g. record never resolves) must not wedge the queue —
+        it is retried a bounded number of times, then parked as ``failed``.
+        """
+        attempts = event.attempts + 1
+        if attempts >= self.max_attempts:
+            self.queue.mark_processed(event.event_id, status="failed", attempts=attempts)
+            return MemoryWorkerResult(event.event_id, "failed", detail=detail)
+        self.queue.mark_processed(event.event_id, status="pending", attempts=attempts)
+        return MemoryWorkerResult(event.event_id, "retry", detail=detail)
+
     def process_event(self, event: SourceEvent) -> MemoryWorkerResult:
         if event.status != "pending":
             return MemoryWorkerResult(event.event_id, "skipped", detail=f"status={event.status}")
@@ -131,16 +145,25 @@ class MemoryWorker:
             if channel and ts:
                 native_id = f"{channel}:{ts}"
         if not native_id:
-            self.queue.mark_processed(event.event_id, status="failed")
-            return MemoryWorkerResult(event.event_id, "failed", detail="missing native_id")
+            return self._record_failure(event, "missing native_id")
 
-        artifact = self.lifecycle.fetch_record(native_id)
+        try:
+            artifact = self.lifecycle.fetch_record(native_id)
+        except Exception as exc:  # noqa: BLE001 — transient source error is retryable
+            return self._record_failure(event, f"fetch error: {exc}")
+
         if artifact is None:
-            self.queue.mark_processed(event.event_id, status="failed")
-            return MemoryWorkerResult(event.event_id, "failed", detail="record not found")
+            return self._record_failure(event, "record not found")
 
-        result = self.ingest_artifacts([artifact])
-        self.queue.mark_processed(event.event_id, status="processed" if result.status == "processed" else "failed")
+        try:
+            result = self.ingest_artifacts([artifact])
+        except Exception as exc:  # noqa: BLE001 — never let one event kill the loop
+            logger.exception("memory_ingest failed event_id=%s", event.event_id)
+            return self._record_failure(event, f"ingest error: {exc}")
+
+        # A "skipped" (already-seen) event is success, not failure.
+        status = "processed" if result.status in {"processed", "skipped"} else "failed"
+        self.queue.mark_processed(event.event_id, status=status, attempts=event.attempts + 1)
         return MemoryWorkerResult(
             event_id=event.event_id,
             status=result.status,
@@ -156,11 +179,14 @@ class MemoryWorker:
             results.append(self.process_event(event))
         return results
 
-    def run_forever(self, *, poll_seconds: float = 2.0) -> None:
+    def run_forever(self, *, poll_seconds: float = 2.0, stop_event: Any = None) -> None:
         logger.info("memory_worker started queue=%s", self.queue.path)
         while True:
-            batch = self.process_pending()
-            if batch:
+            if stop_event is not None and stop_event.is_set():
+                logger.info("memory_worker stopping (stop event set)")
+                break
+            try:
+                batch = self.process_pending()
                 for row in batch:
                     logger.info(
                         "memory_event event_id=%s status=%s claims=%s",
@@ -168,4 +194,11 @@ class MemoryWorker:
                         row.status,
                         row.claims_loaded,
                     )
+            except KeyboardInterrupt:
+                logger.info("memory_worker interrupted — flushing and exiting")
+                self._persist_resolutions()
+                break
+            except Exception:  # noqa: BLE001 — poll loop must survive transient errors
+                logger.exception("memory_worker poll iteration failed")
             time.sleep(poll_seconds)
+        self._persist_resolutions()
