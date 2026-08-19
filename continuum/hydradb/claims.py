@@ -17,6 +17,7 @@ HydraDB constraints honored:
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from time import perf_counter
 from typing import Any, Iterable, Mapping
@@ -26,7 +27,28 @@ from continuum.hydradb import HydraDBClient
 
 OPEN_END = "9999-12-31"
 ID_OFFSET = 1_000_000_000_000
-ID_SPAN = 10_000
+# Phase 2B id space [ID_OFFSET, ID_OFFSET + ID_SPAN). Partitioned by node kind so
+# ids derive from a stable hash of each node's business key (see `_stable_id`).
+# Key-derived ids make repeated/incremental loads idempotent AND non-destructive:
+# distinct claims get distinct ids (history is preserved across ingest batches),
+# while a recurring key (an entity, a replayed claim) maps to the same node.
+ID_SPAN = 4_000_000_000
+_ID_PARTITIONS = ("claim", "artifact", "source", "entity")
+_PARTITION_SPAN = ID_SPAN // len(_ID_PARTITIONS)
+
+
+def _stable_id(kind: str, key: str) -> int:
+    """Deterministic in-range node id from a business key, partitioned by kind.
+
+    Positional counters (offset + index) collided across separate load_claims
+    calls, so an incremental batch overwrote the prior batch's claims via
+    MERGE-on-id. Hashing the stable key instead keeps distinct keys distinct
+    (preserving history) and equal keys equal (idempotent replay).
+    """
+    partition = _ID_PARTITIONS.index(kind)
+    base = ID_OFFSET + partition * _PARTITION_SPAN
+    digest = hashlib.blake2b(key.encode("utf-8"), digest_size=8).hexdigest()
+    return base + (int(digest, 16) % _PARTITION_SPAN)
 
 PREDICATE_RELS = tuple(sorted(SUPPORTED_PREDICATES))
 ENTITY_LABELS = ("Person", "Account", "Project", "Service", "Team")
@@ -231,10 +253,6 @@ def artifact_source_fixture(artifact: "Artifact") -> dict[str, Any]:
     }
 
 
-def _next_ids(count: int, offset: int = ID_OFFSET) -> list[int]:
-    return [offset + index for index in range(count)]
-
-
 def resolve_mentions(claims: list[Claim], resolutions: Mapping[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
     """Map claim mention strings to resolved entity definitions (manual, Phase 2B).
 
@@ -357,16 +375,12 @@ def load_claims(
             )
 
     claim_ids = [claim.claim_id for claim in claims]
-    claim_num_ids = dict(zip(claim_ids, _next_ids(len(claim_ids), ID_OFFSET)))
+    claim_num_ids = {cid: _stable_id("claim", cid) for cid in claim_ids}
     artifact_list = list(fixture_artifacts)
     source_list = list(fixture_sources)
-    base = ID_OFFSET + ID_SPAN // 2
-    artifact_num_ids = {a["key"]: base + index for index, a in enumerate(artifact_list)}
-    source_num_ids = {s["key"]: base + len(artifact_list) + index for index, s in enumerate(source_list)}
-    entity_num_ids = {
-        key: base + len(artifact_list) + len(source_list) + index
-        for index, key in enumerate(entity_defs)
-    }
+    artifact_num_ids = {a["key"]: _stable_id("artifact", a["key"]) for a in artifact_list}
+    source_num_ids = {s["key"]: _stable_id("source", s["key"]) for s in source_list}
+    entity_num_ids = {key: _stable_id("entity", key) for key in entity_defs}
 
     dsid_artifacts = {row["dsid"]: row for row in client.execute(READ_DSID_ARTIFACTS).rows}
     fixture_observed = {a["key"]: a.get("observed_at") for a in artifact_list}
@@ -489,10 +503,7 @@ def load_claims(
     }
     if real_sources:
         source_keys = sorted(f"source:{name}" for name in real_sources)
-        source_extra = {
-            key: ID_OFFSET + ID_SPAN - len(source_keys) + index
-            for index, key in enumerate(source_keys)
-        }
+        source_extra = {key: _stable_id("source", key) for key in source_keys}
         client.execute_batch(
             CREATE_SOURCE_FIXTURE,
             [{"id": source_extra[key], "key": key, "name": key.removeprefix("source:")} for key in source_keys],

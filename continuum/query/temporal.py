@@ -311,6 +311,15 @@ def resolve_state_for_constraints(
         if c.kind == "as_of" and c.value:
             return resolve_state_on(client, entity_key, c.value, predicate)
         if c.kind == "before":
+            # "before <Person>" means before that subject held the entity — resolve
+            # against the subject's own claim start (deterministic: the day before
+            # their start excludes same-day ties). Only anchors that are NOT a
+            # claim subject (events like "before the outage") fall back to the
+            # artifact-date lookup. An explicit date on the constraint wins outright.
+            if not c.value and c.anchor:
+                by_entity = resolve_state_before_entity(client, entity_key, predicate, c.anchor)
+                if by_entity.get("status") != "absent":
+                    return by_entity
             value = c.value or anchor_date(client, c.anchor)
             if value:
                 return resolve_state_before(client, entity_key, value, predicate)

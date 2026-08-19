@@ -188,3 +188,40 @@ def test_pipeline_before_handoff_answer(client: HydraDBClient):
     assert result["state_result"]["status"] == "definitive"
     assert result["state_result"]["value"]["name"] == "Priya"
     assert result["state_result"]["resolution"] == "before"
+
+
+@pytest.mark.hydradb
+def test_incremental_load_preserves_prior_batch_claims(client: HydraDBClient):
+    """Two separate load_claims calls must not overwrite each other.
+
+    Regression: node ids were positional (offset + index) and restarted at the
+    same offset every call, so an incremental batch clobbered the previous
+    batch's claims via MERGE-on-id — destroying history in the memory worker's
+    continuous-ingest path. Ids now derive from a stable hash of the claim key,
+    so distinct claims coexist across batches.
+    """
+    scenario = build_cross_source_scenario()
+    claims = list(scenario["claims"])
+    assert len(claims) >= 2, "scenario must have >=2 claims to split into batches"
+    half = len(claims) // 2
+    batch1, batch2 = claims[:half], claims[half:]
+
+    delete_all_artifacts(client)
+    wipe_for_entities(client, scenario["resolutions"].keys())
+
+    common = dict(
+        resolutions=scenario["resolutions"],
+        fixture_artifacts=scenario["artifacts"],
+        fixture_sources=scenario["sources"],
+        reset=False,
+    )
+    load_claims(client, claims=batch1, **common)
+    load_claims(client, claims=batch2, **common)
+
+    present = {
+        row["k"]
+        for row in client.execute("MATCH (c:Claim) RETURN c.key AS k").rows
+    }
+    expected = {c.claim_id for c in claims}
+    missing = expected - present
+    assert not missing, f"second batch overwrote prior claims: {sorted(missing)}"
