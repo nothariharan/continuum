@@ -26,7 +26,28 @@ from continuum.claims import SUPPORTED_PREDICATES, Claim, ContractError
 from continuum.hydradb import HydraDBClient
 
 OPEN_END = "9999-12-31"
+OPEN_START = "0001-01-01"
 ID_OFFSET = 1_000_000_000_000
+
+
+def _validity_bounds(valid_from: str | None, valid_to: str | None, observed_at: str) -> tuple[str, str]:
+    """Resolve stored (valid_from, valid_to) for a claim.
+
+    An interval that *closes* (``valid_to`` set) but has no known start means
+    the subject held state "since before" the observed window — its start is
+    open, not the observation date. Defaulting such a claim's ``valid_from`` to
+    ``observed_at`` would collapse a previous-owner interval to zero length and
+    hide it from "who owned it before" queries. Open-ended current claims
+    (no ``valid_to``) still start at the observation time.
+    """
+    vt = valid_to[:10] if valid_to else OPEN_END
+    if valid_from:
+        vf = valid_from[:10]
+    elif valid_to:
+        vf = OPEN_START
+    else:
+        vf = observed_at[:10]
+    return vf, vt
 # Phase 2B id space [ID_OFFSET, ID_OFFSET + ID_SPAN). Partitioned by node kind so
 # ids derive from a stable hash of each node's business key (see `_stable_id`).
 # Key-derived ids make repeated/incremental loads idempotent AND non-destructive:
@@ -467,6 +488,7 @@ def load_claims(
     claim_rows = []
     for claim in claims:
         observed_at = resolve_observed(claim)
+        vf, vt = _validity_bounds(claim.valid_from, claim.valid_to, observed_at)
         claim_rows.append(
             {
                 "id": claim_num_ids[claim.claim_id],
@@ -479,8 +501,8 @@ def load_claims(
                 "subject_name": resolved_subjects[claim.claim_id]["name"],
                 "object_id": resolved_objects[claim.claim_id]["key"],
                 "observed_at": observed_at,
-                "valid_from": (claim.valid_from or observed_at)[:10],
-                "valid_to": claim.valid_to[:10] if claim.valid_to else OPEN_END,
+                "valid_from": vf,
+                "valid_to": vt,
                 "confidence": claim.confidence,
                 "extraction_method": claim.extraction_method,
                 "evidence_span": claim.evidence_span[:200],
@@ -539,8 +561,8 @@ def load_claims(
                     {
                         "source": entity_num_ids[resolved_subjects[c.claim_id]["key"]],
                         "target": entity_num_ids[resolved_objects[c.claim_id]["key"]],
-                        "valid_from": (c.valid_from or resolve_observed(c))[:10],
-                        "valid_to": c.valid_to[:10] if c.valid_to else OPEN_END,
+                        **dict(zip(("valid_from", "valid_to"),
+                                   _validity_bounds(c.valid_from, c.valid_to, resolve_observed(c)))),
                     }
                     for c in matching
                     if resolved_subjects[c.claim_id]["label"] == slabel
