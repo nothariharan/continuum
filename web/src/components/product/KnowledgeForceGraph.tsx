@@ -33,7 +33,11 @@ export function KnowledgeForceGraph({
   height?: number;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const fgRef = useRef<{ d3Force: (n: string) => { strength?: (v: number) => unknown; distance?: (v: number) => unknown } | undefined; d3ReheatSimulation?: () => void } | null>(null);
+  const fgRef = useRef<{
+    d3Force: (n: string) => { strength?: (v: number) => unknown; distance?: (v: number) => unknown } | undefined;
+    d3ReheatSimulation?: () => void;
+    zoomToFit?: (ms?: number, px?: number) => void;
+  } | null>(null);
   const [width, setWidth] = useState(600);
   const hoverRef = useRef<string | null>(null);
 
@@ -72,6 +76,15 @@ export function KnowledgeForceGraph({
         cooldownTicks={140}
         d3VelocityDecay={0.3}
         warmupTicks={40}
+        onEngineStop={() => {
+          // Frame every node once the layout settles — keeps the whole
+          // knowledge graph in view (Obsidian-style) instead of drifting off-canvas.
+          try {
+            fgRef.current?.zoomToFit?.(500, 36);
+          } catch {
+            /* ref not ready */
+          }
+        }}
         nodeRelSize={5}
         nodeLabel={(n: GNode) => n.label ?? n.id}
         onNodeHover={(n: GNode | null) => {
