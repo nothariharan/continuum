@@ -276,3 +276,6 @@ demo-parity:
 	$(DEMO) parity
 demo-recovery:
 	$(DEMO) recovery
+
+run-mcp:
+	uv run continuum-mcp
