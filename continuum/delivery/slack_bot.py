@@ -52,6 +52,7 @@ class SlackQueryBot:
             self._post(channel, payload, thread_ts)
             return payload
         result = self._service().ask(question)
+        self._enrich_history(result)
         if self._show_trace:
             self._post(channel, format_slack_trace(result), thread_ts)
             if self._trace_delay > 0:
@@ -59,6 +60,35 @@ class SlackQueryBot:
         payload = format_slack_answer(result)
         self._post(channel, payload, thread_ts)
         return payload
+
+    def _enrich_history(self, result: dict[str, Any]) -> None:
+        """Attach the ownership timeline so the answer can show 'Previously: …'.
+
+        The current-state envelope only carries the active interval (empty
+        history); we fetch the canonical history for the same entity/predicate so
+        the reply names the prior owner. Best-effort — never blocks the answer.
+        """
+        state = result.get("state_result") or {}
+        if state.get("status") != "definitive" or state.get("resolution") == "before":
+            return
+        if state.get("history") or not (state.get("value") or {}).get("name"):
+            return
+        entity_id = state.get("entity_id")
+        if not entity_id:
+            return
+        try:
+            from continuum.entities.store import EntityStore
+            from continuum.query.semantic import StateQueryAdapter
+
+            store = self._entity_store or EntityStore(self._client)
+            hist = StateQueryAdapter(self._client, entity_store=store).get_history(
+                str(entity_id), str(state.get("predicate") or "OWNS")
+            )
+            rows = hist.get("history") or []
+            if rows:
+                state["history"] = rows
+        except Exception:  # noqa: BLE001 — enrichment is optional, answer stands without it
+            pass
 
     def handle_slash(self, text: str, *, channel: str, user_id: str) -> dict[str, Any]:
         return self.handle_text(text or "", channel=channel, thread_ts=None)
