@@ -47,21 +47,32 @@ export function RedwoodWorkspace() {
     isApiAvailable().then(setLive);
   }, []);
 
-  // background knowledge graph (dim), clustered by source
+  // Dense, organically-connected background knowledge graph (dim), clustered by source.
   const background = useMemo(() => {
     const nodes: GNode[] = [];
     const links: GLink[] = [];
-    (data?.corpus.sources ?? []).forEach((s, si) => {
+    const srcs = data?.corpus.sources ?? [];
+    const leaves: string[] = [];
+    srcs.forEach((s, si) => {
       const hub = `bg-src:${s.name}`;
-      nodes.push({ id: hub, group: s.id, val: 3, state: "dim" });
-      const leaves = 9 + (si % 4) * 3;
-      for (let i = 0; i < leaves; i++) {
+      nodes.push({ id: hub, group: s.id, val: 4, state: "dim" });
+      for (let i = 0; i < 22; i++) {
         const id = `bg:${s.id}:${i}`;
-        nodes.push({ id, group: s.id, val: 1, state: "dim" });
+        nodes.push({ id, group: s.id, val: i % 4 === 0 ? 2.5 : 1, state: "dim" });
         links.push({ source: hub, target: id, state: "dim" });
-        if (i === 0 && si > 0) links.push({ source: hub, target: `bg-src:${(data?.corpus.sources[si - 1].name)}`, state: "dim" });
+        leaves.push(id);
+        if (i > 0 && i % 3 === 0) links.push({ source: id, target: `bg:${s.id}:${i - 1}`, state: "dim" });
       }
+      if (si > 0) links.push({ source: hub, target: `bg-src:${srcs[si - 1].name}`, state: "dim" });
     });
+    if (srcs.length > 1) links.push({ source: `bg-src:${srcs[srcs.length - 1].name}`, target: `bg-src:${srcs[0].name}`, state: "dim" });
+    // cross-source links -> an organic connected blob, not per-source stars
+    const cross = Math.floor(leaves.length * 0.45);
+    for (let k = 0; k < cross && leaves.length > 2; k++) {
+      const a = leaves[Math.floor(Math.random() * leaves.length)];
+      const b = leaves[Math.floor(Math.random() * leaves.length)];
+      if (a !== b) links.push({ source: a, target: b, state: "dim" });
+    }
     return { nodes, links };
   }, [data]);
 
@@ -70,7 +81,7 @@ export function RedwoodWorkspace() {
     const links: GLink[] = background.links.map((l) => ({ ...l }));
     if (result && !result.abstain) {
       const topic = "topic:q";
-      nodes.push({ id: topic, label: short(result.evidence[0]?.title ?? "answer", 20), val: 5, state: "primary" });
+      nodes.push({ id: topic, label: short(query || result.evidence[0]?.title || "answer", 22), val: 5, state: "primary" });
       result.sources.forEach((sn) => {
         const sid = `hl-src:${sn}`;
         nodes.push({ id: sid, label: sn, val: 3, state: "highlight" });
@@ -84,7 +95,7 @@ export function RedwoodWorkspace() {
       });
     }
     return { nodes, links };
-  }, [background, result]);
+  }, [background, result, query]);
 
   const stopLoad = () => { if (loadTimer.current) clearInterval(loadTimer.current); loadTimer.current = null; };
 
@@ -266,13 +277,13 @@ export function RedwoodWorkspace() {
           {/* graph */}
           <div className="relative">
             <KnowledgeForceGraph nodes={graphData.nodes} links={graphData.links} height={440} />
-            <span className="pointer-events-none absolute bottom-3 left-4 rounded-full bg-black/40 px-2.5 py-1 font-mono text-[10px] text-white/70 backdrop-blur-sm">
+            <span className="pointer-events-none absolute bottom-3 left-4 rounded-full border border-[var(--paper-border)] bg-white/85 px-2.5 py-1 font-mono text-[10px] text-[var(--charcoal-muted)] backdrop-blur-sm">
               Part of {(corpus?.total ?? 511962).toLocaleString()} company records
             </span>
             {result && !result.abstain && (
-              <span className="pointer-events-none absolute right-4 top-3 flex items-center gap-3 rounded-full bg-black/40 px-3 py-1 text-[10px] backdrop-blur-sm">
-                <span className="flex items-center gap-1 text-[#f59e0b]"><span className="h-1.5 w-1.5 rounded-full bg-[#f59e0b]" /> answer</span>
-                <span className="flex items-center gap-1 text-[#f472d0]"><span className="h-1.5 w-1.5 rounded-full bg-[#f472d0]" /> relevant</span>
+              <span className="pointer-events-none absolute right-4 top-3 flex items-center gap-3 rounded-full border border-[var(--paper-border)] bg-white/85 px-3 py-1 text-[10px] backdrop-blur-sm">
+                <span className="flex items-center gap-1 font-medium text-[#b45309]"><span className="h-1.5 w-1.5 rounded-full bg-[#f59e0b]" /> answer</span>
+                <span className="flex items-center gap-1 font-medium text-[#6d28d9]"><span className="h-1.5 w-1.5 rounded-full bg-[#7c6cf0]" /> relevant</span>
               </span>
             )}
           </div>

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { LogoMark } from "@/components/ui/LogoMark";
 
 const navLinks = [
-  { href: "/slack", label: "Slack Setup" },
+  { href: "/slack", label: "Slack setup" },
   { href: "/mcp", label: "Use via MCP" },
 ];
 
@@ -55,8 +55,8 @@ export function TopNav({ overHeroOnTop = false }: { overHeroOnTop?: boolean }) {
         {/* Navigation Links */}
         <nav
           className={[
-            "hidden items-center gap-7 text-xs font-medium uppercase tracking-wider transition-colors lg:flex",
-            overHero ? "text-white/60" : "text-[var(--charcoal-muted)]",
+            "hidden items-center gap-7 text-sm font-medium transition-colors lg:flex",
+            overHero ? "text-white/70" : "text-[var(--charcoal-muted)]",
           ].join(" ")}
         >
           {navLinks.map((link) => (
@@ -74,12 +74,23 @@ export function TopNav({ overHeroOnTop = false }: { overHeroOnTop?: boolean }) {
         </nav>
 
         {/* Right CTA Area */}
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/redwood"
+            className={[
+              "hidden rounded-full border px-4 py-2 text-sm font-medium transition-colors sm:inline-flex",
+              overHero
+                ? "border-white/25 text-white hover:bg-white/10"
+                : "border-[var(--paper-border-strong)] text-[var(--charcoal)] hover:border-[var(--purple)] hover:text-[var(--purple)]",
+            ].join(" ")}
+          >
+            Ask a company
+          </Link>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
               href="/workspace"
               className={[
-                "group inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-colors",
+                "group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 overHero
                   ? "bg-white text-[#0a0e1a] hover:bg-white/90"
                   : "bg-[var(--charcoal)] text-white hover:bg-black",

@@ -10,16 +10,18 @@ export type GState = "dim" | "highlight" | "primary";
 export type GNode = { id: string; label?: string; group?: string; val?: number; state?: GState };
 export type GLink = { source: string; target: string; state?: GState };
 
-const COLORS: Record<GState, string> = {
-  dim: "#3b3f4a",
-  highlight: "#f472d0", // pink — relevant cluster
-  primary: "#f59e0b", // orange — primary path
+// Light-theme palette (matches the site).
+const NODE: Record<GState, string> = {
+  dim: "#c3c7d2", // soft slate — visible on paper, recedes
+  highlight: "#7c6cf0", // brand purple — relevant cluster
+  primary: "#f59e0b", // amber — the answer path
 };
-const LINK_COLORS: Record<GState, string> = {
-  dim: "rgba(120,124,140,0.16)",
-  highlight: "rgba(232,121,249,0.75)",
+const LINK: Record<GState, string> = {
+  dim: "rgba(15,23,42,0.10)",
+  highlight: "rgba(124,108,240,0.55)",
   primary: "rgba(245,158,11,0.85)",
 };
+const BG = "#ffffff";
 
 export function KnowledgeForceGraph({
   nodes,
@@ -31,63 +33,81 @@ export function KnowledgeForceGraph({
   height?: number;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const fgRef = useRef<{ d3Force: (name: string) => { strength?: (n: number) => void; distance?: (n: number) => void } | undefined } | null>(null);
+  const fgRef = useRef<{ d3Force: (n: string) => { strength?: (v: number) => unknown; distance?: (v: number) => unknown } | undefined; d3ReheatSimulation?: () => void } | null>(null);
   const [width, setWidth] = useState(600);
 
   useEffect(() => {
-    const measure = () => {
-      if (wrapRef.current) setWidth(wrapRef.current.clientWidth);
-    };
+    const measure = () => wrapRef.current && setWidth(wrapRef.current.clientWidth);
     measure();
     const ro = new ResizeObserver(measure);
     if (wrapRef.current) ro.observe(wrapRef.current);
     return () => ro.disconnect();
   }, []);
 
-  // Tune forces for an organic, clustered (Obsidian-like) layout.
+  // Organic, spread-out clustering (Obsidian-like).
   useEffect(() => {
     const fg = fgRef.current;
     if (!fg) return;
     try {
-      fg.d3Force("charge")?.strength?.(-38);
-      fg.d3Force("link")?.distance?.(26);
+      fg.d3Force("charge")?.strength?.(-95);
+      fg.d3Force("link")?.distance?.(34);
+      fg.d3ReheatSimulation?.();
     } catch {
-      /* forces not ready yet */
+      /* forces not ready */
     }
   }, [nodes, links]);
 
   const data = useMemo(() => ({ nodes: nodes.map((n) => ({ ...n })), links: links.map((l) => ({ ...l })) }), [nodes, links]);
 
   return (
-    <div ref={wrapRef} className="w-full overflow-hidden rounded-3xl" style={{ height, background: "#0a0e1a" }}>
+    <div ref={wrapRef} className="w-full overflow-hidden rounded-3xl border border-[var(--paper-border)]" style={{ height, background: BG }}>
       {/* @ts-expect-error dynamic import loses generic typing */}
       <ForceGraph2D
         ref={fgRef}
         width={width}
         height={height}
         graphData={data}
-        backgroundColor="#0a0e1a"
-        cooldownTicks={120}
-        d3VelocityDecay={0.28}
-        nodeRelSize={4}
+        backgroundColor={BG}
+        cooldownTicks={140}
+        d3VelocityDecay={0.3}
+        warmupTicks={40}
+        nodeRelSize={5}
+        linkColor={(l: GLink) => LINK[l.state ?? "dim"]}
+        linkWidth={(l: GLink) => (l.state === "primary" ? 2 : l.state === "highlight" ? 1.4 : 0.6)}
         nodeCanvasObject={(node: GNode & { x?: number; y?: number }, ctx: CanvasRenderingContext2D, scale: number) => {
           const st = node.state ?? "dim";
-          const base = st === "primary" ? 6 : st === "highlight" ? 4.5 : 1.6 + (node.val ?? 1) * 0.9;
+          const r = st === "primary" ? 7 : st === "highlight" ? 5.5 : 2.4 + (node.val ?? 1) * 0.7;
+          const x = node.x ?? 0;
+          const y = node.y ?? 0;
+          // subtle glow for highlighted nodes
+          if (st !== "dim") {
+            ctx.beginPath();
+            ctx.arc(x, y, r + 3, 0, 2 * Math.PI);
+            ctx.fillStyle = st === "primary" ? "rgba(245,158,11,0.18)" : "rgba(124,108,240,0.18)";
+            ctx.fill();
+          }
           ctx.beginPath();
-          ctx.arc(node.x ?? 0, node.y ?? 0, base, 0, 2 * Math.PI);
-          ctx.fillStyle = COLORS[st];
+          ctx.arc(x, y, r, 0, 2 * Math.PI);
+          ctx.fillStyle = NODE[st];
+          if (st === "dim") {
+            ctx.globalAlpha = 0.9;
+          }
           ctx.fill();
+          ctx.globalAlpha = 1;
           if (st !== "dim" && node.label) {
-            const fontSize = Math.max(3, 11 / scale);
+            const fontSize = Math.max(4, 11 / scale);
             ctx.font = `600 ${fontSize}px Inter, ui-sans-serif, sans-serif`;
-            ctx.fillStyle = "#fff";
             ctx.textAlign = "left";
             ctx.textBaseline = "middle";
-            ctx.fillText(node.label, (node.x ?? 0) + base + 2, node.y ?? 0);
+            const tx = x + r + 3;
+            // white halo for legibility on the graph
+            ctx.lineWidth = Math.max(2, 3 / scale);
+            ctx.strokeStyle = "rgba(255,255,255,0.95)";
+            ctx.strokeText(node.label, tx, y);
+            ctx.fillStyle = "#0f172a";
+            ctx.fillText(node.label, tx, y);
           }
         }}
-        linkColor={(l: GLink) => LINK_COLORS[l.state ?? "dim"]}
-        linkWidth={(l: GLink) => (l.state === "primary" ? 1.8 : l.state === "highlight" ? 1.3 : 0.4)}
         linkDirectionalParticles={0}
       />
     </div>
