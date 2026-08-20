@@ -27,13 +27,34 @@ class GmailAdapter:
         *,
         fixtures_dir: Path | None = None,
         credentials_path: str | None = None,
+        token_path: str | None = None,
+        query: str = "",
+        live_client: Any | None = None,
     ) -> None:
         self._fixtures_dir = fixtures_dir or DEFAULT_FIXTURES
         self._credentials_path = credentials_path
+        self._token_path = token_path
+        self._query = query
         self._fixture_messages: list[GmailMessage] | None = None
+        self._live_client = live_client
+
+    @property
+    def _is_live(self) -> bool:
+        return self._live_client is not None or bool(self._credentials_path)
+
+    def _client(self) -> Any:
+        if self._live_client is None:
+            from .live import GmailLiveClient
+
+            self._live_client = GmailLiveClient(
+                credentials_path=Path(self._credentials_path) if self._credentials_path else None,
+                token_path=Path(self._token_path) if self._token_path else None,
+            )
+        return self._live_client
 
     def authenticate(self) -> None:
-        if self._credentials_path:
+        if self._is_live:
+            self._client().authenticate()
             return
         if not self._fixtures_dir.is_dir():
             raise FileNotFoundError(f"Gmail fixtures dir not found: {self._fixtures_dir}")
@@ -60,8 +81,8 @@ class GmailAdapter:
 
     def fetch(self, *, cursor: SyncCursor | None = None, limit: int = 100) -> FetchResult:
         self.authenticate()
-        if self._credentials_path:
-            raise NotImplementedError("Live Gmail API fetch requires OAuth wiring")
+        if self._is_live:
+            return self._fetch_live(cursor=cursor, limit=limit)
         all_messages = self._load_fixtures()
         start = 0
         if cursor is not None:
@@ -75,10 +96,57 @@ class GmailAdapter:
             next_cursor = self.cursor(batch[-1])
         return FetchResult(records=batch, next_cursor=next_cursor)
 
+    def _fetch_live(self, *, cursor: SyncCursor | None, limit: int) -> FetchResult:
+        """Live fetch. Cursor value is the Gmail mailbox ``historyId`` watermark.
+
+        Initial sync (no cursor) pulls the most recent ``limit`` messages
+        matching the configured query. Incremental sync uses the Gmail History
+        API; if the stored historyId is too old to serve, it falls back to a
+        bounded resync so ingestion never silently stalls.
+        """
+        from .live import GmailLiveError
+
+        client = self._client()
+        if cursor is None:
+            messages = client.list_messages(query=self._query, max_results=limit)
+            watermark = client.get_profile_history_id()
+            next_cursor = (
+                SyncCursor(source=self.source, value=watermark, last_sync_at=utc_now_iso())
+                if watermark
+                else None
+            )
+            return FetchResult(records=messages, next_cursor=next_cursor)
+
+        try:
+            ids, latest = client.list_history(cursor.value, max_results=limit)
+        except GmailLiveError as exc:
+            if getattr(exc, "code", None) == "GMAIL_INGESTION_FAILURE" and "404" in str(exc):
+                # historyId expired — bounded resync from the top.
+                messages = client.list_messages(query=self._query, max_results=limit)
+                watermark = client.get_profile_history_id()
+                next_cursor = (
+                    SyncCursor(source=self.source, value=watermark, last_sync_at=utc_now_iso())
+                    if watermark
+                    else None
+                )
+                return FetchResult(records=messages, next_cursor=next_cursor)
+            raise
+        messages = [client.get_message(mid) for mid in ids]
+        next_cursor = SyncCursor(source=self.source, value=latest, last_sync_at=utc_now_iso()) if latest else cursor
+        return FetchResult(records=messages, next_cursor=next_cursor)
+
     def normalize(self, raw: Any) -> Artifact:
         if not isinstance(raw, GmailMessage):
             raise TypeError(f"expected GmailMessage, got {type(raw)}")
-        return normalize_gmail_message(raw)
+        try:
+            return normalize_gmail_message(raw)
+        except Exception as exc:  # noqa: BLE001 - surface parse failures, never drop silently
+            from .live import GmailLiveError
+
+            raise GmailLiveError(
+                f"Gmail message {getattr(raw, 'message_id', '?')} failed to normalize: {exc}",
+                code="GMAIL_PARSE_FAILURE",
+            ) from exc
 
     def cursor(self, raw: Any) -> SyncCursor:
         if not isinstance(raw, GmailMessage):

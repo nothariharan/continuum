@@ -24,6 +24,7 @@ from continuum.extract.v2.relations import (
     HANDED_TO_VERB_RE,
     OWNS_VERB_RE,
     RESPONSIBLE_VERB_RE,
+    TRANSFER_VERB_RE,
     extract_relations,
 )
 from continuum.hydradb.claims import (
@@ -355,6 +356,9 @@ def _relation_person_names(content: str) -> list[str]:
     for match in HANDED_TO_VERB_RE.finditer(content):
         names.append(match.group(1).strip())
         names.append(match.group(2).strip())
+    for match in TRANSFER_VERB_RE.finditer(content):
+        names.append(match.group(2).strip())  # from-person
+        names.append(match.group(3).strip())  # to-person
     return names
 
 
@@ -367,6 +371,8 @@ def _accounts_in_text(content: str) -> set[str]:
     accounts: set[str] = set()
     for match in OWNS_VERB_RE.finditer(content):
         accounts.add(match.group(2).strip())
+    for match in TRANSFER_VERB_RE.finditer(content):
+        accounts.add(match.group(1).strip())  # transferred account
     for match in ACCOUNT_NAME_RE.finditer(content):
         raw = match.group(1).strip()
         words = raw.split()
@@ -664,6 +670,54 @@ def supplement_handoff_claims(
                     metadata={"v2": True, "signal": "source-handoff"},
                 )
                 claims.append(claim.to_dict())
+
+        # Explicit ownership transfer: "ownership of Acme transfers from Morgan
+        # to Priya [effective Aug 1]". Emits BOTH sides of the transition so the
+        # temporal state can distinguish previous vs current owner and the
+        # effective date bounds each interval.
+        for match in TRANSFER_VERB_RE.finditer(content):
+            account_raw, from_raw, to_raw = (
+                match.group(1).strip(),
+                match.group(2).strip(),
+                match.group(3).strip(),
+            )
+            obj = _resolve_object_mention(account_raw, resolutions)
+            from_subject = _resolve_subject_mention(from_raw, resolutions)
+            to_subject = _resolve_subject_mention(to_raw, resolutions)
+            if not obj or not from_subject or not to_subject:
+                continue
+            effective, _until = _effective_dates(content, observed_at, account_raw, anchor_years)
+            evidence = match.group(0).strip()[:200]
+            # Previous owner: held until the effective date.
+            claims.append(
+                Claim.create(
+                    artifact_id=artifact.id,
+                    subject_mention=from_subject,
+                    predicate="OWNS",
+                    object_mention=obj,
+                    observed_at=observed_at,
+                    valid_from=None,
+                    valid_to=effective,
+                    evidence_span=evidence,
+                    extraction_method="deterministic-transfer",
+                    metadata={"v2": True, "signal": "source-transfer", "role": "previous"},
+                ).to_dict()
+            )
+            # New owner: holds from the effective date onward.
+            claims.append(
+                Claim.create(
+                    artifact_id=artifact.id,
+                    subject_mention=to_subject,
+                    predicate="OWNS",
+                    object_mention=obj,
+                    observed_at=observed_at,
+                    valid_from=effective,
+                    valid_to=None,
+                    evidence_span=evidence,
+                    extraction_method="deterministic-transfer",
+                    metadata={"v2": True, "signal": "source-transfer", "role": "current"},
+                ).to_dict()
+            )
     return claims
 
 

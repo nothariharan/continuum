@@ -42,6 +42,15 @@ RESPONSIBLE_VERB_RE = re.compile(
 HANDED_TO_VERB_RE = re.compile(
     r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:handed|handing)\s+(?:the\s+)?[\w-]+(?:\s+[\w-]+){0,2}?\s+to\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)"
 )
+# "ownership of Acme transfers from Morgan to Priya" — cross-source handoff with
+# an explicit from->to. Groups: (account, from_person, to_person).
+TRANSFER_VERB_RE = re.compile(
+    r"(?i:ownership\s+of|owner\s+of)?\s*"
+    r"([A-Z][\w-]+(?:\s+[A-Z][\w-]+){0,2})\s+"
+    r"(?i:ownership\s+)?"
+    r"(?i:transfers?|transferred|is\s+transferred|is\s+being\s+transferred|moves?|moved)\s+"
+    r"from\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+to\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)"
+)
 LEADS_VERB_RE = re.compile(
     r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?i:leads|is leading|is driving|drives)\s+(?:the\s+)?([A-Z][\w-]+(?:\s+[A-Z][\w-]+){0,3})"
 )

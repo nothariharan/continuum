@@ -8,6 +8,11 @@ __pycache__/
 venv/
 .env
 hydradb-data/
+# OAuth secrets — client secrets and tokens must never be committed
+*oauth*client*secret*.json
+gmail_token.json
+*token.json
+credentials.json
 # Live source ingestion output (raw Slack/Gmail content — never commit)
 data/ingestion/
 *.log

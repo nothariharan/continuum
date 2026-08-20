@@ -10,6 +10,7 @@ from pathlib import Path
 from continuum.dataset.artifact import artifact_to_dict
 from continuum.sources.cursor import SyncCursor
 from continuum.sources.gmail.adapter import GmailAdapter
+from continuum.sources.gmail.oauth import GmailCredentials
 from continuum.sources.sync import load_cursor, save_cursor
 
 DEFAULT_OUT = Path(__file__).resolve().parents[1] / "data" / "ingestion" / "gmail-artifacts.jsonl"
@@ -24,9 +25,22 @@ def main() -> int:
     parser.add_argument("--fixtures-dir", type=Path, default=None)
     parser.add_argument("--limit", type=int, default=100)
     parser.add_argument("--incremental", action="store_true")
+    parser.add_argument(
+        "--query",
+        default="",
+        help="Gmail search query for live mode, e.g. 'label:continuum-demo' or 'newer_than:30d'",
+    )
     args = parser.parse_args()
 
-    adapter = GmailAdapter(fixtures_dir=args.fixtures_dir)
+    if args.mode == "live":
+        creds = GmailCredentials.from_env()
+        adapter = GmailAdapter(
+            credentials_path=str(creds.credentials_path),
+            token_path=str(creds.resolved_token_path),
+            query=args.query,
+        )
+    else:
+        adapter = GmailAdapter(fixtures_dir=args.fixtures_dir)
     adapter.authenticate()
 
     cursor: SyncCursor | None = None
