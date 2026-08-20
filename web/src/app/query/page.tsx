@@ -1,6 +1,6 @@
 import { TopNav } from "@/components/ui/TopNav";
 import { Footer, CTA } from "@/components/ui/Footer";
-import { LiveQuerySection } from "@/components/product/LiveQuerySection";
+import { GoldenPathConsole } from "@/components/product/GoldenPathConsole";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export const metadata = {
@@ -15,7 +15,7 @@ export default function QueryPage() {
       <div className="relative z-10">
         <TopNav />
         <main className="pt-6">
-          <LiveQuerySection />
+          <GoldenPathConsole />
         </main>
         <CTA
           title={"Ask once.\nKnow why with full evidence."}

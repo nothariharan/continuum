@@ -34,4 +34,4 @@ class QueryService:
 
     def health(self) -> dict[str, Any]:
         self._client.health_check()
-        return {"status": "ok", "database": self._client.database}
+        return {"status": "ok", "database": getattr(self._client, "database", "hydradb")}
