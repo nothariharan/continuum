@@ -16,7 +16,7 @@
       "ts": "1785196800.000000",
       "channel": "account-updates",
       "author": "Morgan",
-      "text": "Morgan owns the Acme account.",
+      "text": "Morgan owns Acme.",
       "ingested_at": "2026-07-20T00:00:00+00:00",
       "narrative": "Slack: Morgan is handling the Acme account."
     },
@@ -27,7 +27,7 @@
       "thread_id": "acme",
       "sender": "Morgan",
       "subject": "Acme ownership transition",
-      "body": "Ownership of the Acme account transfers from Morgan to Priya, effective August 3.",
+      "body": "Ownership of Acme transfers from Morgan to Priya effective August 3.",
       "date": "Sun, 03 Aug 2026 09:00:00 +0000",
       "ingested_at": "2026-08-03T00:00:00+00:00",
       "narrative": "Gmail: ownership of Acme transfers from Morgan to Priya, effective August 3."
@@ -39,7 +39,7 @@
       "thread_id": "acme",
       "sender": "Morgan",
       "subject": "Acme ownership transition",
-      "body": "Correction: ownership of the Acme account transfers from Morgan to Priya, effective August 5.",
+      "body": "Correction: ownership of Acme transfers from Morgan to Priya effective August 5.",
       "date": "Tue, 05 Aug 2026 09:00:00 +0000",
       "ingested_at": "2026-08-05T00:00:00+00:00",
       "narrative": "Gmail: correction — the transfer is effective August 5."
