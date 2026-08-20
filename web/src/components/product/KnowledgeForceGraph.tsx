@@ -63,6 +63,11 @@ export function KnowledgeForceGraph({
   } | null>(null);
   const [width, setWidth] = useState(600);
   const hoverRef = useRef<string | null>(null);
+  const fittedRef = useRef(false);
+  // Persistent node objects keyed by id — reused across renders so d3-assigned
+  // x/y survive updates. Without this every query rebuilds the graph from scratch
+  // and the whole layout violently reflows.
+  const nodeStore = useRef<Map<string, GNode & { x?: number; y?: number }>>(new Map());
 
   useEffect(() => {
     const measure = () => wrapRef.current && setWidth(wrapRef.current.clientWidth);
@@ -76,41 +81,46 @@ export function KnowledgeForceGraph({
   // whole 180+ node cloud tight enough that zoomToFit frames it WITHOUT shrinking
   // nodes to sub-pixel dust (the strong-charge sprawl pushed outliers so far that
   // fitting them made everything invisible).
+  // Apply compact forces once the graph size changes — no reheat, so it never yanks.
   useEffect(() => {
-    const applyForces = () => {
+    const apply = () => {
       const fg = fgRef.current;
       if (!fg) return;
       try {
         fg.d3Force("charge")?.strength?.(-32);
         fg.d3Force("charge")?.distanceMax?.(180);
         fg.d3Force("link")?.distance?.(22);
-        fg.d3ReheatSimulation?.();
       } catch {
         /* forces not ready */
       }
     };
-    const fit = () => {
-      try {
-        fgRef.current?.zoomToFit?.(500, 48);
-      } catch {
-        /* ref not ready */
-      }
-    };
-    applyForces();
-    // The dynamic ForceGraph may mount a tick after data arrives — re-apply so the
-    // compact charge actually takes, then frame the settled cloud.
-    const timers = [
-      setTimeout(applyForces, 120),
-      setTimeout(fit, 800),
-      setTimeout(fit, 1700),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, [nodes, links]);
+    apply();
+    const t = setTimeout(apply, 150);
+    return () => clearTimeout(t);
+  }, [nodes.length]);
 
-  const data = useMemo(
-    () => ({ nodes: nodes.map((n) => ({ ...n, ...seedXY(n.id) })), links: links.map((l) => ({ ...l })) }),
-    [nodes, links]
-  );
+  // Reconcile against the persistent store: reuse node objects (keep positions),
+  // update mutable fields (state/label), seed new ones near center, drop removed.
+  const data = useMemo(() => {
+    const store = nodeStore.current;
+    const seen = new Set<string>();
+    const outNodes = nodes.map((n) => {
+      seen.add(n.id);
+      const existing = store.get(n.id);
+      if (existing) {
+        existing.state = n.state;
+        existing.label = n.label;
+        existing.val = n.val;
+        existing.kind = n.kind;
+        return existing;
+      }
+      const created = { ...n, ...seedXY(n.id) };
+      store.set(n.id, created);
+      return created;
+    });
+    for (const id of Array.from(store.keys())) if (!seen.has(id)) store.delete(id);
+    return { nodes: outNodes, links: links.map((l) => ({ ...l })) };
+  }, [nodes, links]);
 
   return (
     <div ref={wrapRef} className="relative w-full overflow-hidden rounded-3xl border border-[var(--paper-border)]" style={{ height, background: BG }}>
@@ -124,12 +134,15 @@ export function KnowledgeForceGraph({
         d3VelocityDecay={0.3}
         warmupTicks={40}
         onEngineStop={() => {
-          // Frame every node once the layout settles — keeps the whole
-          // knowledge graph in view (Obsidian-style) instead of drifting off-canvas.
-          try {
-            fgRef.current?.zoomToFit?.(500, 36);
-          } catch {
-            /* ref not ready */
+          // Frame the cloud ONCE after the initial layout settles — never on
+          // subsequent query reheats, so the camera stays put and feels stable.
+          if (!fittedRef.current && nodes.length > 0) {
+            try {
+              fgRef.current?.zoomToFit?.(600, 40);
+              fittedRef.current = true;
+            } catch {
+              /* ref not ready */
+            }
           }
         }}
         nodeRelSize={5}
