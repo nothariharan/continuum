@@ -1,8 +1,8 @@
 {
   "context_efficiency": {
     "artifact_count_mean": 1,
-    "context_chars_mean": 9739.5,
-    "context_tokens_mean": 1381.1,
+    "context_chars_mean": 9527.03,
+    "context_tokens_mean": 1353.48,
     "evidence_items_mean": 1
   },
   "corpus_mode": "sample-v1",
@@ -11,44 +11,100 @@
       "entity_ms": 0.0,
       "generation_ms": 0.0,
       "graph_ms": 0.0,
-      "retrieval_ms": 3.22,
+      "retrieval_ms": 22.71,
       "state_ms": 0.0
     },
     "total": {
-      "mean": 3.22,
-      "p50": 3.02,
-      "p95": 4.78
+      "mean": 22.71,
+      "p50": 12.53,
+      "p95": 91.61
     }
   },
   "official_benchmark": false,
   "official_score": {
     "answer_correctness": 0.0,
-    "document_recall_mean": 0.0,
-    "invalid_extra_evidence_mean": 1.0,
-    "question_count": 10
+    "document_recall_mean": 0.0118,
+    "invalid_extra_evidence_mean": 0.9508,
+    "question_count": 75
   },
   "rows": [
     {
       "answer": "mock: Resolved entities: ['none']",
       "claims_used": [],
       "conflicts": [],
-      "context_chars": 9905,
-      "context_tokens": 1485,
+      "context_chars": 6169,
+      "context_tokens": 832,
       "evidence": [],
       "evidence_items": 1,
       "latency_breakdown": {
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 2.29,
+        "retrieval_ms": 5.57,
         "state_ms": 0.0
       },
-      "latency_ms": 2.29,
+      "latency_ms": 5.57,
       "model": "mock-v1",
-      "question_id": "qst_0476",
+      "question_id": "qst_0133",
       "resolved_entities": [],
       "retrieved_artifacts": [
-        "dsid_9b2ede513ebe4912b415f00e0132b972"
+        "dsid_8c14d76d16944947912676d084d2012e"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9315,
+      "context_tokens": 1312,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 14.65,
+        "state_ms": 0.0
+      },
+      "latency_ms": 14.65,
+      "model": "mock-v1",
+      "question_id": "qst_0199",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_68acf4a8383749809adf512b6a49a14d"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11106,
+      "context_tokens": 1514,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.74,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.74,
+      "model": "mock-v1",
+      "question_id": "qst_0327",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_535b760a01d540ad9ee1d8c25a3817bb"
       ],
       "state_result": {
         "status": "absent"
@@ -61,22 +117,134 @@
       "claims_used": [],
       "conflicts": [],
       "context_chars": 12000,
-      "context_tokens": 1697,
+      "context_tokens": 1555,
       "evidence": [],
       "evidence_items": 1,
       "latency_breakdown": {
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 4.11,
+        "retrieval_ms": 10.28,
         "state_ms": 0.0
       },
-      "latency_ms": 4.11,
+      "latency_ms": 10.28,
       "model": "mock-v1",
-      "question_id": "qst_0328",
+      "question_id": "qst_0363",
       "resolved_entities": [],
       "retrieved_artifacts": [
-        "dsid_0cebe07ca6d143ec81db0065f5fe0c79"
+        "dsid_5d66d8f4c1324c03ae3cff64e6f24a94"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8417,
+      "context_tokens": 1306,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.79,
+        "state_ms": 0.0
+      },
+      "latency_ms": 15.79,
+      "model": "mock-v1",
+      "question_id": "qst_0387",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1755,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.34,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.34,
+      "model": "mock-v1",
+      "question_id": "qst_0425",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_986cd70fcd7a4c2e81511d7888a0432a"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10989,
+      "context_tokens": 1488,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.7,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.7,
+      "model": "mock-v1",
+      "question_id": "qst_0442",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_208a4a1593d34fec9ba9b8c977e2cc66"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10819,
+      "context_tokens": 1713,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 14.23,
+        "state_ms": 0.0
+      },
+      "latency_ms": 14.23,
+      "model": "mock-v1",
+      "question_id": "qst_0451",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_8cc15d1d33a344ebabf9cba50fed4b16"
       ],
       "state_result": {
         "status": "absent"
@@ -96,10 +264,10 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 2.43,
+        "retrieval_ms": 35.38,
         "state_ms": 0.0
       },
-      "latency_ms": 2.43,
+      "latency_ms": 35.38,
       "model": "mock-v1",
       "question_id": "qst_0472",
       "resolved_entities": [],
@@ -116,23 +284,107 @@
       "answer": "mock: Resolved entities: ['none']",
       "claims_used": [],
       "conflicts": [],
-      "context_chars": 12000,
-      "context_tokens": 1701,
+      "context_chars": 9722,
+      "context_tokens": 1390,
       "evidence": [],
       "evidence_items": 1,
       "latency_breakdown": {
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 5.62,
+        "retrieval_ms": 4.58,
         "state_ms": 0.0
       },
-      "latency_ms": 5.62,
+      "latency_ms": 4.58,
       "model": "mock-v1",
-      "question_id": "qst_0496",
+      "question_id": "qst_0489",
       "resolved_entities": [],
       "retrieved_artifacts": [
-        "dsid_f33d72344d424b6985b53ef91c933082"
+        "dsid_08b591d2aea842d2959c165a4832c97e"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 3074,
+      "context_tokens": 437,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.64,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.64,
+      "model": "mock-v1",
+      "question_id": "qst_0109",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_12c1aebf042d4224b21eb7f15a4b06df"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10171,
+      "context_tokens": 1461,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 18.27,
+        "state_ms": 0.0
+      },
+      "latency_ms": 18.27,
+      "model": "mock-v1",
+      "question_id": "qst_0211",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_89d75953da0c4bc186eb95fe169de462"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9592,
+      "context_tokens": 1268,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.8,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.8,
+      "model": "mock-v1",
+      "question_id": "qst_0322",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_34423269eac54eb18c002154b09471e8"
       ],
       "state_result": {
         "status": "absent"
@@ -145,22 +397,22 @@
       "claims_used": [],
       "conflicts": [],
       "context_chars": 12000,
-      "context_tokens": 1564,
+      "context_tokens": 1668,
       "evidence": [],
       "evidence_items": 1,
       "latency_breakdown": {
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 2.38,
+        "retrieval_ms": 6.66,
         "state_ms": 0.0
       },
-      "latency_ms": 2.38,
+      "latency_ms": 6.66,
       "model": "mock-v1",
-      "question_id": "qst_0474",
+      "question_id": "qst_0365",
       "resolved_entities": [],
       "retrieved_artifacts": [
-        "dsid_7d393dfe025e4664b85617db73cd9ab7"
+        "dsid_9291e4abdec54e108c37f0c0918f5972"
       ],
       "state_result": {
         "status": "absent"
@@ -172,23 +424,79 @@
       "answer": "mock: Resolved entities: ['none']",
       "claims_used": [],
       "conflicts": [],
-      "context_chars": 8913,
-      "context_tokens": 1094,
+      "context_chars": 6521,
+      "context_tokens": 858,
       "evidence": [],
       "evidence_items": 1,
       "latency_breakdown": {
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 2.29,
+        "retrieval_ms": 19.91,
         "state_ms": 0.0
       },
-      "latency_ms": 2.29,
+      "latency_ms": 19.91,
       "model": "mock-v1",
-      "question_id": "qst_0414",
+      "question_id": "qst_0393",
       "resolved_entities": [],
       "retrieved_artifacts": [
-        "dsid_73c67a536c0d425fa484a2f8eaeb256a"
+        "dsid_855e90efc08b41c1970978519ae3838c"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10180,
+      "context_tokens": 1211,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 2.71,
+        "state_ms": 0.0
+      },
+      "latency_ms": 2.71,
+      "model": "mock-v1",
+      "question_id": "qst_0430",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_d2ea44924e22471b8d85ecce5ee8ac5d"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10813,
+      "context_tokens": 1398,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 2.42,
+        "state_ms": 0.0
+      },
+      "latency_ms": 2.42,
+      "model": "mock-v1",
+      "question_id": "qst_0432",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_1cc5220fed924caebe77825c23f81581"
       ],
       "state_result": {
         "status": "absent"
@@ -208,10 +516,514 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 3.02,
+        "retrieval_ms": 4.31,
         "state_ms": 0.0
       },
-      "latency_ms": 3.02,
+      "latency_ms": 4.31,
+      "model": "mock-v1",
+      "question_id": "qst_0458",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_be4b992c9bd941c5942e600ef769f6e4"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9905,
+      "context_tokens": 1485,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 3.54,
+        "state_ms": 0.0
+      },
+      "latency_ms": 3.54,
+      "model": "mock-v1",
+      "question_id": "qst_0476",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_9b2ede513ebe4912b415f00e0132b972"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1701,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.53,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.53,
+      "model": "mock-v1",
+      "question_id": "qst_0496",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_f33d72344d424b6985b53ef91c933082"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1578,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 7.21,
+        "state_ms": 0.0
+      },
+      "latency_ms": 7.21,
+      "model": "mock-v1",
+      "question_id": "qst_0170",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_b1add2c2b8d74c6d8f63921a57572600"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 3457,
+      "context_tokens": 469,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.02,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.02,
+      "model": "mock-v1",
+      "question_id": "qst_0266",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_ac5e40129fa2444eb1ca1c7aa057bfe2"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11238,
+      "context_tokens": 1561,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.86,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.86,
+      "model": "mock-v1",
+      "question_id": "qst_0301",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_82532c302a7d43c698b81d621d46c98c"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10508,
+      "context_tokens": 1452,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.07,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.07,
+      "model": "mock-v1",
+      "question_id": "qst_0342",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_b7ce58e3b065411cadcde61bae39e216"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9722,
+      "context_tokens": 1390,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.03,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.03,
+      "model": "mock-v1",
+      "question_id": "qst_0394",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_08b591d2aea842d2959c165a4832c97e"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9500,
+      "context_tokens": 1243,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 2.26,
+        "state_ms": 0.0
+      },
+      "latency_ms": 2.26,
+      "model": "mock-v1",
+      "question_id": "qst_0417",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_dab17ee5c3924a9998b17b3591bbae28"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11627,
+      "context_tokens": 1879,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.08,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.08,
+      "model": "mock-v1",
+      "question_id": "qst_0436",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_e263db3e2e8f432fb585ea6866efc17f"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8354,
+      "context_tokens": 1292,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 2.86,
+        "state_ms": 0.0
+      },
+      "latency_ms": 2.86,
+      "model": "mock-v1",
+      "question_id": "qst_0454",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_b9fbd63e14ab40d89a3240eef0e87f9d"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1564,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.61,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.61,
+      "model": "mock-v1",
+      "question_id": "qst_0474",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_7d393dfe025e4664b85617db73cd9ab7"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 6591,
+      "context_tokens": 955,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.28,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.28,
+      "model": "mock-v1",
+      "question_id": "qst_0484",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_ac80b52fe541428292143997399615e5"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11834,
+      "context_tokens": 1798,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.21,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.21,
+      "model": "mock-v1",
+      "question_id": "qst_0059",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_b51f97c6c7cf4838a7914f913cbc5094"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1796,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.35,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.35,
+      "model": "mock-v1",
+      "question_id": "qst_0240",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_bb265ab0d219433ca7e12ab455f92bb0"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 2739,
+      "context_tokens": 361,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.5,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.5,
+      "model": "mock-v1",
+      "question_id": "qst_0329",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_82b21f529a2443d186f947ce02f1fc51"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1701,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 23.83,
+        "state_ms": 0.0
+      },
+      "latency_ms": 23.83,
+      "model": "mock-v1",
+      "question_id": "qst_0364",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_f33d72344d424b6985b53ef91c933082"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1810,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 117.27,
+        "state_ms": 0.0
+      },
+      "latency_ms": 117.27,
+      "model": "mock-v1",
+      "question_id": "qst_0396",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_54a674d7a12b46808453474b4905defe"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 6565,
+      "context_tokens": 917,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 31.75,
+        "state_ms": 0.0
+      },
+      "latency_ms": 31.75,
       "model": "mock-v1",
       "question_id": "qst_0413",
       "resolved_entities": [],
@@ -236,15 +1048,155 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 3.13,
+        "retrieval_ms": 10.41,
         "state_ms": 0.0
       },
-      "latency_ms": 3.13,
+      "latency_ms": 10.41,
       "model": "mock-v1",
       "question_id": "qst_0435",
       "resolved_entities": [],
       "retrieved_artifacts": [
         "dsid_5a28f95ede684daa8b1532f02e825769"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10180,
+      "context_tokens": 1211,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.38,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.38,
+      "model": "mock-v1",
+      "question_id": "qst_0452",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_d2ea44924e22471b8d85ecce5ee8ac5d"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10179,
+      "context_tokens": 1465,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 9.51,
+        "state_ms": 0.0
+      },
+      "latency_ms": 9.51,
+      "model": "mock-v1",
+      "question_id": "qst_0480",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_632713f6e1a745abb4a8ebb6da6f1dd8"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11909,
+      "context_tokens": 1877,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 30.66,
+        "state_ms": 0.0
+      },
+      "latency_ms": 30.66,
+      "model": "mock-v1",
+      "question_id": "qst_0490",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_6f25fc822a8f48578e650d89fb6db69a"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1810,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 102.73,
+        "state_ms": 0.0
+      },
+      "latency_ms": 102.73,
+      "model": "mock-v1",
+      "question_id": "qst_0078",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_54a674d7a12b46808453474b4905defe"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11457,
+      "context_tokens": 1832,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 18.17,
+        "state_ms": 0.0
+      },
+      "latency_ms": 18.17,
+      "model": "mock-v1",
+      "question_id": "qst_0225",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_2c48d56630ca4a5384c92ee40c118288"
       ],
       "state_result": {
         "status": "absent"
@@ -264,15 +1216,435 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 4.78,
+        "retrieval_ms": 12.28,
         "state_ms": 0.0
       },
-      "latency_ms": 4.78,
+      "latency_ms": 12.28,
       "model": "mock-v1",
       "question_id": "qst_0334",
       "resolved_entities": [],
       "retrieved_artifacts": [
         "dsid_64212a1689814ac19deff834ce203ebd"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10020,
+      "context_tokens": 1474,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 13.35,
+        "state_ms": 0.0
+      },
+      "latency_ms": 13.35,
+      "model": "mock-v1",
+      "question_id": "qst_0370",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_c0c6c013bdcf4421bce47e41e857aa91"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1697,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 125.58,
+        "state_ms": 0.0
+      },
+      "latency_ms": 125.58,
+      "model": "mock-v1",
+      "question_id": "qst_0406",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_0cebe07ca6d143ec81db0065f5fe0c79"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 3952,
+      "context_tokens": 582,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 15.48,
+        "state_ms": 0.0
+      },
+      "latency_ms": 15.48,
+      "model": "mock-v1",
+      "question_id": "qst_0416",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_e020ba1f2bf14c1dbceedacb2bf87793"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 6308,
+      "context_tokens": 856,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 16.12,
+        "state_ms": 0.0
+      },
+      "latency_ms": 16.12,
+      "model": "mock-v1",
+      "question_id": "qst_0433",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_abb3da491f174793a7265739a9a77116"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 6603,
+      "context_tokens": 929,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 46.0,
+        "state_ms": 0.0
+      },
+      "latency_ms": 46.0,
+      "model": "mock-v1",
+      "question_id": "qst_0470",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_8f4b045885764964a9f3115f77a95fa7"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9318,
+      "context_tokens": 1318,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 4.42,
+        "state_ms": 0.0
+      },
+      "latency_ms": 4.42,
+      "model": "mock-v1",
+      "question_id": "qst_0478",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_07d09606ef68495193a9bdd2d3d67f1c"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10348,
+      "context_tokens": 1362,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 57.17,
+        "state_ms": 0.0
+      },
+      "latency_ms": 57.17,
+      "model": "mock-v1",
+      "question_id": "qst_0499",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_190a3ff07b204ed1a9e2b432de2ec81f"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 11346,
+      "context_tokens": 1745,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 16.74,
+        "state_ms": 0.0
+      },
+      "latency_ms": 16.74,
+      "model": "mock-v1",
+      "question_id": "qst_0005",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_418f38fa389c47e497463e221751c685"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1784,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.75,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.75,
+      "model": "mock-v1",
+      "question_id": "qst_0216",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_cf94f88f9048473989675f2c269c2790"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 7689,
+      "context_tokens": 1176,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.01,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.01,
+      "model": "mock-v1",
+      "question_id": "qst_0333",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_4f4f9ea160ee4a6e8c903359fb6c31ad"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10019,
+      "context_tokens": 1363,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 53.72,
+        "state_ms": 0.0
+      },
+      "latency_ms": 53.72,
+      "model": "mock-v1",
+      "question_id": "qst_0355",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_42f3819582db4e1696466bbbbcc3bece"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1578,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 84.4,
+        "state_ms": 0.0
+      },
+      "latency_ms": 84.4,
+      "model": "mock-v1",
+      "question_id": "qst_0386",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_b1add2c2b8d74c6d8f63921a57572600"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1881,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 10.64,
+        "state_ms": 0.0
+      },
+      "latency_ms": 10.64,
+      "model": "mock-v1",
+      "question_id": "qst_0411",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_a175dcd448d043f5a7c97e67f1d77b41"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1840,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 23.98,
+        "state_ms": 0.0
+      },
+      "latency_ms": 23.98,
+      "model": "mock-v1",
+      "question_id": "qst_0439",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_9f8e0b2262c64123a3d73e36bddbb550"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8680,
+      "context_tokens": 1305,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 12.63,
+        "state_ms": 0.0
+      },
+      "latency_ms": 12.63,
+      "model": "mock-v1",
+      "question_id": "qst_0469",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_faac5db76bdb43d399ff09fe6d97f503"
       ],
       "state_result": {
         "status": "absent"
@@ -292,15 +1664,463 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 2.14,
+        "retrieval_ms": 3.35,
         "state_ms": 0.0
       },
-      "latency_ms": 2.14,
+      "latency_ms": 3.35,
       "model": "mock-v1",
       "question_id": "qst_0477",
       "resolved_entities": [],
       "retrieved_artifacts": [
         "dsid_779f5308d0a348d693b66b11ff36781b"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8880,
+      "context_tokens": 1153,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 91.61,
+        "state_ms": 0.0
+      },
+      "latency_ms": 91.61,
+      "model": "mock-v1",
+      "question_id": "qst_0498",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_c4f41e9f95764c6d970ee084808cef52"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8055,
+      "context_tokens": 1144,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 19.46,
+        "state_ms": 0.0
+      },
+      "latency_ms": 19.46,
+      "model": "mock-v1",
+      "question_id": "qst_0135",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_79334c936ef34f219988ed5291e12d10"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9370,
+      "context_tokens": 1296,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.37,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.37,
+      "model": "mock-v1",
+      "question_id": "qst_0270",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_fcfa836c215844699d796e740a595a2a"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 6522,
+      "context_tokens": 958,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 115.4,
+        "state_ms": 0.0
+      },
+      "latency_ms": 115.4,
+      "model": "mock-v1",
+      "question_id": "qst_0323",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_b39afbf2cd7841afb6b6e64268e0c5e1"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 9500,
+      "context_tokens": 1243,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 11.86,
+        "state_ms": 0.0
+      },
+      "latency_ms": 11.86,
+      "model": "mock-v1",
+      "question_id": "qst_0347",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_dab17ee5c3924a9998b17b3591bbae28"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8417,
+      "context_tokens": 1306,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 19.42,
+        "state_ms": 0.0
+      },
+      "latency_ms": 19.42,
+      "model": "mock-v1",
+      "question_id": "qst_0409",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_58652f7aa95b4191bdfe69b5ab6185ce"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8913,
+      "context_tokens": 1094,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 5.39,
+        "state_ms": 0.0
+      },
+      "latency_ms": 5.39,
+      "model": "mock-v1",
+      "question_id": "qst_0414",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_73c67a536c0d425fa484a2f8eaeb256a"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10121,
+      "context_tokens": 1273,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 8.97,
+        "state_ms": 0.0
+      },
+      "latency_ms": 8.97,
+      "model": "mock-v1",
+      "question_id": "qst_0431",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_3c500f477fcc461cbeefebf43156f2c5"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 5717,
+      "context_tokens": 766,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 63.12,
+        "state_ms": 0.0
+      },
+      "latency_ms": 63.12,
+      "model": "mock-v1",
+      "question_id": "qst_0456",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_3090ee291df049c28143815ec446364c"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10019,
+      "context_tokens": 1363,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 6.27,
+        "state_ms": 0.0
+      },
+      "latency_ms": 6.27,
+      "model": "mock-v1",
+      "question_id": "qst_0473",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_42f3819582db4e1696466bbbbcc3bece"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10813,
+      "context_tokens": 1398,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 14.5,
+        "state_ms": 0.0
+      },
+      "latency_ms": 14.5,
+      "model": "mock-v1",
+      "question_id": "qst_0486",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_1cc5220fed924caebe77825c23f81581"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 7689,
+      "context_tokens": 1176,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 36.01,
+        "state_ms": 0.0
+      },
+      "latency_ms": 36.01,
+      "model": "mock-v1",
+      "question_id": "qst_0058",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_4f4f9ea160ee4a6e8c903359fb6c31ad"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 8008,
+      "context_tokens": 1165,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 18.08,
+        "state_ms": 0.0
+      },
+      "latency_ms": 18.08,
+      "model": "mock-v1",
+      "question_id": "qst_0208",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_3de84b6589a84f6b91f3ac38d292633f"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 12000,
+      "context_tokens": 1697,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 41.41,
+        "state_ms": 0.0
+      },
+      "latency_ms": 41.41,
+      "model": "mock-v1",
+      "question_id": "qst_0328",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_0cebe07ca6d143ec81db0065f5fe0c79"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10495,
+      "context_tokens": 1503,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 25.18,
+        "state_ms": 0.0
+      },
+      "latency_ms": 25.18,
+      "model": "mock-v1",
+      "question_id": "qst_0366",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_8590bba128564aa7a60be6067b6be779"
+      ],
+      "state_result": {
+        "status": "absent"
+      },
+      "system": "continuum",
+      "token_count": 4
+    },
+    {
+      "answer": "mock: Resolved entities: ['none']",
+      "claims_used": [],
+      "conflicts": [],
+      "context_chars": 10495,
+      "context_tokens": 1503,
+      "evidence": [],
+      "evidence_items": 1,
+      "latency_breakdown": {
+        "entity_ms": 0.0,
+        "generation_ms": 0.0,
+        "graph_ms": 0.0,
+        "retrieval_ms": 17.29,
+        "state_ms": 0.0
+      },
+      "latency_ms": 17.29,
+      "model": "mock-v1",
+      "question_id": "qst_0397",
+      "resolved_entities": [],
+      "retrieved_artifacts": [
+        "dsid_8590bba128564aa7a60be6067b6be779"
       ],
       "state_result": {
         "status": "absent"

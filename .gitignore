@@ -27,3 +27,6 @@ embeddings/
 web/node_modules/
 web/.next/
 web/.env.local
+
+# Generated benchmark output (written by tests/phase2b/test_e2e_questions.py)
+data/metadata/e2e_question_benchmark_test.json
