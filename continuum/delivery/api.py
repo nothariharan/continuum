@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from continuum.delivery.graph_export import export_entity_graph
 from continuum.delivery.query_service import QueryService
+from continuum.query.graph_export import export_graph as _export_graph
 from continuum.delivery.slack_formatter import format_slack_answer
 from continuum.entities.store import EntityStore
 from continuum.hydradb import HydraDBClient
@@ -68,8 +68,32 @@ def create_app(service: QueryService | None = None):
         entity: str = Query(..., description="Canonical entity key, e.g. account:acme"),
         depth: int = Query(2, ge=1, le=4),
     ) -> dict[str, Any]:
+        # Use the canonical query-layer exporter (single source of truth) and
+        # adapt it to the web GraphExport contract. `depth` reserved for future use.
         assert _client is not None
-        return export_entity_graph(_client, entity, depth=depth)
+        _ = depth
+        raw = _export_graph(_client, entity)
+        nodes = [
+            {
+                "id": n["id"],
+                "type": n.get("type", "entity"),
+                "label": n.get("type", "entity"),
+                "name": n.get("name") or n.get("kind") or n["id"],
+                **({"source": n["source"]} if n.get("source") else {}),
+                **({"dsid": n["id"]} if n.get("type") == "artifact" else {}),
+            }
+            for n in raw.get("nodes", [])
+        ]
+        edges = [
+            {
+                "source": e["source"],
+                "target": e["target"],
+                "predicate": e.get("rel") or e.get("predicate") or "",
+                **({"claim_id": e["claim_id"]} if e.get("claim_id") else {}),
+            }
+            for e in raw.get("edges", [])
+        ]
+        return {"entity": entity, "nodes": nodes, "edges": edges}
 
     @app.get("/v1/semantic/history")
     def semantic_history(
