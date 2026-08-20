@@ -166,16 +166,28 @@ benchmark-trace:
 test-benchmark:
 	PYTHONPATH=. python -m pytest tests/eval/test_benchmark_*.py -q
 
+ifeq ($(OS),Windows_NT)
+  HYDRADB_START = powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_hydradb.ps1
+  HYDRADB_STOP = powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_hydradb.ps1
+  HYDRADB_RESET = powershell -NoProfile -ExecutionPolicy Bypass -File scripts/reset_hydradb.ps1
+  HYDRADB_SMOKE = powershell -NoProfile -ExecutionPolicy Bypass -File scripts/smoke_test.ps1
+else
+  HYDRADB_START = bash scripts/start_hydradb.sh
+  HYDRADB_STOP = bash scripts/stop_hydradb.sh
+  HYDRADB_RESET = bash scripts/reset_hydradb.sh
+  HYDRADB_SMOKE = bash scripts/smoke_test.sh
+endif
+
 hydradb-up:
-	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_hydradb.ps1
+	$(HYDRADB_START)
 hydradb-stop:
-	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_hydradb.ps1
+	$(HYDRADB_STOP)
 hydradb-health:
 	python -m continuum.hydradb.health
 hydradb-smoke:
-	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/smoke_test.ps1
+	$(HYDRADB_SMOKE)
 hydradb-reset:
-	powershell -NoProfile -ExecutionPolicy Bypass -File scripts/reset_hydradb.ps1
+	$(HYDRADB_RESET)
 test-hydradb:
 	python -m pytest -m hydradb -q
 
@@ -203,8 +215,13 @@ expand-identity-gold:
 test-delivery:
 	python3 -m pytest tests/delivery/ -q
 
+PYTHON ?= $(shell test -x .venv312/bin/python && echo .venv312/bin/python || echo python3)
+
+install-delivery:
+	uv pip install --python $(PYTHON) -e ".[delivery]"
+
 run-query-api:
-	PYTHONPATH=. python3 scripts/run_query_api.py
+	PYTHONPATH=. $(PYTHON) scripts/run_query_api.py
 
 run-slack-bot:
 	PYTHONPATH=. python3 scripts/run_slack_bot.py
@@ -223,3 +240,15 @@ ingest-source:
 
 post-stabilization-health:
 	PYTHONPATH=. python3 scripts/post_stabilization_health_check.py
+
+web-clean:
+	rm -rf web/.next
+
+web-dev:
+	cd web && npm run dev
+
+web-build:
+	cd web && npm run build
+
+web-install:
+	cd web && npm install

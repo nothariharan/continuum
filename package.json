@@ -1,0 +1,11 @@
+{
+  "name": "continuum",
+  "private": true,
+  "description": "Continuum monorepo — run web scripts from repo root via npm --prefix web",
+  "scripts": {
+    "dev": "npm run dev --prefix web",
+    "build": "npm run build --prefix web",
+    "start": "npm run start --prefix web",
+    "lint": "npm run lint --prefix web"
+  }
+}
