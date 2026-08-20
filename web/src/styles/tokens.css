@@ -4,8 +4,11 @@
   --paper-subtle: #f4f0e8;
   --paper-muted: #eae3d5;
   --paper-card: #ffffff;
-  --paper-border: rgba(15, 23, 42, 0.08);
-  --paper-border-strong: rgba(15, 23, 42, 0.16);
+  /* Soft grey card surface — a "darker white" so not every panel is stark white */
+  --surface: #edeae2;
+  --surface-strong: #e3e0d6;
+  --paper-border: rgba(15, 23, 42, 0.12);
+  --paper-border-strong: rgba(15, 23, 42, 0.18);
   --charcoal: #0f172a;
   --charcoal-body: #334155;
   --charcoal-muted: #64748b;
@@ -60,6 +63,24 @@
   --shadow-card: 0 0 0 1px rgba(15, 23, 42, 0.06), 0 8px 24px -4px rgba(15, 23, 42, 0.05);
 
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* shadcn-compatible aliases (mapped onto the Continuum light palette) so
+     drop-in shadcn/ui components render on-theme without a separate variable set. */
+  --background: var(--paper);
+  --foreground: var(--charcoal);
+  --card: var(--paper-card);
+  --card-foreground: var(--charcoal);
+  --border: var(--paper-border);
+  --muted: var(--paper-subtle);
+  --color-muted: var(--paper-subtle);
+  --muted-foreground: var(--charcoal-muted);
+
+  /* Chart tokens — Continuum indigo/blue */
+  --chart-1: var(--purple);
+  --chart-2: var(--cyan);
+  --chart-3: #4f46e5;
+  --chart-grid: var(--paper-border);
+  --chart-line-primary: var(--purple);
 }
 
 body {

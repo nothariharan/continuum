@@ -1,41 +1,35 @@
 import { TopNav } from "@/components/ui/TopNav";
-import { Footer, CTA } from "@/components/ui/Footer";
-import {
-  HeroSection,
-  ProblemSection,
-  HowItWorksSection,
-} from "@/components/marketing/HeroSections";
-import { OrbitConstellation } from "@/components/marketing/OrbitConstellation";
-import { FeatureExploreGrid } from "@/components/marketing/FeatureExploreGrid";
-import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { Footer, ClosingCTA } from "@/components/ui/Footer";
+import { HowItWorksSection } from "@/components/marketing/HeroSections";
+import { HeroConnect } from "@/components/marketing/HeroConnect";
+import { ArchitectureFlow } from "@/components/marketing/ArchitectureFlow";
+import { NoiseFilterSection } from "@/components/marketing/NoiseFilterSection";
+import { Component as WorksWith } from "@/components/ui/pixel-logo-grid";
 
 export default function HomePage() {
   return (
-    <div data-theme="marketing" className="min-h-screen bg-[var(--paper)] relative">
-      <AnimatedBackground variant="marketing" />
-      <div className="relative z-10">
-        <TopNav />
-        <main>
-          {/* Section 1: Hero & Animated Query Simulation */}
-          <HeroSection />
+    <div data-theme="marketing" className="min-h-screen bg-[var(--paper)]">
+      <TopNav overHeroOnTop />
+      <main>
+        {/* What it does — dark convergence hero */}
+        <HeroConnect />
 
-          {/* Section 2: Fragmentation Problem */}
-          <ProblemSection />
+        {/* The architecture — the product */}
+        <ArchitectureFlow />
 
-          {/* Section 3: Visual Thesis — Continuous Revolving Orbit Constellation */}
-          <OrbitConstellation />
+        {/* How it works */}
+        <HowItWorksSection />
 
-          {/* Section 4: How It Works — 3-Stage Transformation Pipeline */}
-          <HowItWorksSection />
+        {/* How we filter the noise (funnel) */}
+        <NoiseFilterSection />
 
-          {/* Section 5: Modular Feature Deep-Dive Explorer */}
-          <FeatureExploreGrid />
+        {/* Where Continuum plugs in (connectors) */}
+        <WorksWith />
 
-          {/* Section 6: Editorial Closing CTA */}
-          <CTA />
-        </main>
-        <Footer />
-      </div>
+        {/* Connect your workplace + MCP over 1B+ docs */}
+        <ClosingCTA />
+      </main>
+      <Footer />
     </div>
   );
 }
