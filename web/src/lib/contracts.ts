@@ -94,3 +94,18 @@ export interface ConnectorDef {
   name: string;
   status: ConnectorStatus;
 }
+
+/** Real connector state from GET /v1/connectors. */
+export interface ConnectorState {
+  id: string;
+  name: string;
+  status: ConnectorStatus;
+  artifacts: number;
+  configured: boolean;
+}
+
+export interface ConnectorsPayload {
+  mode: "live" | "demo";
+  total_artifacts: number;
+  connectors: ConnectorState[];
+}

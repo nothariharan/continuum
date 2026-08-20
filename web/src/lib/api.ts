@@ -1,4 +1,4 @@
-import type { AskResult, GraphExport, HistoryRow, SlackFormattedAnswer, StateResult } from "./contracts";
+import type { AskResult, ConnectorsPayload, GraphExport, HistoryRow, SlackFormattedAnswer, StateResult } from "./contracts";
 
 const API_BASE = process.env.NEXT_PUBLIC_CONTINUUM_API ?? "http://127.0.0.1:8080";
 
@@ -53,6 +53,10 @@ export async function fetchConflicts(entity: string, predicate = "OWNS"): Promis
 
 export async function fetchCurrentState(entity: string, predicate = "OWNS"): Promise<StateResult> {
   return fetchJson(`/v1/semantic/state?entity=${encodeURIComponent(entity)}&predicate=${predicate}`);
+}
+
+export async function fetchConnectors(): Promise<ConnectorsPayload> {
+  return fetchJson("/v1/connectors");
 }
 
 export async function isApiAvailable(): Promise<boolean> {

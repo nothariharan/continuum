@@ -1,0 +1,68 @@
+# Continuum backend runtime (single-company deployment).
+#
+#   HydraDB (graph)  +  Continuum Query API  ->  the same canonical memory the
+#   web app, Slack bot and MCP server read.
+#
+#   cd deploy && docker compose up -d
+#
+# Then point the deployed frontend at the API:
+#   NEXT_PUBLIC_CONTINUUM_API = http://<host>:8080
+#   CONTINUUM_ALLOWED_ORIGINS = https://<your-vercel-domain>
+name: continuum
+
+services:
+  # Writes the HydraDB auth token into the shared volume before the DB starts.
+  hydradb-init:
+    image: busybox:1.36
+    command:
+      - sh
+      - -c
+      - 'mkdir -p /data/store /data/cache && printf "%s" "${HYDRADB_PASSWORD:-local-development-token-32-characters-long}" > /data/auth-token'
+    volumes:
+      - hydradb-data:/data
+
+  hydradb:
+    image: ghcr.io/hydra-db/hydradb@sha256:db78309a233be54662db29744047e985a39b51c45a270d1a1f47c31a62cdb709
+    depends_on:
+      hydradb-init:
+        condition: service_completed_successfully
+    user: "0:0"
+    ports:
+      - "7687:7687"
+      - "9090:9090"
+    environment:
+      CLOUD_PROVIDER: local
+      LOCAL_PATH: /data/store
+      GRAPH_NAMESPACE: default
+      GRAPH_ID: default
+      GRAPH_CELL_ID: cell-0
+      GRAPH_CELLS: cell-0
+      GRAPH_NODE_ID: node-0
+      GRAPH_BOLT_NODE_ADDRESSES: node-0=0.0.0.0:7687
+      GRAPH_ADVERTISED_BOLT_ADDR: hydradb:7687
+      GRAPH_DATA_CACHE_DIR: /data/cache
+      GRAPH_AUTH_TOKEN_FILE: /data/auth-token
+      GRAPH_ALLOW_PLAINTEXT: "true"
+      RUST_MIN_STACK: "33554432"
+    volumes:
+      - hydradb-data:/data
+    restart: unless-stopped
+
+  continuum-api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    depends_on:
+      - hydradb
+    ports:
+      - "8080:8080"
+    environment:
+      HYDRADB_HOST: hydradb
+      HYDRADB_BOLT_PORT: "7687"
+      HYDRADB_PASSWORD: ${HYDRADB_PASSWORD:-local-development-token-32-characters-long}
+      # Comma-separated origins for the deployed frontend (e.g. your Vercel URL).
+      CONTINUUM_ALLOWED_ORIGINS: ${CONTINUUM_ALLOWED_ORIGINS:-}
+    restart: unless-stopped
+
+volumes:
+  hydradb-data:

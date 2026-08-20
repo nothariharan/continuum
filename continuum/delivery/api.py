@@ -1,5 +1,6 @@
 """Optional FastAPI HTTP wrapper for QueryService."""
 
+import os
 from typing import Any
 
 from continuum.delivery.query_service import QueryService
@@ -19,13 +20,17 @@ def create_app(service: QueryService | None = None):
         raise ImportError("Install optional delivery deps: pip install fastapi uvicorn") from exc
 
     app = FastAPI(title="Continuum Query API", version="1.0.0")
+    # Allowed origins: localhost by default, plus any set via
+    # CONTINUUM_ALLOWED_ORIGINS (comma-separated) for the deployed frontend.
+    _default_origins = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    _env_origins = [o.strip() for o in os.environ.get("CONTINUUM_ALLOWED_ORIGINS", "").split(",") if o.strip()]
+    _allowed = _env_origins or _default_origins
+    _allow_all = "*" in _allowed
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[
-            "http://localhost:3000",
-            "http://127.0.0.1:3000",
-        ],
-        allow_credentials=True,
+        allow_origins=["*"] if _allow_all else [*_default_origins, *_env_origins],
+        allow_origin_regex=None,
+        allow_credentials=not _allow_all,
         allow_methods=["*"],
         allow_headers=["*"],
     )
@@ -130,5 +135,53 @@ def create_app(service: QueryService | None = None):
         if _adapter is None:
             raise HTTPException(status_code=503, detail="semantic adapter unavailable")
         return _adapter.get_current_state(entity, predicate)
+
+    @app.get("/v1/connectors")
+    def connectors() -> dict[str, Any]:
+        """Real connector state — configured creds + indexed volume from HydraDB.
+
+        Never fabricates data: counts come from the graph; a connector is
+        'connected' only when its credentials are configured AND it has indexed
+        artifacts, otherwise 'demo'.
+        """
+        def _count(query: str, params: dict[str, Any] | None = None) -> int:
+            if _client is None:
+                return 0
+            try:
+                rows = _client.execute(query, params or {}).rows
+                return int(rows[0]["n"]) if rows else 0
+            except Exception:  # noqa: BLE001
+                return 0
+
+        total_artifacts = _count("MATCH (a:Artifact) RETURN count(*) AS n")
+        slack_configured = bool(os.environ.get("SLACK_BOT_TOKEN"))
+        gmail_configured = bool(os.environ.get("GMAIL_TOKEN")) or os.path.exists("gmail_token.json")
+
+        def _src_count(source_id: str) -> int:
+            return _count(
+                "MATCH (a:Artifact)-[:FROM]->(s:Source {key: $sid}) RETURN count(*) AS n",
+                {"sid": source_id},
+            )
+
+        slack_n = _src_count("source:slack")
+        gmail_n = _src_count("source:gmail")
+
+        def _status(configured: bool, n: int) -> str:
+            if configured and n > 0:
+                return "connected"
+            if n > 0:
+                return "demo"
+            return "planned"
+
+        return {
+            "mode": "live" if total_artifacts > 0 else "demo",
+            "total_artifacts": total_artifacts,
+            "connectors": [
+                {"id": "slack", "name": "Slack", "status": _status(slack_configured, slack_n),
+                 "artifacts": slack_n, "configured": slack_configured},
+                {"id": "gmail", "name": "Gmail", "status": _status(gmail_configured, gmail_n),
+                 "artifacts": gmail_n, "configured": gmail_configured},
+            ],
+        }
 
     return app

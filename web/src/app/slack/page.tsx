@@ -1,6 +1,7 @@
 import { TopNav } from "@/components/ui/TopNav";
 import { Footer, CTA } from "@/components/ui/Footer";
 import { SlackAnswer, MemoryUpdateSection } from "@/components/marketing/SlackSection";
+import { ConnectorStatus } from "@/components/product/ConnectorStatus";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function SlackPage() {
       <div className="relative z-10">
         <TopNav />
         <main className="pt-6">
+          <ConnectorStatus />
           <SlackAnswer />
           <MemoryUpdateSection />
         </main>
