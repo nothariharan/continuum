@@ -143,6 +143,58 @@ class EntityStore:
     client: HydraDBClient
     _cached_entities: list[CanonicalEntity] | None = field(default=None, init=False, repr=False)
     _cached_index: Any | None = field(default=None, init=False, repr=False)
+    _inventory_by_key: dict[str, dict] | None = field(default=None, init=False, repr=False)
+
+    def _load_inventory_index(self) -> dict[str, dict]:
+        if self._inventory_by_key is not None:
+            return self._inventory_by_key
+        from pathlib import Path
+
+        from .candidates import normalize_company_name, normalize_slug
+
+        path = Path(__file__).resolve().parents[2] / "data" / "extraction" / "mention_inventory.json"
+        index: dict[str, dict] = {}
+        try:
+            inventory = json.loads(path.read_text(encoding="utf-8"))
+            for entry in inventory["entries"]:
+                keys = {
+                    entry.get("raw_mention", ""),
+                    entry.get("normalized", ""),
+                }
+                for alias in entry.get("aliases") or ():
+                    keys.add(alias)
+                for key in keys:
+                    if not key:
+                        continue
+                    index[key] = entry
+                    index[key.lower()] = entry
+                    slug = normalize_slug(key)
+                    if slug:
+                        index[slug] = entry
+                    company_slug = normalize_company_name(key)
+                    if company_slug:
+                        index[company_slug] = entry
+        except (OSError, json.JSONDecodeError, KeyError):
+            index = {}
+        self._inventory_by_key = index
+        return index
+
+    def _inventory_entry(self, mention: str) -> dict:
+        from .candidates import normalize_company_name, normalize_slug
+
+        index = self._load_inventory_index()
+        if mention in index:
+            return index[mention]
+        lower = mention.lower()
+        if lower in index:
+            return index[lower]
+        slug = normalize_slug(mention)
+        if slug and slug in index:
+            return index[slug]
+        company_slug = normalize_company_name(mention)
+        if company_slug and company_slug in index:
+            return index[company_slug]
+        return {}
 
     def _load_entities(self) -> list[CanonicalEntity]:
         if self._cached_entities is None:
@@ -150,24 +202,26 @@ class EntityStore:
             self._cached_entities = [row_to_entity(row) for row in rows]
         return self._cached_entities
 
-    def _candidate_index(self) -> CandidateIndex:
+    def _candidate_index(self):
         if self._cached_index is None:
             from .candidates import CandidateIndex
 
             self._cached_index = CandidateIndex.build(self._load_entities())
         return self._cached_index
 
-    def _inventory_entry(self, mention: str) -> dict:
-        import json
-        from pathlib import Path
+    def _match_entity_slug(self, mention: str, entity: CanonicalEntity) -> bool:
+        from .candidates import normalize_company_name, normalize_slug
 
-        path = Path(__file__).resolve().parents[2] / "data" / "extraction" / "mention_inventory.json"
-        try:
-            inventory = json.loads(path.read_text(encoding="utf-8"))
-            by_mention = {entry["raw_mention"]: entry for entry in inventory["entries"]}
-            return by_mention.get(mention, {})
-        except (OSError, json.JSONDecodeError, KeyError):
-            return {}
+        slug = normalize_slug(mention)
+        company_slug = normalize_company_name(mention)
+        if not slug and not company_slug:
+            return False
+        for form in self._surface_forms(entity):
+            if slug and normalize_slug(form) == slug:
+                return True
+            if company_slug and normalize_company_name(form) == company_slug:
+                return True
+        return False
 
     def _surface_forms(self, entity: CanonicalEntity) -> set[str]:
         return set(entity.aliases) | set(entity.emails) | set(entity.usernames) | {entity.name}
@@ -177,14 +231,6 @@ class EntityStore:
             return True
         lower = mention.lower()
         return any(form.lower() == lower for form in self._surface_forms(entity))
-
-    def _match_entity_slug(self, mention: str, entity: CanonicalEntity) -> bool:
-        from .candidates import normalize_slug
-
-        slug = normalize_slug(mention)
-        if not slug:
-            return False
-        return any(normalize_slug(form) == slug for form in self._surface_forms(entity))
 
     # ---- writes ---------------------------------------------------------
 
@@ -262,12 +308,23 @@ class EntityStore:
         if len(ranked) > 1 and ranked[1][1] == top_hits:
             return {"status": "absent", "mention": mention, "entity_key": None, "value": None}
 
+        from .candidates import normalize_company_name, normalize_slug
+
+        mention_slug = normalize_slug(mention)
+        company_slug = normalize_company_name(mention)
+        slug_keys = set()
+        if mention_slug:
+            slug_keys.update(self._candidate_index().by_slug.get(mention_slug, ()))
+        if company_slug:
+            slug_keys.update(self._candidate_index().by_company_slug.get(company_slug, ()))
+
         strong_signal = top_hits >= 2 or (
             top_hits == 1
             and (
                 "@" in mention
                 or mention.startswith("@")
                 or any(ext in mention for ext in signals.external_ids)
+                or (len(slug_keys) == 1 and top_key in slug_keys)
             )
         )
         if not strong_signal:

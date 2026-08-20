@@ -40,6 +40,32 @@ def test_signals_from_mention_parses_email_and_username():
     assert "@morgan" in handle.usernames
 
 
+def test_resolve_mention_company_suffix():
+    entity = CanonicalEntity(
+        entity_key="account:acme",
+        label="Account",
+        name="Acme Corp",
+        aliases={"Acme Corp", "Acme"},
+        mentions={"Acme Corp"},
+    )
+    row = {
+        "key": entity.entity_key,
+        "label": entity.label,
+        "name": entity.name,
+        "aliases": "|".join(entity.aliases),
+        "alias_sources": "{}",
+        "emails": "",
+        "usernames": "",
+        "external_ids": "",
+        "sources": "",
+        "provenance": "[]",
+    }
+    store = EntityStore(_FakeClient([row]))  # type: ignore[arg-type]
+    payload = store.resolve_mention("Acme Corp")
+    assert payload["status"] == "definitive"
+    assert payload["entity_key"] == "account:acme"
+
+
 def test_resolve_mention_slug_match():
     entity = _project_entity()
     row = {

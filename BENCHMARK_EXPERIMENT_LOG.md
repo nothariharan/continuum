@@ -68,16 +68,17 @@ Full table: `benchmark-results/baseline-20pct-dev-errors.md`
 
 ## Experiments
 
-### EXP-01 — EntityStore mention resolution (KEEP pending graph re-run)
+### EXP-01 — EntityStore mention resolution
 
 Hypothesis: Slug + case-insensitive alias + candidate-index lookup reduces ER failures on project/company mentions.  
 Files: `continuum/entities/store.py`, `continuum/entities/candidates.py`  
-Track A dev 80Q: 8.75% → _pending graph run_  
-False merges: 0 (hardening suite green)  
-Decision: **KEEP** code; validate on `make benchmark-subset-er-dev` when HydraDB available
+Track A dev 80Q (no-graph baseline): 8.75%  
+Track A dev 80Q (graph path): **3.75%** (regressed — no corpus retrieval in graph adapter)  
+False merges: **0** (hardening suite green)  
+Decision: **KEEP** resolver code; **do not merge** as benchmark win until retrieval+graph integration lands
 
 ---
 
 ## Holdout validation
 
-Not run. Command when ready: `make benchmark-subset-holdout`
+**Skipped** — dev gates not met. See `docs/benchmark-er-v1-holdout.md`.

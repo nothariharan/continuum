@@ -25,11 +25,18 @@ from .models import CanonicalEntity, EntityCandidate, IdentitySignals
 
 _TOKEN_SPLIT_RE = re.compile(r"[^a-z0-9]+")
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
+_COMPANY_SUFFIX_RE = re.compile(r"\b(?:corp\.?|inc\.?|llc\.?|ltd\.?|co\.?|company)\b", re.I)
 
 
 def normalize_slug(text: str) -> str:
     """Collapse hyphens/spaces for project/account slug matching."""
     return _SLUG_RE.sub("", text.lower())
+
+
+def normalize_company_name(text: str) -> str:
+    """Strip legal suffixes and collapse whitespace for company alias matching."""
+    stripped = _COMPANY_SUFFIX_RE.sub("", text)
+    return normalize_slug(stripped)
 
 
 def normalize_tokens(text: str) -> set[str]:
@@ -55,6 +62,8 @@ class CandidateIndex:
     by_username_base: dict[str, list[str]] = None
     by_external_id: dict[str, list[str]] = None
     by_name_token: dict[str, list[str]] = None
+    by_slug: dict[str, list[str]] = None
+    by_company_slug: dict[str, list[str]] = None
     _entities: dict[str, CanonicalEntity] = None
 
     def __post_init__(self) -> None:
@@ -64,6 +73,8 @@ class CandidateIndex:
         self.by_username_base = {}
         self.by_external_id = {}
         self.by_name_token = {}
+        self.by_slug = {}
+        self.by_company_slug = {}
         self._entities = {}
 
     @classmethod
@@ -89,7 +100,13 @@ class CandidateIndex:
                 self.by_username_base.setdefault(base, []).append(entity.entity_key)
         for external_id in entity.external_ids:
             self.by_external_id.setdefault(external_id.lower(), []).append(entity.entity_key)
-        for alias in entity.aliases:
+        for alias in entity.aliases | {entity.name}:
+            slug = normalize_slug(alias)
+            if slug:
+                self.by_slug.setdefault(slug, []).append(entity.entity_key)
+            company_slug = normalize_company_name(alias)
+            if company_slug:
+                self.by_company_slug.setdefault(company_slug, []).append(entity.entity_key)
             for token in normalize_tokens(alias):
                 self.by_name_token.setdefault(token, []).append(entity.entity_key)
 
@@ -122,6 +139,14 @@ class CandidateIndex:
         for token in normalize_tokens(signals.mention):
             for key in self.by_name_token.get(token, ()):
                 hits.setdefault(key, set()).add("name-token")
+        mention_slug = normalize_slug(signals.mention)
+        if mention_slug:
+            for key in self.by_slug.get(mention_slug, ()):
+                hits.setdefault(key, set()).add("slug")
+        company_slug = normalize_company_name(signals.mention)
+        if company_slug:
+            for key in self.by_company_slug.get(company_slug, ()):
+                hits.setdefault(key, set()).add("company-slug")
 
         ranked = sorted(
             ((key, len(signal_set)) for key, signal_set in hits.items()),
