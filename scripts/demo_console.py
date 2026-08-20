@@ -204,6 +204,68 @@ def cmd_gates(scenario) -> int:
     return 0 if ok else 2
 
 
+def cmd_parity(scenario) -> int:
+    """Prove Web == Slack == MCP == Graph all read the same canonical state."""
+    q = "Who owns Acme now?"
+    with _Client() as c:
+        web = gp.ask(c, scenario, q)                       # QueryService / /v1/ask
+        mcp = gp.mcp_state(c, scenario)                    # MCP adapter
+        slack = gp.slack_answer(c, scenario, q)            # Slack Block Kit formatter
+        graph = gp.graph_summary(c, scenario)              # canonical graph export
+    web_owner = web.get("owner")
+    mcp_owner = (mcp.get("value") or {}).get("name")
+    slack_text = slack.get("text", "")
+    slack_ok = bool(web_owner) and web_owner in slack_text
+    graph_ok = bool(web_owner) and web_owner in graph["entities"]
+
+    line("Surface parity for: \"" + q + "\"")
+    line(f"  Web/API (QueryService) : {web_owner}  (effective {web.get('valid_from')})")
+    line(f"  MCP  (get_current_state): {mcp_owner}  (effective {mcp.get('valid_from')})")
+    line(f"  Slack (Block Kit)       : {slack_text.splitlines()[0] if slack_text else '-'}")
+    line(f"  Graph (entity nodes)    : {graph['entities']}")
+    line("")
+    checks = [
+        ("Web == MCP", web_owner == mcp_owner and web.get("valid_from") == mcp.get("valid_from")),
+        ("Slack answer matches Web owner", slack_ok),
+        ("Graph contains current owner", graph_ok),
+        ("Owner is Priya (current scenario state)", web_owner == "Priya"),
+    ]
+    ok = True
+    for label, passed in checks:
+        line(f"  {OK if passed else BAD} {label}")
+        ok = ok and passed
+    line("")
+    line("PARITY OK - one memory, every surface." if ok else "PARITY FAILED - a surface diverged.")
+    return 0 if ok else 2
+
+
+def cmd_recovery(scenario) -> int:
+    """Gate 9: memory survives a full client/process teardown + reconnect."""
+    line("Recovery: set state, tear down connection, reconnect, verify intact...")
+    with _Client() as c:
+        gp.reset(c, scenario)
+        gp.seed(c, scenario)
+        gp.apply(c, scenario, "gmail-transition")
+        gp.apply(c, scenario, "gmail-aug5")
+        before = gp.mcp_state(c, scenario)
+    # connection closed above == process/worker teardown
+    with _Client() as c2:  # fresh connection == restart
+        after = gp.mcp_state(c2, scenario)
+    b = (before.get("value") or {}).get("name"), before.get("valid_from")
+    a = (after.get("value") or {}).get("name"), after.get("valid_from")
+    line(f"  before teardown: {b[0]} (effective {b[1]})")
+    line(f"  after reconnect: {a[0]} (effective {a[1]})")
+    ok = a == b == ("Priya", "2026-08-05")
+    line("")
+    line(f"  {OK if ok else BAD} Gate 9  Memory intact across restart")
+    line("")
+    line("RECOVERY OK - company memory persists (HydraDB is the source of truth)."
+         if ok else "RECOVERY FAILED")
+    line("Note: queue replay / idempotent re-ingest is covered by "
+         "tests/pipeline/test_memory_worker_reliability.py")
+    return 0 if ok else 2
+
+
 def cmd_health(scenario) -> int:
     line("Continuum Demo Health")
     required: list[tuple[str, bool, str]] = []
@@ -274,6 +336,8 @@ def main() -> int:
     sub.add_parser("status")
     sub.add_parser("run")
     sub.add_parser("gates")
+    sub.add_parser("parity")
+    sub.add_parser("recovery")
     p_apply = sub.add_parser("apply")
     p_apply.add_argument("event", help="event key, e.g. gmail-transition")
     p_ask = sub.add_parser("ask")
@@ -299,6 +363,10 @@ def main() -> int:
             cmd_run(scenario)
         elif args.cmd == "gates":
             return cmd_gates(scenario)
+        elif args.cmd == "parity":
+            return cmd_parity(scenario)
+        elif args.cmd == "recovery":
+            return cmd_recovery(scenario)
         return 0
     except Exception as exc:  # noqa: BLE001
         line(f"ERROR: {exc.__class__.__name__}: {exc}")

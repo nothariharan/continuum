@@ -272,3 +272,7 @@ demo-apply:
 	$(DEMO) apply $(EVENT)
 demo-ask:
 	$(DEMO) ask "$(Q)"
+demo-parity:
+	$(DEMO) parity
+demo-recovery:
+	$(DEMO) recovery

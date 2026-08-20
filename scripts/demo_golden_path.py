@@ -172,6 +172,22 @@ def ask(client, scenario: dict[str, Any], question: str) -> dict[str, Any]:
     }
 
 
+def slack_answer(client, scenario: dict[str, Any], question: str) -> dict[str, Any]:
+    """The exact Slack Block Kit answer the bot would post (same formatter)."""
+    from continuum.delivery.slack_formatter import format_slack_answer
+
+    res = answer(
+        client,
+        {
+            "question_id": "demo",
+            "question": question,
+            "predicate": scenario["predicate"],
+            "evidence_entity": scenario["focus_entity"],
+        },
+    )
+    return format_slack_answer(res)
+
+
 def mcp_state(client, scenario: dict[str, Any]) -> dict[str, Any]:
     mcp = ContinuumMCPAdapter(client)
     return mcp.call(

@@ -41,7 +41,9 @@ credentials are informational only — the demo is fully deterministic without t
 | `make demo-ask Q="Who owns Acme now?"` | Ask via the canonical query layer |
 | `make demo-status` | Current owner + graph summary + history |
 | `make demo-run` | The full scripted narrative, printed |
-| `make demo-gates` | Acceptance gates, run 3× for determinism |
+| `make demo-gates` | Acceptance gates 1-8, run 3× for determinism |
+| `make demo-parity` | Prove Web == Slack == MCP == Graph read the same state |
+| `make demo-recovery` | Gate 9 — memory survives a connection/process restart |
 
 (Direct form: `PYTHONPATH=. python scripts/demo_console.py <cmd>`.)
 
