@@ -12,7 +12,7 @@ export type GLink = { source: string; target: string; state?: GState };
 
 // Light-theme palette (matches the site).
 const NODE: Record<GState, string> = {
-  dim: "#c3c7d2", // soft slate — visible on paper, recedes
+  dim: "#aeb4c2", // soft slate — visible on paper, recedes
   highlight: "#7c6cf0", // brand purple — relevant cluster
   primary: "#f59e0b", // amber — the answer path
 };
@@ -34,7 +34,7 @@ export function KnowledgeForceGraph({
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const fgRef = useRef<{
-    d3Force: (n: string) => { strength?: (v: number) => unknown; distance?: (v: number) => unknown } | undefined;
+    d3Force: (n: string) => { strength?: (v: number) => unknown; distance?: (v: number) => unknown; distanceMax?: (v: number) => unknown } | undefined;
     d3ReheatSimulation?: () => void;
     zoomToFit?: (ms?: number, px?: number) => void;
   } | null>(null);
@@ -49,28 +49,29 @@ export function KnowledgeForceGraph({
     return () => ro.disconnect();
   }, []);
 
-  // Organic, spread-out clustering (Obsidian-like) + re-frame after each layout.
-  // Overlaying answer nodes rebuilds the graph and re-runs the simulation, which
-  // resets the camera — so we explicitly zoomToFit a few times as it settles,
-  // guaranteeing the whole 180+ node cloud stays in view rather than drifting off.
+  // Compact Obsidian-style clustering. A weaker charge + short links keeps the
+  // whole 180+ node cloud tight enough that zoomToFit frames it WITHOUT shrinking
+  // nodes to sub-pixel dust (the strong-charge sprawl pushed outliers so far that
+  // fitting them made everything invisible).
   useEffect(() => {
     const fg = fgRef.current;
     if (!fg) return;
     try {
-      fg.d3Force("charge")?.strength?.(-95);
-      fg.d3Force("link")?.distance?.(34);
+      fg.d3Force("charge")?.strength?.(-32);
+      fg.d3Force("charge")?.distanceMax?.(180);
+      fg.d3Force("link")?.distance?.(22);
       fg.d3ReheatSimulation?.();
     } catch {
       /* forces not ready */
     }
     const fit = () => {
       try {
-        fgRef.current?.zoomToFit?.(450, 36);
+        fgRef.current?.zoomToFit?.(500, 48);
       } catch {
         /* ref not ready */
       }
     };
-    const timers = [350, 900, 1700, 2600].map((t) => setTimeout(fit, t));
+    const timers = [700, 1600].map((t) => setTimeout(fit, t));
     return () => timers.forEach(clearTimeout);
   }, [nodes, links]);
 
@@ -108,7 +109,7 @@ export function KnowledgeForceGraph({
         nodeCanvasObject={(node: GNode & { x?: number; y?: number }, ctx: CanvasRenderingContext2D, scale: number) => {
           const st = node.state ?? "dim";
           const hovered = hoverRef.current === node.id;
-          let r = st === "primary" ? 7 : st === "highlight" ? 5.5 : 2.4 + (node.val ?? 1) * 0.7;
+          let r = st === "primary" ? 7 : st === "highlight" ? 5.5 : 3 + (node.val ?? 1) * 0.7;
           if (hovered) r += 2;
           const x = node.x ?? 0;
           const y = node.y ?? 0;
