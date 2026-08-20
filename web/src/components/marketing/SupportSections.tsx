@@ -1,10 +1,152 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SourceBadge } from "@/components/ui/SourceBadge";
 import { AnimatedArrow, Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 import { CONNECTORS } from "@/data/demo-script";
+
+/* -- MCP setup terminal ---------------------------------------------------- */
+const MCP_TABS = [
+  {
+    id: "shell",
+    label: "Start the server",
+    file: "terminal",
+    lang: "sh",
+    code: `# prerequisite: the graph is running
+$ make hydradb-up
+
+# start Continuum's MCP server
+$ uv run continuum-mcp
+✓ Continuum MCP ready — 9 tools exposed`,
+  },
+  {
+    id: "config",
+    label: "Claude / Cursor config",
+    file: "claude_desktop_config.json",
+    lang: "json",
+    code: `{
+  "mcpServers": {
+    "continuum": {
+      "command": "uv",
+      "args": ["run", "continuum-mcp"]
+    }
+  }
+}`,
+  },
+  {
+    id: "prompt",
+    label: "Example prompt",
+    file: "agent.txt",
+    lang: "sh",
+    code: `You: Who owns the Acme account now, and who had it before?
+
+# Claude calls Continuum over MCP:
+  get_current_state(account:acme)  -> Priya  (since Aug 5)
+  get_history(account:acme)        -> Morgan -> Priya
+
+✓ Priya owns Acme now. Previously Morgan.
+  Grounded in Slack + Gmail.`,
+  },
+];
+
+function CodeLine({ line, lang }: { line: string; lang: string }) {
+  const isComment = line.trimStart().startsWith("#") || line.trimStart().startsWith("//");
+  const isResult = line.trimStart().startsWith("# ->") || line.includes("->");
+  const isPrompt = line.startsWith("$");
+  const isOk = line.trimStart().startsWith("✓");
+  let cls = "text-slate-200";
+  if (isOk) cls = "text-emerald-400";
+  else if (isResult && lang === "py") cls = "text-emerald-300/90";
+  else if (isComment) cls = "text-slate-500";
+  else if (isPrompt) cls = "text-sky-300";
+  return <div className={cls}>{line || " "}</div>;
+}
+
+function McpTerminal() {
+  const [tab, setTab] = useState("shell");
+  const [copied, setCopied] = useState(false);
+  const active = MCP_TABS.find((t) => t.id === tab) ?? MCP_TABS[0];
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(active.code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0f17] shadow-[0_30px_80px_-24px_rgba(15,23,42,0.5)]">
+      {/* title bar */}
+      <div className="flex items-center gap-3 border-b border-white/10 bg-[#0d1220] px-4 py-3">
+        <div className="flex gap-1.5">
+          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+        </div>
+        <div className="ml-1 flex items-center gap-2">
+          <Image src="/brand/hydradb.png" alt="HydraDB" width={78} height={14} className="h-3.5 w-auto object-contain opacity-90" />
+          <span className="h-3 w-px bg-white/15" />
+          <span className="font-mono text-[11px] text-white/50">{active.file}</span>
+        </div>
+        <button
+          type="button"
+          onClick={copy}
+          className="ml-auto inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/80 transition hover:bg-white/10"
+        >
+          {copied ? (
+            <><span className="text-emerald-400">✓</span> Copied</>
+          ) : (
+            <><CopyGlyph /> Copy</>
+          )}
+        </button>
+      </div>
+
+      {/* tabs */}
+      <div className="flex items-center gap-1 border-b border-white/10 bg-[#0b0f17] px-3 pt-2">
+        {MCP_TABS.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            onClick={() => setTab(t.id)}
+            className={`rounded-t-lg px-3 py-1.5 text-xs font-medium transition ${
+              tab === t.id ? "bg-[#131a2b] text-white" : "text-white/45 hover:text-white/70"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* code */}
+      <motion.pre
+        key={tab}
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="overflow-x-auto px-5 py-4 font-mono text-[12.5px] leading-relaxed"
+      >
+        {active.code.split("\n").map((line, i) => (
+          <CodeLine key={i} line={line} lang={active.lang} />
+        ))}
+        <span className="mt-1 inline-block h-3.5 w-2 animate-pulse bg-[var(--purple)]/80 align-middle" />
+      </motion.pre>
+    </div>
+  );
+}
+
+function CopyGlyph() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="12" height="12" rx="2" />
+      <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+    </svg>
+  );
+}
 
 export function ConnectorsSection() {
   const connected = CONNECTORS.filter((c) => c.status === "connected");
@@ -163,19 +305,55 @@ export function McpSection() {
 
         {/* Architecture Flow Line */}
         <Reveal delay={0.08} className="mt-12">
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-black/[0.08] bg-[#faf8f5] p-5 text-xs font-mono">
-            {["AI Agent", "MCP Adapter", "Continuum Semantic Layer", "HydraDB Graph", "Evidence-Backed State"].map(
+          <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-black/[0.08] bg-[var(--paper)] p-5 text-xs font-mono">
+            {["Claude / Agent", "Continuum MCP", "Semantic tools", "Canonical company memory"].map(
               (step, idx, arr) => (
                 <div key={step} className="flex items-center gap-3">
-                  <span className="rounded-xl border border-black/[0.08] bg-white px-3.5 py-2 font-semibold text-[var(--charcoal)] shadow-2xs">
-                    {step}
-                  </span>
-                  {idx < arr.length - 1 && <span className="text-[var(--purple)] font-bold">→</span>}
+                  {step === "Canonical company memory" ? (
+                    <span className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#0b0f17] px-3 py-2">
+                      <span className="font-semibold text-white/80">{step}</span>
+                      <span className="h-3.5 w-px bg-white/15" />
+                      <Image src="/brand/hydradb.png" alt="HydraDB" width={64} height={12} className="h-3 w-auto object-contain" />
+                    </span>
+                  ) : (
+                    <span className="rounded-xl border border-black/[0.08] bg-white px-3.5 py-2 font-semibold text-[var(--charcoal)] shadow-2xs">
+                      {step}
+                    </span>
+                  )}
+                  {idx < arr.length - 1 && <span className="font-bold text-[var(--purple)]">→</span>}
                 </div>
               ),
             )}
           </div>
         </Reveal>
+
+        {/* Copy-paste setup terminal */}
+        <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1fr_1.2fr]">
+          <Reveal>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--charcoal-muted)]">
+              Wire it up
+            </p>
+            <h3 className="mt-3 font-serif text-3xl leading-tight text-[var(--charcoal)]">
+              Point any agent at Continuum <span className="italic">in one paste.</span>
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--charcoal-muted)]">
+              Register the Continuum MCP server with your client, or call the adapter directly. Either
+              way, your agent gets deterministic, evidence-backed company state — the same layer Slack
+              and the web app read.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm text-[var(--charcoal-body)]">
+              {["Same canonical state as every surface", "Deterministic — no hallucinated ownership", "Evidence + provenance on every answer"].map((f) => (
+                <li key={f} className="flex items-center gap-2">
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[var(--emerald-soft)] text-[9px] font-bold text-[var(--emerald)]">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <McpTerminal />
+          </Reveal>
+        </div>
 
         {/* Interactive MCP Tool Inspector (Light Developer Theme) */}
         <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
