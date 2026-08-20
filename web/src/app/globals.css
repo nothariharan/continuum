@@ -4,6 +4,19 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-serif: var(--font-instrument);
+
+  /* Map shadcn utility color tokens onto the Continuum palette so classes like
+     bg-card, bg-background, text-foreground, text-muted-foreground, border-border
+     and bg-muted work for drop-in components. */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
 }
 
 * {
@@ -122,6 +135,121 @@ body {
   pointer-events: none;
 }
 
+/* ── Premium motion system ─────────────────────────────── */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2.5%, 0) scale(1.03);
+  }
+}
+
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 55s linear infinite;
+}
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+.animate-drift {
+  animation: drift 16s ease-in-out infinite;
+}
+.animate-glow-pulse {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+
+/* Logo mark: spins one full turn on hover of itself or its group */
+.logo-mark {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.logo-mark:hover,
+.group:hover .logo-mark {
+  transform: rotate(360deg);
+}
+
+/* Animated dashed connector lines in the architecture diagram */
+.flow-path {
+  stroke-dasharray: 5 9;
+  animation: flow-dash 3s linear infinite;
+}
+
+/* Flowing energy along the hero convergence lines */
+@keyframes hero-flow {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+.hero-flow {
+  stroke-dasharray: 2 12;
+  animation: hero-flow 4s linear infinite;
+}
+
+/* Overlapping icon stack that fans out + lifts when its card is hovered */
+.pop-stack > * {
+  transition: transform 0.4s var(--motion-ease), box-shadow 0.4s var(--motion-ease);
+  will-change: transform;
+}
+.group:hover .pop-stack > * {
+  transform: translateX(var(--pop-x, 0)) translateY(-8px) scale(1.12);
+}
+
+/* Underline sweep for nav links */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1.5px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: var(--purple);
+  transition: transform 0.32s var(--motion-ease);
+}
+.nav-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
@@ -145,8 +273,21 @@ body {
   .animate-float,
   .animate-orbit,
   .animate-pulse-ring,
+  .animate-spin-slow,
+  .animate-float-slow,
+  .animate-drift,
+  .animate-glow-pulse,
+  .flow-path,
+  .hero-flow,
   .hero-glow,
   .pipeline-track::after {
     animation: none;
+  }
+  .logo-mark,
+  .pop-stack > * {
+    transition: none;
+  }
+  .group:hover .pop-stack > * {
+    transform: none;
   }
 }
