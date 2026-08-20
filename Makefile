@@ -141,7 +141,7 @@ benchmark-capability:
 	PYTHONPATH=. python3 scripts/benchmark_e2e_questions.py || true
 
 analyze-benchmark-subset:
-	PYTHONPATH=. python scripts/analyze_benchmark_subset.py --run-id subset-20pct-mock-001 --label baseline-20pct
+	PYTHONPATH=. python scripts/analyze_benchmark_subset.py --run-id subset-20pct-baseline-001 --label baseline-20pct-dev
 
 benchmark-continuum-sample:
 	python scripts/benchmark_continuum_sample.py
