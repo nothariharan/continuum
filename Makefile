@@ -252,3 +252,23 @@ web-build:
 
 web-install:
 	cd web && npm install
+
+# ── Golden-path demo (Option A) ─────────────────────────────────────────────
+DEMO = PYTHONPATH=. python scripts/demo_console.py
+
+demo-health:
+	$(DEMO) health
+demo-reset:
+	$(DEMO) reset
+demo-seed:
+	$(DEMO) seed
+demo-status:
+	$(DEMO) status
+demo-run:
+	$(DEMO) run
+demo-gates:
+	$(DEMO) gates
+demo-apply:
+	$(DEMO) apply $(EVENT)
+demo-ask:
+	$(DEMO) ask "$(Q)"

@@ -1,0 +1,65 @@
+{
+  "name": "acme-ownership",
+  "description": "Golden-path demo: Slack + Gmail fuse into one temporal memory; new Gmail information changes the answer to the same question with no manual graph rebuild.",
+  "predicate": "OWNS",
+  "focus_entity": "account:acme",
+  "entities": {
+    "account:acme": { "name": "Acme" },
+    "person:morgan": { "name": "Morgan" },
+    "person:priya": { "name": "Priya" }
+  },
+  "entity_keys": ["account:acme", "person:morgan", "person:priya"],
+  "events": [
+    {
+      "key": "slack-initial",
+      "source": "slack",
+      "ts": "1785196800.000000",
+      "channel": "account-updates",
+      "author": "Morgan",
+      "text": "Morgan owns the Acme account.",
+      "ingested_at": "2026-07-20T00:00:00+00:00",
+      "narrative": "Slack: Morgan is handling the Acme account."
+    },
+    {
+      "key": "gmail-transition",
+      "source": "gmail",
+      "message_id": "g-transition",
+      "thread_id": "acme",
+      "sender": "Morgan",
+      "subject": "Acme ownership transition",
+      "body": "Ownership of the Acme account transfers from Morgan to Priya, effective August 3.",
+      "date": "Sun, 03 Aug 2026 09:00:00 +0000",
+      "ingested_at": "2026-08-03T00:00:00+00:00",
+      "narrative": "Gmail: ownership of Acme transfers from Morgan to Priya, effective August 3."
+    },
+    {
+      "key": "gmail-aug5",
+      "source": "gmail",
+      "message_id": "g-aug5",
+      "thread_id": "acme",
+      "sender": "Morgan",
+      "subject": "Acme ownership transition",
+      "body": "Correction: ownership of the Acme account transfers from Morgan to Priya, effective August 5.",
+      "date": "Tue, 05 Aug 2026 09:00:00 +0000",
+      "ingested_at": "2026-08-05T00:00:00+00:00",
+      "narrative": "Gmail: correction — the transfer is effective August 5."
+    },
+    {
+      "key": "slack-conflict",
+      "source": "slack",
+      "ts": "1786500000.000000",
+      "channel": "account-updates",
+      "author": "Morgan",
+      "text": "Morgan still owns Acme.",
+      "ingested_at": "2026-08-06T00:00:00+00:00",
+      "narrative": "Slack: Morgan still owns Acme. (contradicts the Gmail transfer)"
+    }
+  ],
+  "golden_queries": [
+    { "after": "slack-initial", "question": "Who owns Acme?", "expect_owner": "Morgan" },
+    { "after": "gmail-transition", "question": "Who owns Acme now?", "expect_owner": "Priya", "expect_effective": "2026-08-03" },
+    { "after": "gmail-transition", "question": "Who owned Acme before Priya?", "expect_owner": "Morgan" },
+    { "after": "gmail-aug5", "question": "Who owns Acme now?", "expect_owner": "Priya", "expect_effective": "2026-08-05" },
+    { "after": "gmail-aug5", "question": "Who owned Acme before Priya?", "expect_owner": "Morgan" }
+  ]
+}
