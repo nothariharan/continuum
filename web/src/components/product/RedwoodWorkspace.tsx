@@ -46,7 +46,7 @@ export function RedwoodWorkspace() {
   const loadTimer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    fetch("/redwood-demo.json", { cache: "force-cache" }).then((r) => r.json()).then(setData).catch(() => setData(null));
+    fetch("/redwood-demo.json?v=3", { cache: "no-store" }).then((r) => r.json()).then(setData).catch(() => setData(null));
     isRedwoodLive().then(setLive);
   }, []);
 

@@ -36,6 +36,16 @@ const LINK: Record<GState, string> = {
 };
 const BG = "#ffffff";
 
+// Deterministic seed so nodes START inside the viewport (radius ~200 around the
+// origin ≈ default camera). Guarantees visibility even if force/zoom calls no-op.
+function seedXY(id: string): { x: number; y: number } {
+  let h = 2166136261;
+  for (let i = 0; i < id.length; i++) h = Math.imul(h ^ id.charCodeAt(i), 16777619) >>> 0;
+  const angle = (h % 3600) / 3600 * Math.PI * 2;
+  const radius = 24 + (h % 176);
+  return { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
+}
+
 export function KnowledgeForceGraph({
   nodes,
   links,
@@ -97,10 +107,13 @@ export function KnowledgeForceGraph({
     return () => timers.forEach(clearTimeout);
   }, [nodes, links]);
 
-  const data = useMemo(() => ({ nodes: nodes.map((n) => ({ ...n })), links: links.map((l) => ({ ...l })) }), [nodes, links]);
+  const data = useMemo(
+    () => ({ nodes: nodes.map((n) => ({ ...n, ...seedXY(n.id) })), links: links.map((l) => ({ ...l })) }),
+    [nodes, links]
+  );
 
   return (
-    <div ref={wrapRef} className="w-full overflow-hidden rounded-3xl border border-[var(--paper-border)]" style={{ height, background: BG }}>
+    <div ref={wrapRef} className="relative w-full overflow-hidden rounded-3xl border border-[var(--paper-border)]" style={{ height, background: BG }}>
       <ForceGraph2D
         innerRef={fgRef}
         width={width}
