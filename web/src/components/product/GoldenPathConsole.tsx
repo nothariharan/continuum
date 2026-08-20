@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { askQuestion, fetchHistory, isApiAvailable } from "@/lib/api";
 import type { AskResult, EvidenceItem, HistoryRow } from "@/lib/contracts";
 import { Reveal } from "@/components/ui/motion";
+import { EmergingMemoryGraph } from "@/components/product/EmergingMemoryGraph";
 
 /* The golden-path query console. Renders ONLY what the backend actually returns:
  * the canonical answer, its evidence, the temporal history, and a process trace
@@ -92,10 +93,26 @@ export function GoldenPathConsole() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [visibleStages, setVisibleStages] = useState(0);
   const [showWhy, setShowWhy] = useState(false);
+  const [graphStep, setGraphStep] = useState(0);
 
   useEffect(() => {
     isApiAvailable().then(setLive);
   }, []);
+
+  // Grow the company-memory graph as the answer resolves.
+  useEffect(() => {
+    if (phase !== "done") {
+      setGraphStep(0);
+      return;
+    }
+    let s = 0;
+    const t = setInterval(() => {
+      s += 1;
+      setGraphStep(s);
+      if (s >= 3) clearInterval(t);
+    }, 550);
+    return () => clearInterval(t);
+  }, [phase]);
 
   const stages = useMemo(() => (result ? buildStages(result, history) : []), [result, history]);
 
@@ -349,6 +366,18 @@ export function GoldenPathConsole() {
               <div className="mt-5">
                 <TimelineBar history={history} owner={owner} />
               </div>
+            </div>
+          </Reveal>
+        )}
+
+        {/* Company memory — the graph grows as the answer resolves */}
+        {phase === "done" && (
+          <Reveal delay={0.08} className="mt-6">
+            <div className="rounded-3xl border border-[var(--paper-border)] bg-[var(--paper)] p-6 shadow-[var(--shadow-subtle)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--charcoal-muted)]">
+                Company memory
+              </p>
+              <EmergingMemoryGraph step={graphStep} className="mt-3 h-[300px] w-full" />
             </div>
           </Reveal>
         )}

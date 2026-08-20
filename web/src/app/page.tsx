@@ -1,6 +1,6 @@
 import { TopNav } from "@/components/ui/TopNav";
 import { Footer, ClosingCTA } from "@/components/ui/Footer";
-import { HowItWorksSection } from "@/components/marketing/HeroSections";
+import { ResolutionPipeline } from "@/components/marketing/ResolutionPipeline";
 import { HeroConnect } from "@/components/marketing/HeroConnect";
 import { ArchitectureFlow } from "@/components/marketing/ArchitectureFlow";
 import { NoiseFilterSection } from "@/components/marketing/NoiseFilterSection";
@@ -17,8 +17,8 @@ export default function HomePage() {
         {/* The architecture — the product */}
         <ArchitectureFlow />
 
-        {/* How it works */}
-        <HowItWorksSection />
+        {/* How it works — the resolution pipeline */}
+        <ResolutionPipeline />
 
         {/* How we filter the noise (funnel) */}
         <NoiseFilterSection />
