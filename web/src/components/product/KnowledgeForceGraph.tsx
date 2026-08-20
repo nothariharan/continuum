@@ -49,7 +49,10 @@ export function KnowledgeForceGraph({
     return () => ro.disconnect();
   }, []);
 
-  // Organic, spread-out clustering (Obsidian-like).
+  // Organic, spread-out clustering (Obsidian-like) + re-frame after each layout.
+  // Overlaying answer nodes rebuilds the graph and re-runs the simulation, which
+  // resets the camera — so we explicitly zoomToFit a few times as it settles,
+  // guaranteeing the whole 180+ node cloud stays in view rather than drifting off.
   useEffect(() => {
     const fg = fgRef.current;
     if (!fg) return;
@@ -60,6 +63,15 @@ export function KnowledgeForceGraph({
     } catch {
       /* forces not ready */
     }
+    const fit = () => {
+      try {
+        fgRef.current?.zoomToFit?.(450, 36);
+      } catch {
+        /* ref not ready */
+      }
+    };
+    const timers = [350, 900, 1700, 2600].map((t) => setTimeout(fit, t));
+    return () => timers.forEach(clearTimeout);
   }, [nodes, links]);
 
   const data = useMemo(() => ({ nodes: nodes.map((n) => ({ ...n })), links: links.map((l) => ({ ...l })) }), [nodes, links]);
