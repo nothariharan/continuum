@@ -3,8 +3,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
-// react-force-graph-2d is canvas/DOM-only — load client-side.
-const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), { ssr: false });
+// react-force-graph-2d is canvas/DOM-only — load client-side. next/dynamic does
+// NOT forward React refs, so we pass the ref through as a plain `innerRef` prop;
+// otherwise fgRef stays null and d3Force/zoomToFit silently no-op (nodes then fly
+// off-canvas under d3's default long-range charge).
+const ForceGraph2D = dynamic(
+  async () => {
+    const mod = await import("react-force-graph-2d");
+    const FG = mod.default;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const Wrapped = ({ innerRef, ...props }: any) => <FG ref={innerRef} {...props} />;
+    Wrapped.displayName = "ForceGraph2DWrapped";
+    return Wrapped;
+  },
+  { ssr: false }
+);
 
 export type GState = "dim" | "highlight" | "primary";
 export type GNode = { id: string; label?: string; group?: string; kind?: string; val?: number; state?: GState };
@@ -54,16 +67,18 @@ export function KnowledgeForceGraph({
   // nodes to sub-pixel dust (the strong-charge sprawl pushed outliers so far that
   // fitting them made everything invisible).
   useEffect(() => {
-    const fg = fgRef.current;
-    if (!fg) return;
-    try {
-      fg.d3Force("charge")?.strength?.(-32);
-      fg.d3Force("charge")?.distanceMax?.(180);
-      fg.d3Force("link")?.distance?.(22);
-      fg.d3ReheatSimulation?.();
-    } catch {
-      /* forces not ready */
-    }
+    const applyForces = () => {
+      const fg = fgRef.current;
+      if (!fg) return;
+      try {
+        fg.d3Force("charge")?.strength?.(-32);
+        fg.d3Force("charge")?.distanceMax?.(180);
+        fg.d3Force("link")?.distance?.(22);
+        fg.d3ReheatSimulation?.();
+      } catch {
+        /* forces not ready */
+      }
+    };
     const fit = () => {
       try {
         fgRef.current?.zoomToFit?.(500, 48);
@@ -71,7 +86,14 @@ export function KnowledgeForceGraph({
         /* ref not ready */
       }
     };
-    const timers = [700, 1600].map((t) => setTimeout(fit, t));
+    applyForces();
+    // The dynamic ForceGraph may mount a tick after data arrives — re-apply so the
+    // compact charge actually takes, then frame the settled cloud.
+    const timers = [
+      setTimeout(applyForces, 120),
+      setTimeout(fit, 800),
+      setTimeout(fit, 1700),
+    ];
     return () => timers.forEach(clearTimeout);
   }, [nodes, links]);
 
@@ -79,9 +101,8 @@ export function KnowledgeForceGraph({
 
   return (
     <div ref={wrapRef} className="w-full overflow-hidden rounded-3xl border border-[var(--paper-border)]" style={{ height, background: BG }}>
-      {/* @ts-expect-error dynamic import loses generic typing */}
       <ForceGraph2D
-        ref={fgRef}
+        innerRef={fgRef}
         width={width}
         height={height}
         graphData={data}
