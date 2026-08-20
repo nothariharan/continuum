@@ -1,0 +1,77 @@
+:root {
+  /* Warm editorial paper & light theme (Billow + Aside + Linear inspired) */
+  --paper: #faf8f5;
+  --paper-subtle: #f4f0e8;
+  --paper-muted: #eae3d5;
+  --paper-card: #ffffff;
+  --paper-border: rgba(15, 23, 42, 0.08);
+  --paper-border-strong: rgba(15, 23, 42, 0.16);
+  --charcoal: #0f172a;
+  --charcoal-body: #334155;
+  --charcoal-muted: #64748b;
+  --charcoal-faint: #94a3b8;
+
+  /* Brand Accents */
+  --purple: #6366f1;
+  --purple-hover: #4f46e5;
+  --purple-soft: #eef2ff;
+  --purple-border: #c7d2fe;
+  --purple-tint: rgba(99, 102, 241, 0.08);
+  --purple-glow: rgba(99, 102, 241, 0.18);
+  
+  --cyan: #0284c7;
+  --cyan-soft: #e0f2fe;
+  --cyan-border: #bae6fd;
+  
+  --emerald: #059669;
+  --emerald-soft: #ecfdf5;
+  --emerald-border: #a7f3d0;
+  
+  --amber: #d97706;
+  --amber-soft: #fef3c7;
+  --amber-border: #fde68a;
+
+  /* Light technical product UI (Linear / Raycast Light inspired) */
+  --product-bg: #faf8f5;
+  --product-surface: #ffffff;
+  --product-surface-elevated: #ffffff;
+  --product-border: rgba(15, 23, 42, 0.08);
+  --product-border-strong: rgba(15, 23, 42, 0.16);
+  --product-text: #0f172a;
+  --product-muted: #64748b;
+  --product-faint: #94a3b8;
+
+  /* Spatial Graph Light Canvas (Attio / Figma inspired) */
+  --graph-bg: #f8fafc;
+  --graph-node-bg: #ffffff;
+  --graph-edge: rgba(99, 102, 241, 0.35);
+
+  /* Radius & Elevated Light Shadows */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 9999px;
+  
+  --shadow-subtle: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-soft: 0 12px 32px -8px rgba(15, 23, 42, 0.07), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  --shadow-elevated: 0 24px 64px -12px rgba(15, 23, 42, 0.09), 0 8px 24px -4px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 0 0 1px rgba(15, 23, 42, 0.06), 0 8px 24px -4px rgba(15, 23, 42, 0.05);
+
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--charcoal);
+  color-scheme: light;
+}
+
+[data-theme="product"],
+[data-theme="graph"],
+[data-theme="marketing"] {
+  --background: var(--paper);
+  --foreground: var(--charcoal);
+  color-scheme: light;
+}

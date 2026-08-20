@@ -2,19 +2,36 @@
 
 from typing import Any
 
+from continuum.delivery.graph_export import export_entity_graph
 from continuum.delivery.query_service import QueryService
+from continuum.delivery.slack_formatter import format_slack_answer
+from continuum.entities.store import EntityStore
 from continuum.hydradb import HydraDBClient
+from continuum.query.semantic import StateQueryAdapter
 
 
 def create_app(service: QueryService | None = None):
     try:
-        from fastapi import FastAPI
+        from fastapi import FastAPI, HTTPException, Query
+        from fastapi.middleware.cors import CORSMiddleware
         from pydantic import BaseModel
     except ImportError as exc:
         raise ImportError("Install optional delivery deps: pip install fastapi uvicorn") from exc
 
     app = FastAPI(title="Continuum Query API", version="1.0.0")
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
+        ],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
     _service = service
+    _client: HydraDBClient | None = None
+    _adapter: StateQueryAdapter | None = None
 
     class AskRequest(BaseModel):
         question: str
@@ -22,11 +39,13 @@ def create_app(service: QueryService | None = None):
 
     @app.on_event("startup")
     def _startup() -> None:
-        nonlocal _service
+        nonlocal _service, _adapter, _client
         if _service is None:
             client = HydraDBClient()
             client.health_check()
+            _client = client
             _service = QueryService(client)
+            _adapter = StateQueryAdapter(client, entity_store=EntityStore(client))
 
     @app.get("/health")
     def health() -> dict[str, Any]:
@@ -37,5 +56,55 @@ def create_app(service: QueryService | None = None):
     def ask(body: AskRequest) -> dict[str, Any]:
         assert _service is not None
         return _service.ask(body.question, question_id=body.question_id)
+
+    @app.post("/v1/ask/formatted")
+    def ask_formatted(body: AskRequest) -> dict[str, Any]:
+        assert _service is not None
+        result = _service.ask(body.question, question_id=body.question_id)
+        return format_slack_answer(result)
+
+    @app.get("/v1/graph/export")
+    def graph_export(
+        entity: str = Query(..., description="Canonical entity key, e.g. account:acme"),
+        depth: int = Query(2, ge=1, le=4),
+    ) -> dict[str, Any]:
+        assert _client is not None
+        return export_entity_graph(_client, entity, depth=depth)
+
+    @app.get("/v1/semantic/history")
+    def semantic_history(
+        entity: str = Query(...),
+        predicate: str = Query("OWNS"),
+    ) -> dict[str, Any]:
+        if _adapter is None:
+            raise HTTPException(status_code=503, detail="semantic adapter unavailable")
+        return _adapter.get_history(entity, predicate)
+
+    @app.get("/v1/semantic/evidence")
+    def semantic_evidence(
+        entity: str = Query(...),
+        predicate: str = Query("OWNS"),
+    ) -> dict[str, Any]:
+        if _adapter is None:
+            raise HTTPException(status_code=503, detail="semantic adapter unavailable")
+        return _adapter.get_evidence(entity, predicate)
+
+    @app.get("/v1/semantic/conflicts")
+    def semantic_conflicts(
+        entity: str = Query(...),
+        predicate: str = Query("OWNS"),
+    ) -> dict[str, Any]:
+        if _adapter is None:
+            raise HTTPException(status_code=503, detail="semantic adapter unavailable")
+        return _adapter.get_conflicts(entity, predicate)
+
+    @app.get("/v1/semantic/state")
+    def semantic_state(
+        entity: str = Query(...),
+        predicate: str = Query("OWNS"),
+    ) -> dict[str, Any]:
+        if _adapter is None:
+            raise HTTPException(status_code=503, detail="semantic adapter unavailable")
+        return _adapter.get_current_state(entity, predicate)
 
     return app

@@ -3,28 +3,28 @@
   "benchmark_version": "v1",
   "context_efficiency": {
     "bm25": {
-      "artifact_count_mean": 1.11,
-      "context_chars_mean": 10368.23,
-      "context_tokens_mean": 1475.39,
-      "evidence_items_mean": 1.11
+      "artifact_count_mean": 1,
+      "context_chars_mean": 9870.6,
+      "context_tokens_mean": 1403.6,
+      "evidence_items_mean": 1
     },
     "continuum": {
       "artifact_count_mean": 1,
-      "context_chars_mean": 9527.03,
-      "context_tokens_mean": 1353.48,
+      "context_chars_mean": 9739.5,
+      "context_tokens_mean": 1381.1,
       "evidence_items_mean": 1
     },
     "dense": {
-      "artifact_count_mean": 1.11,
-      "context_chars_mean": 10368.23,
-      "context_tokens_mean": 1475.39,
-      "evidence_items_mean": 1.11
+      "artifact_count_mean": 1,
+      "context_chars_mean": 9870.6,
+      "context_tokens_mean": 1403.6,
+      "evidence_items_mean": 1
     },
     "hybrid": {
-      "artifact_count_mean": 1.11,
-      "context_chars_mean": 10368.23,
-      "context_tokens_mean": 1475.39,
-      "evidence_items_mean": 1.11
+      "artifact_count_mean": 1,
+      "context_chars_mean": 9870.6,
+      "context_tokens_mean": 1403.6,
+      "evidence_items_mean": 1
     }
   },
   "continuum_diagnostics": {
@@ -42,13 +42,13 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 13.84,
+        "retrieval_ms": 2.96,
         "state_ms": 0.0
       },
       "total": {
-        "mean": 13.84,
-        "p50": 12.19,
-        "p95": 31.46
+        "mean": 2.96,
+        "p50": 2.43,
+        "p95": 4.42
       }
     },
     "continuum": {
@@ -56,13 +56,13 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 22.71,
+        "retrieval_ms": 3.22,
         "state_ms": 0.0
       },
       "total": {
-        "mean": 22.71,
-        "p50": 12.53,
-        "p95": 91.61
+        "mean": 3.22,
+        "p50": 3.02,
+        "p95": 4.78
       }
     },
     "dense": {
@@ -70,13 +70,13 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 12.05,
+        "retrieval_ms": 2.72,
         "state_ms": 0.0
       },
       "total": {
-        "mean": 12.05,
-        "p50": 11.65,
-        "p95": 24.83
+        "mean": 2.72,
+        "p50": 2.18,
+        "p95": 4.01
       }
     },
     "hybrid": {
@@ -84,13 +84,13 @@
         "entity_ms": 0.0,
         "generation_ms": 0.0,
         "graph_ms": 0.0,
-        "retrieval_ms": 15.01,
+        "retrieval_ms": 2.75,
         "state_ms": 0.0
       },
       "total": {
-        "mean": 15.01,
-        "p50": 11.3,
-        "p95": 38.73
+        "mean": 2.75,
+        "p50": 2.24,
+        "p95": 3.64
       }
     }
   },
@@ -98,29 +98,29 @@
   "official_score": {
     "bm25": {
       "answer_correctness": 0.0,
-      "document_recall_mean": 0.0118,
-      "invalid_extra_evidence_mean": 1.082,
-      "question_count": 75
+      "document_recall_mean": 0.0,
+      "invalid_extra_evidence_mean": 1.0,
+      "question_count": 10
     },
     "continuum": {
       "answer_correctness": 0.0,
-      "document_recall_mean": 0.0118,
-      "invalid_extra_evidence_mean": 0.9508,
-      "question_count": 75
+      "document_recall_mean": 0.0,
+      "invalid_extra_evidence_mean": 1.0,
+      "question_count": 10
     },
     "dense": {
       "answer_correctness": 0.0,
-      "document_recall_mean": 0.0118,
-      "invalid_extra_evidence_mean": 1.082,
-      "question_count": 75
+      "document_recall_mean": 0.0,
+      "invalid_extra_evidence_mean": 1.0,
+      "question_count": 10
     },
     "hybrid": {
       "answer_correctness": 0.0,
-      "document_recall_mean": 0.0118,
-      "invalid_extra_evidence_mean": 1.082,
-      "question_count": 75
+      "document_recall_mean": 0.0,
+      "invalid_extra_evidence_mean": 1.0,
+      "question_count": 10
     }
   },
-  "question_count": 75,
-  "runtime_ms": 5022.26
+  "question_count": 10,
+  "runtime_ms": 134.83
 }

@@ -16,3 +16,6 @@ data/entity_resolution/**/embeddings/
 .cache/
 models/
 embeddings/
+web/node_modules/
+web/.next/
+web/.env.local
