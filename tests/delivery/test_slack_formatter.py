@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from continuum.delivery.slack_formatter import format_slack_answer
+from continuum.delivery.slack_formatter import format_slack_answer, format_slack_trace
 
 
 def _definitive(**overrides) -> dict:
@@ -33,19 +33,35 @@ def _definitive(**overrides) -> dict:
 
 def test_definitive_answer_sections():
     payload = format_slack_answer(_definitive())
-    assert "Priya owns Acme now." in payload["text"]
-    assert "Why:" in payload["text"]
-    assert "Slack — message" in payload["text"]
-    assert "Gmail — email" in payload["text"]
-    assert "State: Morgan → Priya" in payload["text"]
-    assert "Confidence: High" in payload["text"]
+    text = payload["text"]
+    assert "Priya owns Acme now." in text
+    assert "Previously: Morgan" in text
+    assert "Effective: Aug 1" in text
+    assert "Evidence: Slack · Gmail" in text
+    assert "Confidence: High" in text
     blocks = payload["blocks"]
-    assert len(blocks) >= 4
-    headings = [b["text"]["text"] for b in blocks]
-    assert any(h.startswith("*Answer:*") for h in headings)
-    assert any(h.startswith("*Why:*") for h in headings)
-    assert any(h.startswith("*State:*") for h in headings)
-    assert any(h.startswith("*Confidence:*") for h in headings)
+    assert len(blocks) >= 3
+    # first block is the bold answer line
+    assert blocks[0]["type"] == "section"
+    assert "Priya owns Acme now." in blocks[0]["text"]["text"]
+    # a section carries the Previously / Effective / Evidence metadata
+    section_texts = [b["text"]["text"] for b in blocks if b["type"] == "section"]
+    assert any("Previously:" in t and "Effective:" in t and "Evidence:" in t for t in section_texts)
+    # confidence rendered as a context footer element
+    context_texts = [e["text"] for b in blocks if b["type"] == "context" for e in b["elements"]]
+    assert any("Confidence" in t for t in context_texts)
+
+
+def test_trace_checklist_reflects_real_stages():
+    payload = format_slack_trace(_definitive())
+    text = payload["text"]
+    assert "Searching Slack" in text
+    assert "Searching Gmail" in text
+    assert "Resolving entities" in text
+    assert "Checking timeline" in text
+    assert "Collecting evidence" in text
+    # every stage here has a real signal → all checked
+    assert "◦" not in text
 
 
 def test_absent_is_honest():

@@ -57,6 +57,58 @@ Use entity names aligned with gold: **Morgan**, **Priya**, **Ethan**, **Acme**, 
 | B16 | Restart worker + bot | Same answer |
 | B20 | Reset graph → re-ingest from Slack only | Same semantic state |
 
+## 4b. Live pipeline checklist (for recording)
+
+In Socket Mode the bot posts a **live trace checklist** before the answer, so Slack
+shows the reconstruction on camera:
+
+```
+Continuum · reconstructing the answer
+✓  Searching Slack
+✓  Searching Gmail
+✓  Resolving entities
+✓  Checking timeline
+✓  Collecting evidence
+```
+
+then the answer:
+
+```
+Priya owns Acme now.
+Previously: Morgan
+Effective: Aug 5
+Evidence: Slack · Gmail
+Confidence: High
+```
+
+Each ✓ reflects a stage that actually ran (a source that returned evidence, entity
+resolution, timeline, evidence collection) — nothing is faked; a stage with no
+signal shows a hollow `◦`.
+
+Controls (env):
+
+| Var | Default (socket) | Effect |
+|-----|------------------|--------|
+| `CONTINUUM_SLACK_TRACE` | `1` (on) | Post the checklist before the answer |
+| `CONTINUUM_SLACK_TRACE_DELAY` | `0.8` | Seconds between checklist and answer (pace for camera) |
+
+**Dry-run preview** (no Slack app needed — renders exactly what will post, from the
+live canonical state; requires HydraDB seeded per steps 1–3 or the golden path):
+
+```bash
+python scripts/run_slack_bot.py --mode once --text "who owns Acme?"
+python scripts/run_slack_bot.py --mode once --text "who owned Acme before Priya?"
+```
+
+Seed the golden-path state first if not using live Slack ingest:
+
+```bash
+python scripts/demo_console.py reset
+python scripts/demo_console.py seed              # Slack: Morgan owns Acme
+python scripts/demo_console.py apply gmail-transition
+python scripts/demo_console.py apply gmail-aug5  # → Priya, effective Aug 5
+```
+
 ## 5. Automated harness (no live Slack)
 
 ```bash

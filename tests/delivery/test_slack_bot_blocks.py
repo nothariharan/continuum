@@ -89,6 +89,12 @@ def test_every_block_is_valid_section_or_context():
     ):
         payload = format_slack_answer(env)
         for block in payload["blocks"]:
-            assert block["type"] == "section"
-            assert block["text"]["type"] == "mrkdwn"
-            assert block["text"]["text"].strip()
+            assert block["type"] in ("section", "context")
+            if block["type"] == "section":
+                assert block["text"]["type"] == "mrkdwn"
+                assert block["text"]["text"].strip()
+            else:
+                assert block["elements"]
+                for element in block["elements"]:
+                    assert element["type"] == "mrkdwn"
+                    assert element["text"].strip()

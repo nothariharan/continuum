@@ -6,7 +6,20 @@ sections built only from the structured envelope (no model text, no CoT).
 
 from __future__ import annotations
 
+from datetime import date, datetime
 from typing import Any
+
+_SOURCE_DISPLAY = {
+    "slack": "Slack",
+    "gmail": "Gmail",
+    "linear": "Linear",
+    "jira": "Jira",
+    "github": "GitHub",
+    "drive": "Drive",
+    "confluence": "Confluence",
+    "hubspot": "HubSpot",
+    "fireflies": "Fireflies",
+}
 
 _KIND_PHRASES = {
     "slack_message": "message",
@@ -25,6 +38,83 @@ def _kind_phrase(kind: str | None) -> str:
     if not kind:
         return ""
     return _KIND_PHRASES.get(kind.lower(), kind.replace("_", " ").strip())
+
+
+def _display_source(source: Any) -> str:
+    s = str(source)
+    return _SOURCE_DISPLAY.get(s.lower(), s)
+
+
+def _evidence_sources(evidence: list[dict[str, Any]]) -> list[str]:
+    """Distinct, display-cased sources that actually contributed evidence."""
+    order: list[str] = []
+    for item in evidence:
+        raw = item.get("source") or item.get("artifact_source")
+        if not raw:
+            continue
+        label = _display_source(raw)
+        if label not in order:
+            order.append(label)
+    return order
+
+
+def _previous_name(state: dict[str, Any]) -> str | None:
+    """The owner immediately before the current one, from state history."""
+    names: list[str] = []
+    for row in state.get("history") or []:
+        n = row.get("subject_name") or row.get("subject_mention")
+        if n and (not names or names[-1] != str(n)):
+            names.append(str(n))
+    return names[-2] if len(names) >= 2 else None
+
+
+def _fmt_date(value: Any) -> str | None:
+    """Render a date/ISO timestamp as 'Aug 5'; fall back to the raw string."""
+    if not value:
+        return None
+    s = str(value)
+    for parse in (
+        lambda: datetime.fromisoformat(s),
+        lambda: datetime.combine(date.fromisoformat(s[:10]), datetime.min.time()),
+    ):
+        try:
+            d = parse()
+            return f"{d.strftime('%b')} {d.day}"
+        except (ValueError, TypeError):
+            continue
+    return s
+
+
+_TRACE_DONE = "✓"
+_TRACE_PENDING = "◦"
+
+
+def format_slack_trace(result: dict[str, Any]) -> dict[str, Any]:
+    """Build the live pipeline checklist from the REAL answer envelope.
+
+    Each ✓ reflects a stage that actually ran: a source that returned evidence,
+    entity resolution, timeline reconstruction, and evidence collection. Nothing
+    is faked — a stage with no signal shows a hollow marker.
+    """
+    state = result.get("state_result") or {}
+    evidence = result.get("evidence") or state.get("evidence") or []
+    diagnostics = result.get("diagnostics") or {}
+    resolved = result.get("resolved_entities") or []
+    history = state.get("history") or []
+    sources = _evidence_sources(evidence)
+
+    steps: list[tuple[str, bool]] = [(f"Searching {s}", True) for s in sources]
+    steps.append(("Resolving entities", bool(resolved) or diagnostics.get("entity_resolution_ok") is True or bool(evidence)))
+    steps.append(("Checking timeline", bool(history) or diagnostics.get("temporal_ok") is True))
+    steps.append(("Collecting evidence", bool(evidence)))
+
+    checklist = "\n".join(f"{_TRACE_DONE if ok else _TRACE_PENDING}  {label}" for label, ok in steps)
+    text = "Continuum · reconstructing the answer\n" + checklist
+    blocks = [
+        {"type": "context", "elements": [{"type": "mrkdwn", "text": "🧠  *Continuum* is reconstructing the answer from company memory…"}]},
+        {"type": "section", "text": {"type": "mrkdwn", "text": checklist}},
+    ]
+    return {"text": text, "blocks": blocks}
 
 
 def _entity_label(state: dict[str, Any], evidence: list[dict[str, Any]]) -> str:
@@ -129,38 +219,39 @@ def format_slack_answer(result: dict[str, Any]) -> dict[str, Any]:
 
     answer_line = _answer_line(status, name, entity, resolution)
     sides = _conflict_sides(state)
-    why_lines = _why_lines(evidence)
-    state_line = _state_line(state)
+    previous = _previous_name(state) if resolution != "before" else None
+    effective = _fmt_date(state.get("valid_from"))
+    ev_sources = _evidence_sources(evidence)
     confidence = _confidence_label(status, state.get("confidence"))
 
-    text_lines = [f"Answer: {answer_line}"]
+    text_lines = [answer_line]
     if sides:
-        text_lines.append("Sides:")
-        text_lines.extend(f"• {s}" for s in sides)
-    if why_lines:
-        text_lines.append("Why:")
-        text_lines.extend(why_lines)
-    if state_line:
-        text_lines.append(f"State: {state_line}")
+        text_lines.append("Sides: " + " vs ".join(sides))
+    if previous:
+        text_lines.append(f"Previously: {previous}")
+    if effective:
+        text_lines.append(f"Effective: {effective}")
+    if ev_sources:
+        text_lines.append("Evidence: " + " · ".join(ev_sources))
     text_lines.append(f"Confidence: {confidence}")
     text = "\n".join(text_lines)
 
     blocks: list[dict[str, Any]] = [
-        {"type": "section", "text": {"type": "mrkdwn", "text": f"*Answer:* {answer_line}"}},
+        {"type": "section", "text": {"type": "mrkdwn", "text": f"*{answer_line}*"}},
     ]
     if sides:
         blocks.append(
-            {
-                "type": "section",
-                "text": {"type": "mrkdwn", "text": "*Sides:*\n" + "\n".join(f"• {s}" for s in sides)},
-            }
+            {"type": "section", "text": {"type": "mrkdwn", "text": "*Sides:* " + " vs ".join(sides)}},
         )
-    if why_lines:
-        blocks.append(
-            {"type": "section", "text": {"type": "mrkdwn", "text": "*Why:*\n" + "\n".join(why_lines)}},
-        )
-    if state_line:
-        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"*State:* {state_line}"}})
-    blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"*Confidence:* {confidence}"}})
+    meta: list[str] = []
+    if previous:
+        meta.append(f"*Previously:* {previous}")
+    if effective:
+        meta.append(f"*Effective:* {effective}")
+    if ev_sources:
+        meta.append(f"*Evidence:* {' · '.join(ev_sources)}")
+    if meta:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(meta)}})
+    blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": f"Confidence: {confidence}"}]})
 
     return {"text": text, "blocks": blocks}

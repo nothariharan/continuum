@@ -5,12 +5,13 @@ from __future__ import annotations
 import json
 import os
 import re
+import time
 import urllib.error
 import urllib.request
 from typing import Any, Callable
 
 from continuum.delivery.query_service import QueryService
-from continuum.delivery.slack_formatter import format_slack_answer
+from continuum.delivery.slack_formatter import format_slack_answer, format_slack_trace
 from continuum.hydradb import HydraDBClient
 
 _MENTION_RE = re.compile(r"<@[A-Z0-9]+>\s*", re.IGNORECASE)
@@ -29,10 +30,17 @@ class SlackQueryBot:
         *,
         entity_store=None,
         post_message: Callable[[str, dict[str, Any], str | None], None] | None = None,
+        show_trace: bool = False,
+        trace_delay: float = 0.0,
     ) -> None:
         self._client = client
         self._entity_store = entity_store
         self._post = post_message or self._default_post_message
+        # When enabled, post the live pipeline checklist before the answer — used
+        # for the demo/recording. Off by default so programmatic callers get one
+        # answer message.
+        self._show_trace = show_trace
+        self._trace_delay = trace_delay
 
     def _service(self) -> QueryService:
         return QueryService(self._client, entity_store=self._entity_store)
@@ -44,6 +52,10 @@ class SlackQueryBot:
             self._post(channel, payload, thread_ts)
             return payload
         result = self._service().ask(question)
+        if self._show_trace:
+            self._post(channel, format_slack_trace(result), thread_ts)
+            if self._trace_delay > 0:
+                time.sleep(self._trace_delay)
         payload = format_slack_answer(result)
         self._post(channel, payload, thread_ts)
         return payload
@@ -85,7 +97,19 @@ class SlackQueryBot:
             raise RuntimeError(f"Slack post failed: {result.get('error')}")
 
 
-def build_bot_from_env(post_message: Callable[[str, dict[str, Any], str | None], None] | None = None) -> SlackQueryBot:
+def build_bot_from_env(
+    post_message: Callable[[str, dict[str, Any], str | None], None] | None = None,
+    *,
+    show_trace: bool | None = None,
+    trace_delay: float | None = None,
+) -> SlackQueryBot:
     client = HydraDBClient()
     client.health_check()
-    return SlackQueryBot(client, post_message=post_message)
+    if show_trace is None:
+        show_trace = os.environ.get("CONTINUUM_SLACK_TRACE", "").strip().lower() in {"1", "true", "yes", "on"}
+    if trace_delay is None:
+        try:
+            trace_delay = float(os.environ.get("CONTINUUM_SLACK_TRACE_DELAY", "0") or 0)
+        except ValueError:
+            trace_delay = 0.0
+    return SlackQueryBot(client, post_message=post_message, show_trace=show_trace, trace_delay=trace_delay)
