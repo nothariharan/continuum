@@ -131,4 +131,12 @@ def create_app(service: QueryService | None = None):
             raise HTTPException(status_code=503, detail="semantic adapter unavailable")
         return _adapter.get_current_state(entity, predicate)
 
+    @app.post("/v1/redwood/ask")
+    def redwood_ask(body: AskRequest) -> dict[str, Any]:
+        """Live Redwood harness: BM25 retrieval over the indexed EnterpriseRAG-Bench
+        slice + Fireworks answer. Lazy-loaded so it never blocks startup."""
+        from continuum.delivery.redwood import get_harness
+
+        return get_harness().ask(body.question)
+
     return app

@@ -94,3 +94,27 @@ export interface ConnectorDef {
   name: string;
   status: ConnectorStatus;
 }
+
+/** Live Redwood harness response (BM25 retrieval + Fireworks answer). */
+export interface RedwoodEvidence {
+  id: string;
+  source: string;
+  source_name: string;
+  title: string;
+  snippet: string;
+}
+export interface RedwoodAnswer {
+  answer: string | null;
+  abstain: boolean;
+  evidence: RedwoodEvidence[];
+  sources: string[];
+  trace: {
+    retrieval_ms?: number;
+    generation_ms?: number;
+    total_ms?: number;
+    candidates?: number;
+    sources_searched?: string[];
+    evidence_count?: number;
+    error?: string;
+  };
+}

@@ -1,4 +1,4 @@
-import type { AskResult, GraphExport, HistoryRow, SlackFormattedAnswer, StateResult } from "./contracts";
+import type { AskResult, GraphExport, HistoryRow, RedwoodAnswer, SlackFormattedAnswer, StateResult } from "./contracts";
 
 const API_BASE = process.env.NEXT_PUBLIC_CONTINUUM_API ?? "http://127.0.0.1:8080";
 
@@ -53,6 +53,13 @@ export async function fetchConflicts(entity: string, predicate = "OWNS"): Promis
 
 export async function fetchCurrentState(entity: string, predicate = "OWNS"): Promise<StateResult> {
   return fetchJson(`/v1/semantic/state?entity=${encodeURIComponent(entity)}&predicate=${predicate}`);
+}
+
+export async function askRedwood(question: string): Promise<RedwoodAnswer> {
+  return fetchJson("/v1/redwood/ask", {
+    method: "POST",
+    body: JSON.stringify({ question, question_id: "redwood-web" }),
+  });
 }
 
 export async function isApiAvailable(): Promise<boolean> {
