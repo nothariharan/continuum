@@ -68,12 +68,13 @@ Full table: `benchmark-results/baseline-20pct-dev-errors.md`
 
 ## Experiments
 
-No KEEP/REVERT experiments executed. Plan Phase 4 requires single-change loop **after** failure review; top mode is entity/retrieval ranking (coordinate with founder for graph path).
+### EXP-01 — EntityStore mention resolution (KEEP pending graph re-run)
 
-### EXP-01 (deferred)
-
-Hypothesis: Improve retrieval recall on semantic + basic types (BM25/hybrid diagnostic first).  
-Decision: **DEFER** — graph path not enabled in baseline; enable HydraDB on isolated port before query-layer experiments.
+Hypothesis: Slug + case-insensitive alias + candidate-index lookup reduces ER failures on project/company mentions.  
+Files: `continuum/entities/store.py`, `continuum/entities/candidates.py`  
+Track A dev 80Q: 8.75% → _pending graph run_  
+False merges: 0 (hardening suite green)  
+Decision: **KEEP** code; validate on `make benchmark-subset-er-dev` when HydraDB available
 
 ---
 

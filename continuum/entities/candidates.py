@@ -24,6 +24,12 @@ from typing import Iterable
 from .models import CanonicalEntity, EntityCandidate, IdentitySignals
 
 _TOKEN_SPLIT_RE = re.compile(r"[^a-z0-9]+")
+_SLUG_RE = re.compile(r"[^a-z0-9]+")
+
+
+def normalize_slug(text: str) -> str:
+    """Collapse hyphens/spaces for project/account slug matching."""
+    return _SLUG_RE.sub("", text.lower())
 
 
 def normalize_tokens(text: str) -> set[str]:
@@ -122,6 +128,28 @@ class CandidateIndex:
             key=lambda item: (-item[1], item[0]),
         )
         return ranked[:limit]
+
+
+def signals_from_mention(mention: str, *, inventory_entry: dict | None = None) -> IdentitySignals:
+    """Build identity signals from a surface mention (+ optional inventory row)."""
+    entry = inventory_entry or {}
+    emails: list[str] = list(entry.get("emails") or ())
+    usernames: list[str] = list(entry.get("usernames") or ())
+    external_ids: list[str] = list(entry.get("external_ids") or ())
+    if "@" in mention and not mention.startswith("@"):
+        if mention not in emails:
+            emails.append(mention)
+    elif mention.startswith("@"):
+        if mention not in usernames:
+            usernames.append(mention)
+    return IdentitySignals(
+        mention=mention,
+        type=str(entry.get("type") or "person"),
+        emails=tuple(emails),
+        usernames=tuple(usernames),
+        external_ids=tuple(external_ids),
+        source=entry.get("source"),
+    )
 
 
 def candidate_from_mention(

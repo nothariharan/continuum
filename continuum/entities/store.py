@@ -141,6 +141,50 @@ class EntityStore:
     """Persistence + query for canonical entities over HydraDB."""
 
     client: HydraDBClient
+    _cached_entities: list[CanonicalEntity] | None = field(default=None, init=False, repr=False)
+    _cached_index: Any | None = field(default=None, init=False, repr=False)
+
+    def _load_entities(self) -> list[CanonicalEntity]:
+        if self._cached_entities is None:
+            rows = self.client.execute(SCAN_ENTITIES).rows
+            self._cached_entities = [row_to_entity(row) for row in rows]
+        return self._cached_entities
+
+    def _candidate_index(self) -> CandidateIndex:
+        if self._cached_index is None:
+            from .candidates import CandidateIndex
+
+            self._cached_index = CandidateIndex.build(self._load_entities())
+        return self._cached_index
+
+    def _inventory_entry(self, mention: str) -> dict:
+        import json
+        from pathlib import Path
+
+        path = Path(__file__).resolve().parents[2] / "data" / "extraction" / "mention_inventory.json"
+        try:
+            inventory = json.loads(path.read_text(encoding="utf-8"))
+            by_mention = {entry["raw_mention"]: entry for entry in inventory["entries"]}
+            return by_mention.get(mention, {})
+        except (OSError, json.JSONDecodeError, KeyError):
+            return {}
+
+    def _surface_forms(self, entity: CanonicalEntity) -> set[str]:
+        return set(entity.aliases) | set(entity.emails) | set(entity.usernames) | {entity.name}
+
+    def _match_entity_exact(self, mention: str, entity: CanonicalEntity) -> bool:
+        if mention in self._surface_forms(entity):
+            return True
+        lower = mention.lower()
+        return any(form.lower() == lower for form in self._surface_forms(entity))
+
+    def _match_entity_slug(self, mention: str, entity: CanonicalEntity) -> bool:
+        from .candidates import normalize_slug
+
+        slug = normalize_slug(mention)
+        if not slug:
+            return False
+        return any(normalize_slug(form) == slug for form in self._surface_forms(entity))
 
     # ---- writes ---------------------------------------------------------
 
@@ -154,6 +198,8 @@ class EntityStore:
         ]
         for index in range(0, len(rows), 50):
             self.client.execute_batch(CREATE_ENTITY, rows[index : index + 50])
+        self._cached_entities = None
+        self._cached_index = None
         return len(rows)
 
     def _delete_all(self) -> None:
@@ -171,32 +217,70 @@ class EntityStore:
         return row_to_entity(rows[0]) if rows else None
 
     def resolve_mention(self, mention: str) -> dict[str, Any]:
-        """Mention surface form -> canonical entity (or explicit absent).
+        """Mention surface form -> canonical entity (or explicit absent)."""
+        from .candidates import candidate_from_mention, signals_from_mention
 
-        HydraDB supports only STARTS WITH / equality in WHERE (no CONTAINS,
-        no list membership). The canonical entity table is small by design,
-        so this scans the table once and enforces exact pipe-delimited
-        membership client-side. O(#canonical_entities) per lookup.
-        """
-        rows = self.client.execute(SCAN_ENTITIES).rows
-        for row in rows:
-            fields = (
-                (row.get("aliases") or "").split("|")
-                + (row.get("usernames") or "").split("|")
-                + (row.get("emails") or "").split("|")
-            )
-            if mention in fields:
+        mention = mention.strip()
+        if not mention:
+            return {"status": "absent", "mention": mention, "entity_key": None, "value": None}
+
+        entities = self._load_entities()
+        for entity in entities:
+            if self._match_entity_exact(mention, entity):
                 return {
                     "status": "definitive",
                     "mention": mention,
-                    "entity_key": row["key"],
-                    "value": {"entity_id": row["key"], "name": row["name"]},
+                    "entity_key": entity.entity_key,
+                    "value": {"entity_id": entity.entity_key, "name": entity.name},
                 }
+
+        slug_matches = [entity for entity in entities if self._match_entity_slug(mention, entity)]
+        if len(slug_matches) == 1:
+            entity = slug_matches[0]
+            return {
+                "status": "definitive",
+                "mention": mention,
+                "entity_key": entity.entity_key,
+                "value": {"entity_id": entity.entity_key, "name": entity.name},
+            }
+
+        inventory = self._inventory_entry(mention)
+        signals = signals_from_mention(mention, inventory_entry=inventory)
+        candidate = candidate_from_mention(
+            mention,
+            type=signals.type,
+            emails=signals.emails,
+            usernames=signals.usernames,
+            external_ids=signals.external_ids,
+            source=signals.source,
+        )
+        ranked = self._candidate_index().lookup(candidate.signals, limit=5)
+        if not ranked:
+            return {"status": "absent", "mention": mention, "entity_key": None, "value": None}
+
+        top_key, top_hits = ranked[0]
+        if len(ranked) > 1 and ranked[1][1] == top_hits:
+            return {"status": "absent", "mention": mention, "entity_key": None, "value": None}
+
+        strong_signal = top_hits >= 2 or (
+            top_hits == 1
+            and (
+                "@" in mention
+                or mention.startswith("@")
+                or any(ext in mention for ext in signals.external_ids)
+            )
+        )
+        if not strong_signal:
+            return {"status": "absent", "mention": mention, "entity_key": None, "value": None}
+
+        entity = next((e for e in entities if e.entity_key == top_key), None)
+        if entity is None:
+            return {"status": "absent", "mention": mention, "entity_key": None, "value": None}
         return {
-            "status": "absent",
+            "status": "definitive",
             "mention": mention,
-            "entity_key": None,
-            "value": None,
+            "entity_key": entity.entity_key,
+            "value": {"entity_id": entity.entity_key, "name": entity.name},
         }
 
     def get_entity_aliases(self, entity_key: str) -> dict[str, Any]:

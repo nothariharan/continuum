@@ -130,11 +130,22 @@ build-benchmark-subset-20pct:
 benchmark-subset-mock:
 	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-mock-001 --mode sample-v1 --system continuum --answer-model mock --no-graph --questions-file data/evals/benchmark-v1/subset-20pct/questions.jsonl
 
+HYDRADB_BENCHMARK_ENV = HYDRADB_BOLT_PORT=7688 HYDRADB_HTTP_PORT=8444 HYDRADB_ADMIN_PORT=9092 HYDRADB_PASSWORD=local-development-token-32-characters-long
+
 benchmark-subset-baseline:
 	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-baseline-001 --mode full-v1 --system continuum --answer-model real --question-ids-file data/evals/benchmark-v1/subset-20pct/samples/sample_dev.json --no-graph
 
+benchmark-subset-er-dev:
+	$(HYDRADB_BENCHMARK_ENV) PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-er-v1-dev-001 --mode full-v1 --system continuum --answer-model real --question-ids-file data/evals/benchmark-v1/subset-20pct/samples/sample_dev.json --skip-graph-setup
+
 benchmark-subset-holdout:
 	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-holdout-001 --mode full-v1 --system continuum --answer-model real --question-ids-file data/evals/benchmark-v1/subset-20pct/samples/sample_holdout.json --no-graph
+
+benchmark-subset-er-holdout:
+	$(HYDRADB_BENCHMARK_ENV) PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-er-v1-holdout-001 --mode full-v1 --system continuum --answer-model real --question-ids-file data/evals/benchmark-v1/subset-20pct/samples/sample_holdout.json --skip-graph-setup
+
+cluster-benchmark-er-failures:
+	PYTHONPATH=. python scripts/cluster_benchmark_er_failures.py
 
 benchmark-capability:
 	PYTHONPATH=. python3 scripts/source_to_answer_e2e.py --refinement mock --skip-graph
