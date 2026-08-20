@@ -1,0 +1,326 @@
+{
+  "corpus": {
+    "name": "Redwood Inference",
+    "subtitle": "EnterpriseRAG-Bench synthetic workspace",
+    "total": 511962,
+    "source_count": 9,
+    "indexed": 4962,
+    "sources": [
+      {
+        "id": "slack",
+        "name": "Slack",
+        "count": 285605
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "count": 121390
+      },
+      {
+        "id": "linear",
+        "name": "Linear",
+        "count": 35308
+      },
+      {
+        "id": "google_drive",
+        "name": "Drive",
+        "count": 25108
+      },
+      {
+        "id": "hubspot",
+        "name": "HubSpot",
+        "count": 15017
+      },
+      {
+        "id": "fireflies",
+        "name": "Fireflies",
+        "count": 10173
+      },
+      {
+        "id": "github",
+        "name": "GitHub",
+        "count": 8052
+      },
+      {
+        "id": "jira",
+        "name": "Jira",
+        "count": 6120
+      },
+      {
+        "id": "confluence",
+        "name": "Confluence",
+        "count": 5189
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "qst_0001",
+      "question": "What are the default size limits for file uploads and total request size for the new multipart upload support on the OpenAI-compatible API endpoints?",
+      "type": "basic",
+      "answer": "The default limits are 10 MiB per file (max_file_size) and 50 MiB total per request (max_total_request_size) for multipart uploads on the OpenAI-compatible endpoints.",
+      "facts": [
+        "The default per file upload size limit (max_file_size) for multipart uploads on OpenAI-compatible endpoints is 10 MiB.",
+        "The default total request size limit (max_total_request_size) for multipart uploads on OpenAI-compatible endpoints is 50 MiB."
+      ],
+      "sources": [
+        "GitHub"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_ae068ee4aa9640159427cd941bef0238",
+          "source": "github",
+          "source_name": "GitHub",
+          "title": "Pr 18421 Multipart File Validation Limits",
+          "snippet": "add multipart/form-data handling, strict content-type validation, and payload limit enforcement for API tool/file inputs Motivation: users integrating tool/function calling and file uploads via the OpenAI-compatibility endpoints were sending a wide variety of \u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0176",
+      "question": "When does booking open for the new top end 80GB accelerator on dedicated clusters in the EU Central and India South locations?",
+      "type": "semantic",
+      "answer": "Reservations for the new NVIDIA H200 80GB (h200-80) dedicated capacity in eu-central-1 and ap-south-1 open on Monday, 2026-04-06 at 09:00 UTC.",
+      "facts": [
+        "Booking for the new NVIDIA H200 80GB (h200-80) dedicated capacity opens on Monday, 2026-04-06 at 09:00 UTC.",
+        "Booking opens for dedicated clusters in the EU Central (eu-central-1) location.",
+        "Booking opens for dedicated clusters in the India South (ap-south-1) location."
+      ],
+      "sources": [
+        "Slack"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_45e2a8ccc16c4c048894f98c6cd8833c",
+          "source": "slack",
+          "source_name": "Slack",
+          "title": "1763876000 Dedicated H200 Eu Ap Launch",
+          "snippet": "announcements sara (platform): @channel Heads-up: we are opening Dedicated capacity for a new GPU SKU \u2014 NVIDIA H200 80GB (catalog name: h200-80) in two regions: eu-central-1 and ap-south-1. Reservations open Mon 2026-04-06 09:00 UTC. max (infra): short perf no\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0341",
+      "question": "For the Proxima Bank 429 spike after priority routing rollout, what caused the throttling and what temporary policy exception did we apply, and how do we verify it is not burning the enterprise route SLOs?",
+      "type": "project_related",
+      "answer": "Throttling was triggered by hot-route protection admission control in us-east: Proxima's bursty combined chat+embeddings traffic exceeded the conservative enterprise route-group burst/budget during a regional pressure window (elevated queue depth/scheduler lag), so requests were denied as \"overload_protection_admission/admission_over_budget\" with Retry-After 1-2s (not primarily quota). We applied a temporary, region-scoped policy override for PROXIMA-ENT-014: increased the burst multiplier/budget for chat+embeddings in us-east only, time-boxed for 14 days with guardrails/auto-rollback. To verify it's not burning enterprise route SLOs, watch the enterprise (Protected) route x region dashboards for chat/completions and embeddings: error-budget burn/availability and p95/p99 latency stay within SLO targets, 5xx stays below burn thresholds, and enterprise overload/admission-control 429s (which count against enterprise availability) plus enterprise shed_rate remain near zero (alert-level if sustained).",
+      "facts": [
+        "The 429 throttling was triggered by hot-route protection admission control in us-east.",
+        "Proxima bursty combined chat and embeddings traffic exceeded the enterprise route-group burst or budget during a regional pressure window (elevated queue depth or scheduler lag).",
+        "Requests were denied with reason overload_protection_admission/admission_over_budget and included a Retry-After of 1 to 2 seconds.",
+        "The throttling was not primarily caused by quota limits.",
+        "A temporary region-scoped policy override was applied for PROXIMA-ENT-014 to increase the burst multiplier or budget for chat and embeddings in us-east only.",
+        "The override was time-boxed for 14 days and included guardrails or auto-rollback.",
+        "To verify the exception is not burning enterprise route SLOs, monitor enterprise protected route by-region dashboards for chat/completions and embeddings.",
+        "Verify enterprise error-budget burn or availability and p95 or p99 latency remain within SLO targets.",
+        "Verify 5xx rates stay below burn thresholds.",
+        "Verify enterprise overload or admission-control 429s and enterprise shed_rate remain near zero (alert if sustained)."
+      ],
+      "sources": [
+        "Confluence",
+        "Jira"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_1980f45c3fb4455f943a2b030892ae90",
+          "source": "jira",
+          "source_name": "Jira",
+          "title": "Sup 18421 Enterprise 429 Spike After Priority Routing Rollout",
+          "snippet": "Proxima Bank: unexpected spike in 429s after enterprise priority routing rollout (chat + embeddings) ## Issue summary Customer (Proxima Bank) reports a sharp increase in HTTP 429 responses starting ~2026-01-20 09:10 PT on /v1/chat/completions and /v1/embedding\u2026"
+        },
+        {
+          "id": "dsid_49fa5cfd95624dbeb6eaa535f9959470",
+          "source": "confluence",
+          "source_name": "Confluence",
+          "title": "Hosted Api Slos Enterprise Route Tiers",
+          "snippet": "Hosted API SLOs: Enterprise Route Tiers (Hot-route capacity protection) ## Purpose This document defines **per-route SLOs and error budget policy** for Redwood Inference\u2019s **Hosted API** as it relates to **hot-route capacity protection** (tier-aware quotas, pr\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0301",
+      "question": "During the 2025-02-10 capacity incident, what two thresholds should trigger noisy-tenant detection in the runbook update, and how long were SLA targets breached?",
+      "type": "intra_document_reasoning",
+      "answer": "The runbook should flag a noisy tenant when eviction_rate exceeds 0.5% and 99.9th-percentile latency rises to more than 2\u00d7 baseline. SLA targets were breached for about 45 minutes.",
+      "facts": [
+        "The runbook should flag a noisy tenant when eviction_rate exceeds 0.5%",
+        "The runbook should flag a noisy tenant when 99.9th-percentile latency rises to more than 2x baseline",
+        "During the 2025-02-10 capacity incident, SLA targets were breached for about 45 minutes"
+      ],
+      "sources": [
+        "Linear"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_ca18eee975d34f4da7b1b880ea5ac271",
+          "source": "linear",
+          "source_name": "Linear",
+          "title": "Eng 847213 Reservation Governor Rationalization And Noisy Tenant Surge Remedy",
+          "snippet": "Reservation governor rationalization and noisy-tenant surge remediation Summary: During the 2025-02-10 capacity incident a single tenant's sudden high-concurrency, long-sequence workload exhausted pooled reservations and triggered widespread soft-evictions and\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0411",
+      "question": "On Streamly AI's dedicated pool dp-132-usw, what % of interactive burst credits should be reserved exclusively for priority=high routes?",
+      "type": "conflicting_info",
+      "answer": "Reserve 30% of interactive burst credits exclusively for priority=high routes on dp-132-usw (an earlier suggestion was 20%, but the applied/updated target is 30%).",
+      "facts": [
+        "The answer must state that the updated reservation target is 30% of interactive burst credits exclusively for priority=high routes on dp-132-usw.",
+        "The answer may mention that an earlier/internal suggestion was 20%, but it must clearly indicate 30% is the current/applied target.",
+        "The answer must not claim the reservation target is 20% as the final/current value.",
+        "The answer must not introduce other percentages (e.g., 25%, 40%) not supported by the documents.",
+        "The answer must not attribute the burst reservation change to a different pool or region; it is for dp-132-usw (us-west)."
+      ],
+      "sources": [
+        "Drive",
+        "Jira"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_5f3a672da4974781a5577b0f3d4993e9",
+          "source": "jira",
+          "source_name": "Jira",
+          "title": "Sup 864999 Sliced Ingest Priority Class Throttle Config",
+          "snippet": "Sustained 429s during sliced ingest with priority class mismatch after dedicated pool migration Issue summary: Customer reports sustained 429 responses across a set of sliced ingest workers after migrating ingestion to a Dedicated pool. The traffic mix is: low\u2026"
+        },
+        {
+          "id": "dsid_8ffbd9fe82df457ca67d4fbc9ff1090c",
+          "source": "google_drive",
+          "source_name": "Drive",
+          "title": "Sliced Ingest 429S Dedicated Pool Priority Class Debug Notes",
+          "snippet": "Sliced ingest 429s on dedicated pool after migration \u2014 priority class + burst pool debug notes (Streamly AI) Context / why this doc exists - This is a working scratchpad for SRE/Eng while debugging Streamly AI\u2019s sustained 429s during sliced ingest after dedica\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0431",
+      "question": "What is the procedure for an emergency rollback of a Serving Runtime release (Hosted and Dedicated)?",
+      "type": "completeness",
+      "answer": "For an emergency rollback of a Serving Runtime release in Hosted and Dedicated, first pause/freeze any in-flight progressive rollout so it cannot auto-advance, then re-pin the runtime to a known-good prior runtime release tag, trigger a redeploy, and verify fleet health (e.g., 5xx rate, p95 TTFT, GPU OOMs) before closing the incident/change record. For Hosted, apply the rollback across regions in order (non-critical/canary first, then remaining canary, then all affected regions) and lock the tag to prevent re-advance; for Dedicated, identify impacted tenant clusters, pin and redeploy per cluster (coordinating customer comms as required), and keep the incident open until metrics are stable (\u224830 minutes Hosted, \u224860 minutes Dedicated) while capturing CI/CD job links, affected regions/clusters, tags, timings, and verification evidence.",
+      "facts": [
+        "In an emergency rollback of a Serving Runtime release, first pause or freeze any in-flight progressive rollout so it cannot auto-advance.",
+        "Re-pin the serving runtime to a known-good prior runtime release tag.",
+        "Trigger a redeploy after re-pinning the runtime tag.",
+        "Verify fleet health after the rollback using metrics such as 5xx rate, p95 TTFT, and GPU OOMs.",
+        "Close the incident or change record only after verification is complete.",
+        "For Hosted, apply the rollback across regions in order: non-critical or canary first, then remaining canary, then all affected regions.",
+        "For Hosted, lock the runtime tag to prevent re-advance after rollback.",
+        "For Dedicated, identify the impacted tenant clusters.",
+        "For Dedicated, pin and redeploy per impacted tenant cluster.",
+        "For Dedicated, coordinate customer communications as required during the rollback.",
+        "Keep the incident open until metrics are stable, approximately 30 minutes for Hosted and approximately 60 minutes for Dedicated.",
+        "Capture incident evidence including CI/CD job links, affected regions or clusters, runtime tags, timings, and verification evidence."
+      ],
+      "sources": [
+        "Confluence"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_f6e3b7ad413142019dbb5a5fed07f548",
+          "source": "confluence",
+          "source_name": "Confluence",
+          "title": "Emergency Rollback Serving Runtime Hosted Dedicated",
+          "snippet": "Emergency rollback: Serving Runtime (Hosted + Dedicated) h1. Purpose This runbook describes how to perform an *emergency rollback* of the Serving Runtime release across *Hosted* and *Dedicated* fleets. It focuses on restoring SLOs safely and quickly while pres\u2026"
+        },
+        {
+          "id": "dsid_840703a1cc37438a84e9beb68029d80b",
+          "source": "confluence",
+          "source_name": "Confluence",
+          "title": "Runtime Release Pipeline Rollback Procedure",
+          "snippet": "Runtime release pipeline: rollback procedure h1. Summary This page documents the standard and emergency rollback procedure for Serving Runtime deployments to *Hosted* and *Dedicated* environments using Redwood release tooling. h1. Definitions * *Runtime releas\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0471",
+      "question": "What is Redwood Inference's mission statement?",
+      "type": "high_level",
+      "answer": "Make high-performance, reliable LLM inference accessible to every engineering team.",
+      "facts": [
+        "Redwood Inference's mission is to make high-performance, reliable LLM inference accessible to every engineering team."
+      ],
+      "sources": [],
+      "evidence": [],
+      "abstain": false
+    },
+    {
+      "id": "qst_0381",
+      "question": "In the planned controlled failover game day on 2026-01-15 (Hosted API us-east \u2192 eu-west), what caused the routing automation to oscillate (flip/rollback), and what follow-up ticket and target ship date were created to fix the streaming disconnect/reconnect behavior clients saw during cross-region redirects?",
+      "type": "constrained",
+      "answer": "The flip/rollback oscillation was caused by noisy/false-positive reachability health signals (including a premature \"recovery\" signal) combined with overly permissive hold-down/anti-flap and rollback guardrails, letting the controller fail over and then roll back repeatedly. The streaming redirect disconnect/reconnect follow-up was ticket ENG-2422, targeting a production ship (behind a flag) by 2026-02-07.",
+      "facts": [
+        "The routing automation oscillation (flip/rollback) was caused by noisy or false-positive reachability health signals, including a premature recovery signal.",
+        "The routing automation oscillation was also enabled by overly permissive hold-down or anti-flap and rollback guardrails, which allowed repeated failover and rollback.",
+        "The follow-up ticket created to fix the streaming redirect disconnect/reconnect behavior was ENG-2422.",
+        "The target ship date for the ENG-2422 fix was 2026-02-07 (production ship behind a flag).",
+        "The answer must not attribute the event to the 2025-02-19 us-east-1 incident or a failover to us-west-2 (different date and regions).",
+        "The answer must not claim the streaming issue was an SSE stall/freeze mid-response fixed by upgrading to runtime 2.18.3; that is a different known issue than cross-region redirect reconnect.",
+        "The answer must not name ENG-2426 as the specific follow-up ticket for the streaming redirect reconnect fix; ENG-2426 is an action-item tracker, not the ticket called out for that fix.",
+        "The answer must not give 2026-02-28 as the target ship date for the streaming redirect reconnect fix; the game day follow-up ticket specifies 2026-02-07.",
+        "The answer must not cite SUP-25310 (support macro for transient 5xx) as the engineering follow-up ticket to fix streaming reconnect behavior.",
+        "The answer must not describe the resolution as a manual traffic shift/weight change procedure from the manual failover runbook; the question asks what caused automation oscillation and the specific follow-up ticket/date."
+      ],
+      "sources": [
+        "Confluence"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_d844cc30147b49c69ea5275b4993b571",
+          "source": "confluence",
+          "source_name": "Confluence",
+          "title": "Postmortem Controlled Failover Test Regression",
+          "snippet": "Postmortem: Controlled failover test regression (us-east \u2192 eu-west) \u2013 transient 5xx + tail latency ## Summary On **2026-01-15**, during a **planned controlled regional failover test** (Hosted API and a limited Dedicated slice) from **us-east** to **eu-west**, \u2026"
+        },
+        {
+          "id": "dsid_865449ae95b044768f33773263bfeaad",
+          "source": "confluence",
+          "source_name": "Confluence",
+          "title": "Controlled Failover Test Results 2026 01 15",
+          "snippet": "Controlled Failover Test Results (Game Day) \u2014 2026-01-15 ## Summary On 2026-01-15 we executed Game Day #1 for the Regional Failover Automation Upgrade. The exercise intentionally impaired **us-east** for a limited set of production traffic and validated our ab\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0451",
+      "question": "In the team chat about posting jokes when an AI makes things up in production, what tagging requirement did someone propose for the memes?",
+      "type": "miscellaneous",
+      "answer": "Ava proposed that any memes posted should be tagged with the model version.",
+      "facts": [
+        "Ava proposed that any memes posted should be tagged with the model version."
+      ],
+      "sources": [
+        "Slack"
+      ],
+      "evidence": [
+        {
+          "id": "dsid_c91a34ed8dcb44aeacf7713c5aab8dea",
+          "source": "slack",
+          "source_name": "Slack",
+          "title": "1711245600 Model Hallucination Memes",
+          "snippet": "memes Ava Chen: ok team, new rule\u2014every time a model hallucination hits prod, we drop a meme. starting now. :scream: Liam Patel: i'll start: 'When the model invents a CFO named Greg' [image: greg-cfo-meme.png] :laughing: Diego Rivera: opsbot detected a 503, up\u2026"
+        }
+      ],
+      "abstain": false
+    },
+    {
+      "id": "qst_0481",
+      "question": "For the hot-route capacity protection rollout in us-east, which specific enterprise accounts were on the initial allowlist, and what were the exact per-route-group budget values (RPS, estimated TPS, and concurrency) configured for each of those accounts?",
+      "type": "info_not_found",
+      "answer": null,
+      "facts": [
+        "The answer must state at some point that the query is not fully answerable from available documents or caveat the provided information with why it does not fully address the query. The answer may present relevant and related information to be helpful to the user however it must clearly also mention that at least some aspects are not found or answered. The answer may also simply state that the query is not answerable from the documents, this is perfectly acceptable."
+      ],
+      "sources": [],
+      "evidence": [],
+      "abstain": true
+    }
+  ]
+}
