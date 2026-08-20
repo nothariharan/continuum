@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { askRedwood, isApiAvailable } from "@/lib/api";
+import { askRedwood, isRedwoodLive } from "@/lib/api";
 import type { RedwoodAnswer } from "@/lib/contracts";
 import { KnowledgeForceGraph, type GNode, type GLink } from "@/components/product/KnowledgeForceGraph";
 import { Reveal } from "@/components/ui/motion";
@@ -47,7 +47,7 @@ export function RedwoodWorkspace() {
 
   useEffect(() => {
     fetch("/redwood-demo.json", { cache: "force-cache" }).then((r) => r.json()).then(setData).catch(() => setData(null));
-    isApiAvailable().then(setLive);
+    isRedwoodLive().then(setLive);
   }, []);
 
   // Dense, organically-connected background knowledge graph (dim), clustered by source.

@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/redwood.py": {
+      "memory": 1024,
+      "maxDuration": 60,
+      "includeFiles": "api/_redwood_retrieval.jsonl"
+    }
+  }
+}

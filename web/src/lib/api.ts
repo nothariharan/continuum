@@ -55,11 +55,29 @@ export async function fetchCurrentState(entity: string, predicate = "OWNS"): Pro
   return fetchJson(`/v1/semantic/state?entity=${encodeURIComponent(entity)}&predicate=${predicate}`);
 }
 
+// Redwood harness runs as a same-origin Vercel Python function by default.
+const REDWOOD_API = process.env.NEXT_PUBLIC_REDWOOD_API ?? "/api/redwood";
+
 export async function askRedwood(question: string): Promise<RedwoodAnswer> {
-  return fetchJson("/v1/redwood/ask", {
+  const res = await fetch(REDWOOD_API, {
     method: "POST",
-    body: JSON.stringify({ question, question_id: "redwood-web" }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question }),
+    cache: "no-store",
   });
+  if (!res.ok) throw new Error(`redwood ${res.status}`);
+  return res.json() as Promise<RedwoodAnswer>;
+}
+
+export async function isRedwoodLive(): Promise<boolean> {
+  try {
+    const res = await fetch(REDWOOD_API, { cache: "no-store" });
+    if (!res.ok) return false;
+    const d = await res.json();
+    return d?.status === "ok" && (d?.indexed ?? 0) > 0;
+  } catch {
+    return false;
+  }
 }
 
 export async function isApiAvailable(): Promise<boolean> {
