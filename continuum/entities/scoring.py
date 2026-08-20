@@ -180,14 +180,28 @@ def _username_match(a_users: set[str], b_users: set[str]) -> float | None:
 
 
 def _email_username_match(sa, sb) -> float | None:
-    """Email local part on one side vs username base on the other."""
+    """Email local part on one side vs username on the other.
+
+    Two tiers:
+      1. full-handle, dot-insensitive: "priya.nair" username ~ "priya.nair@x"
+         (Slack dotted handle == Gmail local-part);
+      2. base match: "soham-dev" ~ "soham@x".
+    """
     local = {canonical_local(e) for e in _valid_emails(sa.emails)} | {
         canonical_local(e) for e in _valid_emails(sb.emails)
     }
-    bases = {username_base(u) for u in sa.usernames} | {username_base(u) for u in sb.usernames}
-    if not local or not bases:
+    if not local:
+        return None
+    users = {u.lower().lstrip("@") for u in sa.usernames} | {
+        u.lower().lstrip("@") for u in sb.usernames
+    }
+    if not users:
         return None
     dot_local = {v.replace(".", "") for v in local}
+    dot_users = {v.replace(".", "") for v in users}
+    if dot_local & dot_users:
+        return 1.0
+    bases = {username_base(u) for u in sa.usernames} | {username_base(u) for u in sb.usernames}
     dot_bases = {v.replace(".", "") for v in bases}
     return 1.0 if (dot_local & dot_bases) else 0.0
 

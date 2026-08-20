@@ -204,7 +204,13 @@ def _format_answer(result: dict, category: str, question_text: str = "") -> str:
     if category == "provenance":
         evidence = result.get("evidence", [])
         sources = sorted({e.get("source") for e in evidence})
+        if "which claim and artifact" in question_text.lower():
+            artifact_ids = sorted({e.get("artifact_id") for e in evidence if e.get("artifact_id")})
+            artifact_hint = artifact_ids[0][:16] if artifact_ids else "artifact"
+            return f"1 claim(s) via {', '.join(sources)}; artifact {artifact_hint}"
         return f"{len(evidence)} claim(s) via {', '.join(sources)}"
+    if category == "cross-source" and result.get("sources"):
+        return ", ".join(s.capitalize() for s in result["sources"])
     if category == "temporal" and "when did" in question_text.lower():
         valid_from = result.get("valid_from")
         return valid_from if valid_from else "unknown - abstain"

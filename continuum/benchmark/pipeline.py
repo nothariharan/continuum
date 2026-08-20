@@ -350,10 +350,21 @@ class ContinuumPipeline:
         lower = question_text.lower()
         intent = ctx.intent if ctx is not None else None
 
-        if intent == "CONFLICT" or category == "conflict" or "conflict" in lower:
-            return resolve_conflict_state(self._client, canonical, predicate or "OWNS")
-        if intent == "PROVENANCE" or "which source" in lower or "which artifact" in lower or "evidence chain" in lower:
+        if intent == "SOURCE_PRESENCE" or (
+            category == "cross-source" and "does" in lower and "show" in lower
+        ):
+            return self._source_presence(canonical, predicate or "OWNS", question_text)
+        if intent == "PROVENANCE" or category == "provenance" or (
+            "which claim and artifact" in lower
+            or "which source" in lower
+            or "which artifact" in lower
+            or "evidence chain" in lower
+        ):
             return resolve_provenance(self._client, canonical, predicate or "OWNS")
+        if intent == "CONFLICT" or category == "conflict" or (
+            "conflict" in lower and "which claim and artifact" not in lower
+        ):
+            return resolve_conflict_state(self._client, canonical, predicate or "OWNS")
         if intent == "CO_OCCURRENCE" or ("who else" in lower or "appears in artifacts" in lower) and predicate is None:
             return self._cooccurrence(canonical)
         if intent == "DECISION":
@@ -366,6 +377,41 @@ class ContinuumPipeline:
         if category == "temporal" or "as of" in lower or "when did" in lower:
             return resolve_state_on(self._client, canonical, _default_as_of(), predicate)
         return resolve_state(self._client, canonical, predicate)
+
+    def _source_presence(
+        self,
+        canonical: str,
+        predicate: str,
+        question_text: str,
+    ) -> dict[str, Any]:
+        payload = resolve_provenance(self._client, canonical, predicate)
+        evidence = payload.get("evidence") or []
+        lower = question_text.lower()
+        mentioned = [
+            name
+            for name in ("slack", "gmail", "github", "linear", "jira", "confluence", "fireflies")
+            if name in lower
+        ]
+        sources = sorted({str(item.get("source") or "").lower() for item in evidence if item.get("source")})
+        if mentioned:
+            sources = [s for s in sources if s in mentioned]
+        handoff = "handoff" in lower
+        if handoff:
+            filtered = []
+            for item in evidence:
+                title = str(item.get("artifact_kind") or item.get("artifact_id") or "").lower()
+                if "handoff" in title:
+                    filtered.append(item)
+                    continue
+                src = str(item.get("source") or "").lower()
+                if src:
+                    filtered.append(item)
+            if filtered:
+                sources = sorted({str(item.get("source") or "").lower() for item in filtered if item.get("source")})
+        payload["value"] = {"sources": sources, "name": ", ".join(s.capitalize() for s in sources)}
+        payload["status"] = "definitive" if sources else "absent"
+        payload["sources"] = sources
+        return payload
 
     def _cooccurrence(self, entity: str) -> dict[str, Any]:
         """Entities co-occurring with the subject across shared artifacts."""

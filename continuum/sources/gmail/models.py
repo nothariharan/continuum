@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import base64
+import binascii
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from typing import Any
 
 
@@ -38,24 +41,32 @@ class GmailMessage:
 
     @classmethod
     def from_api_message(cls, message: dict[str, Any]) -> GmailMessage:
-        headers = {h["name"].lower(): h["value"] for h in message.get("payload", {}).get("headers", [])}
+        payload = message.get("payload", {}) or {}
+        headers = {h["name"].lower(): h["value"] for h in payload.get("headers", [])}
         from_raw = headers.get("from", "")
         from_participant = _parse_participant(from_raw) or GmailParticipant(email=from_raw or "unknown")
 
         to_list = [_parse_participant(p) for p in _split_addresses(headers.get("to", ""))]
         cc_list = [_parse_participant(p) for p in _split_addresses(headers.get("cc", ""))]
 
+        # Prefer the decoded MIME body (Gmail format="full"); fall back to the
+        # snippet/body fields used by lightweight fixtures.
+        body = _extract_body(payload) or str(message.get("snippet") or message.get("body") or "")
+
+        timestamp = headers.get("date") or _internal_date_iso(message.get("internalDate"))
+        attachments = list(message.get("attachments") or []) or _extract_attachment_names(payload)
+
         return cls(
             message_id=message["id"],
             thread_id=message.get("threadId", message["id"]),
             subject=headers.get("subject", "(no subject)"),
-            body=str(message.get("snippet") or message.get("body") or ""),
+            body=body,
             from_participant=from_participant,
             to_participants=[p for p in to_list if p],
             cc_participants=[p for p in cc_list if p],
-            timestamp=headers.get("date"),
+            timestamp=timestamp,
             source_url=message.get("source_url"),
-            attachments=list(message.get("attachments") or []),
+            attachments=attachments,
             links=list(message.get("links") or []),
         )
 
@@ -90,6 +101,79 @@ class GmailMessage:
             cc_participants=[p for p in cc_list if p],
             timestamp=headers.get("date"),
         )
+
+
+def _b64url_decode(data: str) -> str:
+    if not data:
+        return ""
+    padded = data + "=" * (-len(data) % 4)
+    try:
+        return base64.urlsafe_b64decode(padded.encode("ascii")).decode("utf-8", errors="replace")
+    except (binascii.Error, ValueError):
+        return ""
+
+
+def _extract_body(payload: dict[str, Any]) -> str:
+    """Walk a Gmail payload tree and return the best plaintext body.
+
+    Prefers ``text/plain``; falls back to a naive tag-strip of ``text/html``.
+    """
+    plain = _find_part_data(payload, "text/plain")
+    if plain:
+        return plain.strip()
+    html = _find_part_data(payload, "text/html")
+    if html:
+        return _strip_html(html).strip()
+    return ""
+
+
+def _find_part_data(part: dict[str, Any], mime_type: str) -> str:
+    if part.get("mimeType") == mime_type:
+        data = (part.get("body") or {}).get("data")
+        if data:
+            return _b64url_decode(data)
+    for sub in part.get("parts", []) or []:
+        found = _find_part_data(sub, mime_type)
+        if found:
+            return found
+    return ""
+
+
+def _extract_attachment_names(payload: dict[str, Any]) -> list[str]:
+    names: list[str] = []
+
+    def walk(part: dict[str, Any]) -> None:
+        filename = part.get("filename")
+        if filename:
+            names.append(filename)
+        for sub in part.get("parts", []) or []:
+            walk(sub)
+
+    walk(payload)
+    return names
+
+
+_HTML_TAG_RE = None
+
+
+def _strip_html(html: str) -> str:
+    global _HTML_TAG_RE
+    if _HTML_TAG_RE is None:
+        import re
+
+        _HTML_TAG_RE = re.compile(r"<[^>]+>")
+    return _HTML_TAG_RE.sub(" ", html)
+
+
+def _internal_date_iso(internal_date: Any) -> str | None:
+    """Gmail ``internalDate`` (epoch millis, as str/int) -> ISO 8601 UTC."""
+    if internal_date is None:
+        return None
+    try:
+        millis = int(internal_date)
+    except (TypeError, ValueError):
+        return None
+    return datetime.fromtimestamp(millis / 1000, tz=timezone.utc).replace(microsecond=0).isoformat()
 
 
 def _split_addresses(value: str) -> list[str]:

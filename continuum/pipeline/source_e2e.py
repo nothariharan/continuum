@@ -20,7 +20,13 @@ from continuum.entities.store import EntityStore
 from continuum.extract.v2.candidates import find_candidates
 from continuum.extract.v2.pipeline import refine_ambiguous_claims, run_pipeline
 from continuum.extract.v2.refinement import ABSTAIN, create_refinement_provider
-from continuum.extract.v2.relations import OWNS_VERB_RE, extract_relations
+from continuum.extract.v2.relations import (
+    HANDED_TO_VERB_RE,
+    OWNS_VERB_RE,
+    RESPONSIBLE_VERB_RE,
+    TRANSFER_VERB_RE,
+    extract_relations,
+)
 from continuum.hydradb.claims import (
     artifact_source_fixture,
     artifact_to_claim_fixture,
@@ -334,10 +340,39 @@ def _mention_variants(mention: str, email: str = "", username: str = "") -> set[
     return {v for v in variants if v}
 
 
+def _relation_person_names(content: str) -> list[str]:
+    """Third-person person names from relation-verb subjects/recipients.
+
+    A body name becomes a person entity only when it is the grammatical
+    subject or recipient of a recognized ownership/handoff/responsibility
+    verb — never every capitalized token. Uses the SAME regexes as claim
+    extraction so resolution and extraction always agree.
+    """
+    names: list[str] = []
+    for match in OWNS_VERB_RE.finditer(content):
+        names.append(match.group(1).strip())
+    for match in RESPONSIBLE_VERB_RE.finditer(content):
+        names.append(match.group(1).strip())
+    for match in HANDED_TO_VERB_RE.finditer(content):
+        names.append(match.group(1).strip())
+        names.append(match.group(2).strip())
+    for match in TRANSFER_VERB_RE.finditer(content):
+        names.append(match.group(2).strip())  # from-person
+        names.append(match.group(3).strip())  # to-person
+    return names
+
+
+def _relation_account_names(content: str) -> list[str]:
+    """Account objects of responsibility verbs (Batch 1)."""
+    return [match.group(2).strip() for match in RESPONSIBLE_VERB_RE.finditer(content)]
+
+
 def _accounts_in_text(content: str) -> set[str]:
     accounts: set[str] = set()
     for match in OWNS_VERB_RE.finditer(content):
         accounts.add(match.group(2).strip())
+    for match in TRANSFER_VERB_RE.finditer(content):
+        accounts.add(match.group(1).strip())  # transferred account
     for match in ACCOUNT_NAME_RE.finditer(content):
         raw = match.group(1).strip()
         words = raw.split()
@@ -392,6 +427,25 @@ def resolve_entities_from_artifacts(artifacts: list[Artifact]) -> tuple[dict[str
 
     for artifact in artifacts:
         for account in _accounts_in_text(artifact.content or ""):
+            key = _account_entity_key(account)
+            cand = candidate_from_mention(mention=account, type="account", source=artifact.source)
+            if key not in entities:
+                entities[key] = CanonicalEntity(entity_key=key, label="account", name=account)
+            entities[key].absorb(cand)
+
+    # Third-person relation-verb subjects/recipients (Batch 1): a body name
+    # like "Morgan owns Acme" mints person:morgan even when no participant/
+    # @mention/email signal exists. The same pass mints the account object of
+    # a responsibility verb ("responsible for the Redwood account").
+    for artifact in artifacts:
+        content = artifact.content or ""
+        for name in _relation_person_names(content):
+            key = _person_entity_key(name)
+            cand = candidate_from_mention(mention=name, type="person", source=artifact.source)
+            if key not in entities:
+                entities[key] = CanonicalEntity(entity_key=key, label="person", name=name)
+            entities[key].absorb(cand)
+        for account in _relation_account_names(content):
             key = _account_entity_key(account)
             cand = candidate_from_mention(mention=account, type="account", source=artifact.source)
             if key not in entities:
@@ -616,6 +670,54 @@ def supplement_handoff_claims(
                     metadata={"v2": True, "signal": "source-handoff"},
                 )
                 claims.append(claim.to_dict())
+
+        # Explicit ownership transfer: "ownership of Acme transfers from Morgan
+        # to Priya [effective Aug 1]". Emits BOTH sides of the transition so the
+        # temporal state can distinguish previous vs current owner and the
+        # effective date bounds each interval.
+        for match in TRANSFER_VERB_RE.finditer(content):
+            account_raw, from_raw, to_raw = (
+                match.group(1).strip(),
+                match.group(2).strip(),
+                match.group(3).strip(),
+            )
+            obj = _resolve_object_mention(account_raw, resolutions)
+            from_subject = _resolve_subject_mention(from_raw, resolutions)
+            to_subject = _resolve_subject_mention(to_raw, resolutions)
+            if not obj or not from_subject or not to_subject:
+                continue
+            effective, _until = _effective_dates(content, observed_at, account_raw, anchor_years)
+            evidence = match.group(0).strip()[:200]
+            # Previous owner: held until the effective date.
+            claims.append(
+                Claim.create(
+                    artifact_id=artifact.id,
+                    subject_mention=from_subject,
+                    predicate="OWNS",
+                    object_mention=obj,
+                    observed_at=observed_at,
+                    valid_from=None,
+                    valid_to=effective,
+                    evidence_span=evidence,
+                    extraction_method="deterministic-transfer",
+                    metadata={"v2": True, "signal": "source-transfer", "role": "previous"},
+                ).to_dict()
+            )
+            # New owner: holds from the effective date onward.
+            claims.append(
+                Claim.create(
+                    artifact_id=artifact.id,
+                    subject_mention=to_subject,
+                    predicate="OWNS",
+                    object_mention=obj,
+                    observed_at=observed_at,
+                    valid_from=effective,
+                    valid_to=None,
+                    evidence_span=evidence,
+                    extraction_method="deterministic-transfer",
+                    metadata={"v2": True, "signal": "source-transfer", "role": "current"},
+                ).to_dict()
+            )
     return claims
 
 

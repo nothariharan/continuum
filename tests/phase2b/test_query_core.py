@@ -51,6 +51,21 @@ def test_intent_provenance():
     assert classify_intent("Which source says Morgan owns Acme?") == "PROVENANCE"
 
 
+def test_intent_provenance_claim_and_artifact():
+    assert (
+        classify_intent("Which claim and artifact support Soham Ratnaparkhi owning Acme?")
+        == "PROVENANCE"
+    )
+
+
+def test_intent_source_presence():
+    assert classify_intent("Does Slack or Gmail show the CedarBank handoff?") == "SOURCE_PRESENCE"
+
+
+def test_intent_conflict_not_provenance_phrasing():
+    assert classify_intent("Which claim contradicts the other on Acme?") == "CONFLICT"
+
+
 def test_intent_dependency():
     assert classify_intent("Which project does payments depend on?") == "DEPENDENCY"
 
@@ -114,6 +129,12 @@ def test_temporal_after_anchor():
     ctx = _ctx("After the authentication outage, who decided to renew Acme?")
     kinds = [c.kind for c in ctx.temporal]
     assert "after" in kinds
+
+
+def test_temporal_after_handoff_anchor():
+    ctx = _ctx("Who owns Acme now after the handoff?")
+    assert any(c.kind == "after" and (c.anchor or "").startswith("handoff") for c in ctx.temporal)
+    assert any(c.kind == "current" for c in ctx.temporal)
 
 
 def test_temporal_historical_tense():
