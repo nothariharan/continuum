@@ -77,7 +77,7 @@ export function TopNav({ overHeroOnTop = false }: { overHeroOnTop?: boolean }) {
         <div className="flex items-center gap-3.5">
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              href="/demo?autoplay=1"
+              href="/workspace"
               className={[
                 "group inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-colors",
                 overHero
@@ -85,7 +85,7 @@ export function TopNav({ overHeroOnTop = false }: { overHeroOnTop?: boolean }) {
                   : "bg-[var(--charcoal)] text-white hover:bg-black",
               ].join(" ")}
             >
-              <span>Explore Demo</span>
+              <span>Create workspace</span>
               <span
                 className={[
                   "text-[10px] transition-transform duration-200 group-hover:translate-x-0.5",
