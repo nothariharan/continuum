@@ -170,6 +170,35 @@ def build() -> dict:
                 "title": _title_of(nm), "text": text,
             }) + "\n")
 
+    # ── Background knowledge graph from REAL documents (for the graph view) ──
+    graph_nodes: list[dict[str, Any]] = []
+    graph_links: list[dict[str, Any]] = []
+    per_source = 20
+    picked: dict[str, list[str]] = {}
+    for nm in retrieval_names:
+        s = _source_of(nm)
+        picked.setdefault(s, [])
+        if len(picked[s]) < per_source:
+            picked[s].append(nm)
+    hubs: list[str] = []
+    for s, nms in picked.items():
+        hub = f"src:{s}"
+        hubs.append(hub)
+        graph_nodes.append({"id": hub, "label": SOURCE_LABELS.get(s, s.title()), "group": s, "kind": "source", "val": 5})
+        for nm in nms:
+            mm = re.search(r"(dsid_[0-9a-f]+)", nm)
+            if not mm:
+                continue
+            graph_nodes.append({"id": mm.group(1), "label": _title_of(nm), "group": s, "kind": "doc", "val": 1.6})
+            graph_links.append({"source": hub, "target": mm.group(1)})
+    for i in range(len(hubs)):
+        graph_links.append({"source": hubs[i], "target": hubs[(i + 1) % len(hubs)]})
+    doc_ids = [n["id"] for n in graph_nodes if n["kind"] == "doc"]
+    for _ in range(int(len(doc_ids) * 0.5)):
+        a, b = random.choice(doc_ids), random.choice(doc_ids)
+        if a != b:
+            graph_links.append({"source": a, "target": b})
+
     indexed = len(retrieval_names)  # real size of the live-queryable slice
 
     demo = {
@@ -182,6 +211,7 @@ def build() -> dict:
             "sources": sources,
         },
         "questions": curated,
+        "graph": {"nodes": graph_nodes, "links": graph_links},
     }
     return demo
 

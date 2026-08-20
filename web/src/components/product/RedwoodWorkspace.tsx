@@ -16,9 +16,12 @@ import { Reveal } from "@/components/ui/motion";
 type Evidence = { id: string; source: string; source_name: string; title: string; snippet: string };
 type Question = { id: string; question: string; type: string; answer: string | null; facts: string[]; sources: string[]; evidence: Evidence[]; abstain: boolean };
 type Source = { id: string; name: string; count: number };
+type GraphNodeRaw = { id: string; label: string; group: string; kind: string; val: number };
+type GraphLinkRaw = { source: string; target: string };
 type RedwoodData = {
   corpus: { name: string; subtitle: string; total: number; source_count: number; indexed: number; sources: Source[] };
   questions: Question[];
+  graph?: { nodes: GraphNodeRaw[]; links: GraphLinkRaw[] };
 };
 
 const SRC_ICON: Record<string, string> = {
@@ -48,50 +51,35 @@ export function RedwoodWorkspace() {
   }, []);
 
   // Dense, organically-connected background knowledge graph (dim), clustered by source.
+  // Real background knowledge graph from the corpus (every node carries a topic).
   const background = useMemo(() => {
-    const nodes: GNode[] = [];
-    const links: GLink[] = [];
-    const srcs = data?.corpus.sources ?? [];
-    const leaves: string[] = [];
-    srcs.forEach((s, si) => {
-      const hub = `bg-src:${s.name}`;
-      nodes.push({ id: hub, group: s.id, val: 4, state: "dim" });
-      for (let i = 0; i < 22; i++) {
-        const id = `bg:${s.id}:${i}`;
-        nodes.push({ id, group: s.id, val: i % 4 === 0 ? 2.5 : 1, state: "dim" });
-        links.push({ source: hub, target: id, state: "dim" });
-        leaves.push(id);
-        if (i > 0 && i % 3 === 0) links.push({ source: id, target: `bg:${s.id}:${i - 1}`, state: "dim" });
-      }
-      if (si > 0) links.push({ source: hub, target: `bg-src:${srcs[si - 1].name}`, state: "dim" });
-    });
-    if (srcs.length > 1) links.push({ source: `bg-src:${srcs[srcs.length - 1].name}`, target: `bg-src:${srcs[0].name}`, state: "dim" });
-    // cross-source links -> an organic connected blob, not per-source stars
-    const cross = Math.floor(leaves.length * 0.45);
-    for (let k = 0; k < cross && leaves.length > 2; k++) {
-      const a = leaves[Math.floor(Math.random() * leaves.length)];
-      const b = leaves[Math.floor(Math.random() * leaves.length)];
-      if (a !== b) links.push({ source: a, target: b, state: "dim" });
-    }
-    return { nodes, links };
+    const g = data?.graph;
+    if (!g) return { nodes: [] as GNode[], links: [] as GLink[] };
+    return {
+      nodes: g.nodes.map((n) => ({ id: n.id, label: n.label, group: n.group, val: n.val, kind: n.kind, state: "dim" as const })),
+      links: g.links.map((l) => ({ source: l.source, target: l.target, state: "dim" as const })),
+    };
   }, [data]);
 
   const graphData = useMemo(() => {
     const nodes: GNode[] = background.nodes.map((n) => ({ ...n }));
     const links: GLink[] = background.links.map((l) => ({ ...l }));
     if (result && !result.abstain) {
+      const hubByName = new Map(nodes.filter((n) => n.kind === "source").map((n) => [n.label, n] as const));
       const topic = "topic:q";
       nodes.push({ id: topic, label: short(query || result.evidence[0]?.title || "answer", 22), val: 5, state: "primary" });
       result.sources.forEach((sn) => {
-        const sid = `hl-src:${sn}`;
-        nodes.push({ id: sid, label: sn, val: 3, state: "highlight" });
-        links.push({ source: topic, target: sid, state: "primary" });
-        if (background.nodes.some((n) => n.id === `bg-src:${sn}`)) links.push({ source: sid, target: `bg-src:${sn}`, state: "highlight" });
+        const hub = hubByName.get(sn);
+        if (hub) {
+          hub.state = "highlight";
+          links.push({ source: topic, target: hub.id, state: "primary" });
+        }
       });
       result.evidence.forEach((e) => {
         const did = `hl-doc:${e.id}`;
-        nodes.push({ id: did, label: short(e.title, 18), val: 2.5, state: "highlight" });
-        links.push({ source: `hl-src:${e.source_name}`, target: did, state: "highlight" });
+        nodes.push({ id: did, label: short(e.title, 20), val: 2.6, state: "highlight" });
+        const hub = hubByName.get(e.source_name);
+        if (hub) links.push({ source: hub.id, target: did, state: "highlight" });
       });
     }
     return { nodes, links };

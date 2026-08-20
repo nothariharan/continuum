@@ -322,5 +322,2450 @@
       "evidence": [],
       "abstain": true
     }
-  ]
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "src:confluence",
+        "label": "Confluence",
+        "group": "confluence",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_d1143f5919b44ed396bdfeb3d4f702c2",
+        "label": "Preempt Aware Burst Provisioning Iac Playbook",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_1e67bab6aee94564a66f7c3185c7e0f4",
+        "label": "Probe Privacy Budget And Annotation Retention Playbook 2024",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_5df32c2cdcc44aaab289e7bfc85eb158",
+        "label": "Airgap Gpu Image Promotion And Hsm Signing Pipeline",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_accd69e5feee42b1af12405726ddedc5",
+        "label": "Telemetry Budget Enrichment Playbook 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_fc77dac56ce4424c98cb7c934d56fa70",
+        "label": "Adr Synthetic Traffic Privacy And Safe Injection 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_27f9e17069994d948a141196c64bbcfd",
+        "label": "Slo Experimentation Degradation Logbook 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c75cf23617c0412988a7fcfa53f4f790",
+        "label": "Slo Autonomy And Decentralized Error Budget Framework 2024",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_98b3ea63406443d8afeb686a98c08b37",
+        "label": "Cost Sensitive Alert Triage And Prioritization Matrix 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_7b3c3514f7ee41bdbf18d2274e9226ec",
+        "label": "Capex Op Ex Commitment And Forecast Harmonization 2025",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_73e9ecc15e4c4f41b73acd36d3244519",
+        "label": "Egress Contract Testbed And Provisioning Harness",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_1bad3a8b1a7340269a3f640985f45f42",
+        "label": "Perf Canary Gates For Hardware Profiles",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_7c221fabe85f41e4b97084b41cdc82ac",
+        "label": "Operator Economics And Fidelity Gating Manual 2025",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_5207d5cddec24b3fa9564ebf9517f812",
+        "label": "Adaptive Kernel Allocator Guide 2024",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_02e2925b58b2452a8f9cefa38de3b211",
+        "label": "Sdk Stream Resume Idempotency Playbook 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_efa2f1c968b841379c6ada01f1eb880b",
+        "label": "Quantization Timing Investigation Handbook 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_7fc490f8522b486c8f4b665d5189066c",
+        "label": "Project Orion Weekly Update 2026 01 09",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e08e46a25a44400286df9c3f0cd1e036",
+        "label": "Slo Driven Scheduler Autotune Playbook 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_367b59f62a1b4fbea9d571358e1500c0",
+        "label": "Preemptive Fallback And Burst Hedging For Gpu Pools",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_0e204a12705146a8b7cab0bf5536e386",
+        "label": "Multi Tenant Slo Escalation And Sla Credit Playbook 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_cb9ee11a6d4b40afa7f996f0f06cc46e",
+        "label": "Latency Metric Synthesis And Normalization Guide 2026",
+        "group": "confluence",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:fireflies",
+        "label": "Fireflies",
+        "group": "fireflies",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_f427cd3af61c49c0ada9653cb1f6021b",
+        "label": "2027 10 03 Capacity Prioritization Decisioning Zetta Retail",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_9dd2c8e7db9546efb5afb4858a43cfd3",
+        "label": "2025 03 17 Escalation Path And Msa Escrow Onboarding Kickoff",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c35401f365e84c6787febfc75c45de47",
+        "label": "2025 07 21 Geo Fencing Region Pinning Helixarc Biotech",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_878d8312d97946f68447cfa947c012b9",
+        "label": "2027 04 11 Strategic Alliance Pipeline Orchestration",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_9f8e0b2262c64123a3d73e36bddbb550",
+        "label": "2025 11 19 Vanguard Tech Inference Deployment Discovery",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_787679cad26841b6b752bef3ec5be99e",
+        "label": "2026 11 04 Embedding Fallback Sharding Vdb Architecture Review",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c076cafdab164f399c4dc9a623f015ad",
+        "label": "2026 10 02 Migration Orchestra Kickoff Openai Anthropic To Redwood",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_3d129f18e11d4a6f988b8edb04248e5d",
+        "label": "2026 09 04 Account Operational Sprint And Roadmap Handoff",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_af0afac5da134c1cbb3cb13fda009a7f",
+        "label": "2026 05 14 Cerulean Onramp Hosting Choice Kickoff",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_89a7a3a61f82467b845b39fbf3948045",
+        "label": "2026 03 25 Latency Fidelity Sandbox Console Optimize Demo",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8f8f49a3328d4ef79c18e72842c8b71b",
+        "label": "2025 08 28 Sso Onboarding Least Privilege Walkthrough With Harrow Analytics",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b8da8a172d8246f1b1550ce51d5ce4d4",
+        "label": "2026 05 03 Summitlane Poc Weekly Orbit Routing And Upgrade Checkin",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_79c97ce2a3f34cef918e3c7902b2ac6a",
+        "label": "2025 11 07 Pilot Backpressure Batching Sync",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_84afccdda3cb478aa22cd578222d5eba",
+        "label": "2027 03 23 Steward Harbor Executive Handoff And Crew Checkin",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_57bce3feefe34118abbf133b22307288",
+        "label": "2026 09 25 Model Playbook Scout Bench Routing Demo Helix Insights",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_53265b32e2f94036887785c902a54e1a",
+        "label": "2026 08 25 Shoreline Ops Console Route Cost Breakdown Demo",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8f037c3e1126429a867d3105acaad463",
+        "label": "2025 06 18 Pegasus Poc Golden Prompts And Benchmarks",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_338d7823f0b94f4bb02b020beb8919ba",
+        "label": "2025 02 18 Poc Scoping Route Experiments Northbridge",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_138184e8c7fd45528fd68df99abe4890",
+        "label": "2026 08 21 Inference Health And Commitment Checkpoint",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_2e7eaf1490134226a673655f8acaf50a",
+        "label": "2026 03 17 Sierra Healthstream Sla Compatibility Discovery",
+        "group": "fireflies",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:github",
+        "label": "GitHub",
+        "group": "github",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_44a8d33cd94149209451291ec3fa86b5",
+        "label": "Pr 483920 Introduce Stratified Semantic Baseline Comparator",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_17916ad7d9084fb6b934656ce58eabb8",
+        "label": "Pr 133310 Temporal Segmented Canary Controller With Rollback Heuristics",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d94e081e8b0b4f748ced7e498f3b7097",
+        "label": "Pr 210246 Quiet Merge Signal And Lint Telemetry Adapter",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a9878930abeb43409ef767759e7a8cf4",
+        "label": "Pr 832711 Anchorwise Fidelity Audit Ci Hook",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_1300404c65d840aa8aed5368eb1bf496",
+        "label": "Pr 215999 Introduce Lint Plugin Registry And Atomic Build Hooks",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a9f870cd6f374a7cbecaf89113251220",
+        "label": "Pr 20577 Introduce Temporal Operator Claims And Kms Residency Prober",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_85d11cb09ddb42469479b2dae5c30ff6",
+        "label": "Pr 147 Rollout Canary Safety Smoke Tests",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_32c521c54aa6482f90d61a4f50a9e573",
+        "label": "Pr 19962 Cleanup Kernel Registry And Remove Dead Paths",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_77f9fdbfebb349febf4f761b9bf98a77",
+        "label": "Pr 554321 Introduce Invocation Resilience Index And Contextual Log Coupler",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c42a8068c9284b2bb13d32f19c5ae03b",
+        "label": "Pr 421789 Sdks Auth Mosaic Stream Consolidation Ergonomic Polish",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b6f177a450a845ff82bbfb0dbf66c70f",
+        "label": "Pr 142530 Kv Orchestrated Backfill Evictor And Page Mending",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_be5cf6ff60854f9fa04f5a78ee3e2c42",
+        "label": "Pr 512 Add Backup Compatibility Versioning And Migration Notes",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e59f399303f341bbb9a86fa64c8e4f76",
+        "label": "Pr 146831 Econ Compiler Traffic Shaper Profiles",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e2929a8ac7d6407e985fc077e71fc566",
+        "label": "Pr 388123 Connection Quarantine And Bounded Retry Slo Mitigator",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_434310e506c04c65ac3d87d169edc17e",
+        "label": "Pr 945321 Epochal Shadow Rehydration And Transactional Partial Swap Controller",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_f5b6b65ec24e4e19b81c4e96d35bf77c",
+        "label": "Pr 134876 Stream Adapter Pluggable Token Provider Cross Sdk Bump",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_619ea6838d524bbca9e580fdbf320608",
+        "label": "Pr 204041 Latency Tier Sparing And Slo Heatmap Guardrail",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_20a2fcdb0ea340f6a992abbc3dd2ecec",
+        "label": "Pr 2190 Add Preupgrade Job Ordering And Timeouts",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_0a2b5b1fdb4a463d94230a532a23576e",
+        "label": "Pr 375829 Slimline Credential Lifecycle Compact Stream Operator Crosssdk Bump",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_fa66483cb1984bddbf6ac722640f9469",
+        "label": "Pr 178900 Add Runlength Aware Regression Prober And Staged Quarantine Gate",
+        "group": "github",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:gmail",
+        "label": "Gmail",
+        "group": "gmail",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_c71a7326d4e84c609e10765cd10c4639",
+        "label": "20261120 Session Affinity Cache Hit Billing Query",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_49258ffe3a404977b28f982605152b36",
+        "label": "20261129 Gpu Tranche Arbitration Briefing",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_142314a854934d8085971794eb7463e1",
+        "label": "20280112 Orbisai Sla Exhibit Procurement Clarify",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b2448122064542bfab027cc8cd6b2db5",
+        "label": "20261210 Subproc Ownership Escrow Clarify",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b194a070a06e4b20bfb11c213e31dd3a",
+        "label": "20270712 Pilot Credit Amnesty Request",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_7ca533a1c3e948b189f5b5dd72ea88e7",
+        "label": "20260824 Compliance Onboard Cadence And Evidence Playbook",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_488d6ca29d574ded9fee2949fa77d5ae",
+        "label": "20261122 Playground Eval Intake Codexlabs Request",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e1e6494df26a4f7da01850f20f2edfe7",
+        "label": "20270615 Marketplace Evidence Scope And Handback Plan",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_06cb01bf2a394068960994282187fe88",
+        "label": "20261014 Ledgerbank Bcp Evidence Access Log Tieout",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_365887045a9646acb44255b845fe0803",
+        "label": "20260602 Clearwave Onboard Po Bank Proof",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_7c1e5419350b4202b7df38d6c3ec802b",
+        "label": "20260120 Pricing Schedule Redline Orchestration",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c10b8cc503224f3b85bdc80a99fdcc55",
+        "label": "20270220 Q2 Expansion Cs Handoff",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b02f0e96b4b6498894914a4a1b70c9f0",
+        "label": "20261002 Acrotech Urgent Exec Action Plan",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_73d4bd001c494d6ab57245f69117adaf",
+        "label": "20270622 Midline Decision Timetable And Mandates",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_5dfb9a41056a420b9fc369a91cde3d36",
+        "label": "20260514 Clearbridge Integration Qualification Milestones",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e471474bb1d64258a31a76b86778cfb0",
+        "label": "20270519 Timebox Officehours Convert Missed Demo",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_fae28bb4cded4b7d821633c9e108121a",
+        "label": "20270523 Staging Runway Hosting Choice Playbook",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_3cfd992aa93346fda085cac441cfac72",
+        "label": "20260819 Soc2 Boundary Weekend Migration Clarify",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d86349ae046a4a2b8eea865abc0cb115",
+        "label": "20260427 Outlook Mobile Link Wrap Po Visibility Calyx",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_326925a3181d437cb5951a24ea5230b5",
+        "label": "20260309 Financify Initial Throttle Response Latency Escalation",
+        "group": "gmail",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:google_drive",
+        "label": "Drive",
+        "group": "google_drive",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_28d7b5a4eeb84568b933bde7941d4d23",
+        "label": "Handshake Preflight Open Questions Aug 23 2026",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_6c2f8774739e4ab49b085394fa14c119",
+        "label": "Unit Cost Latency Forensics Playbook Wires",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_528ac53fe9de496baa374c4bb0d10fdf",
+        "label": "Arrival Shape Adaptive Scheduling Notes",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b82bf3d80dbf4d5598c9c7e3e5149863",
+        "label": "Microprofile Latency To Throughput Mapping Playbook",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8b5b1878801d4f3e8b7725cd1ff5c9dc",
+        "label": "Qbr Triage Scenario Lab Notes",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a32b7faba0b144c0a2746d07e524437f",
+        "label": "Quick Interop Sdk Warmstart Playlist Sketch",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a3bcfe9f06df41f58b2858d2115bb2a2",
+        "label": "Reserve Buffering Plan Hosted Api Q2 2027",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d25b77924e444f00bafd416dc9794393",
+        "label": "Onepage Regression Spotlight Ellis",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_de70f35de0a14e47b271a792f2b4ec43",
+        "label": "Focus Lattice Weekly Rituals Mina Okafor",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_2265bc860fcb42f0a66d3abdd4e742ea",
+        "label": "Cross Functional Rollout Taproot Kpi Cadence",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_10602ed7ec454153b8d1f1ab6f854502",
+        "label": "Retry Backoff Defaults Experiments",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_f762b0b3fa124909bfb52b3fc3985722",
+        "label": "Nightshift Gpu Heap Corruption Notes 2026 07",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_2488e2cce9be497e93e1dd4b9cac68c9",
+        "label": "Kv Cache Batch Interaction Benchmark",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8fa58792ec6545e8b19923b3482bfb98",
+        "label": "Bench Token Cost Heatmap A10 To H100 Draft",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_73ac5c0c6c9341768f5a67f56e7e173e",
+        "label": "Sse Partial Frame Hang Scratchpad 2026",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_218dd929a4cb4e51ab339ad9f14c934e",
+        "label": "Sprint Digest Context Econ Heuristics 2026 06 30",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_97750c07f9924163a66404dfc8814314",
+        "label": "Tomas Compliance Sprint Cheatsheet 2026 03 13",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a2298584e55f48279bcf4935d360b19e",
+        "label": "Inference Stack Tipping Points And Sales Hooks",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d10093a2cfbc429a8d4756e52e8ae2d0",
+        "label": "Payables Checklist Lucy Wong",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d8e66b57cd50463b80ffa145bc9902c0",
+        "label": "Midnight Flagfall Quickrunbook",
+        "group": "google_drive",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:hubspot",
+        "label": "HubSpot",
+        "group": "hubspot",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_97b09cd0270e4361891005a14b946e77",
+        "label": "Company Cascade Insights Ai",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_ac559922addd4731815a098971ad6192",
+        "label": "Company Cardinal Cove Ai Onramp",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_241412198ead4145a88af8b0265df96c",
+        "label": "Company Verdigris Sdkworks",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a312a492df594c7985a12c003c075649",
+        "label": "Company Elmbridge Support Assurance",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_87cf09d67f3d4f2bb99025213b6a2d76",
+        "label": "Company Citrine Maritime Systems",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_59587cce4f6f41c28fd36acc87421998",
+        "label": "Company Velvet Aurum Fintech",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_0aec3b89cab444a59cf375d52e98d03c",
+        "label": "Company Ironwood Catalyst Solutions",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_3a6e1d6fd3bd4e398556e255fa129c20",
+        "label": "Company Marigold Digital Labs",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_4bf1c7a9356c49a9a30ac4c89bca7f24",
+        "label": "Company Sentinel Maillytics",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_2d25e43a8fd34dd3b69846ac240ffdf0",
+        "label": "Company Borealis Healthcare Analytics",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8930deb54cee4473b4637a85cc5186b6",
+        "label": "Company Orbitron Productworks",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_44f768d8f4324a2c9eaf85fa9ca9f4dc",
+        "label": "Company Skyroot Systems",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_7d745325410640628a59a24759b9a62a",
+        "label": "Company Stratos Pluginworks",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_22126945cec147088258aeed5cc7b32f",
+        "label": "Company Redcliff Ml Sla Negotiation",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_6085f5c2c2be4029bec5b2eb5d07d899",
+        "label": "Company Bridgepoint Insightworks",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_5e1ffa970e5140ea9fcf7b6dd405ffe8",
+        "label": "Company Briarcove Fintech",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_2c7e60206c214fb18249cb7600fc04a8",
+        "label": "Company Cedarforge Retrieval Systems",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d",
+        "label": "Company Rippleglow Studios",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_1cd5e6e9de7548df8d7e0fa5227c8faf",
+        "label": "Company Contextmatrix Ai",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_9f74352ae22b46c4a32f9682e8f9a3ff",
+        "label": "Company Rosemarsh Regulated Compute",
+        "group": "hubspot",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:jira",
+        "label": "Jira",
+        "group": "jira",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_497e677f13f547ab9d117e55d6600798",
+        "label": "Sup 780246 Allocational Reserve Fractionation On Muxed Batch Postbacks",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_384026311d87418a9a37d1cae1f3d09f",
+        "label": "Int 203456 Approver Attribute Mismatch Blocks Onboarding Approval Workflow",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_01482cc878e24434b5e765cdfc9b2af3",
+        "label": "Sup 502911 Affinity Token Ttl Expiry Triggers Fallback During Weight Shift",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d97eaba87bc14a6cb62ff91cefb1526c",
+        "label": "Sup 624881 Apigw Fd Exhaustion Small Payload Burst",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_a567be80957b4a9d9c25c4635a408c46",
+        "label": "Sup 2239999 Multiplexed Fallback Pressure From Noisy Tenant Spillover",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_3de754d20cc24a9e983f1ad872247c7f",
+        "label": "Sup 910777 Proxy Tls Rewrite And Range Splitting Causes Shard Integrity Errors Private Deploy",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_9e63c1cf5af94b75b659cc85edd543c8",
+        "label": "Sup 932401 Egress Proxy Reverse Dns Mtls Peername Mismatch",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_48adc1bb70754617a085c5a10338ab69",
+        "label": "Sup 129001 Traffic Mirror Canary Duplicate Affinity Lease Fallbacks",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_02ae04b078dd456e825c2d2d5a87175c",
+        "label": "Sup 78456 Trace Span Anchor Misalignment Cross Region Joins",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e3dcf203e7224221802af4ac4fdde272",
+        "label": "Sup 999873 Multiplexed Http2 Flow Control Freeze",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_917922cbf02a409ba3cd74b83d305e1d",
+        "label": "Int 128999 Graduated Contractor To Vendor Offboarding",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_40d388e6b3c949689170272236215e58",
+        "label": "Sup 843291 Intermittent Secondary Region Hop Latency Jitter",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_659d5debc7344351b9faf05bca430c9f",
+        "label": "Sup 999001 Schema Evolution Funcall Version Drift Multiplex",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_13328ce12b044fc7aeae598648e3d0d5",
+        "label": "Sup 821030 Credit Hold After Retro Reserved Realloc",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c3db727b67db4e7ab7b828b126000903",
+        "label": "Sup 438210 Intermittent Range Rewrite Causes Model Object Corruption",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_5710b7c3472e4e8e9c65d4e5d3178177",
+        "label": "Int 7623 Timebound Multiaccount Console Access For Oncall Runbook Update",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_ab7c9d60c3b945c28f27190102610b4d",
+        "label": "Sup 541209 Post Upgrade Quota Refill Latency",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_3650c6099851415d8711e83c8cb6ad33",
+        "label": "Sup 246801 Daily Prorate Credit Offset After Postback Lag",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_daba5649f4184e20aef742e2d83275ea",
+        "label": "Sup 1712244 Autoscale Cooldown Thresholds Triggering Ephemeral Gpu Siloing",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c807ec8ee3f2467c824823b4b543ee66",
+        "label": "Sup 623901 Streaming Quantized Fallback Worker Evict",
+        "group": "jira",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:linear",
+        "label": "Linear",
+        "group": "linear",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_3e7c044fa4d847da971b5751722f3053",
+        "label": "Eng 276543 Staged Failover Harmonizer Prefill Probes And Variant Degradation Plan",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e01c41b76af8463d99c3233b6f6c15ec",
+        "label": "Eng 4721 Vpc Onprem Observability Collector Isolation",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_629ab06938214036853841c6ecea0165",
+        "label": "Eng 318159 Commit Split Fallback For Overlapping Reserved Capacity Transfers",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_c663ba8c75c0437591d8b41d94556640",
+        "label": "Pm 847312 Model Supply Opportunity Catalog And Runbook",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_4bb083bb012c4f1292c56e66287c0e8d",
+        "label": "Eng 321007 Terraform Vpc Stitcher Subnet Profiles Nat Ha Endpoint Reconciler",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b59ae2fead6f409592cf5dfefaf1474d",
+        "label": "Des 12781 Variant Consolidation And Layer Order Guidelines",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8113c488515647e38ea78057de2636c1",
+        "label": "Pm 77816 Surface Incident Actions As Verifiable Shipping Criteria",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8a36797af852487c8f2ee640ff72cd3a",
+        "label": "Eng 988765 Tokenstream Stabilization Prefetch Safeguard",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8add40dd612745e689c8e07f89cd0604",
+        "label": "Eng 15823 Percentile Slice Emitter Per Route Model Region",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_3c0bea3ad9b94866ab71303af42e9022",
+        "label": "Eng 799213 Audit Safeguard Ledger For Admin Actions And Retention Automation",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_791b5b9d904146e3acd86bc97c5c0723",
+        "label": "Pm 17865 Compliance Request Orchestration Dynamic Forms Dpa Assembly",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_57b238a476a74522bec62793850893bf",
+        "label": "Eng 1357991 Cohort Adaptive Steward Batcher Kv Fragmentation Solver",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e535d1f855bd49fab61a7224e0ed84eb",
+        "label": "Eng 911223 Adaptive Tenant Scrape Orchestrator And Causal Link Proxy",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_5fac77d4122c4137a25c196de039c855",
+        "label": "Pm 278345 Adaptive Observability Sla Credit Security Q Automation Experiment",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_47fc5754891d418fb73465e017009a7d",
+        "label": "Eng 92401 Reconcile Intermittent Tenant Fanout After Service Account Delegation",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_b38fa1da1bf94823945bea3edbd2112c",
+        "label": "Eng 4827 Unified Authorizer Core Policy Evaluator Middleware",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_35e80bf7c5dc4c54b1e8b65ab22df509",
+        "label": "Eng 102341 Tenant Priority Reshard And Regional Fallback Orchestration",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_deb1036927504ab78817bd7c083abea1",
+        "label": "Eng 99721 Idempotent Promotion Hooks Role Scoped Tokens",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_0233184c3fe040d4bee50cc93129b7bf",
+        "label": "Eng 53102 Inference Attributor Service",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_6deb5de563bf4a48a7542d8e4baae8cc",
+        "label": "Eng 117222 Prefiltered Kernel Deploy Accuracy Deviation Remediation",
+        "group": "linear",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "src:slack",
+        "label": "Slack",
+        "group": "slack",
+        "kind": "source",
+        "val": 5
+      },
+      {
+        "id": "dsid_6ca515350eec4daa9cb8c8e39188a45d",
+        "label": "1768129999 Acmepay Demo Key Ttl Mismatch 401",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_025b8eac87484bc6baa3eb8688c75a0e",
+        "label": "1799998888 Apse2 Gpu Prime And Quota Playbook",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8e0579ee52ff4e25b3a4d04ded113fd4",
+        "label": "4975312345 Promptcache Flightdeck Slo Breakdown",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_29c2cb1bd0b34a409f1ed4a9471c9b2c",
+        "label": "1743219999 Deploy Orch Handshake Rollback Snippets",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_13bbf23761d74d56b5d903ea8950613d",
+        "label": "1768520333",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_984309cb21de49b7b8b92d191ce711c1",
+        "label": "1758743210 Owner Rotation Ticketization",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_2983db960a1b47e08a4938fc4c341251",
+        "label": "1768801123 Az1A Arp Resolve Stall Inference Pager",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_19c8193e68ed4bdf96cd9be68ce777e9",
+        "label": "1769123456 Devex Standup Sdks Triage Sampleapp Polish",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_857cdec4de314cbcac9726632e508e1f",
+        "label": "2245001234 Rope Scaling Mqa Slot Redistribution Bench",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_d561903bb1354c26a0d88bb67e47ee62",
+        "label": "1732468001 Emergency Eu Tokenizer Quickpin",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_286c23a602254098a6aa27cd25156bdd",
+        "label": "1734560000 Prefetch Transport Window Idempotency Discussion",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_aa166cfb814c4ebfa0a25998b5070b9e",
+        "label": "2345678901 Research Runaway Hparam Surge Mitigation",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_223717696e134edb980f356dec3d9612",
+        "label": "1768001234 Trial Credit Ledger Mismatch",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_89fe78205cf44c1d9ec299fc3231dc32",
+        "label": "1905123456 Asia East3 Image Bootsync Handshake",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_f6395a9c7cc942dba76d24db25915a25",
+        "label": "2035001111 Postlaunch Stability Slice Checkin",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8c393842c6b14f0395e15b11999b910c",
+        "label": "2176543210 Slo Sla Action Handoff",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_e51db8f9929049ec88bab610c3c84e5b",
+        "label": "1743210000 Optimize Toolkit Pilot Smoke Checks Alpha Gating",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_36bf9273fe5f415993814586d93a634d",
+        "label": "1704506789 Audit Ingest Contract Clarity Retention Tradeoffs",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_8672f5c921414757aefd8a1503e2216a",
+        "label": "1762001123 Streaming Dashboard Kernel Fallback Kv",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      },
+      {
+        "id": "dsid_85d6523d99fc457ebde3a0826e97ed61",
+        "label": "3421234567 Model Lease Ownership Surface Contract Questions",
+        "group": "slack",
+        "kind": "doc",
+        "val": 1.6
+      }
+    ],
+    "links": [
+      {
+        "source": "src:confluence",
+        "target": "dsid_d1143f5919b44ed396bdfeb3d4f702c2"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_1e67bab6aee94564a66f7c3185c7e0f4"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_5df32c2cdcc44aaab289e7bfc85eb158"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_accd69e5feee42b1af12405726ddedc5"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_fc77dac56ce4424c98cb7c934d56fa70"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_27f9e17069994d948a141196c64bbcfd"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_c75cf23617c0412988a7fcfa53f4f790"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_98b3ea63406443d8afeb686a98c08b37"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_7b3c3514f7ee41bdbf18d2274e9226ec"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_73e9ecc15e4c4f41b73acd36d3244519"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_1bad3a8b1a7340269a3f640985f45f42"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_7c221fabe85f41e4b97084b41cdc82ac"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_5207d5cddec24b3fa9564ebf9517f812"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_02e2925b58b2452a8f9cefa38de3b211"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_efa2f1c968b841379c6ada01f1eb880b"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_7fc490f8522b486c8f4b665d5189066c"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_e08e46a25a44400286df9c3f0cd1e036"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_367b59f62a1b4fbea9d571358e1500c0"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_0e204a12705146a8b7cab0bf5536e386"
+      },
+      {
+        "source": "src:confluence",
+        "target": "dsid_cb9ee11a6d4b40afa7f996f0f06cc46e"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_f427cd3af61c49c0ada9653cb1f6021b"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_9dd2c8e7db9546efb5afb4858a43cfd3"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_c35401f365e84c6787febfc75c45de47"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_878d8312d97946f68447cfa947c012b9"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_9f8e0b2262c64123a3d73e36bddbb550"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_787679cad26841b6b752bef3ec5be99e"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_c076cafdab164f399c4dc9a623f015ad"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_3d129f18e11d4a6f988b8edb04248e5d"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_af0afac5da134c1cbb3cb13fda009a7f"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_89a7a3a61f82467b845b39fbf3948045"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_8f8f49a3328d4ef79c18e72842c8b71b"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_b8da8a172d8246f1b1550ce51d5ce4d4"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_79c97ce2a3f34cef918e3c7902b2ac6a"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_84afccdda3cb478aa22cd578222d5eba"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_57bce3feefe34118abbf133b22307288"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_53265b32e2f94036887785c902a54e1a"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_8f037c3e1126429a867d3105acaad463"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_338d7823f0b94f4bb02b020beb8919ba"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_138184e8c7fd45528fd68df99abe4890"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "dsid_2e7eaf1490134226a673655f8acaf50a"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_44a8d33cd94149209451291ec3fa86b5"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_17916ad7d9084fb6b934656ce58eabb8"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_d94e081e8b0b4f748ced7e498f3b7097"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_a9878930abeb43409ef767759e7a8cf4"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_1300404c65d840aa8aed5368eb1bf496"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_a9f870cd6f374a7cbecaf89113251220"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_85d11cb09ddb42469479b2dae5c30ff6"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_32c521c54aa6482f90d61a4f50a9e573"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_77f9fdbfebb349febf4f761b9bf98a77"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_c42a8068c9284b2bb13d32f19c5ae03b"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_b6f177a450a845ff82bbfb0dbf66c70f"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_be5cf6ff60854f9fa04f5a78ee3e2c42"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_e59f399303f341bbb9a86fa64c8e4f76"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_e2929a8ac7d6407e985fc077e71fc566"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_434310e506c04c65ac3d87d169edc17e"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_f5b6b65ec24e4e19b81c4e96d35bf77c"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_619ea6838d524bbca9e580fdbf320608"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_20a2fcdb0ea340f6a992abbc3dd2ecec"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_0a2b5b1fdb4a463d94230a532a23576e"
+      },
+      {
+        "source": "src:github",
+        "target": "dsid_fa66483cb1984bddbf6ac722640f9469"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_c71a7326d4e84c609e10765cd10c4639"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_49258ffe3a404977b28f982605152b36"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_142314a854934d8085971794eb7463e1"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_b2448122064542bfab027cc8cd6b2db5"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_b194a070a06e4b20bfb11c213e31dd3a"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_7ca533a1c3e948b189f5b5dd72ea88e7"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_488d6ca29d574ded9fee2949fa77d5ae"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_e1e6494df26a4f7da01850f20f2edfe7"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_06cb01bf2a394068960994282187fe88"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_365887045a9646acb44255b845fe0803"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_7c1e5419350b4202b7df38d6c3ec802b"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_c10b8cc503224f3b85bdc80a99fdcc55"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_b02f0e96b4b6498894914a4a1b70c9f0"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_73d4bd001c494d6ab57245f69117adaf"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_5dfb9a41056a420b9fc369a91cde3d36"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_e471474bb1d64258a31a76b86778cfb0"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_fae28bb4cded4b7d821633c9e108121a"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_3cfd992aa93346fda085cac441cfac72"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_d86349ae046a4a2b8eea865abc0cb115"
+      },
+      {
+        "source": "src:gmail",
+        "target": "dsid_326925a3181d437cb5951a24ea5230b5"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_28d7b5a4eeb84568b933bde7941d4d23"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_6c2f8774739e4ab49b085394fa14c119"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_528ac53fe9de496baa374c4bb0d10fdf"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_b82bf3d80dbf4d5598c9c7e3e5149863"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_8b5b1878801d4f3e8b7725cd1ff5c9dc"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_a32b7faba0b144c0a2746d07e524437f"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_a3bcfe9f06df41f58b2858d2115bb2a2"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_d25b77924e444f00bafd416dc9794393"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_de70f35de0a14e47b271a792f2b4ec43"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_2265bc860fcb42f0a66d3abdd4e742ea"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_10602ed7ec454153b8d1f1ab6f854502"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_f762b0b3fa124909bfb52b3fc3985722"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_2488e2cce9be497e93e1dd4b9cac68c9"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_8fa58792ec6545e8b19923b3482bfb98"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_73ac5c0c6c9341768f5a67f56e7e173e"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_218dd929a4cb4e51ab339ad9f14c934e"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_97750c07f9924163a66404dfc8814314"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_a2298584e55f48279bcf4935d360b19e"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_d10093a2cfbc429a8d4756e52e8ae2d0"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "dsid_d8e66b57cd50463b80ffa145bc9902c0"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_97b09cd0270e4361891005a14b946e77"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_ac559922addd4731815a098971ad6192"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_241412198ead4145a88af8b0265df96c"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_a312a492df594c7985a12c003c075649"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_87cf09d67f3d4f2bb99025213b6a2d76"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_59587cce4f6f41c28fd36acc87421998"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_0aec3b89cab444a59cf375d52e98d03c"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_3a6e1d6fd3bd4e398556e255fa129c20"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_4bf1c7a9356c49a9a30ac4c89bca7f24"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_2d25e43a8fd34dd3b69846ac240ffdf0"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_8930deb54cee4473b4637a85cc5186b6"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_44f768d8f4324a2c9eaf85fa9ca9f4dc"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_7d745325410640628a59a24759b9a62a"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_22126945cec147088258aeed5cc7b32f"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_6085f5c2c2be4029bec5b2eb5d07d899"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_5e1ffa970e5140ea9fcf7b6dd405ffe8"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_2c7e60206c214fb18249cb7600fc04a8"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_1cd5e6e9de7548df8d7e0fa5227c8faf"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "dsid_9f74352ae22b46c4a32f9682e8f9a3ff"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_497e677f13f547ab9d117e55d6600798"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_384026311d87418a9a37d1cae1f3d09f"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_01482cc878e24434b5e765cdfc9b2af3"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_d97eaba87bc14a6cb62ff91cefb1526c"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_a567be80957b4a9d9c25c4635a408c46"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_3de754d20cc24a9e983f1ad872247c7f"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_9e63c1cf5af94b75b659cc85edd543c8"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_48adc1bb70754617a085c5a10338ab69"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_02ae04b078dd456e825c2d2d5a87175c"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_e3dcf203e7224221802af4ac4fdde272"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_917922cbf02a409ba3cd74b83d305e1d"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_40d388e6b3c949689170272236215e58"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_659d5debc7344351b9faf05bca430c9f"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_13328ce12b044fc7aeae598648e3d0d5"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_c3db727b67db4e7ab7b828b126000903"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_5710b7c3472e4e8e9c65d4e5d3178177"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_ab7c9d60c3b945c28f27190102610b4d"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_3650c6099851415d8711e83c8cb6ad33"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_daba5649f4184e20aef742e2d83275ea"
+      },
+      {
+        "source": "src:jira",
+        "target": "dsid_c807ec8ee3f2467c824823b4b543ee66"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_3e7c044fa4d847da971b5751722f3053"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_e01c41b76af8463d99c3233b6f6c15ec"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_629ab06938214036853841c6ecea0165"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_c663ba8c75c0437591d8b41d94556640"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_4bb083bb012c4f1292c56e66287c0e8d"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_b59ae2fead6f409592cf5dfefaf1474d"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_8113c488515647e38ea78057de2636c1"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_8a36797af852487c8f2ee640ff72cd3a"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_8add40dd612745e689c8e07f89cd0604"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_3c0bea3ad9b94866ab71303af42e9022"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_791b5b9d904146e3acd86bc97c5c0723"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_57b238a476a74522bec62793850893bf"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_e535d1f855bd49fab61a7224e0ed84eb"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_5fac77d4122c4137a25c196de039c855"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_47fc5754891d418fb73465e017009a7d"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_b38fa1da1bf94823945bea3edbd2112c"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_35e80bf7c5dc4c54b1e8b65ab22df509"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_deb1036927504ab78817bd7c083abea1"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_0233184c3fe040d4bee50cc93129b7bf"
+      },
+      {
+        "source": "src:linear",
+        "target": "dsid_6deb5de563bf4a48a7542d8e4baae8cc"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_6ca515350eec4daa9cb8c8e39188a45d"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_025b8eac87484bc6baa3eb8688c75a0e"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_8e0579ee52ff4e25b3a4d04ded113fd4"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_29c2cb1bd0b34a409f1ed4a9471c9b2c"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_13bbf23761d74d56b5d903ea8950613d"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_984309cb21de49b7b8b92d191ce711c1"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_2983db960a1b47e08a4938fc4c341251"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_19c8193e68ed4bdf96cd9be68ce777e9"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_857cdec4de314cbcac9726632e508e1f"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_d561903bb1354c26a0d88bb67e47ee62"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_286c23a602254098a6aa27cd25156bdd"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_aa166cfb814c4ebfa0a25998b5070b9e"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_223717696e134edb980f356dec3d9612"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_89fe78205cf44c1d9ec299fc3231dc32"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_f6395a9c7cc942dba76d24db25915a25"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_8c393842c6b14f0395e15b11999b910c"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_e51db8f9929049ec88bab610c3c84e5b"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_36bf9273fe5f415993814586d93a634d"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_8672f5c921414757aefd8a1503e2216a"
+      },
+      {
+        "source": "src:slack",
+        "target": "dsid_85d6523d99fc457ebde3a0826e97ed61"
+      },
+      {
+        "source": "src:confluence",
+        "target": "src:fireflies"
+      },
+      {
+        "source": "src:fireflies",
+        "target": "src:github"
+      },
+      {
+        "source": "src:github",
+        "target": "src:gmail"
+      },
+      {
+        "source": "src:gmail",
+        "target": "src:google_drive"
+      },
+      {
+        "source": "src:google_drive",
+        "target": "src:hubspot"
+      },
+      {
+        "source": "src:hubspot",
+        "target": "src:jira"
+      },
+      {
+        "source": "src:jira",
+        "target": "src:linear"
+      },
+      {
+        "source": "src:linear",
+        "target": "src:slack"
+      },
+      {
+        "source": "src:slack",
+        "target": "src:confluence"
+      },
+      {
+        "source": "dsid_b38fa1da1bf94823945bea3edbd2112c",
+        "target": "dsid_89a7a3a61f82467b845b39fbf3948045"
+      },
+      {
+        "source": "dsid_1bad3a8b1a7340269a3f640985f45f42",
+        "target": "dsid_be5cf6ff60854f9fa04f5a78ee3e2c42"
+      },
+      {
+        "source": "dsid_8e0579ee52ff4e25b3a4d04ded113fd4",
+        "target": "dsid_5dfb9a41056a420b9fc369a91cde3d36"
+      },
+      {
+        "source": "dsid_5fac77d4122c4137a25c196de039c855",
+        "target": "dsid_241412198ead4145a88af8b0265df96c"
+      },
+      {
+        "source": "dsid_02e2925b58b2452a8f9cefa38de3b211",
+        "target": "dsid_efa2f1c968b841379c6ada01f1eb880b"
+      },
+      {
+        "source": "dsid_488d6ca29d574ded9fee2949fa77d5ae",
+        "target": "dsid_384026311d87418a9a37d1cae1f3d09f"
+      },
+      {
+        "source": "dsid_4bf1c7a9356c49a9a30ac4c89bca7f24",
+        "target": "dsid_9f74352ae22b46c4a32f9682e8f9a3ff"
+      },
+      {
+        "source": "dsid_e01c41b76af8463d99c3233b6f6c15ec",
+        "target": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d"
+      },
+      {
+        "source": "dsid_138184e8c7fd45528fd68df99abe4890",
+        "target": "dsid_13bbf23761d74d56b5d903ea8950613d"
+      },
+      {
+        "source": "dsid_7fc490f8522b486c8f4b665d5189066c",
+        "target": "dsid_85d11cb09ddb42469479b2dae5c30ff6"
+      },
+      {
+        "source": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d",
+        "target": "dsid_af0afac5da134c1cbb3cb13fda009a7f"
+      },
+      {
+        "source": "dsid_e3dcf203e7224221802af4ac4fdde272",
+        "target": "dsid_40d388e6b3c949689170272236215e58"
+      },
+      {
+        "source": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d",
+        "target": "dsid_c42a8068c9284b2bb13d32f19c5ae03b"
+      },
+      {
+        "source": "dsid_1e67bab6aee94564a66f7c3185c7e0f4",
+        "target": "dsid_5df32c2cdcc44aaab289e7bfc85eb158"
+      },
+      {
+        "source": "dsid_53265b32e2f94036887785c902a54e1a",
+        "target": "dsid_138184e8c7fd45528fd68df99abe4890"
+      },
+      {
+        "source": "dsid_13328ce12b044fc7aeae598648e3d0d5",
+        "target": "dsid_79c97ce2a3f34cef918e3c7902b2ac6a"
+      },
+      {
+        "source": "dsid_984309cb21de49b7b8b92d191ce711c1",
+        "target": "dsid_6085f5c2c2be4029bec5b2eb5d07d899"
+      },
+      {
+        "source": "dsid_e51db8f9929049ec88bab610c3c84e5b",
+        "target": "dsid_d94e081e8b0b4f748ced7e498f3b7097"
+      },
+      {
+        "source": "dsid_984309cb21de49b7b8b92d191ce711c1",
+        "target": "dsid_be5cf6ff60854f9fa04f5a78ee3e2c42"
+      },
+      {
+        "source": "dsid_a2298584e55f48279bcf4935d360b19e",
+        "target": "dsid_b82bf3d80dbf4d5598c9c7e3e5149863"
+      },
+      {
+        "source": "dsid_142314a854934d8085971794eb7463e1",
+        "target": "dsid_40d388e6b3c949689170272236215e58"
+      },
+      {
+        "source": "dsid_c75cf23617c0412988a7fcfa53f4f790",
+        "target": "dsid_7b3c3514f7ee41bdbf18d2274e9226ec"
+      },
+      {
+        "source": "dsid_984309cb21de49b7b8b92d191ce711c1",
+        "target": "dsid_a32b7faba0b144c0a2746d07e524437f"
+      },
+      {
+        "source": "dsid_85d11cb09ddb42469479b2dae5c30ff6",
+        "target": "dsid_8a36797af852487c8f2ee640ff72cd3a"
+      },
+      {
+        "source": "dsid_02e2925b58b2452a8f9cefa38de3b211",
+        "target": "dsid_3a6e1d6fd3bd4e398556e255fa129c20"
+      },
+      {
+        "source": "dsid_1300404c65d840aa8aed5368eb1bf496",
+        "target": "dsid_0a2b5b1fdb4a463d94230a532a23576e"
+      },
+      {
+        "source": "dsid_e08e46a25a44400286df9c3f0cd1e036",
+        "target": "dsid_f427cd3af61c49c0ada9653cb1f6021b"
+      },
+      {
+        "source": "dsid_c42a8068c9284b2bb13d32f19c5ae03b",
+        "target": "dsid_0e204a12705146a8b7cab0bf5536e386"
+      },
+      {
+        "source": "dsid_47fc5754891d418fb73465e017009a7d",
+        "target": "dsid_44a8d33cd94149209451291ec3fa86b5"
+      },
+      {
+        "source": "dsid_20a2fcdb0ea340f6a992abbc3dd2ecec",
+        "target": "dsid_efa2f1c968b841379c6ada01f1eb880b"
+      },
+      {
+        "source": "dsid_b02f0e96b4b6498894914a4a1b70c9f0",
+        "target": "dsid_659d5debc7344351b9faf05bca430c9f"
+      },
+      {
+        "source": "dsid_be5cf6ff60854f9fa04f5a78ee3e2c42",
+        "target": "dsid_878d8312d97946f68447cfa947c012b9"
+      },
+      {
+        "source": "dsid_4bb083bb012c4f1292c56e66287c0e8d",
+        "target": "dsid_f427cd3af61c49c0ada9653cb1f6021b"
+      },
+      {
+        "source": "dsid_c663ba8c75c0437591d8b41d94556640",
+        "target": "dsid_659d5debc7344351b9faf05bca430c9f"
+      },
+      {
+        "source": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d",
+        "target": "dsid_2488e2cce9be497e93e1dd4b9cac68c9"
+      },
+      {
+        "source": "dsid_857cdec4de314cbcac9726632e508e1f",
+        "target": "dsid_d94e081e8b0b4f748ced7e498f3b7097"
+      },
+      {
+        "source": "dsid_19c8193e68ed4bdf96cd9be68ce777e9",
+        "target": "dsid_6c2f8774739e4ab49b085394fa14c119"
+      },
+      {
+        "source": "dsid_7b3c3514f7ee41bdbf18d2274e9226ec",
+        "target": "dsid_87cf09d67f3d4f2bb99025213b6a2d76"
+      },
+      {
+        "source": "dsid_d97eaba87bc14a6cb62ff91cefb1526c",
+        "target": "dsid_de70f35de0a14e47b271a792f2b4ec43"
+      },
+      {
+        "source": "dsid_619ea6838d524bbca9e580fdbf320608",
+        "target": "dsid_025b8eac87484bc6baa3eb8688c75a0e"
+      },
+      {
+        "source": "dsid_0aec3b89cab444a59cf375d52e98d03c",
+        "target": "dsid_77f9fdbfebb349febf4f761b9bf98a77"
+      },
+      {
+        "source": "dsid_0233184c3fe040d4bee50cc93129b7bf",
+        "target": "dsid_241412198ead4145a88af8b0265df96c"
+      },
+      {
+        "source": "dsid_be5cf6ff60854f9fa04f5a78ee3e2c42",
+        "target": "dsid_a567be80957b4a9d9c25c4635a408c46"
+      },
+      {
+        "source": "dsid_b194a070a06e4b20bfb11c213e31dd3a",
+        "target": "dsid_1cd5e6e9de7548df8d7e0fa5227c8faf"
+      },
+      {
+        "source": "dsid_b2448122064542bfab027cc8cd6b2db5",
+        "target": "dsid_de70f35de0a14e47b271a792f2b4ec43"
+      },
+      {
+        "source": "dsid_97750c07f9924163a66404dfc8814314",
+        "target": "dsid_47fc5754891d418fb73465e017009a7d"
+      },
+      {
+        "source": "dsid_f762b0b3fa124909bfb52b3fc3985722",
+        "target": "dsid_223717696e134edb980f356dec3d9612"
+      },
+      {
+        "source": "dsid_5fac77d4122c4137a25c196de039c855",
+        "target": "dsid_1bad3a8b1a7340269a3f640985f45f42"
+      },
+      {
+        "source": "dsid_b8da8a172d8246f1b1550ce51d5ce4d4",
+        "target": "dsid_c10b8cc503224f3b85bdc80a99fdcc55"
+      },
+      {
+        "source": "dsid_367b59f62a1b4fbea9d571358e1500c0",
+        "target": "dsid_2983db960a1b47e08a4938fc4c341251"
+      },
+      {
+        "source": "dsid_e01c41b76af8463d99c3233b6f6c15ec",
+        "target": "dsid_6deb5de563bf4a48a7542d8e4baae8cc"
+      },
+      {
+        "source": "dsid_13bbf23761d74d56b5d903ea8950613d",
+        "target": "dsid_06cb01bf2a394068960994282187fe88"
+      },
+      {
+        "source": "dsid_57bce3feefe34118abbf133b22307288",
+        "target": "dsid_3e7c044fa4d847da971b5751722f3053"
+      },
+      {
+        "source": "dsid_b8da8a172d8246f1b1550ce51d5ce4d4",
+        "target": "dsid_3c0bea3ad9b94866ab71303af42e9022"
+      },
+      {
+        "source": "dsid_2983db960a1b47e08a4938fc4c341251",
+        "target": "dsid_28d7b5a4eeb84568b933bde7941d4d23"
+      },
+      {
+        "source": "dsid_17916ad7d9084fb6b934656ce58eabb8",
+        "target": "dsid_367b59f62a1b4fbea9d571358e1500c0"
+      },
+      {
+        "source": "dsid_73ac5c0c6c9341768f5a67f56e7e173e",
+        "target": "dsid_53265b32e2f94036887785c902a54e1a"
+      },
+      {
+        "source": "dsid_13bbf23761d74d56b5d903ea8950613d",
+        "target": "dsid_daba5649f4184e20aef742e2d83275ea"
+      },
+      {
+        "source": "dsid_9f8e0b2262c64123a3d73e36bddbb550",
+        "target": "dsid_6ca515350eec4daa9cb8c8e39188a45d"
+      },
+      {
+        "source": "dsid_1e67bab6aee94564a66f7c3185c7e0f4",
+        "target": "dsid_84afccdda3cb478aa22cd578222d5eba"
+      },
+      {
+        "source": "dsid_da29e4d68e794d83bd8e1cd3ad08df7d",
+        "target": "dsid_a9f870cd6f374a7cbecaf89113251220"
+      },
+      {
+        "source": "dsid_accd69e5feee42b1af12405726ddedc5",
+        "target": "dsid_3a6e1d6fd3bd4e398556e255fa129c20"
+      },
+      {
+        "source": "dsid_b02f0e96b4b6498894914a4a1b70c9f0",
+        "target": "dsid_7d745325410640628a59a24759b9a62a"
+      },
+      {
+        "source": "dsid_ab7c9d60c3b945c28f27190102610b4d",
+        "target": "dsid_ac559922addd4731815a098971ad6192"
+      },
+      {
+        "source": "dsid_8f8f49a3328d4ef79c18e72842c8b71b",
+        "target": "dsid_5df32c2cdcc44aaab289e7bfc85eb158"
+      },
+      {
+        "source": "dsid_89a7a3a61f82467b845b39fbf3948045",
+        "target": "dsid_84afccdda3cb478aa22cd578222d5eba"
+      },
+      {
+        "source": "dsid_c076cafdab164f399c4dc9a623f015ad",
+        "target": "dsid_17916ad7d9084fb6b934656ce58eabb8"
+      },
+      {
+        "source": "dsid_1cd5e6e9de7548df8d7e0fa5227c8faf",
+        "target": "dsid_c3db727b67db4e7ab7b828b126000903"
+      },
+      {
+        "source": "dsid_f6395a9c7cc942dba76d24db25915a25",
+        "target": "dsid_a2298584e55f48279bcf4935d360b19e"
+      },
+      {
+        "source": "dsid_85d6523d99fc457ebde3a0826e97ed61",
+        "target": "dsid_aa166cfb814c4ebfa0a25998b5070b9e"
+      },
+      {
+        "source": "dsid_e535d1f855bd49fab61a7224e0ed84eb",
+        "target": "dsid_22126945cec147088258aeed5cc7b32f"
+      },
+      {
+        "source": "dsid_13328ce12b044fc7aeae598648e3d0d5",
+        "target": "dsid_89a7a3a61f82467b845b39fbf3948045"
+      },
+      {
+        "source": "dsid_d1143f5919b44ed396bdfeb3d4f702c2",
+        "target": "dsid_d94e081e8b0b4f748ced7e498f3b7097"
+      },
+      {
+        "source": "dsid_c75cf23617c0412988a7fcfa53f4f790",
+        "target": "dsid_d8e66b57cd50463b80ffa145bc9902c0"
+      },
+      {
+        "source": "dsid_2488e2cce9be497e93e1dd4b9cac68c9",
+        "target": "dsid_97750c07f9924163a66404dfc8814314"
+      },
+      {
+        "source": "dsid_22126945cec147088258aeed5cc7b32f",
+        "target": "dsid_9f8e0b2262c64123a3d73e36bddbb550"
+      },
+      {
+        "source": "dsid_85d6523d99fc457ebde3a0826e97ed61",
+        "target": "dsid_223717696e134edb980f356dec3d9612"
+      },
+      {
+        "source": "dsid_984309cb21de49b7b8b92d191ce711c1",
+        "target": "dsid_c71a7326d4e84c609e10765cd10c4639"
+      },
+      {
+        "source": "dsid_20a2fcdb0ea340f6a992abbc3dd2ecec",
+        "target": "dsid_22126945cec147088258aeed5cc7b32f"
+      },
+      {
+        "source": "dsid_e471474bb1d64258a31a76b86778cfb0",
+        "target": "dsid_3d129f18e11d4a6f988b8edb04248e5d"
+      },
+      {
+        "source": "dsid_223717696e134edb980f356dec3d9612",
+        "target": "dsid_286c23a602254098a6aa27cd25156bdd"
+      },
+      {
+        "source": "dsid_49258ffe3a404977b28f982605152b36",
+        "target": "dsid_2488e2cce9be497e93e1dd4b9cac68c9"
+      },
+      {
+        "source": "dsid_223717696e134edb980f356dec3d9612",
+        "target": "dsid_528ac53fe9de496baa374c4bb0d10fdf"
+      },
+      {
+        "source": "dsid_0aec3b89cab444a59cf375d52e98d03c",
+        "target": "dsid_85d11cb09ddb42469479b2dae5c30ff6"
+      },
+      {
+        "source": "dsid_7b3c3514f7ee41bdbf18d2274e9226ec",
+        "target": "dsid_e01c41b76af8463d99c3233b6f6c15ec"
+      },
+      {
+        "source": "dsid_3e7c044fa4d847da971b5751722f3053",
+        "target": "dsid_2983db960a1b47e08a4938fc4c341251"
+      },
+      {
+        "source": "dsid_0aec3b89cab444a59cf375d52e98d03c",
+        "target": "dsid_c807ec8ee3f2467c824823b4b543ee66"
+      },
+      {
+        "source": "dsid_b2448122064542bfab027cc8cd6b2db5",
+        "target": "dsid_e3dcf203e7224221802af4ac4fdde272"
+      },
+      {
+        "source": "dsid_5df32c2cdcc44aaab289e7bfc85eb158",
+        "target": "dsid_241412198ead4145a88af8b0265df96c"
+      },
+      {
+        "source": "dsid_b194a070a06e4b20bfb11c213e31dd3a",
+        "target": "dsid_8e0579ee52ff4e25b3a4d04ded113fd4"
+      }
+    ]
+  }
 }

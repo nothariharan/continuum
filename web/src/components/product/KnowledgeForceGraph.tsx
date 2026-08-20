@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), { ssr: false });
 
 export type GState = "dim" | "highlight" | "primary";
-export type GNode = { id: string; label?: string; group?: string; val?: number; state?: GState };
+export type GNode = { id: string; label?: string; group?: string; kind?: string; val?: number; state?: GState };
 export type GLink = { source: string; target: string; state?: GState };
 
 // Light-theme palette (matches the site).
@@ -35,6 +35,7 @@ export function KnowledgeForceGraph({
   const wrapRef = useRef<HTMLDivElement>(null);
   const fgRef = useRef<{ d3Force: (n: string) => { strength?: (v: number) => unknown; distance?: (v: number) => unknown } | undefined; d3ReheatSimulation?: () => void } | null>(null);
   const [width, setWidth] = useState(600);
+  const hoverRef = useRef<string | null>(null);
 
   useEffect(() => {
     const measure = () => wrapRef.current && setWidth(wrapRef.current.clientWidth);
@@ -72,37 +73,42 @@ export function KnowledgeForceGraph({
         d3VelocityDecay={0.3}
         warmupTicks={40}
         nodeRelSize={5}
+        nodeLabel={(n: GNode) => n.label ?? n.id}
+        onNodeHover={(n: GNode | null) => {
+          hoverRef.current = n?.id ?? null;
+          if (wrapRef.current) wrapRef.current.style.cursor = n ? "pointer" : "default";
+        }}
         linkColor={(l: GLink) => LINK[l.state ?? "dim"]}
         linkWidth={(l: GLink) => (l.state === "primary" ? 2 : l.state === "highlight" ? 1.4 : 0.6)}
         nodeCanvasObject={(node: GNode & { x?: number; y?: number }, ctx: CanvasRenderingContext2D, scale: number) => {
           const st = node.state ?? "dim";
-          const r = st === "primary" ? 7 : st === "highlight" ? 5.5 : 2.4 + (node.val ?? 1) * 0.7;
+          const hovered = hoverRef.current === node.id;
+          let r = st === "primary" ? 7 : st === "highlight" ? 5.5 : 2.4 + (node.val ?? 1) * 0.7;
+          if (hovered) r += 2;
           const x = node.x ?? 0;
           const y = node.y ?? 0;
-          // subtle glow for highlighted nodes
-          if (st !== "dim") {
+          // glow for highlighted or hovered nodes
+          if (st !== "dim" || hovered) {
             ctx.beginPath();
             ctx.arc(x, y, r + 3, 0, 2 * Math.PI);
-            ctx.fillStyle = st === "primary" ? "rgba(245,158,11,0.18)" : "rgba(124,108,240,0.18)";
+            ctx.fillStyle = st === "primary" ? "rgba(245,158,11,0.18)" : st === "highlight" ? "rgba(124,108,240,0.18)" : "rgba(15,23,42,0.12)";
             ctx.fill();
           }
           ctx.beginPath();
           ctx.arc(x, y, r, 0, 2 * Math.PI);
-          ctx.fillStyle = NODE[st];
-          if (st === "dim") {
-            ctx.globalAlpha = 0.9;
-          }
+          ctx.fillStyle = hovered && st === "dim" ? "#8b90a0" : NODE[st];
+          ctx.globalAlpha = st === "dim" && !hovered ? 0.9 : 1;
           ctx.fill();
           ctx.globalAlpha = 1;
-          if (st !== "dim" && node.label) {
-            const fontSize = Math.max(4, 11 / scale);
+          // labels: always for highlight/primary, and for the hovered node
+          if ((st !== "dim" || hovered) && node.label) {
+            const fontSize = Math.max(4, (hovered ? 12 : 11) / scale);
             ctx.font = `600 ${fontSize}px Inter, ui-sans-serif, sans-serif`;
             ctx.textAlign = "left";
             ctx.textBaseline = "middle";
             const tx = x + r + 3;
-            // white halo for legibility on the graph
-            ctx.lineWidth = Math.max(2, 3 / scale);
-            ctx.strokeStyle = "rgba(255,255,255,0.95)";
+            ctx.lineWidth = Math.max(2, 3.5 / scale);
+            ctx.strokeStyle = "rgba(255,255,255,0.97)";
             ctx.strokeText(node.label, tx, y);
             ctx.fillStyle = "#0f172a";
             ctx.fillText(node.label, tx, y);
