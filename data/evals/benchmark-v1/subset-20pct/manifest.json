@@ -1,0 +1,47 @@
+{
+  "benchmark_version": "v1",
+  "category_counts": {
+    "basic": 35,
+    "completeness": 4,
+    "conflicting_info": 4,
+    "constrained": 6,
+    "high_level": 2,
+    "info_not_found": 4,
+    "intra_document_reasoning": 8,
+    "miscellaneous": 4,
+    "project_related": 8,
+    "semantic": 25
+  },
+  "dev_category_counts": {
+    "basic": 31,
+    "completeness": 3,
+    "conflicting_info": 3,
+    "constrained": 3,
+    "high_level": 1,
+    "info_not_found": 3,
+    "intra_document_reasoning": 6,
+    "miscellaneous": 4,
+    "project_related": 6,
+    "semantic": 20
+  },
+  "dev_size": 80,
+  "holdout_category_counts": {
+    "basic": 4,
+    "completeness": 1,
+    "conflicting_info": 1,
+    "constrained": 3,
+    "high_level": 1,
+    "info_not_found": 1,
+    "intra_document_reasoning": 2,
+    "project_related": 2,
+    "semantic": 5
+  },
+  "holdout_size": 20,
+  "mode": "subset-20pct",
+  "note": "Deterministic proportional 20% subset of official 500Q. Use sample_dev.json for tuning; sample_holdout.json for validation only.",
+  "question_count": 100,
+  "question_ids_sha256": "51307150f50038f6146c21b95a012b768095596cedc21734c661830f4ec60939",
+  "sample_corpus_overlap_count": 1,
+  "selection_seed": 42,
+  "target_size": 100
+}

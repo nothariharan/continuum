@@ -23,9 +23,12 @@ from .runner import _answer_model, _build_single_system, _build_systems, _result
 from .schema import (
     DEFAULT_BENCHMARK_ROOT,
     BenchmarkManifest,
+    filter_questions_by_ids,
     git_commit_sha,
     load_manifest,
+    load_question_ids_from_path,
     load_questions,
+    load_questions_from_path,
     validate_result_row,
     write_json,
 )
@@ -34,18 +37,51 @@ from .scoring import score_rows, summarize_context, summarize_latency, summarize
 
 def _environment_metadata() -> dict[str, Any]:
     import numpy
-    import scipy
 
-    return {
+    metadata: dict[str, Any] = {
         "python": sys.version,
         "platform": platform.platform(),
         "numpy": numpy.__version__,
-        "scipy": scipy.__version__,
     }
+    try:
+        import scipy
+
+        metadata["scipy"] = scipy.__version__
+    except ImportError:
+        metadata["scipy"] = None
+    return metadata
 
 
-def run_dir(run_id: str, root: Path | None = None) -> Path:
-    return (root or DEFAULT_BENCHMARK_ROOT) / "full-v1" / "runs" / run_id
+def run_dir(run_id: str, root: Path | None = None, *, subset: bool = False) -> Path:
+    base = root or DEFAULT_BENCHMARK_ROOT
+    if subset or run_id.startswith("subset-"):
+        return base / "subset-20pct" / "runs" / run_id
+    return base / "full-v1" / "runs" / run_id
+
+
+def _resolve_questions(
+    *,
+    mode: str,
+    benchmark_root: Path,
+    regression: bool,
+    max_questions: int,
+    questions_file: Path | None,
+    question_ids_file: Path | None,
+) -> list[dict[str, Any]]:
+    if questions_file is not None:
+        questions = load_questions_from_path(questions_file)
+    elif question_ids_file is not None:
+        pool = load_questions_from_path(benchmark_root / "subset-20pct" / "questions.jsonl")
+        if not pool:
+            pool = load_questions(mode, benchmark_root, regression=regression)
+        question_ids = load_question_ids_from_path(question_ids_file)
+        questions = filter_questions_by_ids(pool, question_ids)
+    else:
+        questions = load_questions(mode, benchmark_root, regression=regression)
+
+    if max_questions > 0:
+        questions = questions[:max_questions]
+    return questions
 
 
 def _load_completed_ids(path: Path) -> set[str]:
@@ -107,16 +143,24 @@ def run_baseline(
     fail_on_fallback: bool = True,
     index_only: bool = False,
     max_questions: int = 0,
+    questions_file: Path | None = None,
+    question_ids_file: Path | None = None,
     root: Path | None = None,
     graph_client: HydraDBClient | None = None,
     entity_store: EntityStore | None = None,
 ) -> dict[str, Any]:
     benchmark_root = root or DEFAULT_BENCHMARK_ROOT
     manifest = load_manifest(mode, benchmark_root)
-    questions = load_questions(mode, benchmark_root, regression=regression)
-    if max_questions > 0:
-        questions = questions[:max_questions]
-    out_root = run_dir(run_id, benchmark_root)
+    subset_run = questions_file is not None or question_ids_file is not None or run_id.startswith("subset-")
+    questions = _resolve_questions(
+        mode=mode,
+        benchmark_root=benchmark_root,
+        regression=regression,
+        max_questions=max_questions,
+        questions_file=questions_file,
+        question_ids_file=question_ids_file,
+    )
+    out_root = run_dir(run_id, benchmark_root, subset=subset_run)
 
     corpus_started = time.perf_counter()
     corpus = load_corpus(mode, corpus_limit=corpus_limit)
@@ -179,6 +223,8 @@ def run_baseline(
                 "corpus_records_loaded": len(corpus.records),
                 "corpus_limit": corpus_limit,
                 "question_count": len(questions),
+                "questions_file": str(questions_file) if questions_file else None,
+                "question_ids_file": str(question_ids_file) if question_ids_file else None,
                 "started_at": datetime.now(UTC).isoformat(),
                 "environment": _environment_metadata(),
                 "top_k": manifest.top_k,

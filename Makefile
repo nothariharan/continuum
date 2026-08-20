@@ -123,6 +123,26 @@ benchmark-e2e:
 
 build-benchmark-v1:
 	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode all
+
+build-benchmark-subset-20pct:
+	PYTHONPATH=. python scripts/build_benchmark_v1.py --mode subset-20pct
+
+benchmark-subset-mock:
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-mock-001 --mode sample-v1 --system continuum --answer-model mock --no-graph --questions-file data/evals/benchmark-v1/subset-20pct/questions.jsonl
+
+benchmark-subset-baseline:
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-baseline-001 --mode full-v1 --system continuum --answer-model real --question-ids-file data/evals/benchmark-v1/subset-20pct/samples/sample_dev.json --no-graph
+
+benchmark-subset-holdout:
+	PYTHONPATH=. python scripts/run_full_v1_baseline.py --run-id subset-20pct-holdout-001 --mode full-v1 --system continuum --answer-model real --question-ids-file data/evals/benchmark-v1/subset-20pct/samples/sample_holdout.json --no-graph
+
+benchmark-capability:
+	PYTHONPATH=. python3 scripts/source_to_answer_e2e.py --refinement mock --skip-graph
+	PYTHONPATH=. python3 scripts/benchmark_e2e_questions.py || true
+
+analyze-benchmark-subset:
+	PYTHONPATH=. python scripts/analyze_benchmark_subset.py --run-id subset-20pct-mock-001 --label baseline-20pct
+
 benchmark-continuum-sample:
 	python scripts/benchmark_continuum_sample.py
 

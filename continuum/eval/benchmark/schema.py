@@ -11,7 +11,7 @@ from typing import Any
 BENCHMARK_VERSION = "v1"
 DATASET_NAME = "EnterpriseRAG-Bench"
 DATASET_VERSION = "v1.0.0"
-MODES = frozenset({"sample-v1", "full-v1"})
+MODES = frozenset({"sample-v1", "full-v1", "subset-20pct"})
 SYSTEMS = ("bm25", "dense", "hybrid", "continuum")
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -122,6 +122,10 @@ def load_manifest(mode: str, root: Path | None = None) -> BenchmarkManifest:
 def load_questions(mode: str, root: Path | None = None, *, regression: bool = False) -> list[dict[str, Any]]:
     base = mode_root(mode, root)
     path = base / "regression" / "questions.jsonl" if regression else base / "questions.jsonl"
+    return load_questions_from_path(path)
+
+
+def load_questions_from_path(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     with path.open(encoding="utf-8") as handle:
         for line in handle:
@@ -129,6 +133,33 @@ def load_questions(mode: str, root: Path | None = None, *, regression: bool = Fa
             if line:
                 rows.append(json.loads(line))
     return rows
+
+
+def load_question_ids_from_path(path: Path) -> list[str]:
+    """Load question IDs from JSON array or JSONL question rows."""
+    if path.suffix == ".jsonl":
+        return [str(row["question_id"]) for row in load_questions_from_path(path)]
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, list):
+        if not payload:
+            return []
+        if isinstance(payload[0], str):
+            return [str(item) for item in payload]
+        return [str(item["question_id"]) for item in payload if isinstance(item, dict)]
+    if isinstance(payload, dict) and "question_ids" in payload:
+        return [str(item) for item in payload["question_ids"]]
+    raise ValueError(f"unsupported question id file format: {path}")
+
+
+def filter_questions_by_ids(
+    questions: list[dict[str, Any]],
+    question_ids: list[str],
+) -> list[dict[str, Any]]:
+    by_id = {str(q["question_id"]): q for q in questions}
+    missing = [qid for qid in question_ids if qid not in by_id]
+    if missing:
+        raise ValueError(f"unknown question_ids: {missing[:5]}")
+    return [by_id[qid] for qid in question_ids]
 
 
 def write_json(path: Path, payload: dict[str, Any]) -> None:
