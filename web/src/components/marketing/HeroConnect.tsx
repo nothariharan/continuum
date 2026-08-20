@@ -275,18 +275,25 @@ export function HeroConnect() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/demo?autoplay=1"
+              href="/workspace"
               className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#0a0e1a] shadow-lg transition-all hover:scale-[1.03] active:scale-[0.99]"
             >
-              <span>See the demo</span>
+              <span>Create workspace</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden>→</span>
+            </Link>
+            <Link
+              href="/redwood"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:scale-[1.03] active:scale-[0.99]"
+            >
+              <span>Explore Redwood demo</span>
               <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden>→</span>
             </Link>
             <Link
               href="#architecture"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white/40 hover:scale-[1.03] active:scale-[0.99]"
+              className="inline-flex items-center gap-1.5 px-2 py-3.5 text-sm font-medium text-white/60 transition-colors hover:text-white"
             >
               <span>How it works</span>
-              <span className="transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden>↓</span>
+              <span aria-hidden>↓</span>
             </Link>
           </div>
         </motion.div>
