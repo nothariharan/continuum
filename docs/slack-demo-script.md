@@ -109,6 +109,29 @@ python scripts/demo_console.py apply gmail-transition
 python scripts/demo_console.py apply gmail-aug5  # → Priya, effective Aug 5
 ```
 
+## 4c. Three-stage ownership demo (scripted)
+
+Drive the ownership timeline in three commands — each updates the canonical
+memory the Slack bot reads, so `@continuum who owns Acme?` reflects the stage
+live:
+
+```bash
+python scripts/demo_owner.py default   # Morgan owns Acme        (clean start)
+python scripts/demo_owner.py priya     # Priya owns  · Previously: Morgan
+python scripts/demo_owner.py hari       # Hari owns   · Previously: Priya, Morgan
+```
+
+Each command prints exactly what Slack will say. `default` resets back to Morgan
+for the next take. Use `--owner "Your Name"` to change the final owner.
+
+Requires HydraDB up. If a container restart left a stale store (DETACH DELETE
+"internal query execution error"), reset it first:
+
+```powershell
+powershell -File scripts/reset_hydradb.ps1
+powershell -File scripts/start_hydradb.ps1
+```
+
 ## 5. Automated harness (no live Slack)
 
 ```bash

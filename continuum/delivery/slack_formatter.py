@@ -58,14 +58,16 @@ def _evidence_sources(evidence: list[dict[str, Any]]) -> list[str]:
     return order
 
 
-def _previous_name(state: dict[str, Any]) -> str | None:
-    """The owner immediately before the current one, from state history."""
+def _previous_names(state: dict[str, Any]) -> list[str]:
+    """All prior owners, most-recent-first (e.g. ['Priya', 'Morgan'])."""
     names: list[str] = []
     for row in state.get("history") or []:
         n = row.get("subject_name") or row.get("subject_mention")
         if n and (not names or names[-1] != str(n)):
             names.append(str(n))
-    return names[-2] if len(names) >= 2 else None
+    if len(names) < 2:
+        return []
+    return list(reversed(names[:-1]))  # drop current owner (last), newest prior first
 
 
 def _fmt_date(value: Any) -> str | None:
@@ -219,7 +221,7 @@ def format_slack_answer(result: dict[str, Any]) -> dict[str, Any]:
 
     answer_line = _answer_line(status, name, entity, resolution)
     sides = _conflict_sides(state)
-    previous = _previous_name(state) if resolution != "before" else None
+    previous = ", ".join(_previous_names(state)) if resolution != "before" else ""
     effective = _fmt_date(state.get("valid_from"))
     ev_sources = _evidence_sources(evidence)
     confidence = _confidence_label(status, state.get("confidence"))
