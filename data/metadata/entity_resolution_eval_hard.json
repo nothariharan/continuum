@@ -1,0 +1,168 @@
+{
+  "pairs": 9,
+  "metrics": {
+    "pair_accuracy": 0.6667,
+    "same_precision": 1.0,
+    "same_recall": 1.0,
+    "same_f1": 1.0,
+    "different_precision": 1.0,
+    "different_recall": 0.25,
+    "different_f1": 0.4,
+    "false_merge_rate": 0.0,
+    "false_merge_count": 0,
+    "false_split_rate": 0.0,
+    "false_split_count": 0,
+    "review_rate": 0.4444,
+    "abstain_rate": 0.0,
+    "review_count": 4,
+    "abstain_count": 0
+  },
+  "decision_distribution": {
+    "MERGE": 4,
+    "REVIEW": 4,
+    "KEEP_SEPARATE": 1
+  },
+  "gold_distribution": {
+    "SAME_ENTITY": 4,
+    "UNCERTAIN": 1,
+    "DIFFERENT_ENTITY": 4
+  },
+  "error_taxonomy": {
+    "REVIEW_AMBIGUOUS": 3
+  },
+  "rows": [
+    {
+      "pair_id": "hard-pos-001",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.97,
+      "signals": [
+        "email-local-part",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-local-part, source-overlap"
+    },
+    {
+      "pair_id": "hard-pos-002",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.92,
+      "signals": [
+        "email-username"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-username"
+    },
+    {
+      "pair_id": "hard-pos-003",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.92,
+      "signals": [
+        "email-username"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: email-username"
+    },
+    {
+      "pair_id": "hard-unc-001",
+      "gold": "UNCERTAIN",
+      "decision": "REVIEW",
+      "score": 0.88,
+      "signals": [
+        "username",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "shared evidence but not conclusive (username, source-overlap)"
+    },
+    {
+      "pair_id": "hard-pos-005",
+      "gold": "SAME_ENTITY",
+      "decision": "MERGE",
+      "score": 0.9,
+      "signals": [
+        "external-id",
+        "source-overlap"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "strong identity evidence: external-id, source-overlap"
+    },
+    {
+      "pair_id": "hard-neg-001",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "REVIEW_AMBIGUOUS",
+      "notes": "shared evidence but not conclusive (source-overlap, full-name) | REVIEW_AMBIGUOUS"
+    },
+    {
+      "pair_id": "hard-neg-002",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "REVIEW_AMBIGUOUS",
+      "notes": "shared evidence but not conclusive (source-overlap, full-name) | REVIEW_AMBIGUOUS"
+    },
+    {
+      "pair_id": "hard-neg-003",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "KEEP_SEPARATE",
+      "score": 0.6,
+      "signals": [
+        "source-overlap",
+        "name-token-single"
+      ],
+      "correct": true,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": null,
+      "notes": "full names with no identity signal (maya chen vs maya patel)"
+    },
+    {
+      "pair_id": "hard-neg-004",
+      "gold": "DIFFERENT_ENTITY",
+      "decision": "REVIEW",
+      "score": 0.85,
+      "signals": [
+        "source-overlap",
+        "full-name"
+      ],
+      "correct": false,
+      "false_merge": false,
+      "false_split": false,
+      "error_class": "REVIEW_AMBIGUOUS",
+      "notes": "shared evidence but not conclusive (source-overlap, full-name) | REVIEW_AMBIGUOUS"
+    }
+  ]
+}

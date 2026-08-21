@@ -41,6 +41,7 @@ design and validation of each stage:
 
 - Pipeline phases — `phase-0.md`, `phase-1.md`, `phase-2-dataset.md`,
   `phase-2b-claims.md`, `phase-2b-extraction.md`, `phase2b-v2-predicate-refinement.md`
+- Hackathon execution — `hackathon-execution-plan.md`, `hackathon-execution-progress.md`
 - Entity resolution — `phase-3-entity-resolution-design.md`,
   `phase3-entity-resolution-core.md`, `phase3-identity-pairs-scaffold.md`,
   `phase3b-entity-integration.md`, `phase3b-real-identity-validation.md`
@@ -53,13 +54,13 @@ design and validation of each stage:
 
 ## Design research
 
-Background research and design blueprints that informed the system, under
+Background research, strategy blueprints, and architecture plans that informed the system, under
 [`research/`](research/):
 
-- [hydradb-vision-and-architecture.md](research/hydradb-vision-and-architecture.md)
-- [company-truth-graph-blueprint.md](research/company-truth-graph-blueprint.md)
-- [master-research-report-enterprise-truth-graph.md](research/master-research-report-enterprise-truth-graph.md)
-- [continuum-01-master-research-report.md](research/continuum-01-master-research-report.md) … [continuum-08](research/continuum-08-hackathon-strategy-red-team-and-hydradb-fit.md)
+- Master plans (HTML) — [continuum-master-plan.html](research/continuum-master-plan.html), [continuum_one_year_master_plan.html](research/continuum_one_year_master_plan.html), [continuum_updated_one_year_architecture_plan.html](research/continuum_updated_one_year_architecture_plan.html)
+- Hackathon & track blueprints (PDF) — [Hack Hydra Participant Guide.pdf](research/Hack%20Hydra%20Participant%20Guide.pdf), [HydraShield_Technical_Build_Blueprint.pdf](research/HydraShield_Technical_Build_Blueprint.pdf), [HydraShield_Track02A_Problem_and_Solution.pdf](research/HydraShield_Track02A_Problem_and_Solution.pdf)
+- Research reports — [hydradb-vision-and-architecture.md](research/hydradb-vision-and-architecture.md), [company-truth-graph-blueprint.md](research/company-truth-graph-blueprint.md), [master-research-report-enterprise-truth-graph.md](research/master-research-report-enterprise-truth-graph.md)
+- Series reports — [continuum-01-master-research-report.md](research/continuum-01-master-research-report.md) … [continuum-08](research/continuum-08-hackathon-strategy-red-team-and-hydradb-fit.md)
 - Ecosystem & landscape — [curated-ecosystem-and-baselines.md](research/curated-ecosystem-and-baselines.md), [continuum-06-open-source-ecosystem-and-database-comparison.md](research/continuum-06-open-source-ecosystem-and-database-comparison.md)
 
 > These are historical research artifacts written during design and a hackathon
