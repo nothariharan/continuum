@@ -1,6 +1,6 @@
 {
   "gate": "extraction-v2-checkpoint",
-  "lexicon": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\fixtures\\phase2b\\extraction-eval-lexicon.json",
+  "lexicon": "C:\\Users\\user\\Desktop\\Continuum\\data\\fixtures\\phase2b\\extraction-eval-lexicon.json",
   "subset": "11",
   "layers": {
     "lexicon_coverage": {

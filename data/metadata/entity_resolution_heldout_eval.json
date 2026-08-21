@@ -1,6 +1,6 @@
 {
   "gate": "entity-resolution-heldout-eval",
-  "dataset": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\entity_resolution\\v1\\identity-pairs.jsonl",
+  "dataset": "C:\\Users\\user\\Desktop\\Continuum\\data\\entity_resolution\\v1\\identity-pairs.jsonl",
   "seed": 42,
   "eval_fraction": 0.3,
   "note": "small dataset (103 pairs): held-out numbers carry wide error bars",

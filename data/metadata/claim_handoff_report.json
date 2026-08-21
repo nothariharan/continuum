@@ -1,6 +1,6 @@
 {
   "gate": "claim-handoff",
-  "claims_path": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\extraction\\claims.jsonl",
+  "claims_path": "C:\\Users\\user\\Desktop\\Continuum\\data\\extraction\\claims.jsonl",
   "claims_attempted": 611,
   "passed": 0,
   "failed": 611,

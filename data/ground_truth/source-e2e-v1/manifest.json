@@ -18,6 +18,6 @@
     ]
   },
   "programmatic_artifacts": [],
-  "gold_dir": "C:\\Users\\HARIHARAN\\Desktop\\Continuum\\data\\ground_truth\\source-e2e-v1",
+  "gold_dir": "C:\\Users\\user\\Desktop\\Continuum\\data\\ground_truth\\source-e2e-v1",
   "rebuild_artifacts": true
 }

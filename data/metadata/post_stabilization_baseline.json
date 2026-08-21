@@ -3,7 +3,7 @@
   "master_sha": "d191016b9a4e08a3dea19e58cb02f70a32b47088",
   "tests": {
     "sources": {
-      "command": "C:\\Users\\HARIHARAN\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m pytest tests/sources/ -m not hydradb -q --tb=no",
+      "command": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m pytest tests/sources/ -m not hydradb -q --tb=no",
       "exit_code": 0,
       "stdout_tail": [
         "........................................................................ [ 82%]",
@@ -13,7 +13,7 @@
       "stderr_tail": []
     },
     "query_core": {
-      "command": "C:\\Users\\HARIHARAN\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m pytest tests/phase2b/test_query_core.py -q --tb=no",
+      "command": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m pytest tests/phase2b/test_query_core.py -q --tb=no",
       "exit_code": 0,
       "stdout_tail": [
         "....................................                                     [100%]",

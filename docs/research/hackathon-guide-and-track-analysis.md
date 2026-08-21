@@ -1,7 +1,7 @@
 # Hack Hydra: Participant Guide & Track Breakdown
 
 > **Document Version:** 1.0  
-> **Source Material:** [Hack Hydra Participant Guide.pdf](file:///C:/Users/HARIHARAN/Desktop/HydraDB/Hack%20Hydra%20Participant%20Guide.pdf)  
+> **Source Material:** [Hack Hydra Participant Guide.pdf]((local source PDF))  
 > **Hackathon Dates:** August 12–20, 2026 | **Submission Deadline:** August 20, 2026 at 11:59 PM PT  
 > **Prize Pool:** $10,000 Total ($5k Grand Champion, $3k Runner-Up, $1.5k 3rd Place, $500 Best Use of HydraDB)
 
