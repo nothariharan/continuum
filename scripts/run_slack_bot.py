@@ -45,6 +45,12 @@ def _run_socket_mode() -> int:
 
     client = HydraDBClient()
     client.health_check()
+    # Force simple bot-token mode. If SLACK_CLIENT_ID/SECRET are present (they are
+    # in a full .env), Bolt auto-enables OAuth/installation-store and IGNORES the
+    # bot token — then every event fails with "AuthorizeResult not found" and the
+    # bot never replies. Hide them so Bolt authorizes with the token directly.
+    for _oauth_var in ("SLACK_CLIENT_ID", "SLACK_CLIENT_SECRET", "SLACK_INSTALLATION_STORE"):
+        os.environ.pop(_oauth_var, None)
     app = App(token=os.environ["SLACK_BOT_TOKEN"])
     bot_user_id = None
     try:
